@@ -2,8 +2,8 @@ package test_projet.model;
 
 public abstract class Utilisateur {
 	
-	private String login;
-	private String password;
+	protected String login;
+	protected String password;
 	
 	public Utilisateur(String login, String password) {
 		this.login = login;

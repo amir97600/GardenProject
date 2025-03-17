@@ -8,11 +8,11 @@ public class Fleur extends Plante {
 		super(nom, description, delaiRecolte, dureeVie, delaiArrosage);
 		this.comestibilite = comestibilite;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Fleur [comestibilite=" + comestibilite + "]";
+	}
 	
 	
 }

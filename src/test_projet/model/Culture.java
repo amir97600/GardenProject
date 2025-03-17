@@ -68,6 +68,13 @@ public class Culture {
 	public void setPlante(Plante plante) {
 		this.plante = plante;
 	}
+
+	@Override
+	public String toString() {
+		return "Culture [quantite=" + quantite + ", datePlantation=" + datePlantation + ", dateDernierArrosage="
+				+ dateDernierArrosage + ", recolte=" + recolte + ", jardin=" + jardin + ", plante=" + plante + "]";
+	}
+	
 	
 	
 }

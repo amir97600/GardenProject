@@ -9,6 +9,7 @@ public class Client extends Utilisateur {
 	private String prenom;
 	private int points = 0;
 	private List<Badge> badges = new ArrayList<Badge>();
+	private Jardin jardin;
 	
 	public Client(String login, String password, String nom,String prenom) {
 		super(login, password);
@@ -46,6 +47,20 @@ public class Client extends Utilisateur {
 
 	public void setBadges(List<Badge> badges) {
 		this.badges = badges;
+	}
+
+	public Jardin getJardin() {
+		return jardin;
+	}
+
+	public void setJardin(Jardin jardin) {
+		this.jardin = jardin;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [nom=" + nom + ", prenom=" + prenom + ", points=" + points + ", badges=" + badges + ", jardin="
+				+ jardin + "]";
 	}
 	
 	
