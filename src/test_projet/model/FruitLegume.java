@@ -1,6 +1,10 @@
 package test_projet.model;
 
+<<<<<<< HEAD
 public class FruitLegume extends Plante{
+=======
+public class FruitLegume extends Plante implements Recolter{
+>>>>>>> ac239c6 (model and test)
 
 	
 
@@ -9,6 +13,7 @@ public class FruitLegume extends Plante{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public String toString() {
 		return "FruitLegume [nom=" + nom + ", description=" + description + ", datePlante=" + datePlante
 				+ ", delaiRecolte=" + delaiRecolte + ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage
@@ -17,4 +22,12 @@ public class FruitLegume extends Plante{
 	
 	
 	
+=======
+	public void recolter() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+>>>>>>> ac239c6 (model and test)
 }

@@ -9,7 +9,10 @@ public class Client extends Utilisateur {
 	private String prenom;
 	private int points = 0;
 	private List<Badge> badges = new ArrayList<Badge>();
+<<<<<<< HEAD
 	private Jardin jardin;
+=======
+>>>>>>> ac239c6 (model and test)
 	
 	public Client(String login, String password, String nom,String prenom) {
 		super(login, password);
@@ -48,6 +51,7 @@ public class Client extends Utilisateur {
 	public void setBadges(List<Badge> badges) {
 		this.badges = badges;
 	}
+<<<<<<< HEAD
 
 	public Jardin getJardin() {
 		return jardin;
@@ -64,6 +68,8 @@ public class Client extends Utilisateur {
 	}
 
 	
+=======
+>>>>>>> ac239c6 (model and test)
 	
 	
 

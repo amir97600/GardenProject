@@ -68,6 +68,7 @@ public class Culture {
 	public void setPlante(Plante plante) {
 		this.plante = plante;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -75,6 +76,8 @@ public class Culture {
 				+ dateDernierArrosage + ", recolte=" + recolte + ", jardin=" + jardin + ", plante=" + plante + "]";
 	}
 	
+=======
+>>>>>>> ac239c6 (model and test)
 	
 	
 }

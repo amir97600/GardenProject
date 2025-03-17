@@ -1,18 +1,27 @@
 package test_projet.model;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> ac239c6 (model and test)
 public abstract class Plante {
 	
 	protected String nom;
 	protected String description;
+<<<<<<< HEAD
 	protected LocalDate datePlante;
 	protected int delaiRecolte; //Un intervalle de recolte en semaines
 	protected int dureeVie; //Duree de la vie de la plante en semaine
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
 	protected List<Culture> cultures = new ArrayList<Culture>();
+=======
+	protected int delaiRecolte; //Un intervalle de recolte en semaines
+	protected int dureeVie; //Duree de la vie de la plante en semaine
+	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
+>>>>>>> ac239c6 (model and test)
 	
 	public Plante(String nom, String description, int delaiRecolte, int dureeVie, int delaiArrosage) {
 		this.nom = nom;
@@ -20,6 +29,7 @@ public abstract class Plante {
 		this.delaiRecolte = delaiRecolte;
 		this.dureeVie = dureeVie;
 		this.delaiArrosage = delaiArrosage;
+<<<<<<< HEAD
 		this.datePlante = LocalDate.now();
 	}
 
@@ -78,6 +88,14 @@ public abstract class Plante {
 				+ cultures + "]";
 	}
 
+=======
+	}
+	
+	
+	
+	
+	
+>>>>>>> ac239c6 (model and test)
 	
 	
 

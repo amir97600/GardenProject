@@ -1,15 +1,21 @@
 package test_projet.model;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> ac239c6 (model and test)
 public class Jardin {
 	
 	private int numero;
 	private String nom;
 	private String lieu;
 	private int superficie;
+<<<<<<< HEAD
 	private List<Culture> cultures = new ArrayList<Culture>();
+=======
+>>>>>>> ac239c6 (model and test)
 
 	public Jardin(int numero, String nom, String lieu, int superficie) {
 		this.numero = numero;
@@ -20,6 +26,10 @@ public class Jardin {
 
 	
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac239c6 (model and test)
 	public int getNumero() {
 		return numero;
 	}
@@ -73,6 +83,7 @@ public class Jardin {
 		this.superficie = superficie;
 	}
 
+<<<<<<< HEAD
 
 
 	public List<Culture> getCultures() {
@@ -93,6 +104,8 @@ public class Jardin {
 				+ ", cultures=" + cultures + "]";
 	}
 
+=======
+>>>>>>> ac239c6 (model and test)
 	
 	
 	

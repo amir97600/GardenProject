@@ -10,6 +10,7 @@ public class Fleur extends Plante {
 	}
 	
 	
+<<<<<<< HEAD
 
 	public boolean isComestibilite() {
 		return comestibilite;
@@ -32,6 +33,10 @@ public class Fleur extends Plante {
 
 
 
+=======
+	
+	
+>>>>>>> ac239c6 (model and test)
 	
 	
 	

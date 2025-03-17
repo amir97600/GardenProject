@@ -1,6 +1,7 @@
 package test_projet.model;
 
 public enum Badge {
+<<<<<<< HEAD
 
 NainDeJardin(0),
 GraineDeNovice(100), 
@@ -23,3 +24,15 @@ return score;
 }
 
 }
+=======
+	
+	GraineDeNovice, 
+	JardinierDébutant, 
+	CultivateurAppliqué, 
+	MainVerte, 
+	MaîtreDuPotager,
+	GardienDuVerger, 
+	AlchimisteVert, 
+	SageDuJardin
+}
+>>>>>>> ac239c6 (model and test)
