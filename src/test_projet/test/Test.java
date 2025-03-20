@@ -1,14 +1,9 @@
 package test_projet.test;
 
-<<<<<<< HEAD
 import java.time.LocalDate;
-=======
->>>>>>> ac239c6 (model and test)
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-<<<<<<< HEAD
 import test_projet.context.Context;
 import test_projet.model.Admin;
 import test_projet.model.Client;
@@ -16,14 +11,10 @@ import test_projet.model.Culture;
 import test_projet.model.Fleur;
 import test_projet.model.FruitLegume;
 import test_projet.model.Jardin;
-=======
-import test_projet.model.Client;
->>>>>>> ac239c6 (model and test)
 import test_projet.model.Utilisateur;
 
 public class Test {
 
-<<<<<<< HEAD
 	public static Context context = Context.getInstance();
 	public static List<Utilisateur> users = context.getUsers();
 	public static int connecte = context.getConnecte();
@@ -33,11 +24,6 @@ public class Test {
 	public static List<Fleur> fleurs = context.getFleurs();
 	public static List<FruitLegume> agricoles = context.getAgricoles();
 	
-=======
-	public static List<Utilisateur> users = new ArrayList<Utilisateur>();
-	public static boolean connecte = false;
-	public static Utilisateur user = null;
->>>>>>> ac239c6 (model and test)
 	
 	public static String saisieString(String msg) {
 		System.out.println(msg);
@@ -46,7 +32,6 @@ public class Test {
 		return text;
 	}
 	
-<<<<<<< HEAD
 	public static boolean saisieBoolean(String msg) {
 		System.out.println(msg);
 		Scanner sc = new Scanner(System.in);
@@ -54,8 +39,6 @@ public class Test {
 		return bool;
 	}
 	
-=======
->>>>>>> ac239c6 (model and test)
 	public static int saisieInt(String msg) {
 		System.out.println(msg);
 		Scanner sc = new Scanner(System.in);
@@ -64,7 +47,6 @@ public class Test {
 	}
 	
 	public static void menuSansCompte() {
-<<<<<<< HEAD
 		if(users.isEmpty()) {
 			System.out.println("######################\t\t GardenApp \t\t###############################\n\n");
 			System.out.println("Bienvenue, veuillez vous inscrire");
@@ -76,12 +58,6 @@ public class Test {
 			System.out.println("1 : Creer un compte Utilisateur");
 			System.out.println("2 : Creer un compte Admin");
 			System.out.println("3 : Se connecter");
-=======
-		System.out.println("Bienvenue, veuillez vous inscrire où vous connecter");
-		System.out.println("1 : Creer un compte");
-		if(!users.isEmpty()) {
-			System.out.println("2 : Se connecter");
->>>>>>> ac239c6 (model and test)
 		}
 		System.out.println("0 : Quitter");
 		
@@ -91,7 +67,6 @@ public class Test {
 		case 1: {
 			
 			System.out.println("lets'go");
-<<<<<<< HEAD
 			creerCompteUtilisateur();
 			break;
 		}
@@ -116,32 +91,12 @@ public class Test {
 			System.exit(0);
 		default:
 			System.out.println("Choix incompréhensible!");
-=======
-			creerCompte();
-			break;
-		}
-		case 2 :
-			connecte = seConnecter();
-			if(connecte) {
-				menuCompte();
-			}
-			break;
-		case 0:
-			System.out.println("Ciao!");
-			return;
-		default:
-			System.out.println("Choix incompréhensif!");
->>>>>>> ac239c6 (model and test)
 			break;
 		}
 		menuSansCompte();
 	}
 	
-<<<<<<< HEAD
 	public static void creerCompteUtilisateur() {
-=======
-	public static void creerCompte() {
->>>>>>> ac239c6 (model and test)
 		String nom = saisieString("Entrez nom : ");
 		String prenom = saisieString("Entrez prenom : ");
 		String login = saisieString("Entrez login : ");
@@ -151,7 +106,6 @@ public class Test {
 		users.add(user);
 	}
 	
-<<<<<<< HEAD
 	public static void creerCompteAdmin() {
 		String login = saisieString("Entrez login : ");
 		String passWord = saisieString("Entrez passWord : ");
@@ -182,36 +136,18 @@ public class Test {
 			}
 		}
 		return connecte;
-=======
-	public static boolean seConnecter() {
-		String login = saisieString("Entrez login : ");
-		String passWord = saisieString("Entrez passWord : ");
-		for(Utilisateur user:users) {
-			if(user.getLogin().equals(login) && user.getPassword().equals(passWord)) {
-				System.out.println("Connexion réussie");
-				Test.user = user;
-				return true;
-			}
-		}
-		return false;
->>>>>>> ac239c6 (model and test)
 	}
 	
 	public static void menuCompte() {
 		System.out.println("Bienvenue "+user.getLogin());
 		System.out.println("1 : Ajouter un jardin");
-<<<<<<< HEAD
 		System.out.println("2 : Cultiver le jardin");
-=======
-		
->>>>>>> ac239c6 (model and test)
 		System.out.println("0 : Se deconnecter");
 		
 		int nb = saisieInt(" Que choisissez vous : ");
 		
 		switch (nb) {
 		case 1: {
-<<<<<<< HEAD
 			ajouterJardin();
 			break;
 		}
@@ -222,26 +158,11 @@ public class Test {
 			menuSansCompte();
 		default:
 			System.out.println("Choix incompréhensible!");
-=======
-			
-			System.out.println("lets'go");
-			break;
-		}
-		case 2 :
-			System.out.println("AH AH");
-			break;
-		case 0:
-			connecte = false;
-			return;
-		default:
-			System.out.println("Choix incompréhensif!");
->>>>>>> ac239c6 (model and test)
 			break;
 		}
 		menuCompte();
 	}
 	
-<<<<<<< HEAD
 	public static void menuAdmin() {
 		System.out.println("Menu admin");
 		System.out.println("Compte : "+admin.getLogin());
@@ -397,6 +318,7 @@ public class Test {
 	public static void gererJardins() {
 		if(users.isEmpty()) {
 			System.out.println("Il faut d'abord des utilisateurs");
+			menuAdmin();
 		}
 		else {
 			afficherUtilisateurs();
@@ -858,8 +780,6 @@ public class Test {
 	    
 	    if (jardin == null) {
 	        System.out.println("Pas de jardin, crée d'abord le jardin");
-	        menuCompte();
-	        return;
 	    }
 	    else {
 	    	for (int i = 0; i < agricoles.size(); i++) {
@@ -945,21 +865,11 @@ public class Test {
 		    }
 	    }
 	    
-	    		
 	}
 	
 	
 	public static void main(String[] args) {
 		menuSansCompte();
-=======
-	public static void main(String[] args) {
-		if(connecte) {
-			menuCompte();
-		}
-		else {
-			menuSansCompte();
-		}
->>>>>>> ac239c6 (model and test)
 	}
 
 }
