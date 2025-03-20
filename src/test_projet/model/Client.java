@@ -59,9 +59,11 @@ public class Client extends Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", points=" + points + ", badges=" + badges + ", jardin="
-				+ jardin + "]";
+		return "Client [nom=" + nom + ", prenom=" + prenom + ", login=" + login + ", password=" + password + ", points=" + points + ", badges=" + badges + ", jardin="
+				+ jardin  + "]";
 	}
+
+	
 	
 	
 

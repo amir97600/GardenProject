@@ -25,6 +25,12 @@ public abstract class Utilisateur {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [login=" + login + ", password=" + password + "]";
+	}
+	
 	
 	
 }

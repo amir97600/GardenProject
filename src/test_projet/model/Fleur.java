@@ -8,11 +8,31 @@ public class Fleur extends Plante {
 		super(nom, description, delaiRecolte, dureeVie, delaiArrosage);
 		this.comestibilite = comestibilite;
 	}
+	
+	
+
+	public boolean isComestibilite() {
+		return comestibilite;
+	}
+
+
+
+	public void setComestibilite(boolean comestibilite) {
+		this.comestibilite = comestibilite;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "Fleur [comestibilite=" + comestibilite + "]";
+		return "Fleur [comestibilite=" + comestibilite + ", nom=" + nom + ", description=" + description
+				+ ", datePlante=" + datePlante + ", delaiFloraison=" + delaiRecolte + ", dureeVie=" + dureeVie
+				+ ", delaiArrosage=" + delaiArrosage + ", cultures=" + cultures + "]";
 	}
+
+
+
+	
 	
 	
 }

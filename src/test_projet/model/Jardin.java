@@ -85,6 +85,14 @@ public class Jardin {
 		this.cultures = cultures;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Jardin [numero=" + numero + ", nom=" + nom + ", lieu=" + lieu + ", superficie=" + superficie
+				+ ", cultures=" + cultures + "]";
+	}
+
 	
 	
 	
