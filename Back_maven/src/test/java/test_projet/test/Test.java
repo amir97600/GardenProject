@@ -381,7 +381,7 @@ public class Test {
 			case 3 : 
 				consulterCulture(user);
 				break;
-			case 5 : 
+			case 4 : 
 				arroserCulture();
 				break;
 			case 0:

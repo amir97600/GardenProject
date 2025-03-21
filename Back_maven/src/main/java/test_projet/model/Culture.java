@@ -72,7 +72,7 @@ public class Culture {
 	@Override
 	public String toString() {
 		return "Culture [quantite=" + quantite + ", datePlantation=" + datePlantation + ", dateDernierArrosage="
-				+ dateDernierArrosage + ", recolte=" + recolte + ", jardin=" + jardin + ", plante=" + plante + "]";
+				+ dateDernierArrosage + ", recolte=" + recolte + ", jardin=" + jardin.getNumero() + ", plante=" + plante + "]";
 	}
 	
 	
