@@ -1,9 +1,20 @@
 package test_projet.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("fleurs")
 public class Fleur extends Plante {
 	
+	@Column(name="comestibilite", nullable=false)
 	private boolean comestibilite;
 
+	public Fleur() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Fleur(String nom, String description, int delaiRecolte, int dureeVie, int delaiArrosage, boolean comestibilite) {
 		super(nom, description, delaiRecolte, dureeVie, delaiArrosage);
 		this.comestibilite = comestibilite;
@@ -26,7 +37,7 @@ public class Fleur extends Plante {
 	@Override
 	public String toString() {
 		return "Fleur [comestibilite=" + comestibilite + ", nom=" + nom + ", description=" + description
-				+ ", datePlante=" + datePlante + ", delaiFloraison=" + delaiRecolte + ", dureeVie=" + dureeVie
+				+ ", delaiFloraison=" + delaiRecolte + ", dureeVie=" + dureeVie
 				+ ", delaiArrosage=" + delaiArrosage + ", cultures=" + cultures + "]";
 	}
 

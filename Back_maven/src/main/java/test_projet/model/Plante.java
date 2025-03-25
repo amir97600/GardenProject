@@ -4,15 +4,40 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="plantes")
 public abstract class Plante {
 	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	protected Integer id;
+	@Column(name="nom",nullable=false)
 	protected String nom;
+	@Column(name="nom")
 	protected String description;
-	protected LocalDate datePlante;
+	@Column(name="delai_recolte")
 	protected int delaiRecolte; //Un intervalle de recolte en semaines
+	@Column(name="duree_vie")
 	protected int dureeVie; //Duree de la vie de la plante en semaine
+	@Column(name="delai_arrosage")
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
+	
+	
 	protected List<Culture> cultures = new ArrayList<Culture>();
+	
+	public Plante() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Plante(String nom, String description, int delaiRecolte, int dureeVie, int delaiArrosage) {
 		this.nom = nom;
@@ -20,7 +45,6 @@ public abstract class Plante {
 		this.delaiRecolte = delaiRecolte;
 		this.dureeVie = dureeVie;
 		this.delaiArrosage = delaiArrosage;
-		this.datePlante = LocalDate.now();
 	}
 
 	public String getNom() {
@@ -73,14 +97,13 @@ public abstract class Plante {
 
 	@Override
 	public String toString() {
-		return "Plante [nom=" + nom + ", description=" + description + ", datePlante=" + datePlante + ", delaiRecolte="
-				+ delaiRecolte + ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage + ", cultures="
-				+ cultures + "]";
+		return "Plante [id=" + id + ", nom=" + nom + ", description=" + description + ", delaiRecolte=" + delaiRecolte
+				+ ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage + ", cultures=" + cultures + "]";
 	}
 
 	
-	
+
+}
 
 	
-	
-}
+
