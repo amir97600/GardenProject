@@ -1,6 +1,5 @@
 package test_projet.model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name="plantes")
+@Table(name="plante")
 public abstract class Plante {
 	
 	@Id
@@ -32,7 +32,7 @@ public abstract class Plante {
 	@Column(name="delai_arrosage")
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
 	
-	
+	@OneToMany(mappedBy = "plante")
 	protected List<Culture> cultures = new ArrayList<Culture>();
 	
 	public Plante() {
