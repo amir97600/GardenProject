@@ -32,27 +32,35 @@ public class TestPersistence {
 		Culture cult3 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin2, fl);
 		Culture cult4 = new Culture(5, LocalDate.now(), LocalDate.now(), false, jardin2, fleur);
 		
-		EntityManagerFactory emf  = Persistence.createEntityManagerFactory("contextJPA");
-		EntityManager em = emf.createEntityManager();
+		try {
+			
+			EntityManagerFactory emf  = Persistence.createEntityManagerFactory("contextJPA");
+			EntityManager em = emf.createEntityManager();
+			
+			
+			em.getTransaction().begin();
+			
+			em.persist(admin);
+			em.persist(client1);
+			em.persist(client2);
+			em.persist(fleur);
+			em.persist(fl);
+			em.persist(jardin1);
+			em.persist(jardin2);
+			em.persist(cult1);
+			em.persist(cult2);
+			em.persist(cult3);
+			em.persist(cult4);
+			
+			em.getTransaction().commit();
+			
+			em.close();
+			emf.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		em.getTransaction().begin();
-		
-		em.persist(admin);
-		em.persist(client1);
-		em.persist(client2);
-		em.persist(fleur);
-		em.persist(fl);
-		em.persist(jardin1);
-		em.persist(jardin2);
-		em.persist(cult1);
-		em.persist(cult2);
-		em.persist(cult3);
-		em.persist(cult4);
-		
-		em.getTransaction().commit();
-		
-		em.close();
-		emf.close();
 
 	}
 

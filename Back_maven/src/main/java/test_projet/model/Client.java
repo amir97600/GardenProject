@@ -25,9 +25,7 @@ public class Client extends Utilisateur {
 	@JoinColumn(name="id_jardin",nullable = false)
 	private Jardin jardin;
 	
-	public Client() {
-		super();
-	}
+	public Client() {}
 	
 	
 	
