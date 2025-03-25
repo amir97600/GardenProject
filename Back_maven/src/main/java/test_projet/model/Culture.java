@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,13 +15,11 @@ import javax.persistence.Table;
 @Table(name="culture")
 public class Culture {
 	
-	@ManyToOne
-	@JoinColumn(name="jardin", nullable=false)
-	private Jardin jardin;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id",nullable=false)
+	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="plante", nullable=false)
-	private Plante plante;
 	
 	@Column(nullable=false)
 	private int quantite;
@@ -28,6 +29,15 @@ public class Culture {
 	private LocalDate dateDernierArrosage;
 	@Column(nullable=false)
 	private Boolean recolte;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="jardin", nullable=false)
+	private Jardin jardin;
+	
+	@ManyToOne
+	@JoinColumn(name="plante", nullable=false)
+	private Plante plante;
 	
 	public Culture() {}
 	
