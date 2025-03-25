@@ -1,16 +1,16 @@
 package test_projet.model;
 
-import javax.persistence.Column;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
 
 @Entity
 @DiscriminatorValue("fleurs")
 public class Fleur extends Plante {
 	
-	@Column(name="comestibilite", nullable=false)
-	private boolean comestibilite;
-
+	private boolean comestibilite = false;
+	
 	public Fleur() {
 		// TODO Auto-generated constructor stub
 	}

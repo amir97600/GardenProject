@@ -34,6 +34,12 @@ public class Jardin {
 
 	public Jardin() {}
 	
+	public Jardin(String nom, String lieu, double superficie) {
+		this.nom = nom;
+		this.lieu = lieu;
+		this.superficie = superficie;
+	}
+	
 	public Jardin(int numero, String nom, String lieu, double superficie) {
 		this.numero = numero;
 		this.nom = nom;
