@@ -2,14 +2,34 @@ package test_projet.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="culture")
 public class Culture {
 	
-	private int quantite;
-	private LocalDate datePlantation;
-	private LocalDate dateDernierArrosage;
-	private Boolean recolte;
+	@ManyToOne
+	@JoinColumn(name="jardin", nullable=false)
 	private Jardin jardin;
+	
+	@ManyToOne
+	@JoinColumn(name="plante", nullable=false)
 	private Plante plante;
+	
+	@Column(nullable=false)
+	private int quantite;
+	@Column(nullable=false)
+	private LocalDate datePlantation;
+	@Column(nullable=false)
+	private LocalDate dateDernierArrosage;
+	@Column(nullable=false)
+	private Boolean recolte;
+	
+	public Culture() {}
 	
 	public Culture(int quantite, LocalDate datePlantation, LocalDate dateDernierArrosage, Boolean recolte,
 			Jardin jardin, Plante plante) {
