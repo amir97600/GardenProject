@@ -23,7 +23,7 @@ public abstract class Plante {
 	protected Integer id;
 	@Column(name="nom",nullable=false)
 	protected String nom;
-	@Column(name="nom")
+	@Column(name="description")
 	protected String description;
 	@Column(name="delai_recolte")
 	protected int delaiRecolte; //Un intervalle de recolte en semaines

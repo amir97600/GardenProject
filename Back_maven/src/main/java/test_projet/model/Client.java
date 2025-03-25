@@ -14,15 +14,15 @@ import javax.persistence.Transient;
 @DiscriminatorValue("Client")
 public class Client extends Utilisateur {
 
-	@Column(columnDefinition = "VARCHAR(35)",nullable = false)
+	@Column(columnDefinition = "VARCHAR(35)")
 	private String nom;
-	@Column(columnDefinition = "VARCHAR(35)",nullable = false)
+	@Column(columnDefinition = "VARCHAR(35)")
 	private String prenom;
 	private int points = 0;
 	@Transient
 	private List<Badge> badges = new ArrayList<Badge>();
 	@OneToOne
-	@JoinColumn(name="id_jardin",nullable = false)
+	@JoinColumn(name="id_jardin")
 	private Jardin jardin;
 	
 	public Client() {}

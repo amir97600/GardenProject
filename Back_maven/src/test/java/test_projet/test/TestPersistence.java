@@ -25,7 +25,9 @@ public class TestPersistence {
 		FruitLegume fl = new FruitLegume("Pomme", "Une pomme verte", 5, 21, 2);
 		
 		Jardin jardin1 = new Jardin(1, "Jardin d'alpha", "Paris", 14);
+		client1.setJardin(jardin1);
 		Jardin jardin2 = new Jardin(2, "Jardin de toto", "Marseille", 28);
+		client2.setJardin(jardin2);
 		
 		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, fl);
 		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, fleur);
@@ -41,12 +43,12 @@ public class TestPersistence {
 			em.getTransaction().begin();
 			
 			em.persist(admin);
+			em.persist(jardin1);
+			em.persist(jardin2);
 			em.persist(client1);
 			em.persist(client2);
 			em.persist(fleur);
 			em.persist(fl);
-			em.persist(jardin1);
-			em.persist(jardin2);
 			em.persist(cult1);
 			em.persist(cult2);
 			em.persist(cult3);
