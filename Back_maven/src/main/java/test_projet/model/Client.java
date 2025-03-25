@@ -25,7 +25,11 @@ public class Client extends Utilisateur {
 	@JoinColumn(name="id_jardin",nullable = false)
 	private Jardin jardin;
 	
-	public Client() {}
+	public Client() {
+		super();
+	}
+	
+	
 	
 	public Client(String login, String password, String nom,String prenom) {
 		super(login, password);

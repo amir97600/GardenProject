@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Admin")
 public class Admin extends Utilisateur{
 	
-	public Admin() {}
+	public Admin() {
+		super();
+	}
 	
 	public Admin(String login, String password) {
 		super(login, password);
