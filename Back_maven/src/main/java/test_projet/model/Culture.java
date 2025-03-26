@@ -23,9 +23,9 @@ public class Culture {
 	
 	@Column(nullable=false)
 	private int quantite;
-	@Column(nullable=false)
+	@Column(name="date_plantation",nullable=false)
 	private LocalDate datePlantation;
-	@Column(nullable=false)
+	@Column(name="date_dernier_arrosage",nullable=false)
 	private LocalDate dateDernierArrosage;
 	@Column(nullable=false)
 	private Boolean recolte;
