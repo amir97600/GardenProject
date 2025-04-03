@@ -1,0 +1,71 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-image: url('./img/fond_jardin_canva.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+header{
+    background-color: aquamarine;
+}
+span{
+    font-size: 4rem;
+    display: flex;
+}
+h1{
+    color:#43A047;
+    font-size: 2.5rem;
+    margin-bottom: 55px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+input{
+    border-radius: 15px;
+    background-color: #E5F0E7;
+    border: 1px solid #D2B8D2;
+    width: 516px;
+    height: 65px;
+    font-size: 1rem;
+    padding-left: 15px;
+}
+
+#submit{
+    background-color: #43A047;
+    color: #FFFFFF;
+    width: 453px;
+    height: 65px;
+    margin: auto;
+    text-align: center;
+}
+#submit:hover{
+    cursor: pointer;
+    background-color: #0ca013;
+}
+.help-text{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+.help-text > a{
+    font-size: 1rem;
+    text-decoration: none;
+    color: #1b3d2f;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion de Jardin</title>
+  <link rel="stylesheet" href="main.css"/>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Mon Jardin</h1>
+    <div>
+      <input type="number" id="nbCa" placeholder="Nombre de cultures"/>
+      <input type="number" id="nbFa" placeholder="Nb fruits par culture"/>
+      <button class="btn" onclick="makeGarden()">Go</button>
+    </div>
+    <div>
+      <button class="btn">👤 Profil</button>
+      <button class="btn">🚪 Déconnexion</button>
+    </div>
+  </header>
+
+ 
+
+  <div class="container">
+    <div class="card">
+      <h2>Carte du Jardin</h2>
+      <div id="garden-map" class="garden-map">
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

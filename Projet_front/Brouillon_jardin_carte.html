@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion de Jardin</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+    .card {
+      background-color: #f6fdf7;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 90%;
+      max-width: 800px;
+      transition: transform 0.3s;
+      text-align: center;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .garden-map {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 100px);
+      gap: 10px;
+      background-color: #cde3d1;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .plot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f6fdf7;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-size: 2rem;
+      font-weight: bold;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.2s;
+    }
+    .plot:hover {
+      transform: scale(1.1);
+      background-color: #dff2e3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mon Jardin</h1>
+    <div>
+      <button class="btn">👤 Profil</button>
+      <button class="btn">🚪 Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Carte du Jardin</h2>
+      <div class="garden-map">
+        <div class="plot">🍅</div>
+        <div class="plot">🥕</div>
+        <div class="plot">🍓</div>
+        <div class="plot">🌻</div>
+        <div class="plot">🌿</div>
+        <div class="plot">🍆</div>
+        <div class="plot">🥬</div>
+        <div class="plot">🌶️</div>
+        <div class="plot">🍉</div>
+        <div class="plot">🍇</div>
+        <div class="plot">🥔</div>
+        <div class="plot">🥦</div>
+        <div class="plot">🌽</div>
+        <div class="plot">🧄</div>
+        <div class="plot">🧅</div>
+        <div class="plot">🍄</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
