@@ -1,173 +1,169 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explorer les Plantes</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer les Plantes</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
 
-      .search-wrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 20px;
-        }
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 
-      .search-wrapper label {
-          margin-right: 5px;
-          font-size: 1rem;
-          color: #2d4739;
-      }
+  .search-wrapper label {
+    margin-right: 5px;
+    font-size: 1rem;
+    color: #2d4739;
+  }
 
-      .filter-select {
-          padding: 10px;
-          border: 2px solid #7da87b;
-          border-radius: 8px;
-          font-size: 1rem;
-          background-color: white;
-          color: #2d4739;
-      }
-
-
-
-      .search-bar {
-            width: 40%;
-            height : 20px;
-            padding: 12px;
-            border: 2px solid #7da87b;
-            border-radius: 20px;
-            font-size: 1rem;
-            display: block;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            outline: none;
-        }
+  .filter-select {
+    padding: 10px;
+    border: 2px solid #446a55;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: #2d4739;
+  }
 
 
 
+  .search-bar {
+    width: 40%;
+    height : 20px;
+    padding: 12px;
+    border: 2px solid #446a55;
+    border-radius: 20px;
+    font-size: 1rem;
+    display: block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+  }
 
 
+  .search-bar:focus {
+    border-color: #5f8660;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-        .search-bar:focus {
-            border-color: #5f8660;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+  .search-btn {
+    margin-top = 5px;
+  }
 
-        .search-btn {
-          margin-top = 5px;
-        }
+  .container {
+    padding: 20px;
+  }
 
-        .container {
-            padding: 20px;
-        }
+  .plant-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
 
-        .plant-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
+  .plant-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 30%;
+    padding: 15px;
+    text-align: center;
+  }
 
-        .plant-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow: hidden;
-            width: 30%;
-            padding: 15px;
-            text-align: center;
-        }
+  .plant-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
 
-        .plant-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .plant-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-    </style>
+  .plant-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Explorer les Plantes</h1>
-    </header>
+  <header>
+    <h1>Explorer les Plantes</h1>
+  </header>
 
-    <div class="container">
-      <div class="search-wrapper">
-          <label for="filter" style="font-weight: bold;">Catégorie :</label>
-          <select id="filter" class="filter-select" style="width: 200px;">
-            <option value="all">Toutes les plantes</option>
-            <option value="fruit">Fruits</option>
-            <option value="legume">Légumes</option>
-            <option value="fleur">Fleurs</option>
-          </select>
-          <input type="text" class="search-bar" placeholder="Rechercher une plante...">
-          <button class="btn">Rechercher</button>
-      </div>
-      <div class="plant-container">
-            <div class="plant-card" data-type="legume">
-                <img src="./img/tomate.jpg" alt="Tomate">
-                <h3>Tomate (Solanum lycopersicum)</h3>
-                <p>La tomate est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche, bien drainé, et un ensoleillement direct. La tomate peut être cultivée en pleine terre ou en pot, à condition d'être protégée du vent. Les variétés hybrides produisent des fruits plus résistants aux maladies et plus prolifiques, mais les tomates anciennes offrent une richesse de saveurs unique.</p>
-                <p><strong>Conseils de culture :</strong> La tomate a besoin de chaleur et de soleil pour bien se développer. Assurez-vous de bien espacer les plants (environ 40 à 50 cm entre chaque) et d'utiliser des tuteurs pour soutenir les plants à mesure qu'ils grandissent.</p>
-                <p><strong>Récolte :</strong> Les tomates doivent être récoltées lorsque leur couleur est uniforme et qu'elles sont légèrement fermes au toucher.</p>
-            </div>
-            <div class="plant-card" data-type="legume">
-                <img src="./img/carottes.jpg" alt="Carottes">
-                <h3>Carottes (Daucus carota)</h3>
-                <p>La carotte est une plante bisannuelle cultivée généralement comme annuelle. Elle pousse bien dans un sol léger, meuble et bien drainé. Elle a besoin d'une exposition ensoleillée pour un bon développement. La variété de carottes à racines longues, comme la "Carotte de Nantes", est très prisée pour sa douceur et sa texture. La récolte de carottes se fait lorsque la racine atteint une taille satisfaisante.</p>
-                <p><strong>Conseils de culture :</strong> Semer les graines à une profondeur de 1 à 2 cm dans un sol bien ameubli. Espacer les semis de 3 à 5 cm pour permettre un bon développement. Arrosez régulièrement pour éviter que le sol ne se dessèche.</p>
-                <p><strong>Récolte :</strong> La carotte est prête à être récoltée environ 2 à 3 mois après la plantation, lorsque la racine est bien formée et de couleur orange vif.</p>
-
-            </div>
-            <div class="plant-card" data-type="fruit">
-                <img src="./img/fraise.jpg" alt="Fraise">
-                <h3>Fraise (Fragaria × ananassa)</h3>
-                <p>La fraise est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche et bien drainé, légèrement acide, avec un pH compris entre 5,5 et 6,5. Elle nécessite une exposition ensoleillée pour produire des fruits sucrés et savoureux. Les fraises peuvent être cultivées en pleine terre, en jardinières ou en pots, ce qui les rend idéales pour les petits jardins ou les balcons.</p>
-                <p><strong>Conseils de culture :</strong> Les fraisiers peuvent être plantés en rangées, espacées de 30 à 40 cm, ou en potées individuelles. Assurez-vous de planter les fraisiers à une profondeur adéquate pour éviter l'humidité excessive autour de leur collet. Le paillage est recommandé pour conserver l'humidité et prévenir les mauvaises herbes.</p>
-                <p><strong>Récolte :</strong> Les fraises sont prêtes à être récoltées environ 4 à 6 semaines après la floraison. Cueillez les fruits lorsqu'ils sont complètement rouges et légèrement fermes au toucher. Les fraises non mûres ne continuent pas de mûrir après la récolte.</p>
-            </div>
-            <div class="plant-card" data-type="fleur">
-                <img src="./img/camomille.jpg" alt="Camomille">
-                <h3>Camomille (Matricaria chamomilla)</h3>
-                <p>La camomille est une plante herbacée annuelle ou vivace, appréciée pour ses propriétés médicinales. Elle préfère les sols légers, bien drainés, et une exposition ensoleillée. Elle est idéale pour les jardins médicinaux ou les espaces de culture en pots.</p>
-                <p><strong>Conseils de culture :</strong> La camomille peut être semée directement en pleine terre ou dans des pots au printemps. Il est recommandé de laisser un espace de 20 cm entre chaque plante pour favoriser sa croissance. La camomille est relativement résistante à la sécheresse, mais elle préfère un arrosage régulier sans excès d'eau.</p>
-                <p><strong>Récolte :</strong> La récolte se fait lorsque les fleurs sont complètement ouvertes, généralement en début de matinée. Cueillez les fleurs à la main et faites-les sécher dans un endroit aéré pour conserver leurs propriétés médicinales.</p>
-              </div>
-        </div>
+  <div class="container">
+    <div class="search-wrapper">
+      <label for="filter" style="font-weight: bold;">Catégorie :</label>
+      <select id="filter" class="filter-select" style="width: 200px;">
+        <option value="all">Toutes les plantes</option>
+        <option value="fruit">Fruits</option>
+        <option value="legume">Légumes</option>
+        <option value="fleur">Fleurs</option>
+      </select>
+      <input type="text" class="search-bar" placeholder="Rechercher une plante...">
+      <button class="btn">Rechercher</button>
     </div>
+    <div class="plant-container">
+      <div class="plant-card" data-type="legume">
+        <img src="./img/tomate.jpg" alt="Tomate">
+        <h3>Tomate (Solanum lycopersicum)</h3>
+        <p>La tomate est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche, bien drainé, et un ensoleillement direct. La tomate peut être cultivée en pleine terre ou en pot, à condition d'être protégée du vent. Les variétés hybrides produisent des fruits plus résistants aux maladies et plus prolifiques, mais les tomates anciennes offrent une richesse de saveurs unique.</p>
+        <p><strong>Conseils de culture :</strong> La tomate a besoin de chaleur et de soleil pour bien se développer. Assurez-vous de bien espacer les plants (environ 40 à 50 cm entre chaque) et d'utiliser des tuteurs pour soutenir les plants à mesure qu'ils grandissent.</p>
+        <p><strong>Récolte :</strong> Les tomates doivent être récoltées lorsque leur couleur est uniforme et qu'elles sont légèrement fermes au toucher.</p>
+      </div>
+      <div class="plant-card" data-type="legume">
+        <img src="./img/carottes.jpg" alt="Carottes">
+        <h3>Carottes (Daucus carota)</h3>
+        <p>La carotte est une plante bisannuelle cultivée généralement comme annuelle. Elle pousse bien dans un sol léger, meuble et bien drainé. Elle a besoin d'une exposition ensoleillée pour un bon développement. La variété de carottes à racines longues, comme la "Carotte de Nantes", est très prisée pour sa douceur et sa texture. La récolte de carottes se fait lorsque la racine atteint une taille satisfaisante.</p>
+        <p><strong>Conseils de culture :</strong> Semer les graines à une profondeur de 1 à 2 cm dans un sol bien ameubli. Espacer les semis de 3 à 5 cm pour permettre un bon développement. Arrosez régulièrement pour éviter que le sol ne se dessèche.</p>
+        <p><strong>Récolte :</strong> La carotte est prête à être récoltée environ 2 à 3 mois après la plantation, lorsque la racine est bien formée et de couleur orange vif.</p>
+
+      </div>
+      <div class="plant-card" data-type="fruit">
+        <img src="./img/fraise.jpg" alt="Fraise">
+        <h3>Fraise (Fragaria × ananassa)</h3>
+        <p>La fraise est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche et bien drainé, légèrement acide, avec un pH compris entre 5,5 et 6,5. Elle nécessite une exposition ensoleillée pour produire des fruits sucrés et savoureux. Les fraises peuvent être cultivées en pleine terre, en jardinières ou en pots, ce qui les rend idéales pour les petits jardins ou les balcons.</p>
+        <p><strong>Conseils de culture :</strong> Les fraisiers peuvent être plantés en rangées, espacées de 30 à 40 cm, ou en potées individuelles. Assurez-vous de planter les fraisiers à une profondeur adéquate pour éviter l'humidité excessive autour de leur collet. Le paillage est recommandé pour conserver l'humidité et prévenir les mauvaises herbes.</p>
+        <p><strong>Récolte :</strong> Les fraises sont prêtes à être récoltées environ 4 à 6 semaines après la floraison. Cueillez les fruits lorsqu'ils sont complètement rouges et légèrement fermes au toucher. Les fraises non mûres ne continuent pas de mûrir après la récolte.</p>
+      </div>
+      <div class="plant-card" data-type="fleur">
+        <img src="./img/camomille.jpg" alt="Camomille">
+        <h3>Camomille (Matricaria chamomilla)</h3>
+        <p>La camomille est une plante herbacée annuelle ou vivace, appréciée pour ses propriétés médicinales. Elle préfère les sols légers, bien drainés, et une exposition ensoleillée. Elle est idéale pour les jardins médicinaux ou les espaces de culture en pots.</p>
+        <p><strong>Conseils de culture :</strong> La camomille peut être semée directement en pleine terre ou dans des pots au printemps. Il est recommandé de laisser un espace de 20 cm entre chaque plante pour favoriser sa croissance. La camomille est relativement résistante à la sécheresse, mais elle préfère un arrosage régulier sans excès d'eau.</p>
+        <p><strong>Récolte :</strong> La récolte se fait lorsque les fleurs sont complètement ouvertes, généralement en début de matinée. Cueillez les fleurs à la main et faites-les sécher dans un endroit aéré pour conserver leurs propriétés médicinales.</p>
+      </div>
+    </div>
+  </div>
 
 
-    <script>
+  <script>
 
-    document.querySelector('.search-bar').addEventListener('input', function(e) {
-      const query = e.target.value.toLowerCase();
-      document.querySelectorAll('.plant-card').forEach(card => {
-        card.style.display = card.textContent.toLowerCase().includes(query) ? 'block' : 'none';
-      });
+  document.querySelector('.search-bar').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+    document.querySelectorAll('.plant-card').forEach(card => {
+      card.style.display = card.textContent.toLowerCase().includes(query) ? 'block' : 'none';
     });
+  });
 
-    const filterSelect = document.getElementById('filter');
-    const plantCards = document.querySelectorAll('.plant-card');
+  const filterSelect = document.getElementById('filter');
+  const plantCards = document.querySelectorAll('.plant-card');
 
-    filterSelect.addEventListener('change', () => {
-      const selectedType = filterSelect.value;
+  filterSelect.addEventListener('change', () => {
+    const selectedType = filterSelect.value;
 
-      plantCards.forEach(card => {
-        const type = card.getAttribute('data-type');
-        if (selectedType === 'all' || type === selectedType) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+    plantCards.forEach(card => {
+      const type = card.getAttribute('data-type');
+      if (selectedType === 'all' || type === selectedType) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
     });
+  });
 
 
 

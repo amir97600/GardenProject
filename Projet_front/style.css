@@ -1,6 +1,7 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #e5efe7;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0fdf4, #c8e6c9);
   background-image: url('./img/fond_jardin_canva.jpg');
   background-size: cover;
   background-position: center;
@@ -11,7 +12,7 @@ body {
   color: #2d4739;
 }
 header {
-  background-color: #cde3d1;
+  background-color: #c8e6c9;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -45,5 +46,15 @@ a {
   transition: background-color 0.3s;
 }
 .btn:hover {
-  background-color: #5f8660;
+  background-color: #2d4739;
+}
+
+.card {
+  background-color: rgba(246, 253, 247, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: 15px;
+  flex: 1 1 300px;
+  max-width: 500px;
 }
