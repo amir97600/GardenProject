@@ -4,52 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Erreur 500 - Jardin Connecté</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f0fdf4, #c8e6c9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      color: #2e7d32;
-    }
-    .container {
-      max-width: 500px;
-    }
-    h1 {
-      font-size: 6rem;
-      margin: 0;
-    }
-    h2 {
-      font-size: 2rem;
-      margin: 0.5rem 0 1rem;
-    }
-    p {
-      font-size: 1rem;
-      color: #4a4a4a;
-    }
-    a {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      background: #43a047;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    a:hover {
-      background: #2e7d32;
-    }
-    .emoji {
-      font-size: 4rem;
-    }
+  body {
+
+    background: linear-gradient(135deg, #f0fdf4, #c8e6c9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  .container {
+    max-width: 500px;
+  }
+  h1 {
+    font-size: 6rem;
+    margin: 0;
+  }
+  h2 {
+    font-size: 2rem;
+    margin: 0.5rem 0 1rem;
+  }
+  p {
+    font-size: 1rem;
+    color: #4a4a4a;
+  }
+
+  .btn {
+      background-color: #446a55;
+  }
+  .btn a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .emoji {
+    font-size: 4rem;
+  }
   </style>
 </head>
 <body>
@@ -58,7 +50,7 @@
     <h1>500</h1>
     <h2>Une erreur est survenue dans le jardin...</h2>
     <p>Nos jardiniers numériques travaillent dur pour réparer tout ça. Merci de votre patience 🍃</p>
-    <a href="/">Retour à l'accueil</a>
+    <button class="btn"><a href="Brouillon_jardin_home.html">Retour à l'accueil</a></button>
   </div>
 </body>
 </html>
