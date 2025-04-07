@@ -4,71 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Le jardin connecté</title>
   <link rel="icon" type="image/x-icon" href="img/leaf.ico">
-  <link rel="stylesheet" href="style.css"></link>
+  <link rel="stylesheet" href="style_accueil.css"></link>
 </head>
-<style>
-html,body{
-  width: 100%;
-  height: 100%;
-}
-body{
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom:200px;
-}
 
-span{
-  font-size: 4rem;
-  display: flex;
-}
-h1{
-  color:#2d4739;
-  font-size: 2.5rem;
-  margin-bottom: 35px;
-}
-form{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-input{
-  border-radius: 15px;
-  background-color: #E5F0E7;
-  border: 1px solid #D2B8D2;
-  width: 516px;
-  height: 65px;
-  font-size: 1rem;
-  padding-left: 15px;
-}
-
-.btn {
-  background-color: #2e7d32;
-  width: 453px;
-  height: 65px;
-  margin: auto;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.help-text{
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-.help-text > a{
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-
-</style>
 <body>
   <div class="container">
     <span>🌿</span>
@@ -76,7 +14,7 @@ input{
     <form action="Brouillon_jardin_home.html" method="get">
       <input name="id" type="text" placeholder="Identifiant"/>
       <input name="mdp" type="password" placeholder="Mot de passe"/>
-      <input class="btn" type="submit" value="Se connecter"/>
+      <input id="submit" type="submit" value="Se connecter"/>
     </form>
     <div class="help-text">
       <a href="/" target="_blank">Créer un compte</a>
