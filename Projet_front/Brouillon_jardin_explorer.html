@@ -1,191 +1,199 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carte du Jardin</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .main-content {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 40px;
-      padding: 40px;
-      flex-wrap: wrap;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer les Plantes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
 
-    .carte {
-      background-color: #e5f7e1;
-      margin-top: 30px;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      padding-left: 1px;
-      padding-right: 1px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      max-width: 650px;
-      flex-grow: 1;
-      transition: transform 0.5s ease;
-      transform: scale(1.2);
-    }
+      .search-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
 
-    .carte.active {
-      transform: scale(1);
-    }
-
-    .fiche-plante {
-      margin-top: 30px;
-      background-color: rgba(255, 255, 255, 0.75);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      min-width: 300px;
-      max-width: 350px;
-      font-size: 1.1rem;
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    .fiche-plante h3 {
-      margin-top: 0;
-      font-size: 1.6rem;
-      color: #2d4739;
-    }
-
-    .fiche-plante p {
-      margin: 10px 0;
-    }
-
-    .garden-map {
-      display: grid;
-      grid-template-columns: repeat(6, 90px);
-      grid-template-rows: repeat(3, 90px);
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .plot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      background: #f6fdf7;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    }
-
-    .plot:hover {
-      transform: scale(1.08);
-      background-color: #dff2e3;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-      .main-content {
-        flex-direction: column;
-        align-items: center;
+      .search-wrapper label {
+          margin-right: 5px;
+          font-size: 1rem;
+          color: #2d4739;
       }
 
-      .garden-map {
-        grid-template-columns: repeat(4, 70px);
-        grid-template-rows: repeat(5, 70px);
+      .filter-select {
+          padding: 10px;
+          border: 2px solid #7da87b;
+          border-radius: 8px;
+          font-size: 1rem;
+          background-color: white;
+          color: #2d4739;
       }
 
-      .plot {
-        font-size: 2rem;
-      }
-    }
-  </style>
+
+
+      .search-bar {
+            width: 40%;
+            height : 20px;
+            padding: 12px;
+            border: 2px solid #7da87b;
+            border-radius: 20px;
+            font-size: 1rem;
+            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            outline: none;
+        }
+
+
+
+
+
+
+        .search-bar:focus {
+            border-color: #5f8660;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-btn {
+          margin-top = 5px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .plant-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .plant-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 30%;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .plant-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plant-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Explorer les Plantes</h1>
+    </header>
 
-  <header>
-    <h1>Carte du Jardin</h1>
-    <div>
-      <button class="btn">👤 Profil</button>
-      <button class="btn">🚪 Déconnexion</button>
-    </div>
-  </header>
-
-  <div class="main-content">
-    <div class="carte" id="carte">
-      <div class="garden-map">
-        <div class="plot" data-id="1">🍅</div>
-        <div class="plot" data-id="2">🥕</div>
-        <div class="plot" data-id="3">🍓</div>
-        <div class="plot" data-id="4">🌻</div>
-        <div class="plot" data-id="5">🌿</div>
-        <div class="plot" data-id="6">🍆</div>
-        <div class="plot" data-id="7">🥬</div>
-        <div class="plot" data-id="8">🌶️</div>
-        <div class="plot" data-id="9">🍉</div>
-        <div class="plot" data-id="10">🍇</div>
-        <div class="plot" data-id="11">🥔</div>
-        <div class="plot" data-id="12">🥦</div>
-        <div class="plot" data-id="13">🌽</div>
-        <div class="plot" data-id="14">🧄</div>
-        <div class="plot" data-id="15">🧅</div>
-        <div class="plot" data-id="16">🍄</div>
-        <div class="plot" data-id="17">🫑</div>
-        <div class="plot" data-id="18">🫛</div>
+    <div class="container">
+      <div class="search-wrapper">
+          <label for="filter" style="font-weight: bold;">Catégorie :</label>
+          <select id="filter" class="filter-select" style="width: 200px;">
+            <option value="all">Toutes les plantes</option>
+            <option value="fruit">Fruits</option>
+            <option value="legume">Légumes</option>
+            <option value="fleur">Fleurs</option>
+          </select>
+          <input type="text" class="search-bar" placeholder="Rechercher une plante...">
+          <button class="btn">Rechercher</button>
       </div>
+
+      <p id="no-result" style="text-align:center; font-weight:bold; display:none;">Aucune plante trouvée.</p>
+
+      <div class="plant-container">
+            <div class="plant-card" data-type="legume">
+                <img src="./img/tomate.jpg" alt="Tomate">
+                <h3>Tomate (Solanum lycopersicum)</h3>
+                <p>La tomate est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche, bien drainé, et un ensoleillement direct. La tomate peut être cultivée en pleine terre ou en pot, à condition d'être protégée du vent. Les variétés hybrides produisent des fruits plus résistants aux maladies et plus prolifiques, mais les tomates anciennes offrent une richesse de saveurs unique.</p>
+                <p><strong>Conseils de culture :</strong> La tomate a besoin de chaleur et de soleil pour bien se développer. Assurez-vous de bien espacer les plants (environ 40 à 50 cm entre chaque) et d'utiliser des tuteurs pour soutenir les plants à mesure qu'ils grandissent.</p>
+                <p><strong>Récolte :</strong> Les tomates doivent être récoltées lorsque leur couleur est uniforme et qu'elles sont légèrement fermes au toucher.</p>
+            </div>
+            <div class="plant-card" data-type="legume">
+                <img src="./img/carottes.jpg" alt="Carottes">
+                <h3>Carottes (Daucus carota)</h3>
+                <p>La carotte est une plante bisannuelle cultivée généralement comme annuelle. Elle pousse bien dans un sol léger, meuble et bien drainé. Elle a besoin d'une exposition ensoleillée pour un bon développement. La variété de carottes à racines longues, comme la "Carotte de Nantes", est très prisée pour sa douceur et sa texture. La récolte de carottes se fait lorsque la racine atteint une taille satisfaisante.</p>
+                <p><strong>Conseils de culture :</strong> Semer les graines à une profondeur de 1 à 2 cm dans un sol bien ameubli. Espacer les semis de 3 à 5 cm pour permettre un bon développement. Arrosez régulièrement pour éviter que le sol ne se dessèche.</p>
+                <p><strong>Récolte :</strong> La carotte est prête à être récoltée environ 2 à 3 mois après la plantation, lorsque la racine est bien formée et de couleur orange vif.</p>
+
+            </div>
+            <div class="plant-card" data-type="fruit">
+                <img src="./img/fraise.jpg" alt="Fraise">
+                <h3>Fraise (Fragaria × ananassa)</h3>
+                <p>La fraise est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche et bien drainé, légèrement acide, avec un pH compris entre 5,5 et 6,5. Elle nécessite une exposition ensoleillée pour produire des fruits sucrés et savoureux. Les fraises peuvent être cultivées en pleine terre, en jardinières ou en pots, ce qui les rend idéales pour les petits jardins ou les balcons.</p>
+                <p><strong>Conseils de culture :</strong> Les fraisiers peuvent être plantés en rangées, espacées de 30 à 40 cm, ou en potées individuelles. Assurez-vous de planter les fraisiers à une profondeur adéquate pour éviter l'humidité excessive autour de leur collet. Le paillage est recommandé pour conserver l'humidité et prévenir les mauvaises herbes.</p>
+                <p><strong>Récolte :</strong> Les fraises sont prêtes à être récoltées environ 4 à 6 semaines après la floraison. Cueillez les fruits lorsqu'ils sont complètement rouges et légèrement fermes au toucher. Les fraises non mûres ne continuent pas de mûrir après la récolte.</p>
+            </div>
+            <div class="plant-card" data-type="fleur">
+                <img src="./img/camomille.jpg" alt="Camomille">
+                <h3>Camomille (Matricaria chamomilla)</h3>
+                <p>La camomille est une plante herbacée annuelle ou vivace, appréciée pour ses propriétés médicinales. Elle préfère les sols légers, bien drainés, et une exposition ensoleillée. Elle est idéale pour les jardins médicinaux ou les espaces de culture en pots.</p>
+                <p><strong>Conseils de culture :</strong> La camomille peut être semée directement en pleine terre ou dans des pots au printemps. Il est recommandé de laisser un espace de 20 cm entre chaque plante pour favoriser sa croissance. La camomille est relativement résistante à la sécheresse, mais elle préfère un arrosage régulier sans excès d'eau.</p>
+                <p><strong>Récolte :</strong> La récolte se fait lorsque les fleurs sont complètement ouvertes, généralement en début de matinée. Cueillez les fleurs à la main et faites-les sécher dans un endroit aéré pour conserver leurs propriétés médicinales.</p>
+              </div>
+        </div>
     </div>
 
-    <div class="fiche-plante" id="fiche-plante">
-      <!-- Contenu injecté dynamiquement -->
-    </div>
-  </div>
 
-  <script>
-    const plotData = {
-      1: { nom: "Tomate", plantation: "2025-03-10", arrosageDernier: "2025-04-06", arrosageProchain: "2025-04-10", recolte: "2025-06-15", etat: "Pas mûr" },
-      2: { nom: "Carotte", plantation: "2025-02-25", arrosageDernier: "2025-04-07", arrosageProchain: "2025-04-11", recolte: "2025-05-30", etat: "Mûr" },
-      3: { nom: "Fraise", plantation: "2025-03-20", arrosageDernier: "2025-04-08", arrosageProchain: "2025-04-12", recolte: "2025-05-15", etat: "Pourri" },
-      4: { nom: "Tournesol", plantation: "2025-03-05", arrosageDernier: "2025-04-06", arrosageProchain: "2025-04-09", recolte: "2025-07-01", etat: "Pas mûr" }
-    };
+    <script>
 
-    const plots = document.querySelectorAll('.plot');
-    const fiche = document.getElementById('fiche-plante');
-    const carte = document.getElementById('carte');
+    document.querySelector('.search-bar').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('.plant-card').forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(query) ? 'block' : 'none';
+      });
+    });
 
-    function emojiEtat(etat) {
-      if (etat === "Mûr") return "🟢";
-      if (etat === "Pas mûr") return "🟡";
-      if (etat === "Pourri") return "🔴";
-      return "❓";
-    }
+    const filterSelect = document.getElementById('filter');
+    const plantCards = document.querySelectorAll('.plant-card');
 
-    plots.forEach(plot => {
-      plot.addEventListener('click', () => {
-        const id = plot.dataset.id;
-        const data = plotData[id];
+    filterSelect.addEventListener('change', () => {
+      const selectedType = filterSelect.value;
 
-        fiche.style.display = 'block';
-        carte.classList.add('active');
-
-        if (data) {
-          fiche.innerHTML = `
-            <h3>Informations de la plante</h3>
-            <p><strong>🪴 Nom :</strong> ${data.nom}</p>
-            <p><strong>📅 Date de plantation :</strong> ${data.plantation}</p>
-            <p><strong>💧 Dernier arrosage :</strong> ${data.arrosageDernier}</p>
-            <p><strong>🔜 Prochain arrosage :</strong> ${data.arrosageProchain}</p>
-            <p><strong>🧺 Récolte :</strong> ${data.recolte}</p>
-            <p><strong>📊 État :</strong> ${emojiEtat(data.etat)} ${data.etat}</p>
-          `;
+      plantCards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        if (selectedType === 'all' || type === selectedType) {
+          card.style.display = 'block';
         } else {
-          fiche.innerHTML = `<h3>Informations de la plante</h3><p>Aucune donnée disponible.</p>`;
+          card.style.display = 'none';
         }
       });
     });
+
+  document.querySelector('.search-bar').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+    let hasMatch = false;
+
+    document.querySelectorAll('.plant-card').forEach(card => {
+      const match = card.textContent.toLowerCase().includes(query);
+      card.style.display = match ? 'block' : 'none';
+      if (match) hasMatch = true;
+    });
+
+    document.getElementById('no-result').style.display = hasMatch ? 'none' : 'block';
+  });
+
+
+
+
+
+
   </script>
+
+
 
 </body>
 </html>
