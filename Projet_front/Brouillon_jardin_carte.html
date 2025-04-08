@@ -35,6 +35,7 @@
     }
 
     .fiche-plante {
+      position: relative;
       margin-top: 30px;
       background-color: rgba(255, 255, 255, 0.75);
       padding: 30px;
@@ -47,10 +48,22 @@
       animation: fadeIn 0.3s ease-in-out;
     }
 
+    .fiche-plante .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: #444;
+      cursor: pointer;
+    }
+
     .fiche-plante h3 {
       margin-top: 0;
       font-size: 1.6rem;
       color: #2d4739;
+      position: relative;
     }
 
     .fiche-plante p {
@@ -172,6 +185,7 @@
 
         if (data) {
           fiche.innerHTML = `
+            <button class="close-btn" id="close-fiche" aria-label="Fermer">&times;</button>
             <h3>Informations de la plante</h3>
             <p><strong>🪴 Nom :</strong> ${data.nom}</p>
             <p><strong>📅 Date de plantation :</strong> ${data.plantation}</p>
@@ -180,9 +194,20 @@
             <p><strong>🧺 Récolte :</strong> ${data.recolte}</p>
             <p><strong>📊 État :</strong> ${emojiEtat(data.etat)} ${data.etat}</p>
           `;
+
         } else {
-          fiche.innerHTML = `<h3>Informations de la plante</h3><p>Aucune donnée disponible.</p>`;
+          fiche.innerHTML = `
+              <button class="close-btn" id="close-fiche" aria-label="Fermer">&times;</button>
+              <h3>Informations de la plante</h3>
+              <p>Aucune donnée disponible.</p>
+            `;
         }
+        document.getElementById("close-fiche").addEventListener("click", () => {
+          fiche.style.display = "none";
+          carte.classList.remove("active");
+        });
+
+
       });
     });
   </script>
