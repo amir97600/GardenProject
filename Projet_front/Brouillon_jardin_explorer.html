@@ -7,57 +7,92 @@
     <link rel="stylesheet" href="style.css">
     <style>
 
-      .search-wrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 20px;
-        }
-
-      .search-wrapper label {
-          margin-right: 5px;
-          font-size: 1rem;
-          color: #2d4739;
-      }
-
-      .filter-select {
-          padding: 10px;
-          border: 2px solid #7da87b;
-          border-radius: 8px;
-          font-size: 1rem;
-          background-color: white;
-          color: #2d4739;
-      }
 
 
+    .search-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 10px auto 30px auto;
+        padding: 20px 25px;
+        background: linear-gradient(135deg, #ffffff, #eef5ec);
+        border: 1px solid #c8dacc;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 900px;
+    }
 
-      .search-bar {
-            width: 40%;
-            height : 20px;
-            padding: 12px;
-            border: 2px solid #7da87b;
-            border-radius: 20px;
-            font-size: 1rem;
-            display: block;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-            outline: none;
-        }
+
+    .search-wrapper label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #2d4739;
+        margin-right: 8px;
+        padding: 6px 12px;
+        background-color: #f0f5f0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
 
 
 
+    /* 🌱 Barre de recherche */
+    .search-bar {
+        flex: 1;
+        min-width: 200px;
+        padding: 14px 20px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background: #fff;
+        font-size: 1rem;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .search-bar:focus {
+        border-color: #7da87b;
+        box-shadow: 0 0 0 3px rgba(125, 168, 123, 0.2);
+        outline: none;
+    }
+
+    .filter-select {
+        padding: 12px 18px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        background: #fff;
+        color: #333;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
 
 
+    .filter-select:hover,
+    .filter-select:focus {
+        box-shadow: 0 6px 16px rgba(82, 124, 82, 0.4);
+        outline: none;
+    }
 
-        .search-bar:focus {
-            border-color: #5f8660;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .btn {
+        padding: 12px 24px;
+        background-color: #3e5f47;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-        .search-btn {
-          margin-top = 5px;
-        }
+    .btn:hover {
+        background-color: #486a48;
+        transform: translateY(-2px);
+    }
+
+
 
         .container {
             padding: 20px;
@@ -66,18 +101,30 @@
         .plant-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
+            gap: 15px;
+            justify-content: center;
+
+
         }
+
+        .plant-card h3 {
+          margin-bottom: 2px;
+          font-size: 1.1rem;
+        }
+
 
         .plant-card {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             overflow: hidden;
-            width: 30%;
+            width: 22%;
             padding: 15px;
             text-align: center;
+            cursor: default;
+            transition: height 0.4s ease;
+            height: 100%;
+            font-size: 0.9rem;
         }
 
         .plant-card:hover {
@@ -92,6 +139,111 @@
             object-fit: cover;
             border-radius: 8px;
         }
+
+        .description-wrapper {
+          height: 100px;
+          overflow: hidden;
+          transition: height 0.4s ease;
+        }
+
+        .plant-card.expanded {
+          overflow: visible;
+        }
+
+        .plant-card.expanded .description-wrapper {
+          height: auto;
+          overflow: visible;
+        }
+
+
+        .see-more {
+          display: inline-block;
+          margin-top: 10px;
+          background-color: #7da87b;
+          padding: 4px 10px;
+          border-radius: 8px;
+          font-weight: 700;
+          font-size: 0.75rem;
+          color: white;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          text-align: center;
+        }
+
+        .see-more:hover {
+          background-color: #5d8f5f;
+        }
+
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          backdrop-filter: blur(6px);
+          background-color: rgba(0, 0, 0, 0.4);
+          display: none;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+        }
+
+        .modal-content {
+          background-color: white;
+          border-radius: 16px;
+          max-width: 600px;
+          width: 90%;
+          max-height: 90vh;
+          overflow-y: auto;
+          padding: 20px;
+          position: relative;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .modal-content .plant-card {
+          width: 100%;
+          height: auto;
+          box-shadow: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .modal-content .plant-card img {
+          height: auto;
+          max-height: 200px;
+          object-fit: cover;
+          border-radius: 15px;
+        }
+
+        .modal-content .description-wrapper {
+          height: auto !important;
+          overflow: visible !important;
+        }
+
+        .modal-content .plant-card:hover {
+          transform: none !important;
+          box-shadow: none !important;
+          cursor: default;
+        }
+
+
+        .close-button {
+          position: absolute;
+          top: 0.2px;
+          right: 10px;
+          font-size: 20px;
+          font-weight: bold;
+          color: #333;
+          cursor: pointer;
+        }
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -115,37 +267,59 @@
       <p id="no-result" style="text-align:center; font-weight:bold; display:none;">Aucune plante trouvée.</p>
 
       <div class="plant-container">
-            <div class="plant-card" data-type="legume">
-                <img src="./img/tomate.jpg" alt="Tomate">
-                <h3>Tomate (Solanum lycopersicum)</h3>
-                <p>La tomate est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche, bien drainé, et un ensoleillement direct. La tomate peut être cultivée en pleine terre ou en pot, à condition d'être protégée du vent. Les variétés hybrides produisent des fruits plus résistants aux maladies et plus prolifiques, mais les tomates anciennes offrent une richesse de saveurs unique.</p>
-                <p><strong>Conseils de culture :</strong> La tomate a besoin de chaleur et de soleil pour bien se développer. Assurez-vous de bien espacer les plants (environ 40 à 50 cm entre chaque) et d'utiliser des tuteurs pour soutenir les plants à mesure qu'ils grandissent.</p>
-                <p><strong>Récolte :</strong> Les tomates doivent être récoltées lorsque leur couleur est uniforme et qu'elles sont légèrement fermes au toucher.</p>
-            </div>
-            <div class="plant-card" data-type="legume">
-                <img src="./img/carottes.jpg" alt="Carottes">
-                <h3>Carottes (Daucus carota)</h3>
-                <p>La carotte est une plante bisannuelle cultivée généralement comme annuelle. Elle pousse bien dans un sol léger, meuble et bien drainé. Elle a besoin d'une exposition ensoleillée pour un bon développement. La variété de carottes à racines longues, comme la "Carotte de Nantes", est très prisée pour sa douceur et sa texture. La récolte de carottes se fait lorsque la racine atteint une taille satisfaisante.</p>
-                <p><strong>Conseils de culture :</strong> Semer les graines à une profondeur de 1 à 2 cm dans un sol bien ameubli. Espacer les semis de 3 à 5 cm pour permettre un bon développement. Arrosez régulièrement pour éviter que le sol ne se dessèche.</p>
-                <p><strong>Récolte :</strong> La carotte est prête à être récoltée environ 2 à 3 mois après la plantation, lorsque la racine est bien formée et de couleur orange vif.</p>
 
-            </div>
-            <div class="plant-card" data-type="fruit">
-                <img src="./img/fraise.jpg" alt="Fraise">
-                <h3>Fraise (Fragaria × ananassa)</h3>
-                <p>La fraise est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche et bien drainé, légèrement acide, avec un pH compris entre 5,5 et 6,5. Elle nécessite une exposition ensoleillée pour produire des fruits sucrés et savoureux. Les fraises peuvent être cultivées en pleine terre, en jardinières ou en pots, ce qui les rend idéales pour les petits jardins ou les balcons.</p>
-                <p><strong>Conseils de culture :</strong> Les fraisiers peuvent être plantés en rangées, espacées de 30 à 40 cm, ou en potées individuelles. Assurez-vous de planter les fraisiers à une profondeur adéquate pour éviter l'humidité excessive autour de leur collet. Le paillage est recommandé pour conserver l'humidité et prévenir les mauvaises herbes.</p>
-                <p><strong>Récolte :</strong> Les fraises sont prêtes à être récoltées environ 4 à 6 semaines après la floraison. Cueillez les fruits lorsqu'ils sont complètement rouges et légèrement fermes au toucher. Les fraises non mûres ne continuent pas de mûrir après la récolte.</p>
-            </div>
-            <div class="plant-card" data-type="fleur">
-                <img src="./img/camomille.jpg" alt="Camomille">
-                <h3>Camomille (Matricaria chamomilla)</h3>
-                <p>La camomille est une plante herbacée annuelle ou vivace, appréciée pour ses propriétés médicinales. Elle préfère les sols légers, bien drainés, et une exposition ensoleillée. Elle est idéale pour les jardins médicinaux ou les espaces de culture en pots.</p>
-                <p><strong>Conseils de culture :</strong> La camomille peut être semée directement en pleine terre ou dans des pots au printemps. Il est recommandé de laisser un espace de 20 cm entre chaque plante pour favoriser sa croissance. La camomille est relativement résistante à la sécheresse, mais elle préfère un arrosage régulier sans excès d'eau.</p>
-                <p><strong>Récolte :</strong> La récolte se fait lorsque les fleurs sont complètement ouvertes, généralement en début de matinée. Cueillez les fleurs à la main et faites-les sécher dans un endroit aéré pour conserver leurs propriétés médicinales.</p>
-              </div>
+        <div class="plant-card" data-type="legume">
+          <img src="./img/tomate.jpg" alt="Tomate">
+          <h3>Tomate (Solanum lycopersicum)</h3>
+          <div class="description-wrapper">
+            <p>La tomate est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche, bien drainé, et un ensoleillement direct. La tomate peut être cultivée en pleine terre ou en pot, à condition d'être protégée du vent. Les variétés hybrides produisent des fruits plus résistants aux maladies et plus prolifiques, mais les tomates anciennes offrent une richesse de saveurs unique.</p>
+            <p><strong>Conseils de culture :</strong> La tomate a besoin de chaleur et de soleil pour bien se développer. Assurez-vous de bien espacer les plants (environ 40 à 50 cm entre chaque) et d'utiliser des tuteurs pour soutenir les plants à mesure qu'ils grandissent.</p>
+            <p><strong>Récolte :</strong> Les tomates doivent être récoltées lorsque leur couleur est uniforme et qu'elles sont légèrement fermes au toucher.</p>
+          </div>
+          <span class="see-more">Voir plus</span>
         </div>
-    </div>
+
+        <div class="plant-card" data-type="legume">
+          <img src="./img/carottes.jpg" alt="Carottes">
+          <h3>Carottes (Daucus carota)</h3>
+          <div class="description-wrapper">
+            <p>La carotte est une plante bisannuelle cultivée généralement comme annuelle. Elle pousse bien dans un sol léger, meuble et bien drainé. Elle a besoin d'une exposition ensoleillée pour un bon développement. La variété de carottes à racines longues, comme la "Carotte de Nantes", est très prisée pour sa douceur et sa texture. La récolte de carottes se fait lorsque la racine atteint une taille satisfaisante.</p>
+            <p><strong>Conseils de culture :</strong> Semer les graines à une profondeur de 1 à 2 cm dans un sol bien ameubli. Espacer les semis de 3 à 5 cm pour permettre un bon développement. Arrosez régulièrement pour éviter que le sol ne se dessèche.</p>
+            <p><strong>Récolte :</strong> La carotte est prête à être récoltée environ 2 à 3 mois après la plantation, lorsque la racine est bien formée et de couleur orange vif.</p>
+          </div>
+          <span class="see-more">Voir plus</span>
+        </div>
+
+        <div class="plant-card" data-type="fruit">
+          <img src="./img/fraise.jpg" alt="Fraise">
+          <h3>Fraise (Fragaria × ananassa)</h3>
+          <div class="description-wrapper">
+            <p>La fraise est une plante vivace cultivée comme annuelle dans les jardins. Elle préfère un sol riche et bien drainé, légèrement acide, avec un pH compris entre 5,5 et 6,5. Elle nécessite une exposition ensoleillée pour produire des fruits sucrés et savoureux. Les fraises peuvent être cultivées en pleine terre, en jardinières ou en pots, ce qui les rend idéales pour les petits jardins ou les balcons.</p>
+            <p><strong>Conseils de culture :</strong> Les fraisiers peuvent être plantés en rangées, espacées de 30 à 40 cm, ou en potées individuelles. Assurez-vous de planter les fraisiers à une profondeur adéquate pour éviter l'humidité excessive autour de leur collet. Le paillage est recommandé pour conserver l'humidité et prévenir les mauvaises herbes.</p>
+            <p><strong>Récolte :</strong> Les fraises sont prêtes à être récoltées environ 4 à 6 semaines après la floraison. Cueillez les fruits lorsqu'ils sont complètement rouges et légèrement fermes au toucher. Les fraises non mûres ne continuent pas de mûrir après la récolte.</p>
+          </div>
+          <span class="see-more">Voir plus</span>
+        </div>
+
+        <div class="plant-card" data-type="fleur">
+          <img src="./img/camomille.jpg" alt="Camomille">
+          <h3>Camomille (Matricaria chamomilla)</h3>
+          <div class="description-wrapper">
+            <p>La camomille est une plante herbacée annuelle ou vivace, appréciée pour ses propriétés médicinales. Elle préfère les sols légers, bien drainés, et une exposition ensoleillée. Elle est idéale pour les jardins médicinaux ou les espaces de culture en pots.</p>
+            <p><strong>Conseils de culture :</strong> La camomille peut être semée directement en pleine terre ou dans des pots au printemps. Il est recommandé de laisser un espace de 20 cm entre chaque plante pour favoriser sa croissance. La camomille est relativement résistante à la sécheresse, mais elle préfère un arrosage régulier sans excès d'eau.</p>
+            <p><strong>Récolte :</strong> La récolte se fait lorsque les fleurs sont complètement ouvertes, généralement en début de matinée. Cueillez les fleurs à la main et faites-les sécher dans un endroit aéré pour conserver leurs propriétés médicinales.</p>
+          </div>
+          <span class="see-more">Voir plus</span>
+        </div>
+
+      </div>
+
+      <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <div id="modal-plant-content"></div>
+        </div>
+      </div>
 
 
     <script>
@@ -186,8 +360,37 @@
     document.getElementById('no-result').style.display = hasMatch ? 'none' : 'block';
   });
 
+  document.querySelectorAll('.see-more').forEach(button => {
+    button.addEventListener('click', () => {
+      const clickedCard = button.closest('.plant-card');
+      const modal = document.getElementById('modal-overlay');
+      const modalContent = document.getElementById('modal-plant-content');
 
+      // Clone uniquement le contenu utile
+      const clone = clickedCard.cloneNode(true);
+      const seeMoreBtn = clone.querySelector('.see-more');
+      if (seeMoreBtn) seeMoreBtn.remove(); // Supprime le bouton dans la modale
 
+      // Ajout du contenu dans la modale
+      modalContent.innerHTML = '';
+      modalContent.appendChild(clone);
+
+      // Affiche la modale
+      modal.style.display = 'flex';
+    });
+  });
+
+  // Ferme la modale avec la croix
+  document.querySelector('.close-button').addEventListener('click', () => {
+    document.getElementById('modal-overlay').style.display = 'none';
+  });
+
+  // Ferme si on clique en dehors du cadre
+  document.getElementById('modal-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'modal-overlay') {
+      e.currentTarget.style.display = 'none';
+    }
+  });
 
 
 
