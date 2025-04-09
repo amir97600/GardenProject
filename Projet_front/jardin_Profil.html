@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Utilisateur - Jardin Connecté</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+    .badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+    .badges img {
+      width: 80px;
+      height: 80px;
+    }
+    .section-title {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2d4739;
+    }
+    .stats-list, .settings-list {
+      padding-left: 20px;
+    }
+    .stats-list li, .settings-list li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Profil Jardinier</h1>
+    <nav>
+      <a href="/" class="btn">Accueil</a>
+      <a href="/logout" class="btn">Se déconnecter</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="section-title">Mes Badges</div>
+      <div class="badges">
+        <img src="img/Badge_GraineDeNovice.png" alt="Badge Graine de Novice">
+        <img src="img/Badge_JardinierDebutant.png" alt="Badge Jardinier Débutant">
+        <img src="img/Badge_CultivateurApplique.png" alt="Badge Cultivateur Appliqué">
+        <img src="img/Badge_MainVerte.png" alt="Badge Main Verte">
+        <img src="img/Badge_MaitreDuPotager.png" alt="Badge Maître du Potager">
+        <img src="img/Badge_GardienDuVerger.png" alt="Badge Gardien du Verger">
+        <img src="img/Badge_AlchimisteVert.png" alt="Badge Alchimiste Vert">
+        <img src="img/Badge_SageDuJardin.png" alt="Badge Sage du Jardin">
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Statistiques du Jardin</div>
+      <ul class="stats-list">
+        <li>Nombre de plantes : 23</li>
+        <li>Surface cultivée : 45 m²</li>
+        <li>Récoltes cette saison : 87</li>
+        <li>Temps d'entretien : 12h cette semaine</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Paramètres du Compte</div>
+      <ul class="settings-list">
+        <li><a href="#">Modifier le mot de passe</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Langue : Français</a></li>
+        <li><a href="#">Supprimer le compte</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
