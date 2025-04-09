@@ -1,6 +1,7 @@
 package test_projet.test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +10,7 @@ import test_projet.dao.IDAOJardin;
 import test_projet.dao.IDAOPlante;
 import test_projet.dao.IDAOUtilisateur;
 import test_projet.model.Admin;
+import test_projet.model.Badge;
 import test_projet.model.Client;
 import test_projet.model.Culture;
 import test_projet.model.Fleur;
@@ -44,6 +46,14 @@ public class TestSpring {
 		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, fleur);
 		Culture cult3 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin2, fl);
 		Culture cult4 = new Culture(5, LocalDate.now(), LocalDate.now(), false, jardin2, fleur);
+		
+		List<Badge> badges = client2.getBadges();
+		
+		Badge badge1 = Badge.CultivateurAppliqué;
+		Badge badge2 = Badge.GraineDeNovice;
+		badges.add(badge1);
+		badges.add(badge2);
+		
 		
 		daoplante.save(fleur);
 		daoplante.save(fl);
