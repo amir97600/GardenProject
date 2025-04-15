@@ -48,7 +48,7 @@
       animation: fadeIn 0.3s ease-in-out;
     }
 
-    .fiche-plante .close-btn {
+    .close-btn {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -119,13 +119,17 @@
 </head>
 <body>
 
-  <header>
-    <h1>Carte du Jardin</h1>
+  <header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <h1 style="flex: 1;">Carte du Jardin</h1>
+    
+    <button class="btn" id="btn-ajouter" style="margin: 10px;">➕ Ajouter une culture</button>
+    
     <div>
       <button class="btn">👤 Profil</button>
       <button class="btn">🚪 Déconnexion</button>
     </div>
   </header>
+  
 
   <div class="main-content">
     <div class="carte" id="carte">
@@ -151,6 +155,26 @@
       </div>
     </div>
 
+    <form id="form-ajout" style="display:none; background-color: #ffffffcc; padding: 20px; margin-top: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: relative;">
+      <button class="close-btn" id="close-form" aria-label="Fermer">&times;</button>
+
+      <h3>Nouvelle culture 🌱</h3>
+      <label>Nom de la plante : <input type="text" id="nom" required></label><br><br>
+      <label>Emoji : <input type="text" id="emoji" maxlength="2" required></label><br><br>
+      <label>Plantation : <input type="date" id="plantation" required></label><br><br>
+      <label>Dernier arrosage : <input type="date" id="arrosageDernier" required></label><br><br>
+      <label>Prochain arrosage : <input type="date" id="arrosageProchain" required></label><br><br>
+      <label>Récolte : <input type="date" id="recolte" required></label><br><br>
+      <label>État :
+        <select id="etat">
+          <option value="Mûr">🟢 Mûr</option>
+          <option value="Pas mûr">🟡 Pas mûr</option>
+          <option value="Pourri">🔴 Pourri</option>
+        </select>
+      </label><br><br>
+      <button type="submit" class="btn">Ajouter</button>
+    </form>
+    
     <div class="fiche-plante" id="fiche-plante">
       <!-- Contenu injecté dynamiquement -->
     </div>
@@ -179,6 +203,8 @@
       plot.addEventListener('click', () => {
         const id = plot.dataset.id;
         const data = plotData[id];
+
+        formulaire.style.display = "none";
 
         fiche.style.display = 'block';
         carte.classList.add('active');
@@ -210,6 +236,75 @@
 
       });
     });
+
+  const boutonAjout = document.getElementById("btn-ajouter");
+  const formulaire = document.getElementById("form-ajout");
+
+  boutonAjout.addEventListener("click", () => {
+    const isVisible = formulaire.style.display === "block";
+    if (!isVisible) fiche.style.display = "none";
+
+    formulaire.style.display = isVisible ? "none" : "block";
+    carte.classList.toggle("active", !isVisible); // Active si on ouvre, désactive si on ferme
+  });
+
+
+  formulaire.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const id = Object.keys(plotData).length + 1;
+    const nom = document.getElementById("nom").value;
+    const emoji = document.getElementById("emoji").value;
+    const plantation = document.getElementById("plantation").value;
+    const arrosageDernier = document.getElementById("arrosageDernier").value;
+    const arrosageProchain = document.getElementById("arrosageProchain").value;
+    const recolte = document.getElementById("recolte").value;
+    const etat = document.getElementById("etat").value;
+
+    plotData[id] = { nom, plantation, arrosageDernier, arrosageProchain, recolte, etat };
+
+    const nouvelleParcelle = document.createElement("div");
+    nouvelleParcelle.classList.add("plot");
+    nouvelleParcelle.setAttribute("data-id", id);
+    nouvelleParcelle.textContent = emoji;
+
+    document.querySelector(".garden-map").appendChild(nouvelleParcelle);
+
+    nouvelleParcelle.addEventListener("click", () => {
+      fiche.style.display = 'block';
+      carte.classList.add('active');
+
+      fiche.innerHTML = `
+        <button class="close-btn" id="close-fiche" aria-label="Fermer">&times;</button>
+        <h3>Informations de la plante</h3>
+        <p><strong>🪴 Nom :</strong> ${nom}</p>
+        <p><strong>📅 Date de plantation :</strong> ${plantation}</p>
+        <p><strong>💧 Dernier arrosage :</strong> ${arrosageDernier}</p>
+        <p><strong>🔜 Prochain arrosage :</strong> ${arrosageProchain}</p>
+        <p><strong>🧺 Récolte :</strong> ${recolte}</p>
+        <p><strong>📊 État :</strong> ${emojiEtat(etat)} ${etat}</p>
+      `;
+
+      document.getElementById("close-fiche").addEventListener("click", () => {
+        fiche.style.display = "none";
+        carte.classList.remove("active");
+      });
+    });
+
+    formulaire.reset();
+    formulaire.style.display = "none";
+  });
+
+  const boutonFermerFormulaire = document.getElementById("close-form");
+    boutonFermerFormulaire.addEventListener("click", () => {
+    formulaire.style.display = "none";
+    carte.classList.remove("active");
+  });
+
+
+
+
+
   </script>
 
 </body>
