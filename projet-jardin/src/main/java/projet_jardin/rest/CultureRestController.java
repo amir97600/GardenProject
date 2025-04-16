@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import projet_jardin.dao.IDAOCulture;
 import projet_jardin.model.Culture;
+import projet_jardin.model.Views;
 import projet_jardin.rest.request.CultureRequest;
 import projet_jardin.rest.response.CultureResponse;
 
@@ -30,6 +33,7 @@ public class CultureRestController {
 	}
 	
 	@GetMapping("")
+	@JsonView(Views.ViewCulture.class)
 	public List<CultureResponse> getAll() {
 		List<Culture> cultures = this.daoCulture.findAll();
 
@@ -37,12 +41,14 @@ public class CultureRestController {
 	}
 	
 	@GetMapping("/{id}")
+	@JsonView(Views.ViewCulture.class)
 	public CultureResponse getById(@PathVariable Integer id) {
 		return this.daoCulture.findById(id).map(CultureResponse::convert)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.ViewCulture.class)
 	public Culture create(@RequestBody CultureRequest cultureRequest) {
 		Culture culture = CultureRequest.convert(cultureRequest);
 
@@ -50,6 +56,7 @@ public class CultureRestController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewCulture.class)
 	public Culture update(@RequestBody CultureRequest cultureRequest, @PathVariable Integer id) {
 		if (id != cultureRequest.getId() || !this.daoCulture.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
