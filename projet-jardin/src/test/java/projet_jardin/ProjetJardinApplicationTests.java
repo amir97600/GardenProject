@@ -19,9 +19,9 @@ import projet_jardin.model.Fleur;
 import projet_jardin.model.FruitLegume;
 import projet_jardin.model.Jardin;
 
+
 @SpringBootTest
 class ProjetJardinApplicationTests {
-	
 	
 	@Autowired
 	IDAOUtilisateur daoutilisateur;
@@ -31,7 +31,7 @@ class ProjetJardinApplicationTests {
 	IDAOPlante daoplante;
 	@Autowired
 	IDAOCulture daoculture;
-
+	
 	@Test
 	void contextLoads() {
 		
