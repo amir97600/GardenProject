@@ -57,7 +57,9 @@ public class ClientResponse {
 	public static ClientResponse convert(Client client) {
 		ClientResponse cr = new ClientResponse();
 		BeanUtils.copyProperties(client,cr);
-		cr.setIdJardin(client.getJardin().getNumero());
+		if(client.getJardin()!=null) {
+			cr.setIdJardin(client.getJardin().getNumero());
+		}
 		return cr;
 	}
 }

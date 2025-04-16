@@ -17,7 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 import projet_jardin.dao.IDAOUtilisateur;
 import projet_jardin.model.Admin;
 import projet_jardin.model.Client;
-import projet_jardin.model.Utilisateur;
 import projet_jardin.rest.request.AdminRequest;
 import projet_jardin.rest.request.ClientRequest;
 import projet_jardin.rest.response.AdminResponse;

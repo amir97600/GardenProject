@@ -36,9 +36,10 @@ public class AdminResponse {
 		this.password = password;
 	}
 	
-	public static AdminResponse convert(Admin Admin) {
+	public static AdminResponse convert(Admin admin) {
 		AdminResponse ar = new AdminResponse();
-		BeanUtils.copyProperties(Admin,ar);
+		BeanUtils.copyProperties(admin,ar);
+		//ar.setId(admin.getId());
 		return ar;
 	}
 }
