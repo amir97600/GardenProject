@@ -1,4 +1,4 @@
-package formation_sopra.projet_jardin;
+package projet_jardin;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
