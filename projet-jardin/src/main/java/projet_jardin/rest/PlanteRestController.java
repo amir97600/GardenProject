@@ -1,5 +1,7 @@
 package projet_jardin.rest;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,11 @@ public class PlanteRestController {
 	public PlanteRestController(IDAOPlante daoPlante) {
 		super();
 		this.daoPlante = daoPlante;
+	}
+	
+	@GetMapping("")
+	public List<PlanteResponse> findAll() {
+		return this.daoPlante.findAll().stream().map(PlanteResponse::convert).toList();
 	}
 	
 	@GetMapping("/{id}")
