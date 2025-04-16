@@ -18,11 +18,11 @@ public class Culture {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id",nullable=false)
-	private int id;
+	private Integer id;
 	
 	
 	@Column(nullable=false)
-	private int quantite;
+	private Integer quantite;
 	@Column(name="date_plantation",nullable=false)
 	private LocalDate datePlantation;
 	@Column(name="date_dernier_arrosage",nullable=false)
@@ -49,6 +49,19 @@ public class Culture {
 		this.recolte = recolte;
 		this.jardin = jardin;
 		this.plante = plante;
+	}
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setQuantite(Integer quantite) {
+		this.quantite = quantite;
 	}
 
 	public int getQuantite() {
