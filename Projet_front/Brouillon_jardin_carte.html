@@ -5,23 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carte du Jardin</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+
   <style>
     .main-content {
       display: flex;
       justify-content: center;
       align-items: flex-start;
       gap: 40px;
-      padding: 40px;
+      padding: 5px;
       flex-wrap: wrap;
+      margin-bottom: 200px;
     }
+
 
     .carte {
       background-color: #e5f7e1;
-      margin-top: 30px;
+      margin-top: 20px;
       padding-top: 15px;
       padding-bottom: 15px;
-      padding-left: 1px;
-      padding-right: 1px;
+      padding-left: 5px;
+      padding-right: 5px;
       border-radius: 16px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       max-width: 650px;
@@ -36,7 +41,7 @@
 
     .fiche-plante {
       position: relative;
-      margin-top: 30px;
+      margin-top: 20px;
       background-color: rgba(255, 255, 255, 0.75);
       padding: 30px;
       border-radius: 16px;
@@ -72,10 +77,12 @@
 
     .garden-map {
       display: grid;
-      grid-template-columns: repeat(6, 90px);
-      grid-template-rows: repeat(3, 90px);
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
       gap: 14px;
       justify-content: center;
+      padding: 15px;
+
+
     }
 
     .plot {
@@ -88,6 +95,8 @@
       cursor: pointer;
       transition: transform 0.2s;
       box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      aspect-ratio: 1 / 0.8;
+      width: 100%;
     }
 
     .plot:hover {
@@ -115,22 +124,48 @@
         font-size: 2rem;
       }
     }
+    .ajout-culture-fixed {
+       margin: 20px 0 10px 40px; 
+    }
+
+    .emoji-plus {
+      margin-right: 8px;
+    }
+
+
   </style>
+
+
 </head>
 <body>
 
-  <header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <h1 style="flex: 1;">Carte du Jardin</h1>
-    
-    <button class="btn" id="btn-ajouter" style="margin: 10px;">➕ Ajouter une culture</button>
-    
-    <div>
-      <button class="btn">👤 Profil</button>
-      <button class="btn">🚪 Déconnexion</button>
+  <header class="main-header">
+    <div class="logo-container">
+      <img src="./img/plante&moi_logo_seul.png" alt="Logo plante&moi" class="logo-full" style="height: 100px;">
+      <h1>Mes Cultures</h1>
     </div>
+    <nav class="main-nav">
+      <a href="Brouillon_jardin_home.html"><i data-lucide="home"></i>&nbsp;Accueil</a>
+      <a href="Brouillon_jardin_carte.html"><i data-lucide="leaf"></i> Mes Cultures</a>
+      <a href="jardin_profil.html"><i data-lucide="user"></i> Mon Profil</a>
+      <a href="Brouillon_jardin_explorer.html"><i data-lucide="search"></i> Explorer</a>
+      <a href="logout.html"><i data-lucide="log-out"></i> Se Déconnecter</a>
+    </nav>
   </header>
+
+    
+  <div class="ajout-culture-fixed">
+    <button class="btn" id="btn-ajouter">
+      <span class="emoji-plus">✚</span> Ajouter une culture
+    </button>
+  </div>
+
+
   
 
+  
+
+  
   <div class="main-content">
     <div class="carte" id="carte">
       <div class="garden-map">
@@ -162,16 +197,7 @@
       <label>Nom de la plante : <input type="text" id="nom" required></label><br><br>
       <label>Emoji : <input type="text" id="emoji" maxlength="2" required></label><br><br>
       <label>Plantation : <input type="date" id="plantation" required></label><br><br>
-      <label>Dernier arrosage : <input type="date" id="arrosageDernier" required></label><br><br>
-      <label>Prochain arrosage : <input type="date" id="arrosageProchain" required></label><br><br>
-      <label>Récolte : <input type="date" id="recolte" required></label><br><br>
-      <label>État :
-        <select id="etat">
-          <option value="Mûr">🟢 Mûr</option>
-          <option value="Pas mûr">🟡 Pas mûr</option>
-          <option value="Pourri">🔴 Pourri</option>
-        </select>
-      </label><br><br>
+
       <button type="submit" class="btn">Ajouter</button>
     </form>
     
@@ -180,24 +206,38 @@
     </div>
   </div>
 
+  <footer class="main-footer">
+    <div class="footer-logo">
+      <img src="./img/plante&moi_logo_seul.png" alt="Logo plante&moi">
+    </div>
+  
+    <div class="footer-infos">
+      <span>© 2025</span>
+      <span><strong>plante&amp;moi</strong></span>
+      <span>Un outil simple pour suivre vos plantations au quotidien !</span>
+      <span>Contact : contact@plantetmoi.fr</span>
+    </div>
+  </footer>
+
   <script>
-    const plotData = {
-      1: { nom: "Tomate", plantation: "2025-03-10", arrosageDernier: "2025-04-06", arrosageProchain: "2025-04-10", recolte: "2025-06-15", etat: "Pas mûr" },
-      2: { nom: "Carotte", plantation: "2025-02-25", arrosageDernier: "2025-04-07", arrosageProchain: "2025-04-11", recolte: "2025-05-30", etat: "Mûr" },
-      3: { nom: "Fraise", plantation: "2025-03-20", arrosageDernier: "2025-04-08", arrosageProchain: "2025-04-12", recolte: "2025-05-15", etat: "Pourri" },
-      4: { nom: "Tournesol", plantation: "2025-03-05", arrosageDernier: "2025-04-06", arrosageProchain: "2025-04-09", recolte: "2025-07-01", etat: "Pas mûr" }
-    };
+
+    lucide.createIcons();
+
+    const boutonAjout = document.getElementById("btn-ajouter");
+    const formulaire = document.getElementById("form-ajout");
 
     const plots = document.querySelectorAll('.plot');
     const fiche = document.getElementById('fiche-plante');
     const carte = document.getElementById('carte');
 
-    function emojiEtat(etat) {
-      if (etat === "Mûr") return "🟢";
-      if (etat === "Pas mûr") return "🟡";
-      if (etat === "Pourri") return "🔴";
-      return "❓";
-    }
+    const plotData = {
+      1: { nom: "Tomate", plantation: "2025-03-10"},
+      2: { nom: "Carotte", plantation: "2025-02-25" },
+      3: { nom: "Fraise", plantation: "2025-03-20"},
+      4: { nom: "Tournesol", plantation: "2025-03-05"}
+    };
+
+
 
     plots.forEach(plot => {
       plot.addEventListener('click', () => {
@@ -215,10 +255,7 @@
             <h3>Informations de la plante</h3>
             <p><strong>🪴 Nom :</strong> ${data.nom}</p>
             <p><strong>📅 Date de plantation :</strong> ${data.plantation}</p>
-            <p><strong>💧 Dernier arrosage :</strong> ${data.arrosageDernier}</p>
-            <p><strong>🔜 Prochain arrosage :</strong> ${data.arrosageProchain}</p>
-            <p><strong>🧺 Récolte :</strong> ${data.recolte}</p>
-            <p><strong>📊 État :</strong> ${emojiEtat(data.etat)} ${data.etat}</p>
+
           `;
 
         } else {
@@ -237,8 +274,7 @@
       });
     });
 
-  const boutonAjout = document.getElementById("btn-ajouter");
-  const formulaire = document.getElementById("form-ajout");
+
 
   boutonAjout.addEventListener("click", () => {
     const isVisible = formulaire.style.display === "block";
@@ -256,12 +292,9 @@
     const nom = document.getElementById("nom").value;
     const emoji = document.getElementById("emoji").value;
     const plantation = document.getElementById("plantation").value;
-    const arrosageDernier = document.getElementById("arrosageDernier").value;
-    const arrosageProchain = document.getElementById("arrosageProchain").value;
-    const recolte = document.getElementById("recolte").value;
-    const etat = document.getElementById("etat").value;
 
-    plotData[id] = { nom, plantation, arrosageDernier, arrosageProchain, recolte, etat };
+
+    plotData[id] = { nom, plantation};
 
     const nouvelleParcelle = document.createElement("div");
     nouvelleParcelle.classList.add("plot");
@@ -279,10 +312,6 @@
         <h3>Informations de la plante</h3>
         <p><strong>🪴 Nom :</strong> ${nom}</p>
         <p><strong>📅 Date de plantation :</strong> ${plantation}</p>
-        <p><strong>💧 Dernier arrosage :</strong> ${arrosageDernier}</p>
-        <p><strong>🔜 Prochain arrosage :</strong> ${arrosageProchain}</p>
-        <p><strong>🧺 Récolte :</strong> ${recolte}</p>
-        <p><strong>📊 État :</strong> ${emojiEtat(etat)} ${etat}</p>
       `;
 
       document.getElementById("close-fiche").addEventListener("click", () => {

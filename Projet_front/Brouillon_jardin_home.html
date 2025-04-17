@@ -41,12 +41,11 @@
   .btn-more {
     margin-top: 10px;
     display: inline-block;
-    background-color: #accbb0;
+    background-color: #437951;
     padding: 8px 12px;
     border-radius: 8px;
     text-decoration: none;
-    color: #2d4739;
-    font-weight: bold;
+    color: #f9f9f9;
   }
   .btn-more:hover {
     background-color: #7da87b;
@@ -70,16 +69,24 @@
   }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 <body>
 
-  <header>
-    <h1>Mon Jardin</h1>
-    <div>
-      <button class="btn">👤 Profil</button>
-      <button class="btn">🚪 Déconnexion</button>
+  <header class="main-header">
+    <div class="logo-container">
+      <img src="./img/plante&moi.png" alt="Logo plante&moi" class="logo-full">
     </div>
+    <nav class="main-nav">
+      <a href="Brouillon_jardin_carte.html"><i data-lucide="leaf"></i> Mes cultures</a>
+      <a href="jardin_profil.html"><i data-lucide="user"></i> Mon profil</a>
+      <a href="Brouillon_jardin_explorer.html"><i data-lucide="search"></i> Explorer</a>
+      <a href="logout.html"><i data-lucide="log-out"></i> Se déconnecter</a>
+    </nav>
   </header>
+  
+  
 
   <div class="container">
     <div class="card">
@@ -129,10 +136,31 @@
       <div class="card" style="flex: 1; text-align: center;">
         <h2>Explorer les plantes</h2>
         <p>Apprenez-en plus sur une grande variété de plantes, fruits et légumes!</p>
-        <a href="Brouillon_jardin_explorer.html" class="btn-more">🔍 Explorer</a>
+        <a href="Brouillon_jardin_explorer.html" class="btn-more"> Explorer</a>
       </div>
     </div>
 
   </div>
+
+  <footer class="main-footer">
+    <div class="footer-logo">
+      <img src="./img/plante&moi_logo_seul.png" alt="Logo plante&moi">
+    </div>
+  
+    <div class="footer-infos">
+      <span>© 2025</span>
+      <span><strong>plante&amp;moi</strong></span>
+      <span>Un outil simple pour suivre vos plantations au quotidien !</span>
+      <span>Contact : contact@plantetmoi.fr</span>
+    </div>
+  </footer>
+  
+  
+  
+
+
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
