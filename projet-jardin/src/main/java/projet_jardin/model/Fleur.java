@@ -1,5 +1,7 @@
 package projet_jardin.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -8,6 +10,7 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("fleurs")
 public class Fleur extends Plante {
 	
+	@JsonView(Views.ViewBasic.class)
 	private boolean comestibilite = false;
 	
 	public Fleur() {
