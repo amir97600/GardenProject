@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,15 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
 import projet_jardin.model.Culture;
 import projet_jardin.rest.request.CultureRequest;
 import projet_jardin.rest.request.CultureRequest.PlanteType;
-import projet_jardin.rest.response.CultureResponse;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Transactional 
@@ -31,50 +26,9 @@ import projet_jardin.rest.response.CultureResponse;
 public class TestCulture {
 
 	@Autowired
-	private WebApplicationContext applicationContext;
-	private MockMvc mockMvc;
-	
-	 @Autowired
-	 private TestRestTemplate template;
-	   
-
-	@BeforeEach
-	public void init(){
-		this.mockMvc = MockMvcBuilders
-				.webAppContextSetup(applicationContext)
-				.build();
-	}
-	
-	/*
-	@Test
-	public void createCulture()  throws Exception {
-		// ARRANGE
-		StringBuilder culture = new StringBuilder();
-		culture.append("{").append("\"quantite\"").append(":").append("\"20\"").append(",");
-		culture.append("\"datePlantation\"").append(":").append("\"2025-01-01\"").append(",");
-		culture.append("\"dateDernierArrosage\"").append(":").append("\"2025-04-18\"").append(",");
-		culture.append("\"recolte\"").append(":").append("\"false\"").append(",");
-		culture.append("\"idJardin\"").append(":").append("1").append(",");
-		culture.append("\"idPlante\"").append(":").append("1").append(",");
-		culture.append("\"planteType\"").append(":").append("\"Fleur\"").append("}");
-
-		// ACT & ASSERT
-		this.mockMvc.perform(MockMvcRequestBuilders.post("/culture").contentType(MediaType.APPLICATION_JSON)
-				.content(culture.toString()))
-		.andExpect(MockMvcResultMatchers.status().isOk())
-		.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-		.andExpect(MockMvcResultMatchers.jsonPath("$").exists())
-		.andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
-		.andExpect(MockMvcResultMatchers.jsonPath("$.quantite").value("20"))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.datePlantation").value("2025-01-01"))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.dateDernierArrosage").value("2025-04-18"))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.recolte").value("false"))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.jardin.numero").value("1"))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.plante.id").value("1"));
+	private TestRestTemplate template;
 
 
-	}
-	*/
 	@Test
 	public void createWithRestTemplate() throws Exception {
 		// ARRANGE
