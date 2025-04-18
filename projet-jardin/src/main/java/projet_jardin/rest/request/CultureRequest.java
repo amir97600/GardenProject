@@ -96,6 +96,7 @@ public class CultureRequest {
 		
 		Jardin jardin= new Jardin();
 		jardin.setNumero(cultureRequest.getIdJardin());
+		culture.setJardin(jardin);
 		
 		Plante plante = null;
 		if(cultureRequest.getPlanteType() == PlanteType.Fleur) {
@@ -104,7 +105,7 @@ public class CultureRequest {
 			plante = new FruitLegume();
 		} 
 		plante.setId(cultureRequest.getIdPlante());
-		culture.setJardin(jardin);
+		
 		culture.setPlante(plante);
 		
 		return culture;

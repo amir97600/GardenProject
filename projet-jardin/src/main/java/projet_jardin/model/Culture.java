@@ -45,6 +45,7 @@ public class Culture {
 	
 	@ManyToOne
 	@JoinColumn(name="plante", nullable=false)
+	@JsonView(Views.ViewCulture.class)
 	private Plante plante;
 	
 	public Culture() {}

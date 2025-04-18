@@ -3,6 +3,10 @@ package projet_jardin.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -18,19 +22,30 @@ import jakarta.persistence.Table;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type_plante",columnDefinition = "ENUM('fleurs','fruits_legumes')")
 @Table(name="plante")
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Fleur.class, name = "Fleur"),
+    @JsonSubTypes.Type(value = FruitLegume.class, name = "FruitLegume")
+})
 public abstract class Plante {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@JsonView(Views.ViewBasic.class)
 	protected Integer id;
 	@Column(name="nom",nullable=false)
+	@JsonView(Views.ViewBasic.class)
 	protected String nom;
 	@Column(name="description")
+	@JsonView(Views.ViewBasic.class)
 	protected String description;
 	@Column(name="delai_recolte")
+	@JsonView(Views.ViewBasic.class)
 	protected int delaiRecolte; //Un intervalle de recolte en semaines
+	@JsonView(Views.ViewBasic.class)
 	@Column(name="duree_vie")
 	protected int dureeVie; //Duree de la vie de la plante en semaine
+	@JsonView(Views.ViewBasic.class)
 	@Column(name="delai_arrosage")
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
 	
