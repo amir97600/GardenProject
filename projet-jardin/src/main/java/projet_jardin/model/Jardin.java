@@ -3,6 +3,7 @@ package projet_jardin.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
@@ -82,7 +83,7 @@ public class Jardin {
 
 
 
-
+	@JsonProperty("lieu")
 	public String getLieu() {
 		return lieu;
 	}
@@ -96,7 +97,7 @@ public class Jardin {
 
 
 
-
+	@JsonProperty("superficie")
 	public double getSuperficie() {
 		return superficie;
 	}
