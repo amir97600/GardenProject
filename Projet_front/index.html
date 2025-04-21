@@ -5,6 +5,117 @@
   <title>Le jardin connecté</title>
   <link rel="icon" type="image/x-icon" href="img/leaf.ico">
   <link rel="stylesheet" href="style_accueil.css"></link>
+  <style media="screen">
+
+  .help-text > span {
+    font-size: 3vh;
+    cursor: pointer;
+  }
+
+  .subscribe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  /* Style de la pop-up */
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+  }
+
+  .modal-content {
+    background-color: rgba(246, 253, 247, 0.9);
+    border-radius: 16px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 700px;
+    overflow-y: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+
+  /* Bouton de fermeture (croix) */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #294e25;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .close-btn:hover {
+    transform: scale(1.1);
+    color: #f00;
+  }
+
+  /* Formulaire */
+  .signup-form label {
+    font-size: 1rem;
+    color: #294e25;
+    margin-bottom: 5px;
+  }
+
+  .signup-form input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #f5f9f5;
+  }
+
+  .signup-form input:focus {
+    border-color: #76b947;
+    outline: none;
+  }
+
+  .signup-form .btn {
+    background-color: #294e25;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .signup-form .btn:hover {
+    background-color: #1c351e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .signup-form .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+
+  </style>
 </head>
 
 <body>
@@ -17,10 +128,75 @@
       <input id="submit" type="submit" value="Se connecter"/>
     </form>
     <div class="help-text">
-      <a href="/" target="_blank">Créer un compte</a>
-      <a>|</a>
-      <a href="/" target="_blank">Mot de passe oublié</a>
+      <span class="new-account">Créer un compte</span>
+      <span>|</span>
+      <span  class="new-password">Mot de passe oublié</span>
     </div>
   </div>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-content" class="modal-content">
+      <button id="close-btn" class="close-btn">&times;</button>
+      <h2>Créer un nouveau compte</h2>
+      <form id="signup-form" class="signup-form">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="prenom">Prenom</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <label for="login">Login</label>
+        <input type="text" id="login" name="login" required>
+
+        <label for="jardin">Nom du jardin</label>
+        <input type="text" id="jardin" name="jardin" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit" class="btn">S'inscrire</button>
+      </form>
+    </div>
+  </div>
+
+
 </body>
 </html>
+
+<script type="text/javascript">
+const openBtn = document.querySelector('.new-account');
+const modalOverlay = document.getElementById('modal-overlay');
+const closeButton = document.getElementById('close-btn');
+const signupForm = document.getElementById('signup-form');
+
+// Ouvrir la pop-up
+openBtn.addEventListener('click', () => {
+  modalOverlay.style.display = 'flex';
+});
+
+
+// Fermer la pop-up
+closeButton.addEventListener('click', () => {
+  modalOverlay.style.display = 'none';
+});
+
+// Fermer la pop-up en cliquant en dehors de la boîte de contenu
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    modalOverlay.style.display = 'none';
+  }
+});
+
+// Gérer l'envoi du formulaire
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  modalOverlay.style.display = 'none';
+});
+
+
+
+</script>
