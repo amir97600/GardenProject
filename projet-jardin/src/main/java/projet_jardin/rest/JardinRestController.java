@@ -19,7 +19,7 @@ import projet_jardin.rest.request.JardinRequest;
 import projet_jardin.rest.response.JardinResponse;
 
 @RestController
-@RequestMapping("/jardin")
+@RequestMapping("/api/jardin")
 public class JardinRestController {
 
 	private IDAOJardin daoJardin;

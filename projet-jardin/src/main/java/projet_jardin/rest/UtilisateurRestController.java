@@ -23,7 +23,7 @@ import projet_jardin.rest.response.AdminResponse;
 import projet_jardin.rest.response.ClientResponse;
 
 @RestController
-@RequestMapping("/utilisateurs")
+@RequestMapping("/api/utilisateurs")
 public class UtilisateurRestController {
 	
 	@Autowired

@@ -1,6 +1,7 @@
 package projet_jardin.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,8 @@ public interface IDAOUtilisateur extends JpaRepository<Utilisateur, Integer> {
 	
 	@Query("SELECT c from Client c where c.id = :id")
 	public Client findClientById(@Param("id") int id);
+	
+	public Optional<Utilisateur> findByLogin(String login);
 	
 	@Query("from Admin")
 	public List<Admin> findAllAdmin();

@@ -22,7 +22,7 @@ import projet_jardin.rest.request.CultureRequest;
 import projet_jardin.rest.response.CultureResponse;
 
 @RestController
-@RequestMapping("/culture")
+@RequestMapping("/api/culture")
 public class CultureRestController {
 
 	private IDAOCulture daoCulture;

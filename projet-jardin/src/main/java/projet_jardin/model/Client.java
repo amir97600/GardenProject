@@ -86,11 +86,6 @@ public class Client extends Utilisateur {
 		this.jardin = jardin;
 	}
 
-	@Override
-	public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", login=" + login + ", password=" + password + ", points=" + points + ", badges=" + badges + ", jardin="
-				+ jardin  + "]";
-	}
 
 	
 	
