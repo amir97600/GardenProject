@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
+  { path: 'profil', component : ProfilComponent},
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin', component: AdminComponent },
 ];

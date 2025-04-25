@@ -1,1 +1,144 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+
+body {
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f0fdf4, #c8e6c9);
+  background-image: url('../public/fond_jardin_canva.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #294e25;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  background-color: #eafce4;
+  padding: 16px 24px;
+  margin: 10px 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  height: 60px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 20px ;
+}
+
+.logo-full {
+  height: 75px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.main-nav a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2d4739;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: #558566;
+}
+
+.main-nav i {
+  width: 18px;
+  height: 18px;
+}
+
+.main-footer {
+  background-color: #e5f4e2;
+  padding: 1px 24px;
+  font-size: 0.9rem;
+  color: #2d4739;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: auto;
+
+}
+
+.footer-logo img {
+  height: 65px;
+  object-fit: contain;
+}
+
+.footer-infos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+}
+
+
+h2 {
+  margin-top: 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color : #2d4739;
+}
+
+.btn {
+  background-color: #294e25;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  background-color: #1c351e;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.card {
+  background-color: rgba(246, 253, 247, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: 15px;
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+

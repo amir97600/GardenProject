@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProfilComponent } from './profil/profil.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
 import { jwtHeaderInterceptor } from './authentification/jwt-header.interceptor';
@@ -15,10 +16,11 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
 @NgModule({
   declarations: [
     AppComponent,
+    ProfilComponent,
     ConnexionComponent,
     AdminComponent,
     AdminFormComponent,
-    GardenNavigationComponent
+    GardenNavigationComponent,
   ],
   imports: [
     BrowserModule,
