@@ -1,0 +1,39 @@
+<form (ngSubmit)="addOrEditAdmin()" [formGroup]="AdminForm">
+
+    <div *ngIf="AdminForm.get('login')?.hasError('required')" class="alert alert-danger">
+        Le login est obligatoire
+    </div>
+
+    <div *ngIf="AdminForm.get('password')?.hasError('required')" class="alert alert-danger">
+        Le mot de passe est obligatoire
+    </div>
+
+    @if (editingAdmin) {
+        <input type="submit" [disabled]="AdminForm.invalid" class="btn btn-warning" value="Modifier" />
+    }
+
+    @else {
+        <input type="submit" [disabled]="AdminForm.invalid" class="btn btn-success" value="Ajouter" />
+    }
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Login</th>
+            <th>Mot de passe</th>
+            <th>Actions</th>
+        </tr>
+
+        <tr *ngFor="let Admin of Admins$ | async">
+            <td>{{ Admin.login }}</td>
+            <td>{{ Admin.password }}</td>
+            <td>
+                <div class="btn-group">
+                    <div class="btn btn-warning" (click)="editAdmin(Admin)">Modifier</div>
+                    <div class="btn btn-danger" (click)="deleteAdmin(Admin)">Supprimer</div>
+                </div>
+            </td>
+        </tr>
+    </thead>
+</table>
