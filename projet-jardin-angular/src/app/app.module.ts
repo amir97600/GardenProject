@@ -11,6 +11,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { LucideAngularModule, Home, Leaf, User, Search, LogOut } from 'lucide-angular';
 import { GardenNavigationComponent } from './garden-navigation/garden-navigation.component';
+import { GardenFooterComponent } from './garden-footer/garden-footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
     ConnexionComponent,
     AdminComponent,
     AdminFormComponent,
-    GardenNavigationComponent
+    GardenNavigationComponent,
+    GardenFooterComponent
   ],
   imports: [
     BrowserModule,
