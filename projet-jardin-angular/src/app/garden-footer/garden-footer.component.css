@@ -1,0 +1,30 @@
+.main-footer {
+    background-color: #f0f5ec;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-logo img {
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  .footer-infos {
+    font-size: 0.9rem;
+    color: #2d4739;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%; 
+  }
+  
+  .footer-infos span {
+    display: inline;
+  }
+  
