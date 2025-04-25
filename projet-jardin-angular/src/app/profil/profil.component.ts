@@ -11,26 +11,20 @@ import { Badge } from '../utilisateur/client/badge';
   styleUrl: './profil.component.css'
 })
 export class ProfilComponent {
-
-  constructor(private router : Router, private clientService : ClientService) {}
-
-  client!: Client ;
+  client!: Client;
   Badge = Badge;
   badges: Badge[] = [];
+  
+
+  constructor(private router : Router, private clientService : ClientService) {}
 
   allBadges: { name: string; unlocked: boolean }[] = [];
 
   ngOnInit() {
     this.clientService.findById(2).subscribe(client => {
       this.client = client;
-      const unlocked = this.clientService.getBadgesDébloqués(client.score);
-  
-      this.allBadges = Object.keys(Badge)
-        .filter(key => isNaN(Number(key))) 
-        .map(key => ({
-          name: key,
-          unlocked: unlocked.includes(key as unknown as Badge)
-        }));
+      client.xyz()
+      console.log(`LE CLIENT: ${ client.xyz() }`);
     });
   }
 

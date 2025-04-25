@@ -16,7 +16,7 @@ export class Client {
         private _jardin : Jardin
     ) {}
 
-    get id() : number {
+    public get id() : number {
         return this._id;
     }
 
@@ -24,7 +24,7 @@ export class Client {
         this._id = value;
     }
 
-    get prenom() : string {
+    public get prenom() : string {
         return this._prenom;
     }
 
@@ -32,7 +32,7 @@ export class Client {
         this._prenom = value;
     }
 
-    get nom() : string {
+    public get nom() : string {
         return this._nom;
     }
 
@@ -40,7 +40,7 @@ export class Client {
         this._nom = value;
     }
 
-    get login() : string {
+    public get login() : string {
         return this._login;
     }
 
@@ -48,7 +48,7 @@ export class Client {
         this._login = value;
     }
 
-    get password() : string {
+    public get password() : string {
         return this._password;
     }
 
@@ -56,7 +56,7 @@ export class Client {
         this._password = value;
     }
 
-    get score() : number {
+    public get score() : number {
         return this._score;
     }
 
@@ -64,7 +64,7 @@ export class Client {
         this._score = value;
     }
 
-    get badges() : Badge[] {
+    public get badges() : Badge[] {
         return this._badges;
     }
 
@@ -72,7 +72,7 @@ export class Client {
         this._badges = value;
     }
 
-    get jardin() : Jardin {
+    public get jardin() : Jardin {
         return this._jardin;
     }
 
@@ -80,5 +80,7 @@ export class Client {
         this._jardin = value;
     }
 
-
+    public xyz() {
+        console.log(`Je suis le client et je m'appelle `);
+    }
 }

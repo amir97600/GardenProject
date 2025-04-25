@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from './client';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
@@ -13,7 +13,7 @@ export class ClientService {
   constructor(private http : HttpClient) { }
 
   private refresh$: Subject<void> = new Subject<void>();
-  private API_URL: string = `${ environment.API_URL }/utilisateur`;
+  private API_URL: string = `${ environment.API_URL }/utilisateur/client`;
 
   public refresh() {
     this.refresh$.next();
@@ -42,7 +42,7 @@ export class ClientService {
   }
   
   public delete(client: any) {
-    return this.http.delete<void>(`${ this.API_URL }/${ client.id }`);
+    return this.http.delete<void>(`${ this.API_URL }${ client.id }`);
   }
 
   // Badges débloqués à partir du score du client 
