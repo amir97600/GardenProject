@@ -1,0 +1,32 @@
+<form (ngSubmit)="authenticate()" [formGroup]="authForm">
+    <div>
+        <label>Nom d'utilisateur</label>
+        <input type="text" formControlName="login" />
+
+
+        <div *ngIf="loginCtrl?.hasError('required')">
+            Le nom d'utilisateur est obligatoire
+        </div>
+    </div>
+
+    <div>
+        <label>Mot de passe</label>
+        <input type="password" formControlName="password" />
+
+        <div *ngIf="authForm.get('password')?.hasError('required')">
+            Le mot de passe est obligatoire
+        </div>
+
+        <div *ngIf="passwordCtrl?.hasError('minlength')">
+            Le mot de passe doit faire au moins 6 caractères
+        </div>
+    </div>
+
+    <div *ngIf="messageError!=''">
+            Le nom d'utilisateur est obligatoire
+    </div> 
+
+    <div>
+        <input type="submit" [disabled]="authForm.invalid" class="btn btn-success" value="Se connecter" />
+    </div>
+</form>

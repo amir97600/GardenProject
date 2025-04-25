@@ -23,33 +23,33 @@ import projet_jardin.rest.response.AdminResponse;
 import projet_jardin.rest.response.ClientResponse;
 
 @RestController
-@RequestMapping("/api/utilisateurs")
+@RequestMapping("/api/utilisateur")
 public class UtilisateurRestController {
 	
 	@Autowired
 	IDAOUtilisateur daoUtilisateur;
 	
-	@GetMapping("clients")
+	@GetMapping("client")
 	public List<ClientResponse> getAllClients(){
 		List<Client> users = daoUtilisateur.findAllClient();
 		List<ClientResponse> clients = users.stream().map(ClientResponse::convert).toList();
 		return clients;
 	}
 	
-	@GetMapping("clients/{id}")
+	@GetMapping("client/{id}")
 	public ClientResponse getByIdClient(@PathVariable Integer id) {
 		
 		return ClientResponse.convert(daoUtilisateur.findClientById(id));
 	}
 	
-	@PostMapping("clients")
+	@PostMapping("client")
 	public Client createClient(@RequestBody ClientRequest clientRequest) {
 		Client client = ClientRequest.convert(clientRequest);
 
 		return daoUtilisateur.save(client);
 	}
 	
-	@PutMapping("clients/{id}")
+	@PutMapping("client/{id}")
 	public Client updateClient(@RequestBody ClientRequest clientRequest, @PathVariable Integer id) {
 		if (id != clientRequest.getId() || !this.daoUtilisateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
@@ -61,27 +61,27 @@ public class UtilisateurRestController {
 	}
 	
 	
-	@GetMapping("admins")
+	@GetMapping("admin")
 	public List<AdminResponse> getAllAdmins(){
 		List<Admin> users = daoUtilisateur.findAllAdmin();
 		List<AdminResponse> admins = users.stream().map(AdminResponse::convert).toList();
 		return admins;
 	}
 	
-	@GetMapping("admins/{id}")
+	@GetMapping("admin/{id}")
 	public AdminResponse getByIdAdmin(@PathVariable Integer id) {
 		
 		return AdminResponse.convert(daoUtilisateur.findAdminByID(id));
 	}
 	
-	@PostMapping("admins")
+	@PostMapping("admin")
 	public Admin createAdmins(@RequestBody AdminRequest adminRequest) {
 		Admin Admin = AdminRequest.convert(adminRequest);
 
 		return daoUtilisateur.save(Admin);
 	}
 	
-	@PutMapping("admins/{id}")
+	@PutMapping("admin/{id}")
 	public Admin updateAdmin(@RequestBody AdminRequest adminRequest, @PathVariable Integer id) {
 		if (id != adminRequest.getId() || !this.daoUtilisateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
