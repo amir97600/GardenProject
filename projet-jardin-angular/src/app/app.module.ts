@@ -17,15 +17,13 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
     AppComponent,
     ConnexionComponent,
     AdminComponent,
-    AdminFormComponent
-    AppComponent,
+    AdminFormComponent,
     GardenNavigationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     LucideAngularModule.pick({Home, Leaf, User, Search, LogOut})
   ],
   providers: [provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ]))],// Remplace l'import de HttpClientModule
