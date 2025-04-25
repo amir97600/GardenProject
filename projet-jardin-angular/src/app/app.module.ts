@@ -12,6 +12,9 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { LucideAngularModule, Home, Leaf, User, Search, LogOut } from 'lucide-angular';
 import { GardenNavigationComponent } from './garden-navigation/garden-navigation.component';
+import { GardenFooterComponent } from './garden-footer/garden-footer.component';
+import { Error500Component } from './error500/error500.component';
+import { Error404Component } from './error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
     AdminComponent,
     AdminFormComponent,
     GardenNavigationComponent,
+    GardenFooterComponent,
+    Error500Component,
+    Error404Component
   ],
   imports: [
     BrowserModule,
