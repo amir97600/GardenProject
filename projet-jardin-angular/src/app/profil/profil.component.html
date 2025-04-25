@@ -1,95 +1,3 @@
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Jardin - Profil</title>
-  <link rel="icon" href="assets/images/plante&moi_logo_seul.png" type="image/png">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <style>
-  main { 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px;
-    margin-bottom: 200px;
-
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    flex: 1;
-    min-width: 320px;
-    max-width: 600px;
-  }
-  .profile-header {
-    text-align: center;
-    margin-top: 40px;
-  }
-  .badges-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-  }
-  .badge {
-    width: 90px;
-    height: 90px;
-  }
-  .section {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  .section h2 {
-    margin-bottom: 15px;
-    color: #2d4739;
-  }
-  .stats, .settings {
-    list-style: none;
-    padding: 0;
-  }
-  .stats li, .settings li {
-    margin: 8px 0;
-  }
-
-  /*Griser les badges pas encore obtenus*/
-  .badge.locked {
-    filter: grayscale(100%) brightness(0.8);
-    cursor: pointer;
-    transition: filter 0.3s ease;
-  }
-  .badge.locked:hover {
-    filter: grayscale(70%) brightness(1);
-  }
-  /* Affichage du score */
-  .score-display {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #4caf50;
-    text-align: center;
-    margin-top: 10px;
-  }
-  </style>
-</head>
-
-<header class="main-header">
-    <div class="logo-container">
-      <img src="assets/images/plante&moi_logo_seul.png" alt="Logo plante&moi" class="logo-full" style="height: 100px;">
-      <h1>Mon Profil</h1>
-    </div>
-    <nav class="main-nav">
-      <a href="Brouillon_jardin_home.html"><i data-lucide="home"></i>&nbsp;Accueil</a>
-      <a href="Brouillon_jardin_carte.html"><i data-lucide="leaf"></i> Mes Cultures</a>
-      <a href="jardin_profil.html"><i data-lucide="user"></i> Mon Profil</a>
-      <a href="Brouillon_jardin_explorer.html"><i data-lucide="search"></i> Explorer</a>
-      <a href="logout.html"><i data-lucide="log-out"></i> Se Déconnecter</a>
-    </nav>
-  </header>
 
   <div class="profile-header">
     <h1>Tableau de bord du jardin</h1>
@@ -108,18 +16,17 @@
         <h2>Mes Badges</h2>
         <div class="badges-gallery">
 
-          <img src="assets/images/Badge_GraineDeNovice.png" class="badge" alt="Graine de Novice" title="Objectif 0 pnt, c'est cadeau !">
-          <img src="assets/images/Badge_JardinierDebutant.png" class="badge" alt="Jardinier Débutant" title="Objectif 100 pnts">
-          <img src="assets/images/Badge_MainVerte.png" class="badge locked" alt="Main Verte" title="Objectif 300 pnts">
-          <img src="assets/images/Badge_MaitreDuPotager.png" class="badge locked" alt="Maître du Potager" title="Objectif 600 pnts">
-          <img src="assets/images/Badge_CultivateurApplique.png" class="badge locked" alt="Cultivateur Appliqué" title="Objectif 1000 pnts">
-          <img src="assets/images/Badge_GardienDuVerger.png" class="badge locked" alt="Gardien du Verger" title="Objectif 1500 pnts">
-          <img src="assets/images/Badge_AlchimisteVert.png" class="badge locked" alt="Alchimiste Vert" title="Objectif 2000 pnts">
-          <img src="assets/images/Badge_SageDuJardin.png" class="badge locked" alt="Sage du Jardin" title="Objectif 3000 pnts">
-
+          <img src="Badge_GraineDeNovice.png" class="badge" alt="Graine de Novice" title="Objectif 0 pnt, c'est cadeau !">
+          <img src="Badge_JardinierDebutant.png" class="badge" alt="Jardinier Débutant" title="Objectif 100 pnts">
+          <img src="Badge_MainVerte.png" class="badge locked" alt="Main Verte" title="Objectif 300 pnts">
+          <img src="Badge_MaitreDuPotager.png" class="badge locked" alt="Maître du Potager" title="Objectif 600 pnts">
+          <img src="Badge_CultivateurApplique.png" class="badge locked" alt="Cultivateur Appliqué" title="Objectif 1000 pnts">
+          <img src="Badge_GardienDuVerger.png" class="badge locked" alt="Gardien du Verger" title="Objectif 1500 pnts">
+          <img src="Badge_AlchimisteVert.png" class="badge locked" alt="Alchimiste Vert" title="Objectif 2000 pnts">
+          <img src="Badge_SageDuJardin.png" class="badge locked" alt="Sage du Jardin" title="Objectif 3000 pnts">
+      
         </div>
       </section>
-    </div>
 
     <div class="column">
       <section class="section">
@@ -141,10 +48,12 @@
         </ul>
       </section>
     </div>
+    </div>
   </main>
+
   <footer class="main-footer">
     <div class="footer-logo">
-      <img src="assets/images/plante&moi_logo_seul.png" alt="Logo plante&moi">
+      <img src="plante&moi_logo_seul.png" alt="Logo plante&moi">
     </div>
   
     <div class="footer-infos">

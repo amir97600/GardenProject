@@ -16,11 +16,11 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
 @NgModule({
   declarations: [
     AppComponent,
-    ProfilComponent
+    ProfilComponent,
     ConnexionComponent,
     AdminComponent,
     AdminFormComponent,
-    GardenNavigationComponent
+    GardenNavigationComponent,
   ],
   imports: [
     BrowserModule,

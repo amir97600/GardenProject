@@ -30,7 +30,7 @@ export class ClientService {
   }
 
   public findById(id : number): Observable<Client> {
-    return this.http.get<Client>(`${ this.API_URL }/utilisateur/:${ id }`);
+    return this.http.get<Client>(`${ this.API_URL }/${ id }`);
   }
 
   public save(client: any) {

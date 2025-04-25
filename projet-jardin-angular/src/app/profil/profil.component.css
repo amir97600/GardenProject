@@ -1,0 +1,74 @@
+main { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    margin-bottom: 200px;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .badges-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .badge {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .section {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section h2 {
+    margin-bottom: 15px;
+    color: #2d4739;
+  }
+  
+  .stats, .settings {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .stats li, .settings li {
+    margin: 8px 0;
+  }
+  
+  .badge.locked {
+    filter: grayscale(100%) brightness(0.8);
+    cursor: pointer;
+    transition: filter 0.3s ease;
+  }
+  
+  .badge.locked:hover {
+    filter: grayscale(70%) brightness(1);
+  }
+  
+  .score-display {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4caf50;
+    text-align: center;
+    margin-top: 10px;
+  }
+  

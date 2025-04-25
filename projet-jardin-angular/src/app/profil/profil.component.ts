@@ -15,12 +15,22 @@ export class ProfilComponent {
   constructor(private router : Router, private clientService : ClientService) {}
 
   client!: Client ;
+  Badge = Badge;
   badges: Badge[] = [];
+
+  allBadges: { name: string; unlocked: boolean }[] = [];
 
   ngOnInit() {
     this.clientService.findById(2).subscribe(client => {
       this.client = client;
-      this.badges = this.clientService.getBadgesDébloqués(client.score);
+      const unlocked = this.clientService.getBadgesDébloqués(client.score);
+  
+      this.allBadges = Object.keys(Badge)
+        .filter(key => isNaN(Number(key))) 
+        .map(key => ({
+          name: key,
+          unlocked: unlocked.includes(key as unknown as Badge)
+        }));
     });
   }
 
@@ -29,5 +39,6 @@ export class ProfilComponent {
       alert("Modifications enregistrées !");
     });
   }
+ 
   
 }

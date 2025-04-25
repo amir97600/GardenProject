@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #f0fdf4, #c8e6c9);
-  background-image: url('assets/images/fond_jardin_canva.jpg');
+  background-image: url('../public/fond_jardin_canva.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
