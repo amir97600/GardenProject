@@ -6,14 +6,13 @@ export class Client {
 
     private _id : number = 0;
     private _score : number =0;
-    private _badges : Badge[]= [];
 
     constructor(
         private _nom : string,
         private _prenom : string, 
         private _login : string, 
         private _password : string, 
-        private _jardin : Jardin
+        private _idJardin : number,
     ) {}
 
     public get id() : number {
@@ -64,23 +63,12 @@ export class Client {
         this._score = value;
     }
 
-    public get badges() : Badge[] {
-        return this._badges;
+    public get idJardin() : number {
+        return this._idJardin;
     }
 
-    public set badges(value: Badge[]) {
-        this._badges = value;
+    public set idJardin(value: number) {
+        this._idJardin = value;
     }
 
-    public get jardin() : Jardin {
-        return this._jardin;
-    }
-
-    public set jardin(value: Jardin) {
-        this._jardin = value;
-    }
-
-    public xyz() {
-        console.log(`Je suis le client et je m'appelle `);
-    }
 }
