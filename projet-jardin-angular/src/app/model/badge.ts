@@ -1,6 +1,6 @@
 export enum Badge {
     GraineDeNovice = 0,
-    JardinierDeutant = 100,
+    JardinierDebutant = 100,
     MainVerte = 300, 
     MaitreDuPotager = 600,
     CultivateurApplique = 1000,
