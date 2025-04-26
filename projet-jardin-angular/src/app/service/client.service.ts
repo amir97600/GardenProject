@@ -45,19 +45,13 @@ export class ClientService {
     return this.http.delete<void>(`${ this.API_URL }${ client.id }`);
   }
 
-  // Badges débloqués à partir du score du client 
-  getBadgesDébloqués(score: number): Badge[] {
-    return Object.values(Badge)
-      .filter(value => typeof value === 'number')
-      .map(v => v as number)
-      .filter(val => val <= score)
-      .map(val => this.badgeFromScore(val));
-  }
+  getBadgesDebloques(client : Client, badges : string[]) {
+    badges = Object.entries(Badge)
+    .filter(([nom, valeur]) => 
+    typeof valeur === 'number' && client.score >= valeur)
+    .map(([nom]) => nom );
 
-  // convertir le score en nom du badge
-  private badgeFromScore(score: number): Badge {
-    return Object.keys(Badge)
-      .find(key => Badge[key as keyof typeof Badge] === score) as unknown as Badge;
+    console.log(badges);
   }
 
 }

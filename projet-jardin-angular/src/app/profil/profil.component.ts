@@ -13,7 +13,7 @@ import { Client } from '../model/client';
 export class ProfilComponent {
   client!: Client;
   Badge = Badge;
-  badges: Badge[] = [];
+  badges: string[] = [];
   
 
   constructor(private router : Router, private clientService : ClientService) {}
@@ -24,8 +24,9 @@ export class ProfilComponent {
     this.clientService.findById(2).subscribe(client => {
       this.client = client; 
       console.log(`LE CLIENT:`, client );
-
-      
+    
+    this.clientService.getBadgesDebloques(this.client, this.badges);
+            
     });
   }
 
