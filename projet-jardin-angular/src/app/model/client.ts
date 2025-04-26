@@ -1,7 +1,4 @@
 
-import { Jardin } from '../../jardin/jardin';
-import { Badge } from './badge';
-
 export class Client {
 
     private _id : number = 0;

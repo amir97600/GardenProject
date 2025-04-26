@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientService } from '../utilisateur/client/client.service';
-import { Client } from '../utilisateur/client/client';
-import { Badge } from '../utilisateur/client/badge';
+import { Badge } from '../model/badge';
+import { ClientService } from '../service/client.service';
+import { Client } from '../model/client';
 
 @Component({
   selector: 'app-profil',
@@ -22,9 +22,10 @@ export class ProfilComponent {
 
   ngOnInit() {
     this.clientService.findById(2).subscribe(client => {
-      this.client = client;
-      client.xyz()
-      console.log(`LE CLIENT: ${ client.xyz() }`);
+      this.client = client; 
+      console.log(`LE CLIENT:`, client );
+
+      
     });
   }
 

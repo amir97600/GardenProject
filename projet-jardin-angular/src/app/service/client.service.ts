@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Client } from './client';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
-import { environment } from '../../../environment';
-import { Badge } from './badge';
+import { environment } from '../../environment';
+import { Client } from '../model/client';
+import { Badge } from '../model/badge';
 
 @Injectable({
   providedIn: 'root'
