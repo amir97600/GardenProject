@@ -45,13 +45,12 @@ export class ClientService {
     return this.http.delete<void>(`${ this.API_URL }${ client.id }`);
   }
 
-  getBadgesDebloques(client : Client, badges : string[]) {
+  getBadgesDebloques(client : Client, badges : string[]) : string[]{
     badges = Object.entries(Badge)
     .filter(([nom, valeur]) => 
     typeof valeur === 'number' && client.score >= valeur)
     .map(([nom]) => nom );
-
-    console.log(badges);
+    return badges;
   }
 
 }

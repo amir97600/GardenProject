@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Badge } from '../model/badge';
 import { ClientService } from '../service/client.service';
 import { Client } from '../model/client';
+import { Badge } from '../model/badge';
 
 @Component({
   selector: 'app-profil',
@@ -12,8 +12,8 @@ import { Client } from '../model/client';
 })
 export class ProfilComponent {
   client!: Client;
-  Badge = Badge;
-  badges: string[] = [];
+  badges = Object.entries(Badge).filter(([key, value]) => typeof value === 'number');
+  badgesDebloques: string[] = [];
   
 
   constructor(private router : Router, private clientService : ClientService) {}
@@ -23,9 +23,12 @@ export class ProfilComponent {
   ngOnInit() {
     this.clientService.findById(2).subscribe(client => {
       this.client = client; 
-      console.log(`LE CLIENT:`, client );
+      console.log(`LE CLIENT:`, this.client );
     
-    this.clientService.getBadgesDebloques(this.client, this.badges);
+    this.badgesDebloques = this.clientService.getBadgesDebloques(this.client, this.badgesDebloques);
+    
+    console.log("Badges :", this.badgesDebloques);
+    console.log(this.badges);
             
     });
   }

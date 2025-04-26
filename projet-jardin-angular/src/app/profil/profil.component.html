@@ -17,16 +17,12 @@
       <section class="section">
         <h2>Mes Badges</h2>
         <div class="badges-gallery">
-
-          <img src="Badge_GraineDeNovice.png" class="badge" alt="Graine de Novice" title="Objectif 0 pnt, c'est cadeau !">
-          <img src="Badge_JardinierDebutant.png" class="badge" alt="Jardinier Débutant" title="Objectif 100 pnts">
-          <img src="Badge_MainVerte.png" class="badge locked" alt="Main Verte" title="Objectif 300 pnts">
-          <img src="Badge_MaitreDuPotager.png" class="badge locked" alt="Maître du Potager" title="Objectif 600 pnts">
-          <img src="Badge_CultivateurApplique.png" class="badge locked" alt="Cultivateur Appliqué" title="Objectif 1000 pnts">
-          <img src="Badge_GardienDuVerger.png" class="badge locked" alt="Gardien du Verger" title="Objectif 1500 pnts">
-          <img src="Badge_AlchimisteVert.png" class="badge locked" alt="Alchimiste Vert" title="Objectif 2000 pnts">
-          <img src="Badge_SageDuJardin.png" class="badge locked" alt="Sage du Jardin" title="Objectif 3000 pnts">
-      
+          <div *ngFor="let badge of badges"
+              class="badge-item"
+              [class.obtenu]="badgesDebloques.includes(badge[0])"
+              [class.non-obtenu]="!badgesDebloques.includes(badge[0])">
+            <img src="Badge_{{badge[0]}}.png" alt="{{badge[0]}}" title="Objectif {{badge[1]}} points">
+          </div>
         </div>
       </section>
 
