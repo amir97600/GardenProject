@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthResponse } from './auth-response';
 import { AuthRequest } from './auth-request';
 import { environment } from '../environment/environment';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,21 @@ export class AuthService {
       this.token = resp.token;
       localStorage.setItem('token', this.token)
     });
+  }
+
+  getLoginFromToken() {
+    const token = localStorage.getItem('token'); 
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        return decoded.sub;  
+      } catch (error) {
+        console.error('Erreur lors du décodage du token', error);
+        return null;
+      }
+    }
+
+    return null;  
   }
 }
