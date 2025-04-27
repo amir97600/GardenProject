@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+angular.json
+package.json
