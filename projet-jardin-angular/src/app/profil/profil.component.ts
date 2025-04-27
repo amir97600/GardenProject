@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ClientService } from '../service/client.service';
 import { Client } from '../model/client';
 import { Badge } from '../model/badge';
+import { JardinService } from '../service/jardin.service';
+import { Jardin } from '../model/jardin';
 
 @Component({
   selector: 'app-profil',
@@ -12,23 +14,26 @@ import { Badge } from '../model/badge';
 })
 export class ProfilComponent {
   client!: Client;
+  jardin!: Jardin;
+  // Liste de tous les badges 
   badges = Object.entries(Badge).filter(([key, value]) => typeof value === 'number');
+  // Liste des badges débloqués par le client en fonction de son score 
   badgesDebloques: string[] = [];
   
 
-  constructor(private router : Router, private clientService : ClientService) {}
 
-  allBadges: { name: string; unlocked: boolean }[] = [];
+  constructor(private router : Router, private clientService : ClientService, private jardinService : JardinService) {}
+
 
   ngOnInit() {
     this.clientService.findById(2).subscribe(client => {
-      this.client = client; 
-      console.log(`LE CLIENT:`, this.client );
+      this.client = client;
     
     this.badgesDebloques = this.clientService.getBadgesDebloques(this.client, this.badgesDebloques);
     
-    console.log("Badges :", this.badgesDebloques);
-    console.log(this.badges);
+    this.jardinService.findById(client.idJardin).subscribe( jardin => {
+      this.jardin = jardin;
+    });
             
     });
   }
