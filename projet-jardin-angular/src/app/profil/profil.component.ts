@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientService } from '../utilisateur/client/client.service';
-import { Client } from '../utilisateur/client/client';
-import { Badge } from '../utilisateur/client/badge';
+import { ClientService } from '../service/client.service';
+import { Client } from '../model/client';
+import { Badge } from '../model/badge';
+import { JardinService } from '../service/jardin.service';
+import { Jardin } from '../model/jardin';
+import { AuthService } from '../authentification/auth.service';
+
+
 
 @Component({
   selector: 'app-profil',
@@ -11,27 +16,33 @@ import { Badge } from '../utilisateur/client/badge';
   styleUrl: './profil.component.css'
 })
 export class ProfilComponent {
+  client: Client = new Client("","","","",0);
+  jardin: Jardin = new Jardin("",0);
+  // Liste de tous les badges 
+  badges = Object.entries(Badge).filter(([key, value]) => typeof value === 'number');
+  // Liste des badges débloqués par le client en fonction de son score 
+  badgesDebloques: string[] = [];
 
-  constructor(private router : Router, private clientService : ClientService) {}
+  constructor(private router : Router, 
+    private clientService : ClientService, 
+    private jardinService : JardinService,
+    private authService : AuthService) {}
 
-  client!: Client ;
-  Badge = Badge;
-  badges: Badge[] = [];
-
-  allBadges: { name: string; unlocked: boolean }[] = [];
 
   ngOnInit() {
-    this.clientService.findById(2).subscribe(client => {
+    const login = this.authService.getLoginFromToken();
+
+    this.clientService.findByLogin(login).subscribe(client => {
       this.client = client;
-      const unlocked = this.clientService.getBadgesDébloqués(client.score);
-  
-      this.allBadges = Object.keys(Badge)
-        .filter(key => isNaN(Number(key))) 
-        .map(key => ({
-          name: key,
-          unlocked: unlocked.includes(key as unknown as Badge)
-        }));
+    
+    this.badgesDebloques = this.clientService.getBadgesDebloques(this.client, this.badgesDebloques);
+    
+    this.jardinService.findById(client.idJardin).subscribe( jardin => {
+      this.jardin = jardin;
     });
+            
+    });
+
   }
 
   sauvegarder() {
@@ -39,6 +50,5 @@ export class ProfilComponent {
       alert("Modifications enregistrées !");
     });
   }
- 
-  
+
 }

@@ -19,6 +19,9 @@ public interface IDAOUtilisateur extends JpaRepository<Utilisateur, Integer> {
 	@Query("SELECT c from Client c where c.id = :id")
 	public Client findClientById(@Param("id") int id);
 	
+	@Query("SELECT c from Client c where c.login = :login")
+	public Client findClientByLogin(@Param("login") String login);
+
 	public Optional<Utilisateur> findByLogin(String login);
 	
 	@Query("from Admin")
@@ -26,4 +29,7 @@ public interface IDAOUtilisateur extends JpaRepository<Utilisateur, Integer> {
 	
 	@Query("SELECT a from Admin a where a.id = :id")
 	public Admin findAdminByID(@Param("id") int id);
+
+	@Query("SELECT a from Admin a where a.login = :login")
+	public Admin findAdminByLogin(@Param("login") String login);
 }
