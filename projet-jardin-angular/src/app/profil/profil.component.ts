@@ -5,6 +5,9 @@ import { Client } from '../model/client';
 import { Badge } from '../model/badge';
 import { JardinService } from '../service/jardin.service';
 import { Jardin } from '../model/jardin';
+import { jwtDecode } from 'jwt-decode';
+
+
 
 @Component({
   selector: 'app-profil',
@@ -26,7 +29,9 @@ export class ProfilComponent {
 
 
   ngOnInit() {
-    this.clientService.findById(2).subscribe(client => {
+    const login = this.getLoginFromToken();
+
+    this.clientService.findByLogin(login).subscribe(client => {
       this.client = client;
     
     this.badgesDebloques = this.clientService.getBadgesDebloques(this.client, this.badgesDebloques);
@@ -36,6 +41,7 @@ export class ProfilComponent {
     });
             
     });
+
   }
 
   sauvegarder() {
@@ -43,6 +49,21 @@ export class ProfilComponent {
       alert("Modifications enregistrées !");
     });
   }
- 
-  
+
+  getLoginFromToken() {
+    const token = localStorage.getItem('token'); 
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        return decoded.sub;  
+      } catch (error) {
+        console.error('Erreur lors du décodage du token', error);
+        return null;
+      }
+    }
+
+    return null;  
+  }
 }
+ 

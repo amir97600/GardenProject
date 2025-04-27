@@ -33,6 +33,10 @@ export class ClientService {
     return this.http.get<Client>(`${ this.API_URL }/${ id }`);
   }
 
+  public findByLogin(login : string): Observable<Client> {
+    return this.http.get<Client>(`${ this.API_URL }/bylogin/${login}`);
+  }
+
   public save(client: any) {
     if (client.id) {
       return this.http.put<Client>(`${ this.API_URL }/${ client.id }`, client);
