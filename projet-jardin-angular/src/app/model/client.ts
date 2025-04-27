@@ -1,22 +1,18 @@
 
-import { Jardin } from '../../jardin/jardin';
-import { Badge } from './badge';
-
 export class Client {
 
     private _id : number = 0;
     private _score : number =0;
-    private _badges : Badge[]= [];
 
     constructor(
         private _nom : string,
         private _prenom : string, 
         private _login : string, 
         private _password : string, 
-        private _jardin : Jardin
+        private _idJardin : number,
     ) {}
 
-    get id() : number {
+    public get id() : number {
         return this._id;
     }
 
@@ -24,7 +20,7 @@ export class Client {
         this._id = value;
     }
 
-    get prenom() : string {
+    public get prenom() : string {
         return this._prenom;
     }
 
@@ -32,7 +28,7 @@ export class Client {
         this._prenom = value;
     }
 
-    get nom() : string {
+    public get nom() : string {
         return this._nom;
     }
 
@@ -40,7 +36,7 @@ export class Client {
         this._nom = value;
     }
 
-    get login() : string {
+    public get login() : string {
         return this._login;
     }
 
@@ -48,7 +44,7 @@ export class Client {
         this._login = value;
     }
 
-    get password() : string {
+    public get password() : string {
         return this._password;
     }
 
@@ -56,7 +52,7 @@ export class Client {
         this._password = value;
     }
 
-    get score() : number {
+    public get score() : number {
         return this._score;
     }
 
@@ -64,21 +60,12 @@ export class Client {
         this._score = value;
     }
 
-    get badges() : Badge[] {
-        return this._badges;
+    public get idJardin() : number {
+        return this._idJardin;
     }
 
-    public set badges(value: Badge[]) {
-        this._badges = value;
+    public set idJardin(value: number) {
+        this._idJardin = value;
     }
-
-    get jardin() : Jardin {
-        return this._jardin;
-    }
-
-    public set jardin(value: Jardin) {
-        this._jardin = value;
-    }
-
 
 }

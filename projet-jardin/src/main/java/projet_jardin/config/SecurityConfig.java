@@ -29,7 +29,8 @@ public class SecurityConfig {
 			auth.requestMatchers("/api/connexion").permitAll();
 			auth.requestMatchers("/api/utilisateurs/**").hasRole("ADMIN");
 			auth.requestMatchers("/api/**").authenticated();
-			auth.requestMatchers("/**").permitAll();
+			//auth.requestMatchers("/**").permitAll();
+			auth.anyRequest().permitAll(); 
 		});
 
 		http.csrf(c -> c.ignoringRequestMatchers("/api/**"));
