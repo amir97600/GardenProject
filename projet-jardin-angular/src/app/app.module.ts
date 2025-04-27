@@ -15,6 +15,8 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
 import { GardenFooterComponent } from './garden-footer/garden-footer.component';
 import { Error500Component } from './error500/error500.component';
 import { Error404Component } from './error404/error404.component';
+import { ExplorerComponent } from './explorer/explorer.component';
+import { PlantCardComponent } from './plant-card/plant-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { Error404Component } from './error404/error404.component';
     GardenNavigationComponent,
     GardenFooterComponent,
     Error500Component,
-    Error404Component
+    Error404Component,
+    ExplorerComponent,
+    PlantCardComponent
   ],
   imports: [
     BrowserModule,
