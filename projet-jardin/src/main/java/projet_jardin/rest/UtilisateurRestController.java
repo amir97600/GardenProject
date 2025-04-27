@@ -41,6 +41,18 @@ public class UtilisateurRestController {
 		
 		return ClientResponse.convert(daoUtilisateur.findClientById(id));
 	}
+
+	@GetMapping("client/bylogin/{login}")
+	public ClientResponse getByLoginClient(@PathVariable String login) {
+		
+		return ClientResponse.convert(daoUtilisateur.findClientByLogin(login));
+	}
+
+	@GetMapping("admin/bylogin/{login}")
+	public AdminResponse getByLoginAdmin(@PathVariable String login) {
+		
+		return AdminResponse.convert(daoUtilisateur.findAdminByLogin(login));
+	}
 	
 	@PostMapping("client")
 	public Client createClient(@RequestBody ClientRequest clientRequest) {
@@ -92,7 +104,6 @@ public class UtilisateurRestController {
 		return daoUtilisateur.save(Admin);
 	}
 
-	
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
