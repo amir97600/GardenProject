@@ -1,4 +1,5 @@
 
+  
   <div class="profile-header">
     <h1>Tableau de bord du jardin</h1>
   </div>
@@ -8,52 +9,46 @@
       <section class="section">
         <h2>Score du jardinier</h2>
         <div id="user-score" class="score-display">
-          144 points
+          {{client.score}} points
         </div>
       </section>
 
       <section class="section">
         <h2>Mes Badges</h2>
         <div class="badges-gallery">
-
-          <img src="Badge_GraineDeNovice.png" class="badge" alt="Graine de Novice" title="Objectif 0 pnt, c'est cadeau !">
-          <img src="Badge_JardinierDebutant.png" class="badge" alt="Jardinier Débutant" title="Objectif 100 pnts">
-          <img src="Badge_MainVerte.png" class="badge locked" alt="Main Verte" title="Objectif 300 pnts">
-          <img src="Badge_MaitreDuPotager.png" class="badge locked" alt="Maître du Potager" title="Objectif 600 pnts">
-          <img src="Badge_CultivateurApplique.png" class="badge locked" alt="Cultivateur Appliqué" title="Objectif 1000 pnts">
-          <img src="Badge_GardienDuVerger.png" class="badge locked" alt="Gardien du Verger" title="Objectif 1500 pnts">
-          <img src="Badge_AlchimisteVert.png" class="badge locked" alt="Alchimiste Vert" title="Objectif 2000 pnts">
-          <img src="Badge_SageDuJardin.png" class="badge locked" alt="Sage du Jardin" title="Objectif 3000 pnts">
-      
+          <div *ngFor="let badge of badges"
+              class="badge-item"
+              [class.obtenu]="badgesDebloques.includes(badge[0])"
+              [class.non-obtenu]="!badgesDebloques.includes(badge[0])">
+            <img src="Badge_{{badge[0]}}.png" alt="{{badge[0]}}" title="Objectif {{badge[1]}} points">
+          </div>
         </div>
       </section>
+    </div>
 
     <div class="column">
       <section class="section">
-        <h2>Statistiques</h2>
+        <h2>Statistiques </h2>
         <ul class="stats">
           <li>Plantes en culture : 23</li>
-          <li>Récoltes cette saison : 87</li>
-          <li>Temps d'entretien : 12h/semaine</li>
+          <li>Plantes récoltées : 87</li>
         </ul>
       </section>
-
+   
       <section class="section">
         <h2>Paramètres</h2>
         <ul class="settings">
           <li><a href="#">Changer le mot de passe</a></li>
-          <li><a href="#">Gérer les notifications</a></li>
-          <li><a href="#">Langue : Français</a></li>
+          <li><a href="#">Changer le nom du jardin ({{jardin.nom}})</a></li>
           <li><a href="#">Supprimer le compte</a></li>
         </ul>
       </section>
-    </div>
     </div>
   </main>
 
   <footer class="main-footer">
     <div class="footer-logo">
-      <img src="plante&moi_logo_seul.png" alt="Logo plante&moi">
+      <img src="plante&moi.png" alt="Logo plante&moi">
     </div>
   
     <div class="footer-infos">

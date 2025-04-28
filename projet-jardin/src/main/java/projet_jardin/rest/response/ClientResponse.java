@@ -15,6 +15,7 @@ public class ClientResponse {
 	private String nom;
 	private String prenom;
 	private int idJardin;
+	private int score;
 	
 
 	public int getId() {
@@ -53,10 +54,17 @@ public class ClientResponse {
 	public void setIdJardin(int idJardin) {
 		this.idJardin = idJardin;
 	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	
 	public static ClientResponse convert(Client client) {
 		ClientResponse cr = new ClientResponse();
 		BeanUtils.copyProperties(client,cr);
+		cr.setScore(client.getPoints());
 		if(client.getJardin()!=null) {
 			cr.setIdJardin(client.getJardin().getNumero());
 		}

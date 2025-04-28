@@ -9,7 +9,7 @@ import { Admin } from '../model/admin';
 })
 export class AdminService {
   private refresh$: Subject<void> = new Subject<void>();
-  private API_URL: string = `${ environment.apiUrl }/utilisateur/client`;
+  private API_URL: string = `${ environment.apiUrl }/utilisateur`;
 
   constructor(private http: HttpClient) { }
 
@@ -24,17 +24,17 @@ export class AdminService {
       
       // Transformer le "void" en Array<Todo> en allant chercher les infos
       switchMap(() => {
-        return this.http.get<Admin[]>(this.API_URL)
+        return this.http.get<Admin[]>(`${ this.API_URL }/admin`)
       })
     );
   }
 
   public save(Admin: any) {
     if (Admin.id) {
-      return this.http.put<Admin>(`${ this.API_URL }/${ Admin.id }`, Admin);
+      return this.http.put<Admin>(`${ this.API_URL }/admin/${ Admin.id }`, Admin);
     }
     
-    return this.http.post<Admin>(this.API_URL, Admin);
+    return this.http.post<Admin>(`${ this.API_URL }/admin`, Admin);
   }
   
   public delete(Admin: any) {

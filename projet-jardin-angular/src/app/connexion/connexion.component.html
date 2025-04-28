@@ -1,32 +1,73 @@
-<form (ngSubmit)="authenticate()" [formGroup]="authForm">
-    <div>
-        <label>Nom d'utilisateur</label>
-        <input type="text" formControlName="login" />
+<div class="container">
+
+    <span>🌿</span>
+
+    <h1>Bienvenue dans le Jardin Connecté </h1>
+
+    <form (ngSubmit)="authenticate()" [formGroup]="authForm">
+        <input type="text" formControlName="login" placeholder="Identifiant" />
 
 
-        <div *ngIf="loginCtrl?.hasError('required')">
+        <div class="error-message" *ngIf="loginCtrl?.hasError('required')">
             Le nom d'utilisateur est obligatoire
         </div>
-    </div>
 
-    <div>
-        <label>Mot de passe</label>
-        <input type="password" formControlName="password" />
+    
+        <input type="password" formControlName="password" placeholder="Mot de passe" />
 
-        <div *ngIf="authForm.get('password')?.hasError('required')">
+        <div class="error-message" *ngIf="authForm.get('password')?.hasError('required')">
             Le mot de passe est obligatoire
         </div>
 
-        <div *ngIf="passwordCtrl?.hasError('minlength')">
-            Le mot de passe doit faire au moins 6 caractères
-        </div>
+        <div class="error-message" *ngIf="messageError!=''">
+                {{messageError}}
+        </div> 
+
+        <input type="submit" id="submit" [disabled]="authForm.invalid" value="Se connecter" />
+    </form>
+
+    <div class="help-text">
+        <!-- Bouton pour ouvrir la modale -->
+        <span class="new-account" (click)="openModal()">Créer un compte</span>
+        <span>|</span>
+        <span  class="new-password">Mot de passe oublié</span>
     </div>
 
-    <div *ngIf="messageError!=''">
-            Le nom d'utilisateur est obligatoire
-    </div> 
+</div>
 
-    <div>
-        <input type="submit" [disabled]="authForm.invalid" class="btn btn-success" value="Se connecter" />
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+        <button class="close-btn" (click)="closeModal()">&times;</button>
+        
+        <h2>Créer un nouveau compte</h2>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
+        <label for="nom">Nom</label>
+        <input class="modal-input" id="nom" formControlName="nom" type="text" required />
+
+        <label for="prenom">Prénom</label>
+        <input class="modal-input" id="prenom" formControlName="prenom" type="text" required />
+
+        <label for="login">Login</label>
+        <input class="modal-input" id="login" formControlName="login" type="text" required />
+
+        <label for="jardin">Nom du jardin</label>
+        <input class="modal-input" id="jardin" formControlName="jardin" type="text" required />
+
+        <label for="email">Email</label>
+        <input class="modal-input" id="email" formControlName="email" type="email" required />
+
+        <label for="password">Mot de passe</label>
+        <input class="modal-input" id="password" formControlName="password" type="password" required />
+
+        <button type="submit" class="btn">S'inscrire</button>
+
+        </form>
+
     </div>
-</form>
+
+</div>
