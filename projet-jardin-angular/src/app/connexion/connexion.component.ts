@@ -85,8 +85,7 @@ export class ConnexionComponent implements OnInit {
   
   public onSignupSubmit(): void {
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
-
+      
       this.jardin.nom = this.signupForm.value.jardin;
 
       this.serviceJardin.save(this.jardin).pipe(
