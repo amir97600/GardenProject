@@ -1,0 +1,134 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+}
+
+
+.carte {
+  background-color: #e5f7e1;
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  max-width: 650px;
+  flex-grow: 1;
+  transition: transform 0.5s ease;
+  transform: scale(1.2);
+}
+
+.carte.active {
+  transform: scale(1);
+}
+
+.fiche-plante {
+  position: relative;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  max-width: 350px;
+  font-size: 1.1rem;
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #444;
+  cursor: pointer;
+}
+
+.fiche-plante h3 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: #2d4739;
+  position: relative;
+}
+
+.fiche-plante p {
+  margin: 10px 0;
+}
+
+.garden-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 14px;
+  justify-content: center;
+  padding: 15px;
+
+
+}
+
+.plot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: #f6fdf7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  aspect-ratio: 1 / 0.8;
+  width: 100%;
+}
+
+.plot:hover {
+  transform: scale(1.08);
+  background-color: #dff2e3;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .garden-map {
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: repeat(5, 70px);
+  }
+
+  .plot {
+    font-size: 2rem;
+  }
+}
+.ajout-culture-fixed {
+   margin: 20px 0 10px 40px; 
+}
+
+.emoji-plus {
+  margin-right: 8px;
+}
+
+.form-ajout {
+  background-color: #ffffffcc;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+
+

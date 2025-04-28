@@ -20,6 +20,7 @@ import { Error500Component } from './error500/error500.component';
 import { Error404Component } from './error404/error404.component';
 import { ExplorerComponent } from './explorer/explorer.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
+import { CulturesComponent } from './cultures/cultures.component';
 
 
 @NgModule({
@@ -36,13 +37,16 @@ import { PlantCardComponent } from './plant-card/plant-card.component';
     Error500Component,
     Error404Component,
     ExplorerComponent,
-    PlantCardComponent
+    PlantCardComponent,
+    Error404Component,
+    CulturesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut})
+    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
+    
   ],
   providers: [provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ]))],// Remplace l'import de HttpClientModule
   bootstrap: [AppComponent]

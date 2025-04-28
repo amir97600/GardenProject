@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="carte" id="carte">
+      <div class="garden-map">
+        <div class="plot" data-id="1">🍅</div>
+        <div class="plot" data-id="2">🥕</div>
+        <div class="plot" data-id="3">🍓</div>
+        <div class="plot" data-id="4">🌻</div>
+        <div class="plot" data-id="5">🌿</div>
+        <div class="plot" data-id="6">🍆</div>
+        <div class="plot" data-id="7">🥬</div>
+        <div class="plot" data-id="8">🌶️</div>
+        <div class="plot" data-id="9">🍉</div>
+        <div class="plot" data-id="10">🍇</div>
+        <div class="plot" data-id="11">🥔</div>
+        <div class="plot" data-id="12">🥦</div>
+        <div class="plot" data-id="13">🌽</div>
+        <div class="plot" data-id="14">🧄</div>
+        <div class="plot" data-id="15">🧅</div>
+        <div class="plot" data-id="16">🍄</div>
+        <div class="plot" data-id="17">🫑</div>
+        <div class="plot" data-id="18">🫛</div>
+      </div>
+    </div>
+  
+    <div class="fiche-plante" id="fiche-plante">
+      <!-- Contenu injecté dynamiquement -->
+    </div>
+  </div>
+  
+  <div class="ajout-culture-fixed">
+    <button class="btn" (click)="toggleForm()">
+      <span class="emoji-plus">✚</span> Ajouter une culture
+    </button>
+  </div>
+  
+  <form *ngIf="showForm" class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="addCulture()">
+    <button class="close-btn" (click)="toggleForm()" aria-label="Fermer">&times;</button>
+    
+    <h3>Nouvelle culture</h3>
+    
+
+
+  
+    <label for="plantation">Date de plantation : 
+      <input type="date" id="plantation" formControlName="datePlantation" required>
+    </label><br><br>
+
+    <label for="arrosage">Date du dernier arrosage : 
+        <input type="date" id="arrosage" formControlName="dateDernierArrosage" required>
+      </label><br><br>
+
+  
+    <button type="submit" class="btn" [disabled]="cultureForm.invalid">Ajouter</button>
+  </form>
+  

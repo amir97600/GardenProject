@@ -54,7 +54,7 @@ export class ConnexionComponent implements OnInit {
         }
         //Sinon c'est un Client et il ira vers la page client
         else{
-          return this.router.navigate(['']); 
+          return this.router.navigate(['/profil']); 
         }
         
       }),
