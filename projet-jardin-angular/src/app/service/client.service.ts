@@ -46,7 +46,7 @@ export class ClientService {
   }
   
   public delete(client: any) {
-    return this.http.delete<void>(`${ this.API_URL }${ client.id }`);
+    return this.http.delete<void>(`${ this.API_URL }/${ client.id }`);
   }
 
   getBadgesDebloques(client : Client, badges : string[]) : string[]{

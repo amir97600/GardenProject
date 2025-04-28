@@ -11,6 +11,7 @@ public class PlanteRequest {
 	private Integer id;
 	private String nom;
 	private String Description;
+	private String conseil;
 	private int delairecolte;
 	private int dureeVie;
 	private int delaiArrosage;
@@ -58,9 +59,17 @@ public class PlanteRequest {
 
 
 	public void setDescription(String description) {
-		Description = description;
+		this.Description = description;
 	}
 
+	public String getConseil() {
+		return conseil;
+	}
+
+
+	public void setConseil(String conseil) {
+		this.conseil = conseil;
+	}
 
 	public int getDelairecolte() {
 		return delairecolte;
@@ -102,6 +111,7 @@ public class PlanteRequest {
 		plante.setId(planteRequest.getId());
 		plante.setNom(planteRequest.getNom());
 		plante.setDescription(planteRequest.getDescription());
+		plante.setConseil(planteRequest.getConseil());
 		plante.setDelaiRecolte(planteRequest.getDelairecolte());
 		plante.setDureeVie(planteRequest.getDureeVie());
 		plante.setDelaiArrosage(planteRequest.getDelaiArrosage());

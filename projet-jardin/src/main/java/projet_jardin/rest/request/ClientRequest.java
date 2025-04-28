@@ -16,6 +16,7 @@ public class ClientRequest {
 	private String nom;
 	private String prenom;
 	private int idJardin;
+	private int score;
 
 	public int getId() {
 		return id;
@@ -53,14 +54,23 @@ public class ClientRequest {
 	public void setIdJardin(int idJardin) {
 		this.idJardin = idJardin;
 	}
+
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	
 	public static Client convert(ClientRequest cr) {
 		Client client = new Client();
 		BeanUtils.copyProperties(cr,client);
 		if(cr.getIdJardin()!=0) {
 			Jardin jardin = new Jardin();
+			jardin.setNumero(cr.getIdJardin());
 			client.setJardin(jardin);
 		}
+		client.setPoints(cr.getScore());
 		return client;
 	}
 }

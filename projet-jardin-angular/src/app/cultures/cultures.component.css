@@ -1,12 +1,16 @@
 .main-content {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: flex-start; 
+  gap: 40px; 
+  flex-wrap: wrap; 
   padding: 5px;
-  flex-wrap: wrap;
   margin-bottom: 200px;
+  width: 100%; 
 }
+
+
 
 
 .carte {
