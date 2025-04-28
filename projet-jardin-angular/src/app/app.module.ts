@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { Error404Component } from './error404/error404.component';
 import { ExplorerComponent } from './explorer/explorer.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
 import { CulturesComponent } from './cultures/cultures.component';
+import { ExplorerFiltrePipe } from './pipe/explorer-filtre.pipe';
 
 
 @NgModule({
@@ -41,13 +42,15 @@ import { CulturesComponent } from './cultures/cultures.component';
     ExplorerComponent,
     PlantCardComponent,
     Error404Component,
-    CulturesComponent
+    CulturesComponent,
+    ExplorerFiltrePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
+    FormsModule,
     
   ],
   providers: [provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ]))],// Remplace l'import de HttpClientModule
