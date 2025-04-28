@@ -17,8 +17,8 @@ public class Fleur extends Plante {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Fleur(String nom, String description, int delaiRecolte, int dureeVie, int delaiArrosage, boolean comestibilite) {
-		super(nom, description, delaiRecolte, dureeVie, delaiArrosage);
+	public Fleur(String nom, String description, String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, boolean comestibilite) {
+		super(nom, description, conseil, delaiRecolte, dureeVie, delaiArrosage);
 		this.comestibilite = comestibilite;
 	}
 	
@@ -38,7 +38,7 @@ public class Fleur extends Plante {
 
 	@Override
 	public String toString() {
-		return "Fleur [comestibilite=" + comestibilite + ", nom=" + nom + ", description=" + description
+		return "Fleur [comestibilite=" + comestibilite + ", nom=" + nom + ", description=" + description + ", conseil=" + conseil
 				+ ", delaiFloraison=" + delaiRecolte + ", dureeVie=" + dureeVie
 				+ ", delaiArrosage=" + delaiArrosage + ", cultures=" + cultures + "]";
 	}
