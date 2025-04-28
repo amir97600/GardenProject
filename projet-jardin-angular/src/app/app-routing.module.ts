@@ -7,6 +7,7 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { authGuard } from './authentification/auth.guard';
 import { Error500Component } from './error500/error500.component';
 import { Error404Component } from './error404/error404.component';
+import { CulturesComponent } from './cultures/cultures.component';
 import { ExplorerComponent } from './explorer/explorer.component';
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate:[authGuard] },
   { path: 'admin/1', component: AdminComponent, canActivate:[authGuard] },
   { path: 'explorer', component : ExplorerComponent},
+  { path: 'cultures', component : CulturesComponent },
   { path: '**', component : Error404Component}
 ];
 

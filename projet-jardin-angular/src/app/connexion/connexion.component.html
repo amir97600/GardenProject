@@ -48,21 +48,45 @@
         <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
         <label for="nom">Nom</label>
         <input class="modal-input" id="nom" formControlName="nom" type="text" required />
+        <div class="error-message" *ngIf="signupForm.get('nom')?.hasError('required')">
+            Le nom est obligatoire
+        </div>
 
         <label for="prenom">Prénom</label>
         <input class="modal-input" id="prenom" formControlName="prenom" type="text" required />
+        <div class="error-message" *ngIf="signupForm.get('prenom')?.hasError('required')">
+            Le prénom est obligatoire
+        </div>
 
         <label for="login">Login</label>
         <input class="modal-input" id="login" formControlName="login" type="text" required />
+        <div class="error-message" *ngIf="signupForm.get('login')?.hasError('required')">
+            Le login est obligatoire
+        </div>
 
         <label for="jardin">Nom du jardin</label>
         <input class="modal-input" id="jardin" formControlName="jardin" type="text" required />
+        <div class="error-message" *ngIf="signupForm.get('jardin')?.hasError('required')">
+            Le nom du jardin est obligatoire
+        </div>
 
         <label for="email">Email</label>
         <input class="modal-input" id="email" formControlName="email" type="email" required />
+        <div class="error-message" *ngIf="signupForm.get('email')?.hasError('required')">
+            L'email est obligatoire
+        </div>
+        <div class="error-message" *ngIf="signupForm.get('email')?.hasError('email')">
+            Entrez un email valide
+        </div>
 
         <label for="password">Mot de passe</label>
         <input class="modal-input" id="password" formControlName="password" type="password" required />
+        <div class="error-message" *ngIf="signupForm.get('password')?.hasError('required')">
+            Le mot de passe est obligatoire
+        </div>
+        <div class="error-message" *ngIf="signupForm.get('password')?.hasError('minlength')">
+            Le mot de passe doit faire au moins six caractères
+        </div>
 
         <button type="submit" class="btn">S'inscrire</button>
 

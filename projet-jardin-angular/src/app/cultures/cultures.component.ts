@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CultureService } from './culture.service';
+import { ClientService } from '../service/client.service';
+import { AuthService } from '../authentification/auth.service';
+import { PlanteService } from '../service/plante.service';
+import { Plante } from '../model/plante';
 
 @Component({
   selector: 'app-cultures',
@@ -11,16 +15,34 @@ import { CultureService } from './culture.service';
 export class CulturesComponent implements OnInit {
 
   cultureForm!: FormGroup;
-  showForm = false; 
+  plantes: Plante[] = [];
+  showForm = false;
+  idJardin!: number;
 
-
-  constructor(private cultureService: CultureService, private formBuilder: FormBuilder) { }
+  constructor(
+    private cultureService: CultureService,
+    private formBuilder: FormBuilder,
+    private clientService: ClientService,
+    private planteService: PlanteService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.cultureForm = this.formBuilder.group({
-      nom: ['', Validators.required],
-      datePlantation: ['', Validators.required],
-      dateDernierArrosage: ['', Validators.required]
+      nomPlante: [''],
+      quantite: [1],
+      datePlantation: [''],
+      dateDernierArrosage: [''],
+      recolte: [false]
+    });
+
+    this.planteService.findAll().subscribe((data: Plante[]) => {
+      this.plantes = data;
+    });
+
+    const login = this.authService.getLoginFromToken();
+    this.clientService.findByLogin(login).subscribe((client) => {
+      this.idJardin = client.idJardin;
     });
   }
 
@@ -28,24 +50,35 @@ export class CulturesComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
-
-  //ajoute la  culture à la bDD
   addCulture() {
-    if (this.cultureForm.valid) {
-      console.log('Formulaire valide, ajout de la culture:', this.cultureForm.value);
-      this.cultureService.save(this.cultureForm.value).subscribe(
-        (response) => {
-          console.log('Culture ajoutée avec succès:', response);
-          this.showForm = false;  // --> cache le formulaire après  l'ajout
-          this.cultureForm.reset(); 
-        },
-        (error) => {
-          console.error('Erreur lors de l\'ajout de la culture:', error);
-        }
-      );
-    } else {
-      console.log('Formulaire invalide');
+    if (!this.idJardin) {
+      return;
     }
+
+    const formValue = this.cultureForm.value;
+    const planteChoisie = this.plantes.find((p) => p.nom === formValue.nomPlante);
+
+    if (!planteChoisie) {
+      return;
+    }
+
+    const cultureToSave = {
+      datePlantation: formValue.datePlantation,
+      dateDernierArrosage: formValue.dateDernierArrosage,
+      quantite: formValue.quantite,
+      recolte: formValue.recolte ?? false,
+      idJardin: this.idJardin,
+      idPlante: planteChoisie.id,
+      planteType: planteChoisie.planteType
+    };
+
+    console.log('Objet envoyé au serveur :', cultureToSave);
+
+    this.cultureService.save(cultureToSave).subscribe(
+      () => {
+        this.showForm = false;
+        this.cultureForm.reset();
+      }
+    );
   }
-  
 }

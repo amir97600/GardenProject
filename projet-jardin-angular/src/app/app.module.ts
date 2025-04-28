@@ -35,6 +35,8 @@ import { CulturesComponent } from './cultures/cultures.component';
     AdminNavigationComponent,
     GardenFooterComponent,
     Error500Component,
+    ExplorerComponent,
+    PlantCardComponent,
     Error404Component,
     ExplorerComponent,
     PlantCardComponent,
