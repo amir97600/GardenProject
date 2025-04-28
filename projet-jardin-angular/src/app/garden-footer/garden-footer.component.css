@@ -2,11 +2,13 @@
     background-color: #f0f5ec;
     padding: 20px;
     display: flex;
+    flex: 1;
     justify-content: space-between;
     align-items: center;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
   }
   
   .footer-logo img {
