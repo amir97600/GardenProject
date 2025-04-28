@@ -145,6 +145,7 @@ export class ProfilComponent {
   }
 
   //Modale suppression compte
+  isModalSupprimerCompteOpen = false;
   supprimerCompte() {
     this.clientService.delete(this.client).subscribe(() => {
       alert("Compte supprimé !");
@@ -152,6 +153,12 @@ export class ProfilComponent {
     });
   }
 
+  ouvrirModaleSupprimerCompte(): void {
+    this.isModalSupprimerCompteOpen = true;
+  }
 
+  fermerModaleSupprimerCompte(): void {
+    this.isModalSupprimerCompteOpen = false;
+  }
 
 }
