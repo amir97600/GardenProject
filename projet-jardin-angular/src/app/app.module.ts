@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +46,7 @@ import { CulturesComponent } from './cultures/cultures.component';
     AppRoutingModule,
     ReactiveFormsModule,
     LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
+    FormsModule
     
   ],
   providers: [provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ]))],// Remplace l'import de HttpClientModule
