@@ -82,6 +82,10 @@ main {
     margin-top: 10px;
   }
 
+  .link {
+    cursor : pointer;
+  }
+
   /* Style modales */
   .modal-overlay {
     position: fixed;
