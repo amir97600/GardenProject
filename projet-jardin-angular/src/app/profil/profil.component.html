@@ -43,7 +43,7 @@
           <span style="color : red">PAS ENCORE FONCTIONNEL</span>
           <li (click)="ouvrirModalePassword()" class="link">Changer le mot de passe</li>
           <li (click)="ouvrirModaleNomJardin()" class="link">Changer le nom du jardin </li>
-          <li (click)="supprimerCompte()" class="link">Supprimer le compte</li>
+          <li (click)="ouvrirModaleSupprimerCompte()" class="link">Supprimer le compte</li>
         </ul>
       </section>
     </div>
@@ -58,13 +58,13 @@
         />
         
         <div class="button-container">
-          <button (click)="changerPassword()" class="btn validate-btn">Valider</button>
-          <button (click)="fermerModalePassword()" class="btn cancel-btn">Annuler</button>
+          <button (click)="changerPassword()" class="btn">Valider</button>
+          <button (click)="fermerModalePassword()" class="btn">Annuler</button>
         </div>
       </div>
     </div>
 
-    <div class="modal-overlay" *ngIf="isModalNomJardinOpen" (click)="fermerModaleNomJardin()">
+    <div class="modal-overlay" *ngIf="isModalNomJardinOpen" >
       <div class="modal-content" (click)="$event.stopPropagation()">
         <p>Nom actuel : {{jardin.nom}}</p>
         <input
@@ -75,8 +75,19 @@
         />
         
         <div class="button-container">
-          <button (click)="changerNomJardin()" class="btn validate-btn">Valider</button>
-          <button (click)="fermerModaleNomJardin()" class="btn cancel-btn">Annuler</button>
+          <button (click)="changerNomJardin()" class="btn">Valider</button>
+          <button (click)="fermerModaleNomJardin()" class="btn">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" *ngIf="isModalSupprimerCompteOpen" >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <p>Souhaitez vous supprimer le compte ?</p>
+      
+        <div class="button-container">
+          <button (click)="supprimerCompte()" class="btn">Confirmer</button>
+          <button (click)="fermerModaleSupprimerCompte()" class="btn">Annuler</button>
         </div>
       </div>
     </div>
