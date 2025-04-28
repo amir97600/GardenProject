@@ -15,6 +15,9 @@ import { GardenNavigationComponent } from './garden-navigation/garden-navigation
 import { GardenFooterComponent } from './garden-footer/garden-footer.component';
 import { Error500Component } from './error500/error500.component';
 import { Error404Component } from './error404/error404.component';
+import { CulturesComponent } from './cultures/cultures.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -26,13 +29,16 @@ import { Error404Component } from './error404/error404.component';
     GardenNavigationComponent,
     GardenFooterComponent,
     Error500Component,
-    Error404Component
+    Error404Component,
+    CulturesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut})
+    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
+    HttpClientModule
+    
   ],
   providers: [provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ]))],// Remplace l'import de HttpClientModule
   bootstrap: [AppComponent]
