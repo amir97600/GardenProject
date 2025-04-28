@@ -1,5 +1,5 @@
 <div class="plant-card" [attr.data-type]="plante.planteType">
-  <img src="tomate.jpg" [alt]="plante.nom">
+  <img [src]="getImagePath(plante.nom)" [alt]="plante.nom">
   <h3>{{ plante.nom }} ({{ plante.planteType }})</h3>
   <div class="description-wrapper">
     <p><strong>Description :</strong> {{ plante.description }}</p>
@@ -12,8 +12,8 @@
 <div class="modal-content" (click)="$event.stopPropagation()">
   <h2>{{ plante.nom }}</h2>
   <p> <strong>Description :</strong> {{ plante.description }}</p>
-  <p><strong>Conseils de culture :</strong> La tomate a besoin de chaleur et de soleil pour bien se développer. Assurez-vous de bien espacer les plants (environ 40 à 50 cm entre chaque) et d'utiliser des tuteurs pour soutenir les plants à mesure qu'ils grandissent.</p>
+  <p><strong>Conseils de culture :</strong> {{plante.conseil}}</p>
   <p><strong>Récolte :</strong> {{ plante.delaiRecolte }} jours</p>
-  <button (click)="fermerModal()">Fermer</button>
+  <button class="see-more" (click)="fermerModal()">Fermer</button>
 </div>
 </div>

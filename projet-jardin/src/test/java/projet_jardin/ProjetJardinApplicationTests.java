@@ -39,8 +39,8 @@ class ProjetJardinApplicationTests {
 		Client client1 = new Client("log1", "pass1", "alpha", "beta");
 		Client client2 = new Client("log2", "pass2", "toto", "titi");
 		
-		Fleur fleur = new Fleur("Rose", "Une beauté piquante", 2, 14, 1, false);
-		FruitLegume fl = new FruitLegume("Pomme", "Une pomme verte", 5, 21, 2);
+		Fleur fleur = new Fleur("Rose", "Une beauté piquante","A ceuillir avec des pincettes", 2, 14, 1, false);
+		FruitLegume fl = new FruitLegume("Pomme", "Une pomme verte","Attention à ne pas tomber dans les pommes", 5, 21, 2);
 		
 		Jardin jardin1 = new Jardin("Jardin d'alpha", "Paris", 14);
 		client1.setJardin(jardin1);
