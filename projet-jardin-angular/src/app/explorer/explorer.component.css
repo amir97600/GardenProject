@@ -1,0 +1,115 @@
+.search-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 10px auto 30px auto;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #ffffff, #eef5ec);
+    border: 1px solid #c8dacc;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 900px;
+}
+
+
+.search-wrapper label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d4739;
+    margin-right: 8px;
+    padding: 6px 12px;
+    background-color: #f0f5f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-bar {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 1rem;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: #7da87b;
+    box-shadow: 0 0 0 3px rgba(125, 168, 123, 0.2);
+    outline: none;
+}
+
+.filter-select {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+
+.filter-select:hover,
+.filter-select:focus {
+    box-shadow: 0 6px 16px rgba(82, 124, 82, 0.4);
+    outline: none;
+}
+
+.btnSearch {
+    padding: 12px 24px;
+    background-color: #3e5f47;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnSearch:hover {
+    background-color: #486a48;
+    transform: translateY(-2px);
+}
+
+.container {
+    padding: 20px;
+    margin-bottom: 200px;
+
+}
+
+.plant-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+#plant-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet de faire passer les éléments à la ligne suivante si nécessaire */
+    gap: 16px; /* Espacement entre les cartes */
+    justify-content: space-evenly; /* Aligne les cartes horizontalement de manière équitable */
+  }
+
+  plant-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 15px;
+    text-align: center;
+    cursor: default;
+    transition: height 0.4s ease;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    width: calc(33.33% - 16px); /* Trois cartes par ligne (ajuste en fonction du nombre de cartes par ligne souhaité) */
+    height: 100%; /* Assure que la hauteur des cartes est uniforme */
+  }
