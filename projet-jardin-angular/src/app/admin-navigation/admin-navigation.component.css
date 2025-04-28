@@ -4,6 +4,7 @@
     justify-content: space-between;
     height: 115px;
     background: #2E7D32;
+    margin:0;
 }
 .admin-aside-nav{
     width: 100%;
@@ -23,7 +24,7 @@ gap: 5px;
 padding-left: 35px;
 font-size: 14px;
 height: 27px;
-margin-bottom: 115px;
+margin-bottom: 20px;
 }
 
 .fil a {
