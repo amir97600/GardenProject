@@ -47,7 +47,7 @@ export class ProfilComponent {
     
     this.jardinService.findById(client.idJardin).subscribe( jardin => {
       this.jardin = jardin;
-      
+
       this.plantesCultivees= (jardin.cultures).length;
 
       let cpt = 0;
@@ -90,6 +90,22 @@ export class ProfilComponent {
     }
   
     return idPlanteMax;
+  }
+
+  changerPassword(newPassword : string) {
+    if (!newPassword || newPassword.trim() === "") {
+      console.error("Le nouveau mot de passe est vide !");
+      return;
+    }
+    
+    let clientModif : Client = this.client;
+    clientModif.password = newPassword;
+
+    this.clientService.save(clientModif)
+    .subscribe({
+      next: () => console.log("Mot de passe changé avec succès."),
+      error: (err) => console.error("Erreur lors du changement de mot de passe", err),
+    });
   }
 
 }
