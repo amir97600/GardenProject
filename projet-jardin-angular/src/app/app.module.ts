@@ -18,10 +18,10 @@ import { AdminNavigationComponent } from './admin-navigation/admin-navigation.co
 import { GardenFooterComponent } from './garden-footer/garden-footer.component';
 import { Error500Component } from './error500/error500.component';
 import { Error404Component } from './error404/error404.component';
-import { CulturesComponent } from './cultures/cultures.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ExplorerComponent } from './explorer/explorer.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
+import { CulturesComponent } from './cultures/cultures.component';
 
 
 @NgModule({
@@ -39,6 +39,9 @@ import { PlantCardComponent } from './plant-card/plant-card.component';
     ExplorerComponent,
     PlantCardComponent,
     Error404Component,
+    ExplorerComponent,
+    PlantCardComponent,
+    Error404Component,
     CulturesComponent
   ],
   imports: [
@@ -46,7 +49,6 @@ import { PlantCardComponent } from './plant-card/plant-card.component';
     AppRoutingModule,
     ReactiveFormsModule,
     LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
-    HttpClientModule
     
   ],
   providers: [provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ]))],// Remplace l'import de HttpClientModule

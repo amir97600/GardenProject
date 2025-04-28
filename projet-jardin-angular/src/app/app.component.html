@@ -2,5 +2,5 @@
     <garden-navigation *ngIf="navActive && backgroundClass === 'garden-background'"/>
     <admin-navigation *ngIf="navActive && backgroundClass === 'admin-background'"/>
     <router-outlet></router-outlet>
-    <garden-footer *ngIf="backgroundClass === 'garden-background'" />
+    <garden-footer *ngIf="navActive && backgroundClass === 'garden-background'" />
 </div>

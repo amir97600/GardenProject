@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'admin/1', component: AdminComponent, canActivate:[authGuard] },
   { path: 'explorer', component : ExplorerComponent},
   { path: '**', component : Error404Component}
-
 ];
 
 @NgModule({
