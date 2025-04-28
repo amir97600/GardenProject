@@ -21,6 +21,7 @@ import { Error404Component } from './error404/error404.component';
 import { ExplorerComponent } from './explorer/explorer.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
 import { CulturesComponent } from './cultures/cultures.component';
+import { ExplorerFiltrePipe } from './pipe/explorer-filtre.pipe';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CulturesComponent } from './cultures/cultures.component';
     ExplorerComponent,
     PlantCardComponent,
     Error404Component,
-    CulturesComponent
+    CulturesComponent,
+    ExplorerFiltrePipe
   ],
   imports: [
     BrowserModule,

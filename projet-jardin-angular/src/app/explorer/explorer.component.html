@@ -1,15 +1,15 @@
 <div class="search-wrapper">
     <label for="filter" style="font-weight: bold;" >Catégorie :</label>
-    <select id="filter" class="filter-select" style="width: 200px;">
+    <select id="filter" class="filter-select" style="width: 200px;" [(ngModel)]="selectedCategory" >
       <option value="all">Toutes les plantes</option>
-      <option value="fruit">Fruits</option>
-      <option value="legume">Légumes</option>
-      <option value="fleur">Fleurs</option>
+      <option value="fruits_legumes">Fruits</option>
+      <option value="fruits_legumes">Légumes</option>
+      <option value="fleurs">Fleurs</option>
     </select>
-    <input type="text" class="search-bar" placeholder="Rechercher une plante...">
+    <input type="text" class="search-bar" placeholder="Rechercher une plante..." [(ngModel)]="searchText">
     <button class="btnSearch">Rechercher</button>
 </div>
 
 <div id="plant-container">
-  <plant-card *ngFor="let plante of plantes" [plante]="plante"></plant-card>
+  <plant-card *ngFor="let plante of plantes | explorerFiltre:selectedCategory:searchText" [plante]="plante"></plant-card>
 </div>
