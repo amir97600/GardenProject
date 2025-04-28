@@ -11,14 +11,14 @@ import { ExplorerComponent } from './explorer/explorer.component';
 
 
 const routes: Routes = [
-  { path: '', component : ProfilComponent, canActivate:[authGuard]},
-  { path: 'connexion', component: ConnexionComponent },
+  { path: 'profil', component : ProfilComponent, canActivate:[authGuard]},
+  { path: '', component: ConnexionComponent },
   { path: 'home-admin', component: HomeAdminComponent, canActivate:[authGuard] },
   { path: 'admin', component: AdminComponent, canActivate:[authGuard] },
   { path: 'admin/1', component: AdminComponent, canActivate:[authGuard] },
-  { path: 'error500', component : Error500Component},
-  { path: 'error404', component : Error404Component},
   { path: 'explorer', component : ExplorerComponent}
+  { path: '**', component : Error404Component}
+
 ];
 
 @NgModule({
