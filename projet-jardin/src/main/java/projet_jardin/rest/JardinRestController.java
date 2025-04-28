@@ -39,6 +39,11 @@ public class JardinRestController {
 	public JardinResponse getById(@PathVariable int numero) {
 		return this.daoJardin.findById(numero).map(JardinResponse::convert).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
+
+	@GetMapping("nom/{nom}")
+	public JardinResponse getByNom(@PathVariable String nom) {
+		return this.daoJardin.findByNom(nom).map(JardinResponse::convert).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
 	
 	@PostMapping("")
 	public Jardin create(@RequestBody JardinRequest jardinRequest) {

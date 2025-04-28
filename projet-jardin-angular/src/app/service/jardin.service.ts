@@ -31,6 +31,10 @@ export class JardinService {
   public findById(id : number): Observable<Jardin> {
     return this.http.get<Jardin>(`${ this.API_URL }/${ id }`);
   }
+
+  public findByNom(nom : string): Observable<Jardin> {
+    return this.http.get<Jardin>(`${ this.API_URL }/nom/${ encodeURIComponent(nom) }`);
+  }
   
   public save(jardin: any) {
     if (jardin.numero) {
@@ -41,6 +45,6 @@ export class JardinService {
   }
     
   public delete(jardin: any) {
-    return this.http.delete<void>(`${ this.API_URL }${ jardin.numero }`);
+    return this.http.delete<void>(`${ this.API_URL }/jardin/${ jardin.numero }`);
   }
 }
