@@ -1,0 +1,172 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:27vh;
+}
+
+span{
+    font-size: 8vh;
+    display: flex;
+}
+h1{
+    font-size: 5vh;
+    margin-bottom: 5vh;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+input{
+    border-radius: 15px;
+    background-color: #E5F0E7;
+    border: 1px solid #D2B8D2;
+    width: 33vw;
+    height: 8vh;
+    font-size: 1rem;
+    padding-left: 15px;
+}
+
+#submit{
+    background-color: #7da87b;
+    color: #FFFFFF;
+    width: 28vw;
+    height: 8vh;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: auto;
+    font-size: 3vh;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+#submit:hover{
+    background-color: #2d4739;
+}
+.help-text{
+    display: flex;
+    gap: 2vh;
+    margin-top: 2vh;
+}
+.help-text > a{
+    font-size: 3vh;
+    text-decoration: none;
+    color: #2d4739;
+}
+
+.help-text > span {
+    font-size: 3vh;
+    cursor: pointer;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.6rem; /* Très petit */
+    line-height: 1;
+  }
+  
+  
+
+/* Style de la pop-up */
+
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-color: rgba(0, 0, 0, 0.6);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+backdrop-filter: blur(6px);
+}
+
+.modal-content {
+background-color: rgba(246, 253, 247, 0.9);
+border-radius: 16px;
+padding: 20px;
+width: 90%;
+max-width: 550px;
+max-height: 700px;
+overflow-y: auto;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+position: relative;
+}
+
+/* Bouton de fermeture (croix) */
+.close-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+font-size: 30px;
+color: #294e25;
+background: none;
+border: none;
+cursor: pointer;
+transition: transform 0.2s, color 0.2s;
+}
+
+.close-btn:hover {
+transform: scale(1.1);
+color: #f00;
+}
+
+/* Formulaire */
+.signup-form label {
+font-size: 1rem;
+color: #294e25;
+margin-bottom: 5px;
+}
+
+.signup-form input {
+padding: 12px;
+margin-bottom: 15px;
+border: 1px solid #ccc;
+border-radius: 8px;
+font-size: 1rem;
+width: 300px;
+height: 20px;
+background-color: #f5f9f5;
+}
+
+.signup-form input:focus {
+border-color: #76b947;
+outline: none;
+}
+
+.signup-form .btn {
+background-color: #294e25;
+color: rgb(255, 255, 255);
+padding: 10px 20px;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.25s ease;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+align-self: center;
+}
+
+.signup-form .btn:hover {
+background-color: #1c351e;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+transform: translateY(-2px);
+}
+
+.signup-form .btn:active {
+transform: translateY(0);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2{
+    align-self: flex-start;
+}

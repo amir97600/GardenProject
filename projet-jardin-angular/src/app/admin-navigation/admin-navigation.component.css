@@ -1,0 +1,43 @@
+.admin-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 115px;
+    background: #2E7D32;
+}
+.admin-aside-nav{
+    width: 100%;
+    padding: 27px 38px;
+}
+.amdmin-main-nav{
+    display: flex;
+    gap: 15px;
+    width: 873px;
+}
+.fil {
+background: #C8E6C9;
+display: flex;
+align-items: center;
+justify-content: start;
+gap: 5px;
+padding-left: 35px;
+font-size: 14px;
+height: 27px;
+margin-bottom: 115px;
+}
+
+.fil a {
+color: #000000;
+text-decoration: none;
+font-weight: 500;
+font-size: large;
+}
+
+.fil a:hover {
+text-decoration: underline;
+}
+
+span{
+    color:#000000;
+}
+  

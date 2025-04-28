@@ -1,0 +1,18 @@
+<header class="admin-header">
+    <div class="admin-aside-nav">
+      <h1>Administration du jardin connecté</h1>
+    </div>
+    <nav class="amdmin-main-nav">
+      <a>BIENVENUE, ADMIN</a>
+      <a>|</a>
+      <a href="#">PARAMETRES DU COMPTE </a>
+      <a>|</a>
+      <a [routerLink]="['/connexion']" (click)="logOut()">DECONNEXION</a>
+    </nav>
+</header>
+<nav class="fil">
+  <ng-container *ngFor="let breadcrumb of fil; let last = last">
+    <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+    <span *ngIf="!last">></span>
+  </ng-container>
+</nav>
