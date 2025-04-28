@@ -1,47 +1,94 @@
-export class Culture {
+eexport class Culture {
 
     private _id: number = 0;
     private _datePlantation: string;
     private _dateDernierArrosage: string;
+    private _quantite: number;
+    private _recolte: boolean;
     private _idJardin: number;
-
-
-    constructor(id: number, datePlantation: string, dateDernierArrosage: string, idJardin: number) {
-        this._id = id;
-        this._datePlantation = datePlantation;
-        this._dateDernierArrosage = dateDernierArrosage;
-        this._idJardin = idJardin; 
+    private _idPlante: number;
+    private _planteType: string;
+  
+    constructor(
+      datePlantation: string,
+      dateDernierArrosage: string,
+      quantite: number,
+      idJardin: number,
+      idPlante: number,
+      planteType: string,
+      recolte: boolean
+    ) {
+      this._datePlantation = datePlantation;
+      this._dateDernierArrosage = dateDernierArrosage;
+      this._quantite = quantite;
+      this._idJardin = idJardin;
+      this._idPlante = idPlante;
+      this._planteType = planteType;
+      this._recolte = recolte;
     }
-
-    get id(): number {
-        return this._id;
+  
+    public get id(): number {
+      return this._id;
     }
-
-    set id(value: number) {
-        this._id = value;
+  
+    public set id(value: number) {
+      this._id = value;
     }
-
-    get datePlantation(): string {
-        return this._datePlantation;
+  
+    public get datePlantation(): string {
+      return this._datePlantation;
     }
-
-    set datePlantation(value: string) {
-        this._datePlantation = value;
+  
+    public set datePlantation(value: string) {
+      this._datePlantation = value;
     }
-
-    get dateDernierArrosage(): string {
-        return this._dateDernierArrosage;
+  
+    public get dateDernierArrosage(): string {
+      return this._dateDernierArrosage;
     }
-
-    set dateDernierArrosage(value: string) {
-        this._dateDernierArrosage = value;
+  
+    public set dateDernierArrosage(value: string) {
+      this._dateDernierArrosage = value;
     }
-
-    get idJardin(): number {
-        return this._idJardin;
+  
+    public get quantite(): number {
+      return this._quantite;
     }
-
-    set idJardin(value: number) {
-        this._idJardin = value;
+  
+    public set quantite(value: number) {
+      this._quantite = value;
     }
-}
+  
+    public get recolte(): boolean {
+      return this._recolte;
+    }
+  
+    public set recolte(value: boolean) {
+      this._recolte = value;
+    }
+  
+    public get idJardin(): number {
+      return this._idJardin;
+    }
+  
+    public set idJardin(value: number) {
+      this._idJardin = value;
+    }
+  
+    public get idPlante(): number {
+      return this._idPlante;
+    }
+  
+    public set idPlante(value: number) {
+      this._idPlante = value;
+    }
+  
+    public get planteType(): string {
+      return this._planteType;
+    }
+  
+    public set planteType(value: string) {
+      this._planteType = value;
+    }
+  }
+  
