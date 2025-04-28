@@ -13,7 +13,7 @@ public class JardinResponse {
 	private String nom;
 	private String lieu;
 	private double superficie;
-//	private List<Culture> cultures;
+	private List<CultureResponse> cultures;
 	
 	public JardinResponse() {
 		super();
@@ -51,17 +51,20 @@ public class JardinResponse {
 		this.superficie = superficie;
 	}
 
-//	public List<Culture> getCultures() {
-//		return cultures;
-//	}
-//
-//	public void setCultures(List<Culture> cultures) {
-//		this.cultures = cultures;
-//	}
+	public List<CultureResponse> getCultures() {
+		return cultures;
+	}
+
+	public void setCultures(List<CultureResponse> cultures) {
+		this.cultures = cultures;
+	}
 	
 	public static JardinResponse convert (Jardin jardin) {
 		JardinResponse jardinResponse = new JardinResponse();
+		List<Culture> listCultures = jardin.getCultures();
+		List<CultureResponse> culturesResp = listCultures.stream().map(CultureResponse::convert).toList();
 		BeanUtils.copyProperties(jardin, jardinResponse);
+		jardinResponse.setCultures(culturesResp);
 		
 		return jardinResponse;
 	}
