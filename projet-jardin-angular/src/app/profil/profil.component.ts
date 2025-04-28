@@ -6,6 +6,7 @@ import { Badge } from '../model/badge';
 import { JardinService } from '../service/jardin.service';
 import { Jardin } from '../model/jardin';
 import { AuthService } from '../authentification/auth.service';
+import { Culture } from '../cultures/culture';
 
 
 
@@ -22,6 +23,13 @@ export class ProfilComponent {
   badges = Object.entries(Badge).filter(([key, value]) => typeof value === 'number');
   // Liste des badges débloqués par le client en fonction de son score 
   badgesDebloques: string[] = [];
+  //Plantes cultivées 
+  plantesCultivees : number = 0;
+  //Plantes récoltées 
+  plantesRecoltees : number = 0;
+  //Plante la plus souvent cultivée 
+  // !! CONVERTIR en string nom de plante quand il y aura le PlanteService !!!!!!
+  planteFavorite !: number | null;
 
   constructor(private router : Router, 
     private clientService : ClientService, 
@@ -39,7 +47,19 @@ export class ProfilComponent {
     
     this.jardinService.findById(client.idJardin).subscribe( jardin => {
       this.jardin = jardin;
-      console.log(jardin);
+      
+      this.plantesCultivees= (jardin.cultures).length;
+
+      let cpt = 0;
+      for (let culture of jardin.cultures)
+      {
+        if (culture.recolte) {
+          cpt = cpt+1;
+        }
+      }
+      this.plantesRecoltees = cpt;
+
+      this.planteFavorite = this.trouverIdPlanteLePlusFrequent(this.jardin.cultures);
     });
             
     });
@@ -50,6 +70,26 @@ export class ProfilComponent {
     this.clientService.save(this.client).subscribe(() => {
       alert("Modifications enregistrées !");
     });
+  }
+
+  trouverIdPlanteLePlusFrequent(cultures: Culture[]): number | null {
+    const compteur = new Map<number, number>();
+  
+    for (const culture of cultures) {
+      compteur.set(culture.idPlante, (compteur.get(culture.idPlante) || 0) + 1);
+    }
+  
+    let idPlanteMax: number | null = null;
+    let maxOccurrences = 0;
+  
+    for (const [idPlante, occurrences] of compteur.entries()) {
+      if (occurrences > maxOccurrences) {
+        maxOccurrences = occurrences;
+        idPlanteMax = idPlante;
+      }
+    }
+  
+    return idPlanteMax;
   }
 
 }
