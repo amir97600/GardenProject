@@ -9,6 +9,18 @@ import { Plante } from '../model/plante';
 })
 export class PlantCardComponent {
 
-  // @Input() plante: Plante = new Plante(); 
+  @Input() plante!: Plante;
+
+  isModalOpen = false;
+
+  ouvrirModal(): void {
+    console.log("Ouverture de la modale...");
+    this.isModalOpen = true;
+  }
+
+  fermerModal(): void {
+    console.log("Fermeture de la modale...");
+    this.isModalOpen = false;
+  }
 
 }
