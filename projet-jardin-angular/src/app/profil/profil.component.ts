@@ -47,7 +47,7 @@ export class ProfilComponent {
     
     this.jardinService.findById(client.idJardin).subscribe( jardin => {
       this.jardin = jardin;
-      console.log(jardin);
+      
       this.plantesCultivees= (jardin.cultures).length;
 
       let cpt = 0;
