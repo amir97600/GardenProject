@@ -1,6 +1,10 @@
 <div class="app-wrapper">
     <garden-navigation *ngIf="navActive && backgroundClass === 'garden-background'"/>
     <admin-navigation *ngIf="navActive && backgroundClass === 'admin-background'"/>
-    <router-outlet></router-outlet>
+    
+    <main class="main-content">
+        <router-outlet></router-outlet>
+    </main>
+
     <garden-footer *ngIf="navActive && backgroundClass === 'garden-background'" />
 </div>

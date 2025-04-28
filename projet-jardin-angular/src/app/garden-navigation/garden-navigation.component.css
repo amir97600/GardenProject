@@ -1,0 +1,47 @@
+.main-header {
+    background-color: #eafce4;
+    padding: 16px 24px;
+    margin: 10px 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    height: 60px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px ;
+  }
+  
+  .logo-full {
+    height: 75px;
+  }
+  
+  .main-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .main-nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #2d4739;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .main-nav a:hover {
+    color: #558566;
+  }
+  
+  .main-nav i {
+    width: 18px;
+    height: 18px;
+  }

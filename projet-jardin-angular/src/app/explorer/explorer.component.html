@@ -11,10 +11,5 @@
 </div>
 
 <div id="plant-container">
-  <plant-card/>
-  <plant-card/>
-  <plant-card/>
-  <plant-card/>
-  <plant-card/>
-  <plant-card/>
+  <plant-card *ngFor="let plante of plantes" [plante]="plante"></plant-card>
 </div>

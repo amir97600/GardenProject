@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom:27vh;
+    padding-top: 6vh;
 }
 
 span{
@@ -12,12 +12,12 @@ span{
 }
 h1{
     font-size: 5vh;
-    margin-bottom: 5vh;
+    margin-bottom: 15px;
 }
 form{
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 10px;
 }
 input{
     border-radius: 15px;

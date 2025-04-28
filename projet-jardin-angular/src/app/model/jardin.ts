@@ -1,6 +1,9 @@
+import { Culture } from "../cultures/culture";
+
 export class Jardin {
 
     private _numero : number = 0;
+    private _cultures : Culture[] = [];
 
     constructor(private _nom : string, private _superficie : number) {}
 
@@ -26,6 +29,14 @@ export class Jardin {
 
     public set superficie(value: number) {
         this._superficie = value;
+    }
+
+    public get cultures() : Culture[] {
+        return this._cultures;
+    }
+
+    public set cultures(value: Culture[]) {
+        this._cultures = value;
     }
 
 

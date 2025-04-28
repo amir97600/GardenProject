@@ -11,6 +11,10 @@ public class PlanteResponse {
 		private Integer id;
 		private String nom;
 		private PlanteType planteType;
+		private String description;
+		private Integer delaiRecolte;
+		private Integer dureeVie;
+		private Integer delaiArrosage;
 
 		public PlanteResponse() {
 			super();
@@ -32,6 +36,13 @@ public class PlanteResponse {
 			this.nom = nom;
 		}
 		
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
 		
 		
 		public PlanteType getPlanteType() {
@@ -42,12 +53,40 @@ public class PlanteResponse {
 			this.planteType = planteType;
 		}
 
+		public Integer getDelaiRecolte() {
+			return delaiRecolte;
+		}
+
+		public void setDelaiRecolte(Integer delaiRecolte) {
+			this.delaiRecolte = delaiRecolte;
+		}
+
+		public Integer getDureeVie() {
+			return dureeVie;
+		}
+
+		public void setDureeVie(Integer dureeVie) {
+			this.dureeVie = dureeVie;
+		}
+
+		public Integer getDelaiArrosage() {
+			return delaiArrosage;
+		}
+
+		public void setDelaiArrosage(Integer delaiArrosage) {
+			this.delaiArrosage = delaiArrosage;
+		}
+
 		public static PlanteResponse convert(Plante plante) {
 			PlanteResponse planteResponse = new PlanteResponse();
 			
 			BeanUtils.copyProperties(plante, planteResponse);
 			planteResponse.setId(plante.getId());
 			planteResponse.setNom(plante.getNom());
+			planteResponse.setDescription(plante.getDescription());
+			planteResponse.setDelaiRecolte(plante.getDelaiRecolte());
+			planteResponse.setDureeVie(plante.getDureeVie());
+			planteResponse.setDelaiArrosage(plante.getDelaiArrosage());
 			
 			if(plante instanceof FruitLegume) {
 				planteResponse.setPlanteType(PlanteType.FRUITLEGUME);
