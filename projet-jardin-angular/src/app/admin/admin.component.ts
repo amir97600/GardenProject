@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit, OnDestroy {
-  AdminForm!: FormGroup;
+  adminForm!: FormGroup;
   Admins$!: Observable<Admin[]>;
   editingAdmin!: Admin | null;
   subscriptions: any = [];
@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   constructor(private service: AdminService, private formBuilder: FormBuilder) { }
   
   ngOnInit(): void {
-    this.AdminForm = this.formBuilder.group({
+    this.adminForm = this.formBuilder.group({
       login: this.formBuilder.control('Entrez le login', Validators.required),
       password: this.formBuilder.control('Entrez le mot de passe', Validators.required)
     });
@@ -37,17 +37,17 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.subscriptions['addOrEdit'] = this.service.save({
       id: this.editingAdmin?.id,
-      ...this.AdminForm.value
+      ...this.adminForm.value
     }).subscribe(() => this.service.refresh());
 
     this.editingAdmin = null;
-    this.AdminForm.get('login')?.setValue("");
-    this.AdminForm.get('password')?.setValue("");
+    this.adminForm.get('login')?.setValue("");
+    this.adminForm.get('password')?.setValue("");
   }
 
   public editAdmin(Admin: Admin) {
-    this.AdminForm.get('login')?.setValue(Admin.login);
-    this.AdminForm.get('password')?.setValue(Admin.password);
+    this.adminForm.get('login')?.setValue(Admin.login);
+    this.adminForm.get('password')?.setValue(Admin.password);
     this.editingAdmin = Admin;
   }
 

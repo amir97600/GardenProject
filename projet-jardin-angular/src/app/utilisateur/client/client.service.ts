@@ -13,7 +13,7 @@ export class ClientService {
   constructor(private http : HttpClient) { }
 
   private refresh$: Subject<void> = new Subject<void>();
-  private API_URL: string = `${ environment.API_URL }/utilisateur`;
+  private API_URL: string = `${ environment.API_URL }/utilisateur/client`;
 
   public refresh() {
     this.refresh$.next();

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminFormComponent } from './admin-form.component';
+import { HomeAdminComponent } from './home-admin.component';
 
-describe('AdminFormComponent', () => {
-  let component: AdminFormComponent;
-  let fixture: ComponentFixture<AdminFormComponent>;
+describe('HomeAdminComponent', () => {
+  let component: HomeAdminComponent;
+  let fixture: ComponentFixture<HomeAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminFormComponent]
+      declarations: [HomeAdminComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdminFormComponent);
+    fixture = TestBed.createComponent(HomeAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
