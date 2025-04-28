@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home-admin', component: HomeAdminComponent, canActivate:[authGuard] },
   { path: 'admin', component: AdminComponent, canActivate:[authGuard] },
   { path: 'admin/1', component: AdminComponent, canActivate:[authGuard] },
-  { path: 'explorer', component : ExplorerComponent}
+  { path: 'explorer', component : ExplorerComponent},
   { path: '**', component : Error404Component}
 
 ];
