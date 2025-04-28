@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const hasToken:boolean = !!connectService.token;
 
   if(!hasToken){
-    router.navigate(['/connexion'])
+    router.navigate([''])
   }
 
   return true;
