@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from '../service/client.service';
 import { Client } from '../model/client';
@@ -47,7 +47,7 @@ export class ProfilComponent {
     
     this.jardinService.findById(client.idJardin).subscribe( jardin => {
       this.jardin = jardin;
-      
+
       this.plantesCultivees= (jardin.cultures).length;
 
       let cpt = 0;
@@ -66,12 +66,7 @@ export class ProfilComponent {
 
   }
 
-  sauvegarder() {
-    this.clientService.save(this.client).subscribe(() => {
-      alert("Modifications enregistrées !");
-    });
-  }
-
+  //Pour trouver la plante favorite
   trouverIdPlanteLePlusFrequent(cultures: Culture[]): number | null {
     const compteur = new Map<number, number>();
   
@@ -91,5 +86,72 @@ export class ProfilComponent {
   
     return idPlanteMax;
   }
+
+
+
+  // Modale changer le mot de passe 
+  @Input() newPassword!: string;
+  isModalPasswordOpen = false;
+  changerPassword() {
+    if (!this.newPassword || this.newPassword.trim() === "") {
+      console.error("Le nouveau mot de passe est vide !");
+      return;
+    }
+    
+    let clientModif : Client = this.client;
+    clientModif.password = this.newPassword;
+
+    this.clientService.save(clientModif)
+    .subscribe({
+      next: () => console.log("Mot de passe changé avec succès."),
+      error: (err) => console.error("Erreur lors du changement de mot de passe", err),
+    });
+  }
+
+  ouvrirModalePassword(): void {
+    this.isModalPasswordOpen = true;
+  }
+
+  fermerModalePassword(): void {
+    this.isModalPasswordOpen = false;
+  }
+
+  //Modale Chnager le nom du jardin 
+  @Input() newNomJardin!: string;
+  isModalNomJardinOpen = false;
+  changerNomJardin() {
+    if (!this.newNomJardin || this.newNomJardin.trim() === "") {
+      console.error("Le nom du jardin de passe est vide !");
+      return;
+    }
+    
+    let jardinModif : Jardin = this.jardin;
+    jardinModif.nom = this.newNomJardin;
+
+    this.jardinService.save(jardinModif)
+    .subscribe({
+      next: () => console.log("Nom du jardin changé avec succès."),
+      error: (err) => console.error("Erreur lors du changement du nom du jardin", err),
+
+    });
+  }
+
+  ouvrirModaleNomJardin(): void {
+    this.isModalNomJardinOpen = true;
+  }
+
+  fermerModaleNomJardin(): void {
+    this.isModalNomJardinOpen = false;
+  }
+
+  //Modale suppression compte
+  supprimerCompte() {
+    this.clientService.delete(this.client).subscribe(() => {
+      alert("Compte supprimé !");
+    this.router.navigate(['']);
+    });
+  }
+
+
 
 }
