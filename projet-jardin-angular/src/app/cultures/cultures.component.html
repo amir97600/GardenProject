@@ -37,19 +37,31 @@
     <button class="close-btn" (click)="toggleForm()" aria-label="Fermer">&times;</button>
     
     <h3>Nouvelle culture</h3>
-    
 
-
-  
-    <label for="plantation">Date de plantation : 
-      <input type="date" id="plantation" formControlName="datePlantation" required>
-    </label><br><br>
-
-    <label for="arrosage">Date du dernier arrosage : 
-        <input type="date" id="arrosage" formControlName="dateDernierArrosage" required>
+    <label for="idJardin">Identifiant du jardin :
+        <input type="number" id="idJardin" formControlName="idJardin">
       </label><br><br>
-
+    
+      <label for="nomPlante">Nom de la plante :
+        <input list="plantes" id="nomPlante" formControlName="nomPlante">
+        <datalist id="plantes">
+          <option *ngFor="let plante of plantes" [value]="plante.nom">{{ plante.nom }}</option>
+        </datalist>
+      </label><br><br>
+    
+    <label for="quantite">Quantité :
+      <input type="number" id="quantite" formControlName="quantite">
+    </label><br><br>
   
-    <button type="submit" class="btn" [disabled]="cultureForm.invalid">Ajouter</button>
+    <label for="plantation">Date de plantation :
+      <input type="date" id="plantation" formControlName="datePlantation">
+    </label><br><br>
+  
+    <label for="arrosage">Date du dernier arrosage :
+      <input type="date" id="arrosage" formControlName="dateDernierArrosage">
+    </label><br><br>
+  
+  
+    <button type="submit" class="btn">Ajouter</button>
   </form>
   

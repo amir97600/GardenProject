@@ -11,6 +11,7 @@ import { CultureService } from './culture.service';
 export class CulturesComponent implements OnInit {
 
   cultureForm!: FormGroup;
+  plantes: any[] = [];
   showForm = false; 
 
 
@@ -18,34 +19,63 @@ export class CulturesComponent implements OnInit {
 
   ngOnInit(): void {
     this.cultureForm = this.formBuilder.group({
-      nom: ['', Validators.required],
-      datePlantation: ['', Validators.required],
-      dateDernierArrosage: ['', Validators.required]
+      idJardin: [''],
+      nomPlante: [''],
+      quantite: [1],
+      datePlantation: [''],
+      dateDernierArrosage: [''],
+      recolte: [false]
+
+    });
+
+    this.cultureService.findAllPlantes().subscribe((data) => {
+      this.plantes = data;
     });
   }
+  
+  
 
   toggleForm() {
     this.showForm = !this.showForm;
   }
 
 
-  //ajoute la  culture à la bDD
   addCulture() {
-    if (this.cultureForm.valid) {
-      console.log('Formulaire valide, ajout de la culture:', this.cultureForm.value);
-      this.cultureService.save(this.cultureForm.value).subscribe(
-        (response) => {
-          console.log('Culture ajoutée avec succès:', response);
-          this.showForm = false;  // --> cache le formulaire après  l'ajout
-          this.cultureForm.reset(); 
-        },
-        (error) => {
-          console.error('Erreur lors de l\'ajout de la culture:', error);
-        }
-      );
-    } else {
-      console.log('Formulaire invalide');
-    }
-  }
+    const formValue = this.cultureForm.value;
+    const planteChoisie = this.plantes.find((p: any) => p.nom === formValue.nomPlante);
   
-}
+    if (!planteChoisie) {
+      console.error('Plante non trouvée');
+      return;
+    }
+  
+    const cultureToSave = {
+      datePlantation: formValue.datePlantation,
+      dateDernierArrosage: formValue.dateDernierArrosage,
+      quantite: formValue.quantite,
+      recolte: formValue.recolte,
+      idJardin: formValue.idJardin,
+      idPlante: planteChoisie.id,
+      planteType: planteChoisie.planteType 
+    };
+  
+  
+    console.log('OBJET ENVOYÉ AU SERVEUR:', cultureToSave);
+
+    this.cultureService.save(cultureToSave).subscribe(
+      (response) => {
+        console.log('Culture ajoutée avec succès:', response);
+        this.showForm = false;
+        this.cultureForm.reset();
+      },
+      (error) => {
+        console.error('Erreur lors de l\'ajout de la culture:', error);
+      }
+    );
+  }
+}  
+  
+  
+  
+  
+

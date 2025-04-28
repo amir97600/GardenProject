@@ -99,9 +99,9 @@ public class CultureRequest {
 		culture.setJardin(jardin);
 		
 		Plante plante = null;
-		if(cultureRequest.getPlanteType() == PlanteType.Fleur) {
+		if(cultureRequest.getPlanteType() == PlanteType.FLEUR) {
 			plante = new Fleur();
-		} else if(cultureRequest.getPlanteType() == PlanteType.FruitLegume) {
+		} else if(cultureRequest.getPlanteType() == PlanteType.FRUITLEGUME) {
 			plante = new FruitLegume();
 		} 
 		plante.setId(cultureRequest.getIdPlante());
@@ -112,7 +112,7 @@ public class CultureRequest {
 	}
 	
 	public enum PlanteType {
-		FruitLegume, Fleur;
+		FRUITLEGUME, FLEUR;
 	}
 
 }

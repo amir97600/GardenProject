@@ -3,18 +3,16 @@ export class Culture {
     private _id: number = 0;
     private _datePlantation: string;
     private _dateDernierArrosage: string;
+    private _idJardin: number;
 
-    constructor(
-        id: number,
-        datePlantation: string,
-        dateDernierArrosage: string
-    ) {
+
+    constructor(id: number, datePlantation: string, dateDernierArrosage: string, idJardin: number) {
         this._id = id;
         this._datePlantation = datePlantation;
         this._dateDernierArrosage = dateDernierArrosage;
+        this._idJardin = idJardin; 
     }
 
-    // Getter et Setter pour chaque attribut
     get id(): number {
         return this._id;
     }
@@ -37,5 +35,13 @@ export class Culture {
 
     set dateDernierArrosage(value: string) {
         this._dateDernierArrosage = value;
+    }
+
+    get idJardin(): number {
+        return this._idJardin;
+    }
+
+    set idJardin(value: number) {
+        this._idJardin = value;
     }
 }
