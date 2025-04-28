@@ -11,7 +11,6 @@ export class CultureService {
 
   private refresh$: Subject<void> = new Subject<void>();
   private API_URL: string = `${environment.apiUrl}/culture`;
-  private API_PLANTE = `${environment.apiUrl}/plante`;
 
   constructor(private http: HttpClient) {}
 
@@ -21,9 +20,9 @@ export class CultureService {
 
   public findAll(): Observable<Culture[]> {
     return this.refresh$.pipe(
-      startWith(null),  
+      startWith(null),
       switchMap(() => {
-        return this.http.get<Culture[]>(this.API_URL);  
+        return this.http.get<Culture[]>(this.API_URL);
       })
     );
   }
@@ -33,18 +32,13 @@ export class CultureService {
   }
 
   public save(culture: any): Observable<Culture> {
-  if (culture.id) {
-      return this.http.put<Culture>(`${this.API_URL}/${culture.id}`, culture);  
+    if (culture.id) {
+      return this.http.put<Culture>(`${this.API_URL}/${culture.id}`, culture);
     }
-    return this.http.post<Culture>(this.API_URL, culture);  
+    return this.http.post<Culture>(this.API_URL, culture);
   }
 
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
-
-  public findAllPlantes(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_PLANTE);
-  }
 }
-

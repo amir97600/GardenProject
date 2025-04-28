@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CultureService } from './culture.service';
 import { ClientService } from '../service/client.service';
 import { AuthService } from '../authentification/auth.service';
-import { PlanteService } from '../service/plante.service'; 
-
+import { PlanteService } from '../service/plante.service';
+import { Plante } from '../model/plante';
 
 @Component({
   selector: 'app-cultures',
@@ -15,9 +15,9 @@ import { PlanteService } from '../service/plante.service';
 export class CulturesComponent implements OnInit {
 
   cultureForm!: FormGroup;
-  plantes: any[] = [];
-  showForm = false; 
-  idJardin!: number; // nouvelle variable pour stocker l'id du jardin
+  plantes: Plante[] = [];
+  showForm = false;
+  idJardin!: number;
 
   constructor(
     private cultureService: CultureService,
@@ -39,10 +39,9 @@ export class CulturesComponent implements OnInit {
     this.planteService.findAll().subscribe((data: Plante[]) => {
       this.plantes = data;
     });
-    
+
     const login = this.authService.getLoginFromToken();
     this.clientService.findByLogin(login).subscribe((client) => {
-      console.log('Client connecté:', client);
       this.idJardin = client.idJardin;
     });
   }
@@ -52,34 +51,33 @@ export class CulturesComponent implements OnInit {
   }
 
   addCulture() {
-    const formValue = this.cultureForm.value;
-    const planteChoisie = this.plantes.find((p: any) => p.nom === formValue.nomPlante);
-  
-    if (!planteChoisie) {
-      console.error('Plante non trouvée');
+    if (!this.idJardin) {
       return;
     }
-  
+
+    const formValue = this.cultureForm.value;
+    const planteChoisie = this.plantes.find((p) => p.nom === formValue.nomPlante);
+
+    if (!planteChoisie) {
+      return;
+    }
+
     const cultureToSave = {
       datePlantation: formValue.datePlantation,
       dateDernierArrosage: formValue.dateDernierArrosage,
       quantite: formValue.quantite,
-      recolte: formValue.recolte,
-      idJardin: this.idJardin, 
+      recolte: formValue.recolte ?? false,
+      idJardin: this.idJardin,
       idPlante: planteChoisie.id,
-      planteType: planteChoisie.planteType 
+      planteType: planteChoisie.planteType
     };
-  
-    console.log('OBJET ENVOYÉ AU SERVEUR:', cultureToSave);
+
+    console.log('Objet envoyé au serveur :', cultureToSave);
 
     this.cultureService.save(cultureToSave).subscribe(
-      (response) => {
-        console.log('Culture ajoutée avec succès:', response);
+      () => {
         this.showForm = false;
         this.cultureForm.reset();
-      },
-      (error) => {
-        console.error('Erreur lors de l\'ajout de la culture:', error);
       }
     );
   }

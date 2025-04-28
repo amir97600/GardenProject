@@ -1,4 +1,4 @@
-eexport class Culture {
+export class Culture {
 
     private _id: number = 0;
     private _datePlantation: string;
