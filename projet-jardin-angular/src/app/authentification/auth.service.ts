@@ -4,6 +4,7 @@ import { AuthResponse } from './auth-response';
 import { AuthRequest } from './auth-request';
 import { environment } from '../environment/environment';
 import { Observable, Subscription } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,21 @@ export class AuthService {
       login: authRequest.login,
       password: authRequest.password
     });
+  }
+
+  getLoginFromToken() {
+    const token = localStorage.getItem('token'); 
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        return decoded.sub;  
+      } catch (error) {
+        console.error('Erreur lors du décodage du token', error);
+        return null;
+      }
+    }
+
+    return null;  
   }
 }

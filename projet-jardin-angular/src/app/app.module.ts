@@ -16,6 +16,11 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
 import { GardenFooterComponent } from './garden-footer/garden-footer.component';
+import { Error500Component } from './error500/error500.component';
+import { Error404Component } from './error404/error404.component';
+import { ExplorerComponent } from './explorer/explorer.component';
+import { PlantCardComponent } from './plant-card/plant-card.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +33,10 @@ import { GardenFooterComponent } from './garden-footer/garden-footer.component';
     HomeAdminComponent,
     AdminNavigationComponent,
     GardenFooterComponent,
+    Error500Component,
+    Error404Component,
+    ExplorerComponent,
+    PlantCardComponent
   ],
   imports: [
     BrowserModule,

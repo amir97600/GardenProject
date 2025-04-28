@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Client } from './client';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
-import { environment } from '../../../environment';
-import { Badge } from './badge';
+import { environment } from '../../environment';
+import { Client } from '../model/client';
+import { Badge } from '../model/badge';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,10 @@ export class ClientService {
     return this.http.get<Client>(`${ this.API_URL }/${ id }`);
   }
 
+  public findByLogin(login : string): Observable<Client> {
+    return this.http.get<Client>(`${ this.API_URL }/bylogin/${login}`);
+  }
+
   public save(client: any) {
     if (client.id) {
       return this.http.put<Client>(`${ this.API_URL }/${ client.id }`, client);
@@ -42,22 +46,15 @@ export class ClientService {
   }
   
   public delete(client: any) {
-    return this.http.delete<void>(`${ this.API_URL }/${ client.id }`);
+    return this.http.delete<void>(`${ this.API_URL }${ client.id }`);
   }
 
-  // Badges débloqués à partir du score du client 
-  getBadgesDébloqués(score: number): Badge[] {
-    return Object.values(Badge)
-      .filter(value => typeof value === 'number')
-      .map(v => v as number)
-      .filter(val => val <= score)
-      .map(val => this.badgeFromScore(val));
-  }
-
-  // convertir le score en nom du badge
-  private badgeFromScore(score: number): Badge {
-    return Object.keys(Badge)
-      .find(key => Badge[key as keyof typeof Badge] === score) as unknown as Badge;
+  getBadgesDebloques(client : Client, badges : string[]) : string[]{
+    badges = Object.entries(Badge)
+    .filter(([nom, valeur]) => 
+    typeof valeur === 'number' && client.score >= valeur)
+    .map(([nom]) => nom );
+    return badges;
   }
 
 }

@@ -5,6 +5,10 @@ import { AdminComponent } from './admin/admin.component';
 import { ProfilComponent } from './profil/profil.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { authGuard } from './authentification/auth.guard';
+import { Error500Component } from './error500/error500.component';
+import { Error404Component } from './error404/error404.component';
+import { ExplorerComponent } from './explorer/explorer.component';
+
 
 const routes: Routes = [
   { path: '', component : ProfilComponent, canActivate:[authGuard]},
@@ -12,6 +16,9 @@ const routes: Routes = [
   { path: 'home-admin', component: HomeAdminComponent, canActivate:[authGuard] },
   { path: 'admin', component: AdminComponent, canActivate:[authGuard] },
   { path: 'admin/1', component: AdminComponent, canActivate:[authGuard] },
+  { path: 'error500', component : Error500Component},
+  { path: 'error404', component : Error404Component},
+  { path: 'explorer', component : ExplorerComponent}
 ];
 
 @NgModule({
