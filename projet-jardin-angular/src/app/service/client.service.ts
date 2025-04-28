@@ -39,7 +39,11 @@ export class ClientService {
 
   public save(client: any) {
     if (client.id) {
-      return this.http.put<Client>(`${ this.API_URL }/${ client.id }`, client);
+      return this.http.put<Client>(`${ this.API_URL }/${ client.id }`, {
+        login: client.login,
+        pass: jardin,
+        superficie: jardin.superficie
+      });
     }
     
     return this.http.post<Client>(this.API_URL, client);

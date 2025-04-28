@@ -38,10 +38,18 @@ export class JardinService {
   
   public save(jardin: any) {
     if (jardin.numero) {
-      return this.http.put<Jardin>(`${ this.API_URL }/${ jardin.numero }`, jardin);
+      return this.http.put<Jardin>(`${ this.API_URL }/${ jardin.numero }`, {
+        lieu: jardin.lieu,
+        nom: jardin.nom,
+        superficie: jardin.superficie
+      });
     }
       
-    return this.http.post<Jardin>(this.API_URL, jardin);
+    return this.http.post<Jardin>(this.API_URL, {
+      lieu: jardin.lieu,
+      nom: jardin.nom,
+      superficie: jardin.superficie
+    });
   }
     
   public delete(jardin: any) {

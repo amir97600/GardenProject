@@ -24,7 +24,7 @@ export class ConnexionComponent implements OnInit {
   public passwordCtrl!: FormControl;
   public messageError:string = '';
   public client:Client = new Client('','','','',0);
-  public jardin:Jardin = new Jardin('',5);
+  public jardin:Jardin = new Jardin('',5,'Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
 
@@ -101,7 +101,7 @@ export class ConnexionComponent implements OnInit {
         })
       ).subscribe(() => {
         this.client = new Client('', '', '', '', 0);
-        this.jardin = new Jardin('', 5);
+        this.jardin = new Jardin('', 5,'Paris');
         this.savedJardinId = 0;
         this.closeModal();
       });
