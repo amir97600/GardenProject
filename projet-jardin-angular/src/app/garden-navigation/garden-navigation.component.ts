@@ -40,4 +40,8 @@ export class GardenNavigationComponent implements OnInit {
     }
   }
 
+  logOut(){
+    localStorage.removeItem('token');
+  }
+
 }
