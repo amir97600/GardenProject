@@ -37,7 +37,7 @@ import { PlantCardComponent } from './plant-card/plant-card.component';
     GardenFooterComponent,
     Error500Component,
     ExplorerComponent,
-    PlantCardComponent
+    PlantCardComponent,
     Error404Component,
     CulturesComponent
   ],
