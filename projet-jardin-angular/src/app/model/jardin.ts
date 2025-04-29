@@ -4,8 +4,9 @@ export class Jardin {
 
     private _numero : number = 0;
     private _cultures : Culture[] = [];
+    
 
-    constructor(private _nom : string, private _superficie : number) {}
+    constructor(private _nom : string, private _superficie : number,private _lieu : string) {}
 
     public get numero() : number {
         return this._numero;
@@ -37,6 +38,14 @@ export class Jardin {
 
     public set cultures(value: Culture[]) {
         this._cultures = value;
+    }
+
+    public get lieu() : string {
+        return this._lieu;
+    }
+
+    public set lieu(value: string) {
+        this._lieu = value;
     }
 
 
