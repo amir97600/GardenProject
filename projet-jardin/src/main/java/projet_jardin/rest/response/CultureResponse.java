@@ -13,6 +13,7 @@ public class CultureResponse {
 	private LocalDate datePlantation;
 	private LocalDate dateDernierArrosage;
 	private Boolean recolte;
+	private Integer emplacement;
 	private Integer idJardin;
 	private Integer idPlante;
 	
@@ -67,6 +68,14 @@ public class CultureResponse {
 
 	public void setRecolte(Boolean recolte) {
 		this.recolte = recolte;
+	}
+	
+	public Integer getEmplacement() {
+		return emplacement;
+	}
+
+	public void setEmplacement(Integer emplacement) {
+		this.emplacement = emplacement;
 	}
 
 

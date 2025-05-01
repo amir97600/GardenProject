@@ -47,10 +47,11 @@ class ProjetJardinApplicationTests {
 		Jardin jardin2 = new Jardin("Jardin de toto", "Marseille", 28);
 		client2.setJardin(jardin2);
 		
-		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, fl);
-		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, fleur);
-		Culture cult3 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin2, fl);
-		Culture cult4 = new Culture(5, LocalDate.now(), LocalDate.now(), false, jardin2, fleur);
+		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, fl, 1);
+		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, fleur, 2);
+		Culture cult3 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin2, fl, 3);
+		Culture cult4 = new Culture(5, LocalDate.now(), LocalDate.now(), false, jardin2, fleur, 4);
+
 		
 		List<Badge> badges = client2.getBadges();
 		
