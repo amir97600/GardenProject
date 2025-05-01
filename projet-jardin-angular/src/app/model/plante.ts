@@ -1,3 +1,5 @@
+import { TypePlante } from "./type-plante";
+
 export class Plante {
 
     constructor(
@@ -85,7 +87,3 @@ export class Plante {
       }
 }
 
-enum TypePlante {
-  Fleurs = "fleurs",
-  FruitsLegumes = "fruits_legumes"
-}

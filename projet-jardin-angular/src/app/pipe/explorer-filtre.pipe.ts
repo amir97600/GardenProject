@@ -13,7 +13,7 @@ export class ExplorerFiltrePipe implements PipeTransform {
     let filtered = plantes;
 
     if (selectedCategory && selectedCategory !== 'all') {
-      filtered = filtered.filter(plante => plante.planteType == selectedCategory);  
+      filtered = filtered.filter(plante => String(plante.planteType) == selectedCategory);  
     }
 
     if (searchText && searchText.trim() !== '') {
