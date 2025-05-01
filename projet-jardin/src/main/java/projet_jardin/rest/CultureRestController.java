@@ -33,7 +33,6 @@ public class CultureRestController {
 	}
 	
 	@GetMapping("")
-	@JsonView(Views.ViewCulture.class)
 	public List<CultureResponse> getAll() {
 		List<Culture> cultures = this.daoCulture.findAll();
 
@@ -51,6 +50,9 @@ public class CultureRestController {
 	@JsonView(Views.ViewCulture.class)
 	public Culture create(@RequestBody CultureRequest cultureRequest) {
 		Culture culture = CultureRequest.convert(cultureRequest);
+	    int prochainEmplacement = this.daoCulture.findMaxEmplacement() + 1;
+	    culture.setEmplacement(prochainEmplacement);		
+
 
 		return daoCulture.save(culture);
 	}
