@@ -42,11 +42,18 @@ export class ClientService {
       return this.http.put<Client>(`${ this.API_URL }/${ client.id }`, client);
     }
     
-    return this.http.post<Client>(this.API_URL, client);
+    return this.http.post<Client>(this.API_URL, {
+      login: client.login,
+      password: client.password,
+      nom: client.nom,
+      prenom: client.prenom,
+      idJardin: client.idJardin,
+      score: client.score
+    });
   }
   
   public delete(client: any) {
-    return this.http.delete<void>(`${ this.API_URL }${ client.id }`);
+    return this.http.delete<void>(`${ environment.API_URL }/utilisateur/${ client.id }`);
   }
 
   getBadgesDebloques(client : Client, badges : string[]) : string[]{

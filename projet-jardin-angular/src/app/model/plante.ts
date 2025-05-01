@@ -1,3 +1,5 @@
+import { TypePlante } from "./type-plante";
+
 export class Plante {
 
     constructor(
@@ -6,17 +8,18 @@ export class Plante {
         private _delaiArrosage : number,
         private _delaiRecolte : number,
         private _description : string,
+        private _conseil : string,
         private _dureeVie : number,
         private _nom : string,
         private _comestible : boolean,
     ){}
 
     public get planteType() : TypePlante {
-        return this._planteType;
+        return this.planteType;
     }
 
     public set planteType(value : TypePlante){
-        this._planteType = value;
+        this.planteType = value;
     }
 
     public get id(): number {
@@ -50,6 +53,14 @@ export class Plante {
       public set description(value: string) {
         this.description = value;
       }
+
+      public get conseil(): string {
+        return this.conseil;
+      }
+    
+      public set conseil(value: string) {
+        this.conseil = value;
+      }
     
       public get dureeVie(): number {
         return this.dureeVie;
@@ -76,7 +87,3 @@ export class Plante {
       }
 }
 
-enum TypePlante {
-  Fleurs = 'fleurs',
-  FruitsLegumes = 'fruits_legumes'
-}

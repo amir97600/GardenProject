@@ -12,6 +12,7 @@ public class PlanteResponse {
 		private String nom;
 		private PlanteType planteType;
 		private String description;
+		private String conseil;
 		private Integer delaiRecolte;
 		private Integer dureeVie;
 		private Integer delaiArrosage;
@@ -44,6 +45,13 @@ public class PlanteResponse {
 			this.description = description;
 		}
 		
+		public String getConseil() {
+			return conseil;
+		}
+
+		public void setConseil(String conseil) {
+			this.conseil = conseil;
+		}
 		
 		public PlanteType getPlanteType() {
 			return planteType;
@@ -84,6 +92,7 @@ public class PlanteResponse {
 			planteResponse.setId(plante.getId());
 			planteResponse.setNom(plante.getNom());
 			planteResponse.setDescription(plante.getDescription());
+			planteResponse.setConseil(plante.getConseil());
 			planteResponse.setDelaiRecolte(plante.getDelaiRecolte());
 			planteResponse.setDureeVie(plante.getDureeVie());
 			planteResponse.setDelaiArrosage(plante.getDelaiArrosage());

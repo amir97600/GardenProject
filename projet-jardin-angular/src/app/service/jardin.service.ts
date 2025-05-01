@@ -31,16 +31,28 @@ export class JardinService {
   public findById(id : number): Observable<Jardin> {
     return this.http.get<Jardin>(`${ this.API_URL }/${ id }`);
   }
+
+  public findByNom(nom : string): Observable<Jardin> {
+    return this.http.get<Jardin>(`${ this.API_URL }/nom/${ encodeURIComponent(nom) }`);
+  }
   
   public save(jardin: any) {
     if (jardin.numero) {
-      return this.http.put<Jardin>(`${ this.API_URL }/${ jardin.numero }`, jardin);
+      return this.http.put<Jardin>(`${ this.API_URL }/${ jardin.numero }`, {
+        lieu: jardin.lieu,
+        nom: jardin.nom,
+        superficie: jardin.superficie
+      });
     }
       
-    return this.http.post<Jardin>(this.API_URL, jardin);
+    return this.http.post<Jardin>(this.API_URL, {
+      lieu: jardin.lieu,
+      nom: jardin.nom,
+      superficie: jardin.superficie
+    });
   }
     
   public delete(jardin: any) {
-    return this.http.delete<void>(`${ this.API_URL }${ jardin.numero }`);
+    return this.http.delete<void>(`${ this.API_URL }/jardin/${ jardin.numero }`);
   }
 }

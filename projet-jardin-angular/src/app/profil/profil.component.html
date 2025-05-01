@@ -7,7 +7,7 @@
   <main>
     <div class="column">
       <section class="section">
-        <h2>Score du jardinier</h2>
+        <h2>Mon score</h2>
         <div id="user-score" class="score-display">
           {{client.score}} points
         </div>
@@ -28,7 +28,7 @@
 
     <div class="column">
       <section class="section">
-        <h2>Statistiques </h2>
+        <h2>Mes statistiques </h2>
         <ul class="stats">
           <li>Plantes cultivées : {{plantesCultivees}} <span style="color : red">(Prendre en compte quantité des cultures ou juste nb cultures ?)</span> </li>
           <li>Plantes récoltées : {{plantesRecoltees}}</li>
@@ -41,11 +41,56 @@
         <h2>Paramètres</h2>
         <ul class="settings">
           <span style="color : red">PAS ENCORE FONCTIONNEL</span>
-          <li><a href="#">Changer le mot de passe</a></li>
-          <li><a href="#">Changer le nom du jardin ({{jardin.nom}})</a></li>
-          <li><a href="#">Supprimer le compte</a></li>
+          <li (click)="ouvrirModalePassword()" class="link">Changer le mot de passe</li>
+          <li (click)="ouvrirModaleNomJardin()" class="link">Changer le nom du jardin </li>
+          <li (click)="ouvrirModaleSupprimerCompte()" class="link">Supprimer le compte</li>
         </ul>
       </section>
     </div>
+
+    <div class="modal-overlay" *ngIf="isModalPasswordOpen" >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <input
+          type="password"
+          [(ngModel)]="newPassword"
+          placeholder="Nouveau mot de passe"
+          class="input"
+        />
+        
+        <div class="button-container">
+          <button (click)="changerPassword()" class="btn">Valider</button>
+          <button (click)="fermerModalePassword()" class="btn">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" *ngIf="isModalNomJardinOpen" >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <p>Nom actuel : {{jardin.nom}}</p>
+        <input
+          type="text"
+          [(ngModel)]="newNomJardin"
+          placeholder="Nouveau nom du jardin"
+          class="input"
+        />
+        
+        <div class="button-container">
+          <button (click)="changerNomJardin()" class="btn">Valider</button>
+          <button (click)="fermerModaleNomJardin()" class="btn">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" *ngIf="isModalSupprimerCompteOpen" >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <p>Souhaitez vous supprimer le compte ?</p>
+      
+        <div class="button-container">
+          <button (click)="supprimerCompte()" class="btn">Confirmer</button>
+          <button (click)="fermerModaleSupprimerCompte()" class="btn">Annuler</button>
+        </div>
+      </div>
+    </div>
+
   </main>
 

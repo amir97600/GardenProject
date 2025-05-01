@@ -10,6 +10,10 @@ import { PlanteService } from '../service/plante.service';
 })
 export class ExplorerComponent {
 
+  selectedCategory: string = 'all';
+  searchText: string = '';
+
+
   plantes: Plante[] = [];
 
   constructor(private planteService: PlanteService) { }
@@ -20,8 +24,5 @@ export class ExplorerComponent {
       error: (err) => console.error('Erreur lors du chargement des plantes :', err)
     });
   }
-
-
-  
 
 }

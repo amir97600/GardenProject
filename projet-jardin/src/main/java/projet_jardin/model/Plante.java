@@ -39,6 +39,9 @@ public abstract class Plante {
 	@Column(name="description")
 	@JsonView(Views.ViewBasic.class)
 	protected String description;
+	@Column(name="conseil")
+	@JsonView(Views.ViewBasic.class)
+	protected String conseil;
 	@Column(name="delai_recolte")
 	@JsonView(Views.ViewBasic.class)
 	protected int delaiRecolte; //Un intervalle de recolte en semaines
@@ -56,9 +59,10 @@ public abstract class Plante {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Plante(String nom, String description, int delaiRecolte, int dureeVie, int delaiArrosage) {
+	public Plante(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage) {
 		this.nom = nom;
 		this.description = description;
+		this.conseil = conseil;
 		this.delaiRecolte = delaiRecolte;
 		this.dureeVie = dureeVie;
 		this.delaiArrosage = delaiArrosage;
@@ -87,6 +91,14 @@ public abstract class Plante {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getConseil() {
+		return conseil;
+	}
+
+	public void setConseil(String conseil) {
+		this.conseil = conseil;
 	}
 
 	public int getDelaiRecolte() {
@@ -123,7 +135,7 @@ public abstract class Plante {
 
 	@Override
 	public String toString() {
-		return "Plante [id=" + id + ", nom=" + nom + ", description=" + description + ", delaiRecolte=" + delaiRecolte
+		return "Plante [id=" + id + ", nom=" + nom + ", description=" + description + ", conseil=" + conseil + ", delaiRecolte=" + delaiRecolte
 				+ ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage + ", cultures=" + cultures + "]";
 	}
 
