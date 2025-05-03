@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../authentification/auth.service';
 import { AuthRequest } from '../authentification/auth-request';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, Observable, of, Subscription, switchMap } from 'rxjs';
 import { Client } from '../model/client';
 import { Jardin } from '../model/jardin';
 import { ClientService } from '../service/client.service';
 import { JardinService } from '../service/jardin.service';
+import { VilleService } from '../service/ville.service';
 
 @Component({
   selector: 'app-connexion',
@@ -16,19 +17,25 @@ import { JardinService } from '../service/jardin.service';
   styleUrls: ['./connexion.component.css']
 })
 
-export class ConnexionComponent implements OnInit {
+export class ConnexionComponent implements OnInit,OnDestroy {
   public authForm!: FormGroup;
   public showModal: boolean = false;
   public signupForm!: FormGroup;
   public loginCtrl!: FormControl;
   public passwordCtrl!: FormControl;
   public messageError:string = '';
+  public messageVilleError:string = '';
   public client:Client = new Client('','','','',0);
   public jardin:Jardin = new Jardin('',5,'Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
+  public codePostalValue = '';
+  private codePostalSubscription!: Subscription;
 
-  constructor(private service: AuthService, private serviceClient: ClientService, private serviceJardin: JardinService, private router: Router, private formBuilder: FormBuilder) { }
+
+  
+
+  constructor(private service: AuthService, private serviceClient: ClientService, private serviceJardin: JardinService, private villeService:VilleService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.loginCtrl = this.formBuilder.control('', Validators.required);
@@ -44,9 +51,26 @@ export class ConnexionComponent implements OnInit {
       prenom: ['', Validators.required],
       login: ['', Validators.required],
       jardin: ['', Validators.required],
+      codePostal: ['',Validators.required],
+      lieu: ['Entrez le code postal pour que la ville se remplisse automatiquement',Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+    this.signupForm.get('lieu')?.disable();
+
+    this.codePostalSubscription = this.signupForm.get('codePostal')?.valueChanges.subscribe(value => {
+      if (value.length >= 5) {
+        this.getVille(value);
+      }
+    })!;
+    
+  }
+
+  ngOnDestroy(): void {
+    if (this.codePostalSubscription) {
+      this.codePostalSubscription.unsubscribe();
+    }
   }
 
   public authenticate() {
@@ -87,6 +111,7 @@ export class ConnexionComponent implements OnInit {
     if (this.signupForm.valid) {
       
       this.jardin.nom = this.signupForm.value.jardin;
+      this.jardin.lieu = this.signupForm.getRawValue().lieu;
 
       this.serviceJardin.save(this.jardin).pipe(
         switchMap(() => this.serviceJardin.findByNom(this.jardin.nom)),
@@ -106,5 +131,25 @@ export class ConnexionComponent implements OnInit {
       });
     }
   }
+
+  public getVille(codePostal: string): void {
+    this.villeService.getVilleByCodePostal(codePostal).subscribe({
+      next: (ville) => {
+        if (ville && ville.trim().length > 0) {
+          this.signupForm.get('lieu')?.setValue(ville);
+        } else {
+          this.signupForm.get('lieu')?.disable();
+          this.signupForm.get('lieu')?.setValue('');
+          this.messageVilleError = 'Ville introuvable pour ce code postal.';
+        }
+      },
+      error: (err) => {
+        this.signupForm.get('lieu')?.disable();
+        this.signupForm.get('lieu')?.setValue('');
+        this.messageVilleError = 'Une erreur est survenue';
+      }
+    });
+  }
+
 
 }
