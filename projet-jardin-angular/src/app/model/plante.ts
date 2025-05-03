@@ -1,3 +1,5 @@
+import { TypePlante } from "./type-plante";
+
 export class Plante {
 
     constructor(
@@ -13,11 +15,11 @@ export class Plante {
     ){}
 
     public get planteType() : TypePlante {
-        return this._planteType;
+        return this.planteType;
     }
 
     public set planteType(value : TypePlante){
-        this._planteType = value;
+        this.planteType = value;
     }
 
     public get id(): number {
@@ -85,7 +87,3 @@ export class Plante {
       }
 }
 
-enum TypePlante {
-  Fleurs = 'fleurs',
-  FruitsLegumes = 'fruits_legumes'
-}

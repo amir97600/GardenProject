@@ -18,6 +18,7 @@ public class CultureRequest {
 	private LocalDate datePlantation;
 	private LocalDate dateDernierArrosage;
 	private Boolean recolte;
+	private Integer emplacement;
 	private Integer idJardin;
 	private Integer idPlante;
 	private PlanteType planteType;
@@ -63,6 +64,15 @@ public class CultureRequest {
 	public void setRecolte(Boolean recolte) {
 		this.recolte = recolte;
 	}
+	
+	public Integer getEmplacement() {
+		return emplacement;
+	}
+
+	public void setEmplacement(Integer emplacement) {
+		this.emplacement = emplacement;
+	}
+
 
 	public Integer getIdJardin() {
 		return idJardin;
