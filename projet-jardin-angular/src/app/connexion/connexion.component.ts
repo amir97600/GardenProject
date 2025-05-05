@@ -52,8 +52,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
       login: ['', Validators.required],
       jardin: ['', Validators.required],
       codePostal: ['',Validators.required],
-      lieu: ['Entrez le code postal pour que la ville se remplisse automatiquement',Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      lieu: ['Entrez le code postal de la ville',Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 

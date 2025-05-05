@@ -81,15 +81,6 @@
         <div *ngIf="messageVilleError" class="error">{{ messageVilleError }}</div>
         
 
-        <label for="email">Email</label>
-        <input class="modal-input" id="email" formControlName="email" type="email" required />
-        <div class="error-message" *ngIf="signupForm.get('email')?.hasError('required')">
-            L'email est obligatoire
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('email')?.hasError('email')">
-            Entrez un email valide
-        </div>
-
         <label for="password">Mot de passe</label>
         <input class="modal-input" id="password" formControlName="password" type="password" required />
         <div class="error-message" *ngIf="signupForm.get('password')?.hasError('required')">
