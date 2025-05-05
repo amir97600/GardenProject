@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: 'http://localhost:8091/api'
+    apiUrl: 'http://projet-jardin-java:8091/api'
   };
