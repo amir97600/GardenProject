@@ -28,7 +28,7 @@ export class ProfilComponent {
   //Plantes récoltées 
   plantesRecoltees : number = 0;
   //Plante la plus souvent cultivée 
-  // !! CONVERTIR en string nom de plante quand il y aura le PlanteService !!!!!!
+  // !! CONVERTIR en string nom de plante quand il y aura le findByID PlanteService !!!!!!
   planteFavorite !: number | null;
 
   constructor(private router : Router, 
@@ -87,14 +87,23 @@ export class ProfilComponent {
     return idPlanteMax;
   }
 
-
+  statutChangement !: string;
 
   // Modale changer le mot de passe 
   @Input() newPassword!: string;
+  @Input() confirmPassword!:string;
   isModalPasswordOpen = false;
-  changerPassword() {
+
+  changerPassword() { 
+    this.statutChangement="";
+
     if (!this.newPassword || this.newPassword.trim() === "") {
-      console.error("Le nouveau mot de passe est vide !");
+      this.statutChangement = "Le nouveau mot de passe est vide !";
+      return;
+    }
+
+    if (this.newPassword!=this.confirmPassword) {
+      this.statutChangement = "Les mots de passe ne correspondent pas !";
       return;
     }
     
@@ -103,8 +112,11 @@ export class ProfilComponent {
 
     this.clientService.save(clientModif)
     .subscribe({
-      next: () => console.log("Mot de passe changé avec succès."),
-      error: (err) => console.error("Erreur lors du changement de mot de passe", err),
+      next: () => this.statutChangement = "Mot de passe changé avec succès.",
+      error: (err) => { 
+        this.statutChangement = "Erreur lors du changement de mot de passe"; 
+        console.log(err);
+      }
     });
   }
 
@@ -120,8 +132,10 @@ export class ProfilComponent {
   @Input() newNomJardin!: string;
   isModalNomJardinOpen = false;
   changerNomJardin() {
+    this.statutChangement="";
+
     if (!this.newNomJardin || this.newNomJardin.trim() === "") {
-      console.error("Le nom du jardin de passe est vide !");
+      this.statutChangement = "Le nom du jardin est vide !";
       return;
     }
     
@@ -130,8 +144,10 @@ export class ProfilComponent {
 
     this.jardinService.save(jardinModif)
     .subscribe({
-      next: () => console.log("Nom du jardin changé avec succès."),
-      error: (err) => console.error("Erreur lors du changement du nom du jardin", err),
+      next: () => this.statutChangement = "Nom du jardin changé avec succès.",
+      error: (err) => { this.statutChangement = "Erreur lors du changement du nom du jardin";
+         console.log(err);
+      }
 
     });
   }

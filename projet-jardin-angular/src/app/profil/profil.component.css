@@ -52,7 +52,6 @@ main {
 
   .stat-title {
     font-size: 1rem;
-    color: #2d4739;
     display: flex;
     justify-content: center;
   }
@@ -123,7 +122,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
   }
   
   .modal-content {
@@ -139,6 +137,12 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .statut {
+    color: #2d4739;
+    font-weight: bolder;
+    padding: 0.5rem;
   }
 
   .input {
