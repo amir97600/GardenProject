@@ -70,6 +70,17 @@
             Le nom du jardin est obligatoire
         </div>
 
+        <label for="codePostal">Code postal de la ville du jardin</label>
+        <input class="modal-input" id="codePostal" formControlName="codePostal" type="text" required/>
+        <div class="error-message" *ngIf="signupForm.get('codePostal')?.hasError('required')">
+            Le code postal est requis
+        </div>
+
+        <label for="lieu">Ville du jardin</label>
+        <input class="modal-input" id="lieu" formControlName="lieu" type="text"  required/>
+        <div *ngIf="messageVilleError" class="error">{{ messageVilleError }}</div>
+        
+
         <label for="email">Email</label>
         <input class="modal-input" id="email" formControlName="email" type="email" required />
         <div class="error-message" *ngIf="signupForm.get('email')?.hasError('required')">

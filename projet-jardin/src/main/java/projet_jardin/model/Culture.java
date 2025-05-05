@@ -36,9 +36,6 @@ public class Culture {
 	@Column(nullable=false)
 	@JsonView(Views.ViewBasic.class)
 	private Boolean recolte;
-	@Column(name = "emplacement", nullable = false)
-	@JsonView(Views.ViewBasic.class)
-	private Integer emplacement;
 	
 	
 	@ManyToOne
@@ -54,16 +51,14 @@ public class Culture {
 	public Culture() {}
 	
 	public Culture(int quantite, LocalDate datePlantation, LocalDate dateDernierArrosage, Boolean recolte,
-			Jardin jardin, Plante plante, Integer emplacement) {
+			Jardin jardin, Plante plante) {
 		this.quantite = quantite;
 		this.datePlantation = datePlantation;
 		this.dateDernierArrosage = dateDernierArrosage;
 		this.recolte = recolte;
 		this.jardin = jardin;
 		this.plante = plante;
-		this.emplacement = emplacement;
 	}
-
 	
 
 	public Integer getId() {
@@ -125,23 +120,12 @@ public class Culture {
 	public void setPlante(Plante plante) {
 		this.plante = plante;
 	}
-	
-	public Integer getEmplacement() {
-		return emplacement;
-	}
-
-	public void setEmplacement(Integer emplacement) {
-		this.emplacement = emplacement;
-	}
-
 
 	@Override
 	public String toString() {
-		return "Culture [id=" + id + ", quantite=" + quantite + ", datePlantation=" + datePlantation
-				+ ", dateDernierArrosage=" + dateDernierArrosage + ", recolte=" + recolte + ", emplacement="
-				+ emplacement + ", jardin=" + jardin + ", plante=" + plante + "]";
+		return "Culture [quantite=" + quantite + ", datePlantation=" + datePlantation + ", dateDernierArrosage="
+				+ dateDernierArrosage + ", recolte=" + recolte + ", jardin=" + jardin.getNumero() + ", plante=" + plante + "]";
 	}
-	
 	
 	
 	

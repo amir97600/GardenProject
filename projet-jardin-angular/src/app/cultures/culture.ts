@@ -5,7 +5,6 @@ export class Culture {
     private _dateDernierArrosage: string;
     private _quantite: number;
     private _recolte: boolean;
-    private _emplacement: number;
     private _idJardin: number;
     private _idPlante: number;
     private _planteType: string;
@@ -17,8 +16,7 @@ export class Culture {
       idJardin: number,
       idPlante: number,
       planteType: string,
-      recolte: boolean,
-      emplacement: number 
+      recolte: boolean
     ) {
       this._datePlantation = datePlantation;
       this._dateDernierArrosage = dateDernierArrosage;
@@ -27,9 +25,7 @@ export class Culture {
       this._idPlante = idPlante;
       this._planteType = planteType;
       this._recolte = recolte;
-      this._emplacement = emplacement; 
     }
-    
   
     public get id(): number {
       return this._id;
@@ -70,15 +66,6 @@ export class Culture {
     public set recolte(value: boolean) {
       this._recolte = value;
     }
-
-    public get emplacement(): number {
-      return this._emplacement;
-    }
-    
-    public set emplacement(value: number) {
-      this._emplacement = value;
-    }
-    
   
     public get idJardin(): number {
       return this._idJardin;
