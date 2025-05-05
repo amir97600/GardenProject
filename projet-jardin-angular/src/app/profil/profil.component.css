@@ -22,6 +22,50 @@ main {
     margin-top: 40px;
   }
   
+  .section {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section h2 {
+    margin-bottom: 15px;
+    color: #2d4739;
+  }
+
+  /* Style section statistiques  */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap : 1.5rem;
+    padding: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .stat-title {
+    font-size: 1rem;
+    color: #2d4739;
+    display: flex;
+    justify-content: center;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2e7d32;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Style section badges */
   .badges-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -43,37 +87,18 @@ main {
     height: 100%;
     object-fit: contain;
   }
-  
-  .section {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .section h2 {
-    margin-bottom: 15px;
-    color: #2d4739;
-  }
-  
-  .stats, .settings {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .stats li, .settings li {
-    margin: 8px 0;
-  }
+
   .non-obtenu {
     filter: grayscale(100%) brightness(0.8);
     cursor: pointer;
     transition: filter 0.3s ease;
   }
-  
+ 
   .non-obtenu:hover {
     filter: grayscale(70%) brightness(1);
   }
-  
+
+   /* Style section score */
   .score-display {
     font-size: 2rem;
     font-weight: bold;
@@ -82,11 +107,11 @@ main {
     margin-top: 10px;
   }
 
+  /* Style section paramètres */
   .link {
     cursor : pointer;
   }
 
-  /* Style modales */
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -137,7 +162,3 @@ main {
     justify-content: space-between;
     gap: 10px;
   }
-
-  
-  
-  

@@ -29,20 +29,34 @@
     <div class="column">
       <section class="section">
         <h2>Mes statistiques </h2>
-        <ul class="stats">
-          <li>Plantes cultivées : {{plantesCultivees}} <span style="color : red">(Prendre en compte quantité des cultures ou juste nb cultures ?)</span> </li>
-          <li>Plantes récoltées : {{plantesRecoltees}}</li>
-          <li>Cultures en cours : {{plantesCultivees - plantesRecoltees}}</li>
-          <li>Plante préférée : {{planteFavorite}} <span style="color : red">(/!\ changer en nom de plante)</span></li>
-        </ul>
+        <div class="stats">
+          <div class="stat_item">
+            <div class="stat-title" >Plantes cultivées </div>
+            <div class="stat-value">{{plantesCultivees}}</div>
+            <!-- <span style="color : red">(Prendre en compte quantité des cultures ou juste nb cultures ?)</span> -->
+          </div>
+          <div class="stat_item">
+            <div class="stat-title">Plantes récoltées</div>
+            <div class="stat-value">{{plantesRecoltees}}</div>
+          </div>
+          <div class="stat_item">
+            <div class="stat-title">Cultures en cours </div>
+            <div class="stat-value">{{plantesCultivees - plantesRecoltees}}</div>
+          </div>
+          <div class="stat_item">
+            <div class="stat-title">Plante favorite</div>
+            <div class="stat-value">{{planteFavorite}}</div>
+            <!-- <span style="color : red">(/!\ changer en nom de plante)</span> -->
+          </div>
+        </div>
       </section>
    
       <section class="section">
         <h2>Paramètres</h2>
         <ul class="settings">
-          <li (click)="ouvrirModalePassword()" class="link">Changer le mot de passe</li>
-          <li (click)="ouvrirModaleNomJardin()" class="link">Changer le nom du jardin </li>
-          <li (click)="ouvrirModaleSupprimerCompte()" class="link">Supprimer le compte</li>
+          <li (click)="ouvrirModalePassword()" class="link">🌻 Changer le mot de passe</li>
+          <li (click)="ouvrirModaleNomJardin()" class="link">🌻 Changer le nom du jardin </li>
+          <li (click)="ouvrirModaleSupprimerCompte()" class="link">🌻 Supprimer le compte</li>
         </ul>
       </section>
     </div>
