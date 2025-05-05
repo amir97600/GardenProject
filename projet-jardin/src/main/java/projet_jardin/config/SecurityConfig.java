@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -27,6 +28,9 @@ public class SecurityConfig {
 		// Autorisations sur URLs
 		http.authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/api/connexion").permitAll();
+			auth.requestMatchers("/api/ville/**").permitAll();
+			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/client", "/api/jardin").permitAll();
+			auth.requestMatchers("/api/jardin/nom/**").permitAll();
 			auth.requestMatchers("/api/utilisateurs/**").hasRole("ADMIN");
 			auth.requestMatchers("/api/**").authenticated();
 			//auth.requestMatchers("/**").permitAll();
