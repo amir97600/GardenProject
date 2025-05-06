@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
-import { environment } from '../../environment';
+import { environment } from '../../app/environment/environment';
 import { Client } from '../model/client';
 import { Badge } from '../model/badge';
 
@@ -13,7 +13,7 @@ export class ClientService {
   constructor(private http : HttpClient) { }
 
   private refresh$: Subject<void> = new Subject<void>();
-  private API_URL: string = `${ environment.API_URL }/utilisateur/client`;
+  private API_URL: string = `${ environment.apiUrl }/utilisateur/client`;
 
   public refresh() {
     this.refresh$.next();
@@ -53,7 +53,7 @@ export class ClientService {
   }
   
   public delete(client: any) {
-    return this.http.delete<void>(`${ environment.API_URL }/utilisateur/${ client.id }`);
+    return this.http.delete<void>(`${ environment.apiUrl }/utilisateur/${ client.id }`);
   }
 
   getBadgesDebloques(client : Client, badges : string[]) : string[]{

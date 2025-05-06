@@ -22,6 +22,9 @@ import { ExplorerComponent } from './explorer/explorer.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
 import { CulturesComponent } from './cultures/cultures.component';
 import { ExplorerFiltrePipe } from './pipe/explorer-filtre.pipe';
+import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
+import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { ExplorerFiltrePipe } from './pipe/explorer-filtre.pipe';
     PlantCardComponent,
     Error404Component,
     CulturesComponent,
-    ExplorerFiltrePipe
+    ExplorerFiltrePipe,
+    EmptyLayoutComponent,
+    FullLayoutComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environment';
+import { environment } from '../..//app/environment/environment';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
 import { Plante } from '../model/plante';
 
@@ -12,7 +12,7 @@ export class PlanteService {
   constructor(private http: HttpClient) { }
 
   private refresh$: Subject<void> = new Subject<void>();
-  private API_URL: string = `${ environment.API_URL }/plante`;
+  private API_URL: string = `${ environment.apiUrl }/plante`;
 
   public refresh() {
     this.refresh$.next();

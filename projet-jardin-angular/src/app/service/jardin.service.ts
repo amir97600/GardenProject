@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
-import { environment } from '../../environment';
+import { environment } from '../../app/environment/environment';
 import { Jardin } from '../model/jardin';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class JardinService {
   constructor(private http : HttpClient) { }
 
   private refresh$: Subject<void> = new Subject<void>();
-  private API_URL: string = `${ environment.API_URL }/jardin`;
+  private API_URL: string = `${ environment.apiUrl }/jardin`;
   
   public refresh() {
     this.refresh$.next();
