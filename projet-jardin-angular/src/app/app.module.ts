@@ -25,6 +25,7 @@ import { ExplorerFiltrePipe } from './pipe/explorer-filtre.pipe';
 import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { Error403Component } from './error403/error403.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ExplorerFiltrePipe,
     EmptyLayoutComponent,
     FullLayoutComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    Error403Component
   ],
   imports: [
     BrowserModule,

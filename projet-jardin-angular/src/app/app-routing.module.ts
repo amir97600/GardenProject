@@ -11,34 +11,47 @@ import { ExplorerComponent } from './explorer/explorer.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminGuard } from './admin/admin.guard';
+import { Error403Component } from './error403/error403.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: FullLayoutComponent,
-    children: [
-      { path: 'profil', component : ProfilComponent, canActivate:[authGuard]},
-      { path: 'explorer', component : ExplorerComponent},
-      { path: 'cultures', component : CulturesComponent },
-    ]
-  },
   {
     path: '',
     component: EmptyLayoutComponent,
     children: [
       { path: '', component: ConnexionComponent },
-      { path: '**', component : Error404Component}
+      { path: '403',component: Error403Component },
     ]
   },
   {
     path: '',
-    component: AdminLayoutComponent,
+    component: FullLayoutComponent,
+    canActivate: [authGuard],
     children: [
-      { path: 'home-admin', component: HomeAdminComponent, canActivate:[authGuard] },
-      { path: 'admin', component: AdminComponent, canActivate:[authGuard] },
-      { path: 'admin/1', component: AdminComponent, canActivate:[authGuard] },
+      { path: 'profil', component: ProfilComponent },
+      { path: 'explorer', component: ExplorerComponent },
+      { path: 'cultures', component: CulturesComponent }
     ]
   },
+  {
+    path: 'home-admin',
+    component: AdminLayoutComponent,
+    canActivate: [authGuard,AdminGuard],
+    children: [
+      { path: '', component: HomeAdminComponent },
+      { path: 'admin', component: AdminComponent },
+      { path: 'admin/1', component: AdminComponent },
+    ]
+  },
+  // Catch-all route (must be LAST)
+  {
+    path: '404',
+    component: Error404Component
+  },
+  {
+    path: '**',
+    redirectTo: '404'
+  }
   
 ];
 

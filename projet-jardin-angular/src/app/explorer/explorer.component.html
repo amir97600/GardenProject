@@ -1,4 +1,3 @@
-<garden-navigation/>
 <div class="search-wrapper">
   <label for="filter" style="font-weight: bold;" >Catégorie :</label>
   <select id="filter" class="filter-select" style="width: 200px;" [(ngModel)]="selectedCategory" >
@@ -14,4 +13,4 @@
 <div id="plant-container">
   <plant-card *ngFor="let plante of plantes | explorerFiltre:selectedCategory:searchText" [plante]="plante"></plant-card>
 </div>
-<garden-footer/>
+

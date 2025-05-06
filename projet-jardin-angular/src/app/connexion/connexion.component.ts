@@ -81,7 +81,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
         localStorage.setItem('token', resp.token);
         //Si l'utilisateur est un admin, on le renvoit vers la page des admins
         if(this.service.role === 'ROLE_ADMIN'){
-          return this.router.navigate(['/admin']); 
+          return this.router.navigate(['/home-admin']); 
         }
         //Sinon c'est un Client et il ira vers la page client
         else{
