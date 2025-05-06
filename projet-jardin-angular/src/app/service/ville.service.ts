@@ -12,10 +12,10 @@ export class VilleService {
 
   constructor(private http: HttpClient) {}
 
-  getVilleByCodePostal(codePostal: string): Observable<string> {
+  getVilleByCodePostal(codePostal: string): Observable<String> {
     return this.http.get<any>(`${this.API_URL}${codePostal}`)
       .pipe(
-        map(response => response.nom) 
+        map(response => response[0].nom) 
       );
   }
 
