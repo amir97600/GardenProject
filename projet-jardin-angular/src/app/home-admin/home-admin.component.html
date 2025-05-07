@@ -1,1 +1,32 @@
-{{tables | async}}
+<main class="main-content">
+    <section class="tableau">
+      <h2 class="tableau-title">Projet Jardin</h2>
+      <table class="tableau-table">
+        <thead>
+          <tr>
+            <th>Section</th>
+            <th>Ajouter</th>
+            <th>Gérer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let table of tables | async">
+            <td>{{ table }}</td>
+            <td>
+              <button class="action-button add-button">
+                <img src="addIcon" alt="Ajouter" class="button-icon" />
+                Ajouter
+              </button>
+            </td>
+            <td>
+              <button class="action-button manage-button">
+                <img src="section.manageIcon" alt="Gérer" class="button-icon" />
+                Gérer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  
