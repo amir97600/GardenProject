@@ -1,4 +1,4 @@
-FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS build
+FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS build 
 
 WORKDIR /app
 
@@ -13,7 +13,8 @@ COPY ./src/ ./src/
 RUN mvn clean package -DskipTests
 
 
-FROM openjdk:25-jdk-bullseye
+# ✅ Utiliser une image OpenJDK officielle et stable
+FROM eclipse-temurin:21-jdk
 
 ENV ENV_DB_URL=mysql://4.233.149.159:3314/projet_jardin
 ENV ENV_DB_USER=root
