@@ -29,5 +29,9 @@ export class PlanteService {
 
   }
 
+  public findById(id: number): Observable<Plante> {
+      return this.http.get<Plante>(`${this.API_URL}/${id}`);
+    }
+
 
 }
