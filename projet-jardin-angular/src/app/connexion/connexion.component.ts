@@ -52,8 +52,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
       login: ['', Validators.required],
       jardin: ['', Validators.required],
       codePostal: ['',Validators.required],
-      lieu: ['Entrez le code postal pour que la ville se remplisse automatiquement',Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      lieu: ['Entrez le code postal de la ville',Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
@@ -82,7 +81,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
         localStorage.setItem('token', resp.token);
         //Si l'utilisateur est un admin, on le renvoit vers la page des admins
         if(this.service.role === 'ROLE_ADMIN'){
-          return this.router.navigate(['/admin']); 
+          return this.router.navigate(['/home-admin']); 
         }
         //Sinon c'est un Client et il ira vers la page client
         else{

@@ -9,11 +9,11 @@
 
 
 <div class="modal-overlay" *ngIf="isModalOpen" (click)="fermerModal()">
-<div class="modal-content" (click)="$event.stopPropagation()">
-  <h2>{{ plante.nom }}</h2>
-  <p> <strong>Description :</strong> {{ plante.description }}</p>
-  <p><strong>Conseils de culture :</strong> {{plante.conseil}}</p>
-  <p><strong>Récolte :</strong> {{ plante.delaiRecolte }} jours</p>
-  <button class="see-more" (click)="fermerModal()">Fermer</button>
-</div>
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>{{ plante.nom }}</h2>
+    <p> <strong>Description :</strong> {{ plante.description }}</p>
+    <p><strong>Conseils de culture :</strong> {{plante.conseil}}</p>
+    <p><strong>Récolte :</strong> {{ plante.delaiRecolte }} jours</p>
+    <button class="see-more" (click)="fermerModal()">Fermer</button>
+  </div>
 </div>

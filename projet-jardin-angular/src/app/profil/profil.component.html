@@ -1,30 +1,46 @@
+<div class="profile-header">
+  <h1>Tableau de bord du jardinier</h1>
+</div>
 
   
   <div class="profile-header">
     <h1>Tableau de bord : {{jardin.nom}}</h1>
   </div>
 
-  <main>
-    <div class="column">
-      <section class="section">
-        <h2>Mon score</h2>
-        <div id="user-score" class="score-display">
-          {{client.score}} points
+    <section class="section">
+      <h2>Mes Badges</h2>
+      <div class="badges-gallery">
+        <div *ngFor="let badge of badges"
+            class="badge-item"
+            [class.obtenu]="badgesDebloques.includes(badge[0])"
+            [class.non-obtenu]="!badgesDebloques.includes(badge[0])">
+          <img src="Badge_{{badge[0]}}.png" alt="{{badge[0]}}" title="Objectif {{badge[1]}} points">
         </div>
-      </section>
+      </div>
+    </section>
+  </div>
 
-      <section class="section">
-        <h2>Mes Badges</h2>
-        <div class="badges-gallery">
-          <div *ngFor="let badge of badges"
-              class="badge-item"
-              [class.obtenu]="badgesDebloques.includes(badge[0])"
-              [class.non-obtenu]="!badgesDebloques.includes(badge[0])">
-            <img src="Badge_{{badge[0]}}.png" alt="{{badge[0]}}" title="Objectif {{badge[1]}} points">
-          </div>
-        </div>
-      </section>
-    </div>
+  <div class="column">
+    <section class="section">
+      <h2>Mes statistiques </h2>
+      <ul class="stats">
+        <li>Plantes cultivées : {{plantesCultivees}} <span style="color : red">(Prendre en compte quantité des cultures ou juste nb cultures ?)</span> </li>
+        <li>Plantes récoltées : {{plantesRecoltees}}</li>
+        <li>Cultures en cours : {{plantesCultivees - plantesRecoltees}}</li>
+        <li>Plante préférée : {{planteFavorite}} <span style="color : red">(/!\ changer en nom de plante)</span></li>
+      </ul>
+    </section>
+  
+    <section class="section">
+      <h2>Paramètres</h2>
+      <ul class="settings">
+        <span style="color : red">PAS ENCORE FONCTIONNEL</span>
+        <li (click)="ouvrirModalePassword()" class="link">Changer le mot de passe</li>
+        <li (click)="ouvrirModaleNomJardin()" class="link">Changer le nom du jardin </li>
+        <li (click)="ouvrirModaleSupprimerCompte()" class="link">Supprimer le compte</li>
+      </ul>
+    </section>
+  </div>
 
     <div class="column">
       <section class="section">
@@ -72,6 +88,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <div class="modal-overlay" *ngIf="isModalNomJardinOpen" >
       <div class="modal-content" (click)="$event.stopPropagation()">
@@ -84,17 +101,17 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="modal-overlay" *ngIf="isModalSupprimerCompteOpen" >
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <p>Souhaitez vous supprimer le compte ?</p>
-      
-        <div class="button-container">
-          <button (click)="supprimerCompte()" class="btn">Confirmer</button>
-          <button (click)="fermerModaleSupprimerCompte()" class="btn">Annuler</button>
-        </div>
+  <div class="modal-overlay" *ngIf="isModalSupprimerCompteOpen" >
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <p>Souhaitez vous supprimer le compte ?</p>
+    
+      <div class="button-container">
+        <button (click)="supprimerCompte()" class="btn">Confirmer</button>
+        <button (click)="fermerModaleSupprimerCompte()" class="btn">Annuler</button>
       </div>
     </div>
+  </div>
 
-  </main>
-
+</main>

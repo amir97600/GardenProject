@@ -1,0 +1,35 @@
+name: projet-jardin-compose
+
+services:
+  java:
+    #image: projet-jardin-java:latest
+    
+    # Pour utiliser un Dockerfile (Docker fera un Docker Build)
+    build:
+      context: ../projet-jardin # Le nom du répertoire dans lequel se trouve le fichier Dockerfile
+    image: java
+
+    container_name: projet-jardin-java
+    ports:
+      - 8091:8080
+    networks:
+      - projet-jardin
+
+  angular:
+    #image: projet-jardin-java:latest
+    
+    # Pour utiliser un Dockerfile (Docker fera un Docker Build)
+    build:
+      context: ./ # Le nom du répertoire dans lequel se trouve le fichier Dockerfile
+    image: angular
+    
+    container_name: projet-jardin-angular
+    ports:
+      - 81:80
+    networks:
+      - projet-jardin
+
+
+networks:
+  projet-jardin:
+   driver: bridge

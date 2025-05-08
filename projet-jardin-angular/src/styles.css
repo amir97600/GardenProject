@@ -31,7 +31,7 @@ body.garden-background {
     font-family: 'Rubik', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('../public/fond_jardin_canva.jpg'); 
+    background-image: url('/fond_jardin_canva.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -52,7 +52,7 @@ body.admin-background {
 body.connect-background{
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  background-image: url('../public/fond_jardin_canva.jpg'); 
+  background-image: url('/fond_jardin_canva.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

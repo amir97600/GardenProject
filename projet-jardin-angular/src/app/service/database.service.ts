@@ -22,7 +22,7 @@ export class DatabaseService {
       
       // Transformer le "void" en Array<Todo> en allant chercher les infos
       switchMap(() => {
-        return this.http.get<String[]>('http://localhost:8080/api/database/tables');
+        return this.http.get<String[]>('http://localhost:8091/api/database/tables');
       })
     );
   }
