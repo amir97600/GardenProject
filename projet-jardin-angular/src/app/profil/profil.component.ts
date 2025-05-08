@@ -7,6 +7,9 @@ import { JardinService } from '../service/jardin.service';
 import { Jardin } from '../model/jardin';
 import { AuthService } from '../authentification/auth.service';
 import { Culture } from '../cultures/culture';
+import { PlanteService } from '../service/plante.service';
+import { Plante } from '../model/plante';
+import { TypePlante } from '../model/type-plante';
 
 
 
@@ -28,13 +31,13 @@ export class ProfilComponent {
   //Plantes récoltées 
   plantesRecoltees : number = 0;
   //Plante la plus souvent cultivée 
-  // !! CONVERTIR en string nom de plante quand il y aura le findByID PlanteService !!!!!!
-  planteFavorite !: number | null;
+  planteFavorite : Plante = new Plante(TypePlante.Fleurs,0,0,0,"","",0,"Aucune plante cultivée",false);
 
   constructor(private router : Router, 
     private clientService : ClientService, 
     private jardinService : JardinService,
-    private authService : AuthService) {}
+    private authService : AuthService,
+    private planteService : PlanteService) {}
 
 
   ngOnInit() {
@@ -59,7 +62,10 @@ export class ProfilComponent {
       }
       this.plantesRecoltees = cpt;
 
-      this.planteFavorite = this.trouverIdPlanteLePlusFrequent(this.jardin.cultures);
+      this.planteService.findById(this.trouverIdPlanteLePlusFrequent(this.jardin.cultures)).subscribe( plante => {
+        this.planteFavorite = plante;
+      });
+      
     });
             
     });
@@ -67,14 +73,14 @@ export class ProfilComponent {
   }
 
   //Pour trouver la plante favorite
-  trouverIdPlanteLePlusFrequent(cultures: Culture[]): number | null {
+  trouverIdPlanteLePlusFrequent(cultures: Culture[]): number {
     const compteur = new Map<number, number>();
   
     for (const culture of cultures) {
       compteur.set(culture.idPlante, (compteur.get(culture.idPlante) || 0) + 1);
     }
   
-    let idPlanteMax: number | null = null;
+    let idPlanteMax: number = 0;
     let maxOccurrences = 0;
   
     for (const [idPlante, occurrences] of compteur.entries()) {
@@ -141,6 +147,7 @@ export class ProfilComponent {
     
     let jardinModif : Jardin = this.jardin;
     jardinModif.nom = this.newNomJardin;
+    console.log("Jardin modif : ", jardinModif);
 
     this.jardinService.save(jardinModif)
     .subscribe({
