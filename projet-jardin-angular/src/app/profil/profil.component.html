@@ -29,7 +29,6 @@
         <div class="stat_item">
           <div class="stat-title">Plantes cultivées </div>
           <div class="stat-value">{{plantesCultivees}}</div>
-          <span style="color : red">(Prendre en compte quantité des cultures ou juste nb cultures ?)</span>
         </div>
         <div class="stat_item">
           <div class="stat-title">Plantes récoltées</div>
@@ -57,16 +56,15 @@
     </section>
   </div>
 
-  <app-modification-modal [titre]="'Changer le mot de passe'" [placeholder]="'Nouveau mot de passe'" type="password"
-    [(isOpen)]="isModalPasswordOpen" [requireConfirmation]="true"
-    (onConfirm)="changerPassword($event)">
+  <app-modification-modal #passwordModal [titre]="'Changer le mot de passe'" [placeholder]="'Nouveau mot de passe'"
+    type="password" [(isOpen)]="isModalPasswordOpen" [requireConfirmation]="true" (onConfirm)="changerPassword($event)">
   </app-modification-modal>
 
-  <app-modification-modal [titre]="'Changer le nom du jardin'" [placeholder]="'Nouveau nom du jardin'" type="text"
-    [(isOpen)]="isModalNomJardinOpen" (onConfirm)="changerNomJardin($event)">
+  <app-modification-modal #nomJardinModal [titre]="'Changer le nom du jardin'" [placeholder]="'Nouveau nom du jardin'"
+    type="text" [(isOpen)]="isModalNomJardinOpen" (onConfirm)="changerNomJardin($event)">
   </app-modification-modal>
 
-  <app-confirmation-modal [titre]="'Supprimer mon compte'" [(isOpen)]="isModalSupprimerCompteOpen"
+  <app-confirmation-modal #supprimerCompteModal [titre]="'Supprimer mon compte'" [(isOpen)]="isModalSupprimerCompteOpen"
     (onConfirm)="supprimerCompte()">
   </app-confirmation-modal>
 

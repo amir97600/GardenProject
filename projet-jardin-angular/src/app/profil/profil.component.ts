@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from '../service/client.service';
 import { Client } from '../model/client';
@@ -10,7 +10,8 @@ import { Culture } from '../cultures/culture';
 import { PlanteService } from '../service/plante.service';
 import { Plante } from '../model/plante';
 import { TypePlante } from '../model/type-plante';
-import { Observable, tap } from 'rxjs';
+import { ModificationModalComponent } from '../modal/modification-modal/modification-modal.component';
+import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirmation-modal.component';
 
 
 
@@ -18,7 +19,7 @@ import { Observable, tap } from 'rxjs';
   selector: 'app-profil',
   standalone: false,
   templateUrl: './profil.component.html',
-  styleUrl: './profil.component.css'
+  styleUrl: './profil.component.css',
 })
 export class ProfilComponent {
   client: Client = new Client("", "", "", "", 0);
@@ -37,6 +38,15 @@ export class ProfilComponent {
   isModalPasswordOpen: boolean = false;
   isModalNomJardinOpen: boolean = false;
   isModalSupprimerCompteOpen: boolean = false;
+
+  @ViewChild('passwordModal')
+  mdpModificationModal !: ModificationModalComponent
+
+  @ViewChild('nomJardinModal')
+  nomJardinModificationModal !: ModificationModalComponent
+
+  @ViewChild('supprimerCompteModal')
+  supprimerCompteConfiramtionModal !: ConfirmationModalComponent
 
   constructor(private router: Router,
     private clientService: ClientService,
@@ -66,7 +76,7 @@ export class ProfilComponent {
         }
         this.plantesRecoltees = cpt;
 
-        if (this.jardin?.cultures?.length > 1000) {
+        if (this.jardin?.cultures?.length > 0) {
           const idPlanteFavorite = this.trouverIdPlanteLePlusFrequent(this.jardin.cultures);
 
           this.planteService.findById(idPlanteFavorite).subscribe(plante => {
@@ -104,9 +114,12 @@ export class ProfilComponent {
 
     this.clientService.save(clientModif)
       .subscribe({
-        next: () => alert("Mot de passe changé avec succès."),
+        next: () => {
+          this.mdpModificationModal.statutChangement = "Mot de passe changé avec succès."
+          setTimeout(() => this.mdpModificationModal.fermer(), 1500);
+        },
         error: (err) => {
-          alert("Erreur lors du changement de mot de passe");
+          this.mdpModificationModal.statutChangement = "Erreur lors du changement de mot de passe"
           console.log(err);
         }
       });
@@ -118,9 +131,12 @@ export class ProfilComponent {
 
     this.jardinService.save(jardinModif)
       .subscribe({
-        next: () => alert("Nom du jardin changé avec succès."),
+        next: () => {
+          this.nomJardinModificationModal.statutChangement = "Nom du jardin changé avec succès."
+          setTimeout(() => this.nomJardinModificationModal.fermer(), 1500);
+        },
         error: (err) => {
-          alert("Erreur lors du changement du nom du jardin");
+          this.nomJardinModificationModal.statutChangement = "Erreur lors du changement du nom du jardin"
           console.log(err);
         }
       });
@@ -130,7 +146,7 @@ export class ProfilComponent {
     this.clientService.delete(this.client).subscribe({
       next: () => this.router.navigate(['']),
       error: (err) => {
-        alert("Erreur lors de la suppression du compte");
+        this.supprimerCompteConfiramtionModal.statutChangement ="Erreur lors de la suppression du compte";
         console.log(err);
       }
     });

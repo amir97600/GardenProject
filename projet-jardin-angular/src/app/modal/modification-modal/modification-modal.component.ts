@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-modification-modal',
@@ -40,7 +39,7 @@ export class ModificationModalComponent {
     }
 
     this.onConfirm.emit(this.valeur);
-    setTimeout(() => this.fermer(), 1500);
+    // setTimeout(() => this.fermer(), 1500);
     // this.fermer();
   }
 
