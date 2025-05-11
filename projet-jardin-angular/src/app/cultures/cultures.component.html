@@ -1,9 +1,12 @@
 <div class="main-content">
     <div class="carte" id="carte">
       <div class="garden-map">
-        <div class="plot" *ngFor="let culture of cultures" (click)="afficherFiche(culture)">
-          {{ culture.nomPlante }}
-        </div>
+        <ng-container *ngFor="let culture of cultures">
+          <div class="plot" *ngIf="!culture.recolte" (click)="afficherFiche(culture)">
+            {{ culture.nomPlante }}
+          </div>
+        </ng-container>
+
       </div>
     </div>
   
@@ -17,7 +20,11 @@
       <p><strong>Récolté :</strong> {{ cultureSelectionnee.recolte ? 'Oui' : 'Non' }}</p>
       
       <br>
-      <button class="btn btn-danger" (click)="supprimerCulture()"><span class="emoji-plus">🗑️</span> Supprimer la culture</button>
+      <div class="boutons-fiche">
+          <button class="btn-recolter" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture()">🧺 Récolter</button>
+          <button class="btn-supprimer" (click)="supprimerCulture()">✖ Supprimer</button>
+      </div>
+
 
     </div>
 

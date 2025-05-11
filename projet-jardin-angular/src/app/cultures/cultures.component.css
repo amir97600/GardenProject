@@ -67,6 +67,43 @@
   margin: 10px 0;
 }
 
+.boutons-fiche {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-recolter {
+  background-color: #5cb85c; /* vert Bootstrap */
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-recolter:hover {
+  background-color: #449d44;
+}
+
+.btn-supprimer {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-supprimer:hover {
+  background-color: #c9302c;
+}
+
+
 .garden-map {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
