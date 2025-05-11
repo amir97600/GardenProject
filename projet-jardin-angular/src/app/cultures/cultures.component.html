@@ -1,30 +1,28 @@
 <div class="main-content">
     <div class="carte" id="carte">
       <div class="garden-map">
-        <div class="plot" data-id="1">🍅</div>
-        <div class="plot" data-id="2">🥕</div>
-        <div class="plot" data-id="3">🍓</div>
-        <div class="plot" data-id="4">🌻</div>
-        <div class="plot" data-id="5">🌿</div>
-        <div class="plot" data-id="6">🍆</div>
-        <div class="plot" data-id="7">🥬</div>
-        <div class="plot" data-id="8">🌶️</div>
-        <div class="plot" data-id="9">🍉</div>
-        <div class="plot" data-id="10">🍇</div>
-        <div class="plot" data-id="11">🥔</div>
-        <div class="plot" data-id="12">🥦</div>
-        <div class="plot" data-id="13">🌽</div>
-        <div class="plot" data-id="14">🧄</div>
-        <div class="plot" data-id="15">🧅</div>
-        <div class="plot" data-id="16">🍄</div>
-        <div class="plot" data-id="17">🫑</div>
-        <div class="plot" data-id="18">🫛</div>
+        <div class="plot" *ngFor="let culture of cultures" (click)="afficherFiche(culture)">
+          {{ culture.nomPlante }}
+        </div>
       </div>
     </div>
   
-    <div class="fiche-plante" id="fiche-plante">
-      <!-- Contenu injecté dynamiquement -->
+    <div class="fiche-plante" *ngIf="cultureSelectionnee">
+      <button class="close-btn" (click)="cultureSelectionnee = undefined">×</button>
+
+      <h3 *ngIf="nomPlanteSelectionnee">Nom de la plante : {{ nomPlanteSelectionnee }}</h3>
+      <p><strong>Quantité :</strong> {{ cultureSelectionnee.quantite }}</p>
+      <p><strong>Date plantation :</strong> {{ cultureSelectionnee.datePlantation }}</p>
+      <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
+      <p><strong>Récolté :</strong> {{ cultureSelectionnee.recolte ? 'Oui' : 'Non' }}</p>
+      
+      <br>
+      <button class="btn btn-danger" (click)="supprimerCulture()"><span class="emoji-plus">🗑️</span> Supprimer la culture</button>
+
     </div>
+
+
+
   </div>
   
   <div class="ajout-culture-fixed">
