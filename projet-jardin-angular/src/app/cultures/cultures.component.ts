@@ -110,5 +110,19 @@ afficherFiche(culture: Culture): void {
   });
 }
 
+supprimerCulture(): void {
+  if (!this.cultureSelectionnee) return;
+
+  this.cultureService.delete(this.cultureSelectionnee.id).subscribe(() => {
+    this.cultureSelectionnee = undefined;
+    this.nomPlanteSelectionnee = undefined;
+
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+    });
+  });
+}
+
+
 
 }

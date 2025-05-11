@@ -15,7 +15,13 @@
       <p><strong>Date plantation :</strong> {{ cultureSelectionnee.datePlantation }}</p>
       <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
       <p><strong>Récolté :</strong> {{ cultureSelectionnee.recolte ? 'Oui' : 'Non' }}</p>
+      
+      <br>
+      <button class="btn btn-danger" (click)="supprimerCulture()"><span class="emoji-plus">🗑️</span> Supprimer la culture</button>
+
     </div>
+
+
 
   </div>
   
