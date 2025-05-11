@@ -107,6 +107,8 @@ afficherFiche(culture: Culture): void {
 
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
+    this.cultureSelectionnee!.planteType = plante.planteType;
+
   });
 }
 
@@ -114,6 +116,27 @@ supprimerCulture(): void {
   if (!this.cultureSelectionnee) return;
 
   this.cultureService.delete(this.cultureSelectionnee.id).subscribe(() => {
+    this.cultureSelectionnee = undefined;
+    this.nomPlanteSelectionnee = undefined;
+
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+    });
+  });
+}
+
+
+recolterCulture(): void {
+  if (!this.cultureSelectionnee) return;
+
+  const cultureRecoltee = {
+    ...this.cultureSelectionnee,
+    recolte: true,
+
+  };
+  console.log('Objet envoyé :', cultureRecoltee);
+
+  this.cultureService.save(cultureRecoltee).subscribe(() => {
     this.cultureSelectionnee = undefined;
     this.nomPlanteSelectionnee = undefined;
 
