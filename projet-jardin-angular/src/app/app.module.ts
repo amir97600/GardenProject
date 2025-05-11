@@ -26,6 +26,8 @@ import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.compon
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { Error403Component } from './error403/error403.component';
+import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
+import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { Error403Component } from './error403/error403.component';
     EmptyLayoutComponent,
     FullLayoutComponent,
     AdminLayoutComponent,
-    Error403Component
+    Error403Component,
+    ModificationModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
