@@ -10,7 +10,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
 import { jwtHeaderInterceptor } from './authentification/jwt-header.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { LucideAngularModule, Home, Leaf, User, Search, LogOut } from 'lucide-angular';
+import { LucideAngularModule, Home, Leaf, User, Search, LogOut, PlusCircle,Settings } from 'lucide-angular';
 import { GardenNavigationComponent } from './garden-navigation/garden-navigation.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -57,7 +57,7 @@ import { Error403Component } from './error403/error403.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
+    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut,PlusCircle,Settings}),
     FormsModule
     
   ],
