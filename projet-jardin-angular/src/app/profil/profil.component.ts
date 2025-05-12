@@ -12,6 +12,7 @@ import { Plante } from '../model/plante';
 import { TypePlante } from '../model/type-plante';
 import { ModificationModalComponent } from '../modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirmation-modal.component';
+import { VilleService } from '../service/ville.service';
 
 
 
@@ -37,6 +38,7 @@ export class ProfilComponent {
 
   isModalPasswordOpen: boolean = false;
   isModalNomJardinOpen: boolean = false;
+  isModalLieuJardinOpen: boolean = false;
   isModalSupprimerCompteOpen: boolean = false;
 
   @ViewChild('passwordModal')
@@ -44,6 +46,9 @@ export class ProfilComponent {
 
   @ViewChild('nomJardinModal')
   nomJardinModificationModal !: ModificationModalComponent
+
+  @ViewChild('lieuJardinModal')
+  lieuJardinModificationModal !: ModificationModalComponent
 
   @ViewChild('supprimerCompteModal')
   supprimerCompteConfiramtionModal !: ConfirmationModalComponent
@@ -142,13 +147,32 @@ export class ProfilComponent {
       });
   }
 
+  changerLieuJardin(event: { codePostal: string, ville: string }) {
+    let jardinModif: Jardin = this.jardin;
+    jardinModif.lieu = event.ville;
+
+    this.jardinService.save(jardinModif)
+      .subscribe({
+        next: () => {
+          this.lieuJardinModificationModal.statutChangement = "Localisation du jardin changé avec succès."
+          setTimeout(() => this.lieuJardinModificationModal.fermer(), 1500);
+        },
+        error: (err) => {
+          this.lieuJardinModificationModal.statutChangement = "Erreur lors du changement de la localisation du jardin"
+          console.log(err);
+        }
+      });
+  }
+
   supprimerCompte() {
     this.clientService.delete(this.client).subscribe({
       next: () => this.router.navigate(['']),
       error: (err) => {
-        this.supprimerCompteConfiramtionModal.statutChangement ="Erreur lors de la suppression du compte";
+        this.supprimerCompteConfiramtionModal.statutChangement = "Erreur lors de la suppression du compte";
         console.log(err);
       }
     });
   }
+
+  
 }
