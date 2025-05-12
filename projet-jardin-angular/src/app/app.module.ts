@@ -28,6 +28,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { Error403Component } from './error403/error403.component';
 import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmat
     AdminLayoutComponent,
     Error403Component,
     ModificationModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    AlertBadgeModalComponent
   ],
   imports: [
     BrowserModule,

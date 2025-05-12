@@ -1,0 +1,19 @@
+<div *ngIf="isOpen" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" (click)="fermer()">✕</span>
+
+    <div >
+      <img class="badge-icon" src="{{getBadgeImageName()}}" alt="{{getBadgeImageName()}}">
+    </div>
+
+    <h2>Nouveau badge débloqué !</h2> 
+
+    <div class="badge-name">{{ getBadgeName() }}</div>
+
+    <div class="badge-description">
+      {{ getBadgeDescription() }}
+    </div>
+
+    <button class="btn" (click)="confirmer()">OK</button>
+  </div>
+</div>
