@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-client',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './home-client.component.css'
 })
 export class HomeClientComponent {
+
+  constructor(private router: Router) { }
 
 }

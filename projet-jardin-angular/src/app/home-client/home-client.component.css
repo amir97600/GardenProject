@@ -3,32 +3,57 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 30px;
-  }
-  
-  .todo-item {
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5px;
+}
+
+.todo-item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 1px dashed #7da87b;
-  }
-  .todo-item input[type="checkbox"] {
+}
+
+.todo-item input[type="checkbox"] {
     margin-right: 10px;
-  }
-  .progress {
+}
+
+.progress {
     height: 16px;
     background-color: #d4e8d0;
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
-  }
-  .progress-bar {
+    margin-bottom: 10px;
+}
+
+.progress-bar {
     height: 100%;
     background-color: #7da87b;
     width: 0%;
     transition: width 0.5s ease-in-out;
-  }
-  .btn-more {
+}
+
+/* A SUPPRIMER  */
+.progress-70 { width: 70%; }
+.progress-90 { width: 90%; }
+.progress-40 { width: 40%; }
+
+.btn-more {
     margin-top: 10px;
     display: inline-block;
     background-color: #437951;
@@ -36,24 +61,42 @@
     border-radius: 8px;
     text-decoration: none;
     color: #f9f9f9;
-  }
-  .btn-more:hover {
+}
+
+.btn-more:hover {
     background-color: #7da87b;
-  }
-  .weather {
+}
+
+.weather {
     font-size: 1.1rem;
     line-height: 1.6;
-  }
-  .garden-sim {
+}
+
+.garden-sim {
     background-color: #b4d1b3;
     border: 3px dashed #7da87b;
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
     text-align: center;
-  }
-  .plant-icon {
+}
+
+.plant-icon {
     display: inline-block;
     font-size: 2rem;
     margin: 10px;
-  }
+}
+
+h2 {
+    color: #333;
+}
+
+h3 {
+    margin: 10px 0;
+    color: #437951;
+}
+
+.garden-link {
+    text-decoration: none;
+    color: inherit;
+}
