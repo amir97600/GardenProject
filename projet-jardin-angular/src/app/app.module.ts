@@ -10,7 +10,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
 import { jwtHeaderInterceptor } from './authentification/jwt-header.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { LucideAngularModule, Home, Leaf, User, Search, LogOut, PlusCircle,Settings } from 'lucide-angular';
+import { LucideAngularModule, Home, Leaf, User, Search, LogOut, PlusCircle,Settings, Pencil, Trash2, SearchIcon } from 'lucide-angular';
 import { GardenNavigationComponent } from './garden-navigation/garden-navigation.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -26,6 +26,9 @@ import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.compon
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { Error403Component } from './error403/error403.component';
+import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
+import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
+import { AdminCultureComponent } from './admin-culture/admin-culture.component'; 
 
 
 @NgModule({
@@ -51,13 +54,16 @@ import { Error403Component } from './error403/error403.component';
     EmptyLayoutComponent,
     FullLayoutComponent,
     AdminLayoutComponent,
-    Error403Component
+    Error403Component,
+    AdminUtilisateursComponent,
+    AdminJardinComponent,
+    AdminCultureComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut,PlusCircle,Settings}),
+    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut, PlusCircle, Settings, Pencil, Trash2, SearchIcon}),
     FormsModule
     
   ],

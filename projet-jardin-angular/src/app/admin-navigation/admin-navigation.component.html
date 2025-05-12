@@ -1,11 +1,11 @@
 <header class="admin-header">
     <div class="admin-aside-nav">
-      <h1>Administration du jardin connecté</h1>
+      <h1>{{pageTitle}}</h1>
     </div>
     <nav class="amdmin-main-nav">
       <a>BIENVENUE, ADMIN</a>
-      <a>|</a>
-      <a href="#">PARAMETRES DU COMPTE </a>
+      <a [routerLink]="['/home-admin']">|</a>
+      <a [routerLink]="['/home-admin/settings']">PARAMETRES DU COMPTE </a>
       <a>|</a>
       <a [routerLink]="['']" (click)="logOut()">DECONNEXION</a>
     </nav>

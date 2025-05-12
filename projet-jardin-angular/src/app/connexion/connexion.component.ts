@@ -9,6 +9,7 @@ import { Jardin } from '../model/jardin';
 import { ClientService } from '../service/client.service';
 import { JardinService } from '../service/jardin.service';
 import { VilleService } from '../service/ville.service';
+import { AdminUtilisateurService } from '../service/admin-utilisateur.service';
 
 @Component({
   selector: 'app-connexion',
@@ -35,7 +36,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
 
   
 
-  constructor(private service: AuthService, private serviceClient: ClientService, private serviceJardin: JardinService, private villeService:VilleService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private service: AuthService, private adminUtilisateurService : AdminUtilisateurService, private serviceClient: ClientService, private serviceJardin: JardinService, private villeService:VilleService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.loginCtrl = this.formBuilder.control('', Validators.required);
@@ -109,46 +110,13 @@ export class ConnexionComponent implements OnInit,OnDestroy {
   
   public onSignupSubmit(): void {
     if (this.signupForm.valid) {
-      
-      this.jardin.nom = this.signupForm.value.jardin;
-      this.jardin.lieu = this.signupForm.getRawValue().lieu;
-
-      this.serviceJardin.save(this.jardin).pipe(
-        switchMap(() => this.serviceJardin.findByNom(this.jardin.nom)),
-        switchMap((jardin) => {
-          this.client.nom = this.signupForm.value.nom;
-          this.client.prenom = this.signupForm.value.prenom;
-          this.client.login = this.signupForm.value.login;
-          this.client.password = this.signupForm.value.password;
-          this.client.idJardin = jardin.numero;
-          return this.serviceClient.save(this.client);
-        })
-      ).subscribe(() => {
-        this.client = new Client('', '', '', '', 0);
-        this.jardin = new Jardin('', 5,'Paris');
-        this.savedJardinId = 0;
-        this.closeModal();
-      });
+      this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId)
     }
+    this.closeModal();
   }
 
   public getVille(codePostal: string): void {
-    this.villeService.getVilleByCodePostal(codePostal).subscribe({
-      next: (ville) => {
-        if (ville && ville.trim().length > 0) {
-          this.signupForm.get('lieu')?.setValue(ville);
-        } else {
-          this.signupForm.get('lieu')?.disable();
-          this.signupForm.get('lieu')?.setValue('');
-          this.messageVilleError = 'Ville introuvable pour ce code postal.';
-        }
-      },
-      error: (err) => {
-        this.signupForm.get('lieu')?.disable();
-        this.signupForm.get('lieu')?.setValue('');
-        this.messageVilleError = 'Une erreur est survenue';
-      }
-    });
+    this.adminUtilisateurService.getVille(codePostal,this.signupForm,this.messageVilleError)
   }
 
 

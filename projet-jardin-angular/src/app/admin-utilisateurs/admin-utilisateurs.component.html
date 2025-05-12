@@ -1,0 +1,213 @@
+<div class="admin-container">
+
+    <div class="search-container">
+        <div class="search-and-button">
+
+          <form role="search" class="search-form" (ngSubmit)="onSearch(searchTerm)">
+                    <input type="search" [(ngModel)]="searchTerm" name="searchTerm" id="search-input" class="search-input" placeholder="" aria-label="Search" />
+                    <button type="submit"  class="search-button" aria-label="Submit search">
+                      <lucide-icon name="searchIcon"></lucide-icon>
+                    </button>
+          </form>
+
+          <button class="add" (click)="openModal()">Ajouter 
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 2.5C8.09625 2.5 2.5 8.09625 2.5 15C2.5 21.9037 8.09625 27.5 15 27.5C21.9037 27.5 27.5 21.9037 27.5 15C27.5 8.09625 21.9037 2.5 15 2.5ZM21.25 16.25H16.25V21.25H13.75V16.25H8.75V13.75H13.75V8.75H16.25V13.75H21.25V16.25Z" fill="#2D4739"/>
+            </svg>
+          </button>
+        </div>
+        
+
+        <div class="filter">
+            <span>Filtrer par :</span>
+            <ng-container *ngFor="let property of UserProperties">
+                <span class="fields"
+                [class.active]="selectedFilter === property"
+                (click)="selectFilter(property)"
+                >{{ property }}</span>
+            </ng-container>
+        </div>
+    </div>
+
+    <table class="Admin-table">
+        <thead>
+          <tr>
+            <ng-container *ngFor="let property of UserProperties">
+                <th>{{ property }}</th>
+            </ng-container>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredAdmins$ |async">
+            <td>{{user.id}}</td>
+            <td>{{user.login}}</td>
+            <td>{{user.password}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Admin</td>
+            <td> 
+                <div class="icons">
+                    <a class="link" (click)="editAdmin(user)">
+                        <lucide-icon class="pencil" name="pencil"></lucide-icon>
+                    </a>
+                    <a class="link" (click)="delete(user)">
+                        <lucide-icon class="trash" name="trash2"></lucide-icon>
+                    </a>
+                </div>
+            </td>
+          </tr>		
+          <tr *ngFor="let user of filteredClients$ |async">
+            <td>{{user.id}}</td>
+            <td>{{user.login}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.nom}}</td>
+            <td>{{user.prenom}}</td>
+            <td>{{user.score}}</td>
+            <td>{{user.idJardin}}</td>
+            <td>Client</td>
+            <td> 
+                <div class="icons">
+                    <a class="link" (click)="editClient(user)">
+                        <lucide-icon class="pencil" name="pencil"></lucide-icon>
+                    </a>
+                    <a class="link" (click)="delete(user)">
+                        <lucide-icon class="trash" name="trash2"></lucide-icon>
+                    </a>
+                </div>
+            </td>
+          </tr>		
+          
+          <!-- Message si aucun résultat -->
+          <tr *ngIf="(filteredAdmins$ | async)?.length === 0 && (filteredClients$ | async)?.length === 0">
+            <td colspan="9" class="no-results">Désolé, aucun résultat trouvé</td>
+          </tr>
+        </tbody>	
+    </table>		
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+
+  <div class="modal-content" *ngIf="!boolClient && !boolAdmin" (click)="$event.stopPropagation()">
+    <div class="choice">
+      <label for="Client">Compte Client</label>
+      <input name="Client" type="radio" value="Compte Client" (click)="setBoolClient()"/>
+    </div>
+    <div class="choice">
+      <label for="Admin">Compte Admin</label>
+      <input name="Admin" type="radio" value="Compte Admin" (click)="setBoolAdmin()">
+    </div>
+  </div>
+
+  
+
+  <div *ngIf="boolClient" class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeModal()">&times;</button>
+      
+      <h2>Créer ou éditer un Client</h2>
+
+      <form [formGroup]="clientForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
+
+        <div>
+          <label for="nom">Nom</label>
+          <input class="modal-input" id="nom" formControlName="nom" type="text" required />
+          <div class="error-message" *ngIf="clientForm.get('nom')?.hasError('required')">
+              Le nom est obligatoire
+          </div>
+        </div>
+        
+        <div>
+          <label for="prenom">Prénom</label>
+          <input class="modal-input" id="prenom" formControlName="prenom" type="text" required />
+          <div class="error-message" *ngIf="clientForm.get('prenom')?.hasError('required')">
+              Le prénom est obligatoire
+          </div>
+        </div>
+        
+        <div>
+          <label for="login">Login</label>
+          <input class="modal-input" id="login" formControlName="login" type="text" required />
+          <div class="error-message" *ngIf="clientForm.get('login')?.hasError('required')">
+              Le login est obligatoire
+          </div>
+        </div>
+        
+        <div>
+          <label for="jardin">Nom du jardin</label>
+          <input class="modal-input" id="jardin" formControlName="jardin" type="text" required />
+          <div class="error-message" *ngIf="clientForm.get('jardin')?.hasError('required')">
+              Le nom du jardin est obligatoire
+          </div>
+        </div>
+        
+        <div>
+          <label for="lieu">Ville du jardin</label>
+          <input class="modal-input" id="lieu" formControlName="lieu" type="text"  required/>
+        </div>
+        
+        <div>
+          <label for="password">Mot de passe</label>
+          <input class="modal-input" id="password" formControlName="password" type="password" required />
+          <div class="error-message" *ngIf="clientForm.get('password')?.hasError('required')">
+              Le mot de passe est obligatoire
+          </div>
+          <div class="error-message" *ngIf="clientForm.get('password')?.hasError('minlength')">
+              Le mot de passe doit faire au moins six caractères
+          </div>
+        </div>
+        
+
+        <button type="submit" class="btn">Enregistrer</button>
+
+      </form>
+
+  </div>
+
+  <div *ngIf="boolAdmin" class="modal-content" (click)="$event.stopPropagation()">
+
+    <button class="close-btn" (click)="closeModal()">&times;</button>
+    
+    <h2 >Créer ou éditer un Admin</h2>
+
+    <form [formGroup]="adminForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
+
+
+        <div>
+          <label for="login">Login</label>
+          <input class="modal-input" id="login" formControlName="login" type="text" required />
+        </div>
+        <div class="error-message" *ngIf="adminForm.get('login')?.hasError('required')">
+            Le login est obligatoire
+        </div>
+      
+      
+        <div>
+          <label for="password">Mot de passe</label>
+          <input class="modal-input" id="password" formControlName="password" type="password" required />
+          <div class="error-message" *ngIf="adminForm.get('password')?.hasError('required')">
+              Le mot de passe est obligatoire
+          </div>
+        </div>
+        
+        <div class="error-message" *ngIf="adminForm.get('password')?.hasError('minlength')">
+            Le mot de passe doit faire au moins six caractères
+        </div>
+    
+
+      <button type="submit" class="btn">Enregistrer</button>
+
+    </form>
+
+  </div>
+
+  
+
+</div>
+
+
+

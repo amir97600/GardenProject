@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../authentification/auth.service';
 
 @Component({
   selector: 'garden-navigation',
@@ -12,7 +13,7 @@ export class GardenNavigationComponent implements OnInit {
 
   pageTitle: string = "Accueil";  // Titre par défaut
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authService: AuthService) { }
 
   ngOnInit(): void {
       console.log("Bienvenue dans votre jardin");
@@ -41,7 +42,7 @@ export class GardenNavigationComponent implements OnInit {
   }
 
   logOut(){
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 
 }

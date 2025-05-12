@@ -29,12 +29,15 @@ export class AdminService {
     );
   }
 
-  public save(Admin: any) {
-    if (Admin.id) {
-      return this.http.put<Admin>(`${ this.API_URL }/admin/${ Admin.id }`, Admin);
+  public save(admin: Admin) {
+    if (admin.id) {
+      return this.http.put<Admin>(`${ this.API_URL }/admin/${ admin.id }`, admin);
     }
     
-    return this.http.post<Admin>(`${ this.API_URL }/admin`, Admin);
+    return this.http.post<Admin>(`${ this.API_URL }/admin`, {
+      login: admin.login,
+      password: admin.password
+    });
   }
   
   public delete(Admin: any) {

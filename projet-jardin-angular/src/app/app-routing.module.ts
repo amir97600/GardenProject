@@ -13,6 +13,8 @@ import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.compon
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminGuard } from './admin/admin.guard';
 import { Error403Component } from './error403/error403.component';
+import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
+import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
 
 const routes: Routes = [
   {
@@ -40,7 +42,8 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeAdminComponent },
       { path: 'admin', component: AdminComponent },
-      { path: 'admin/1', component: AdminComponent },
+      { path: 'utilisateur', component: AdminUtilisateursComponent },
+      { path: 'jardin', component: AdminJardinComponent },
     ]
   },
   // Catch-all route (must be LAST)
