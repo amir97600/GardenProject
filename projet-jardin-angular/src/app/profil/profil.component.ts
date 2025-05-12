@@ -12,7 +12,6 @@ import { Plante } from '../model/plante';
 import { TypePlante } from '../model/type-plante';
 import { ModificationModalComponent } from '../modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirmation-modal.component';
-import { VilleService } from '../service/ville.service';
 
 
 
