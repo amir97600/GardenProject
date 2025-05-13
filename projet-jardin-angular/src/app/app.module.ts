@@ -30,6 +30,7 @@ import { ModificationModalComponent } from './modal/modification-modal/modificat
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
 import { HomeClientComponent } from './home-client/home-client.component';
+import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { HomeClientComponent } from './home-client/home-client.component';
     ModificationModalComponent,
     ConfirmationModalComponent,
     ModificationLieuModalComponent,
-    HomeClientComponent
+    HomeClientComponent,
+    AlertBadgeModalComponent
   ],
   imports: [
     BrowserModule,
