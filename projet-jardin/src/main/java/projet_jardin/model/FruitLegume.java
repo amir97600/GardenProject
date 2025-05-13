@@ -11,8 +11,8 @@ public class FruitLegume extends Plante{
 		// TODO Auto-generated constructor stub
 	}
 
-	public FruitLegume(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage) {
-		super(nom, description, conseil, delaiRecolte, dureeVie, delaiArrosage);
+	public FruitLegume(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, String icone) {
+		super(nom, description, conseil, delaiRecolte, dureeVie, delaiArrosage, icone);
 	}
 
 	@Override

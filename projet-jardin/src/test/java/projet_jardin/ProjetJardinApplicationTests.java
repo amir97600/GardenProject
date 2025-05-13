@@ -35,22 +35,30 @@ class ProjetJardinApplicationTests {
 	@Test
 	void contextLoads() {
 		
+		
 		Admin admin = new Admin("admin", "admin");
 		Client client1 = new Client("log1", "pass1", "alpha", "beta");
 		Client client2 = new Client("log2", "pass2", "toto", "titi");
-		
-		Fleur fleur = new Fleur("Rose", "Une beauté piquante","A ceuillir avec des pincettes", 2, 14, 1, false);
-		FruitLegume fl = new FruitLegume("Pomme", "Une pomme verte","Attention à ne pas tomber dans les pommes", 5, 21, 2);
-		
+	
 		Jardin jardin1 = new Jardin("Jardin d'alpha", "Paris", 14);
 		client1.setJardin(jardin1);
 		Jardin jardin2 = new Jardin("Jardin de toto", "Marseille", 28);
 		client2.setJardin(jardin2);
 		
-		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, fl);
-		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, fleur);
-		Culture cult3 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin2, fl);
-		Culture cult4 = new Culture(5, LocalDate.now(), LocalDate.now(), false, jardin2, fleur);
+
+		
+		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone");
+		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 5, 25, 3, "fraise_icone");
+		FruitLegume tomate = new FruitLegume("Tomate", "Une tomate rouge bien juteuse", "Offrez-lui un bon tuteur et du soleil", 6, 40, 3, "tomate_icone");
+		Fleur tulipe = new Fleur("Tulipe", "Des tulipes hors du commun", "Plantez les à 15h précises", 2, 14, 1, false, "tulipe_icone");
+		FruitLegume oignon = new FruitLegume("Oignon", "Un oignon plein de caractère", "Évitez l’excès d’humidité et espacez les rangs", 4, 28, 2, "oignon_icone");
+		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 3, 20, 2, false, "tournesol_icone");
+		FruitLegume raisin = new FruitLegume("Raisin", "De belles grappes sucrées", "Taillez régulièrement les rameaux pour aérer", 6, 45, 3, "raisins_icone");
+
+		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, carotte);
+		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, tulipe);
+		Culture cult3 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin2, tomate);
+		Culture cult4 = new Culture(5, LocalDate.now(), LocalDate.now(), false, jardin2, fraise);
 		
 		List<Badge> badges = client2.getBadges();
 		
@@ -59,10 +67,7 @@ class ProjetJardinApplicationTests {
 		badges.add(badge1);
 		badges.add(badge2);
 		
-		
-		daoplante.save(fleur);
-		daoplante.save(fl);
-		
+
 		daojardin.save(jardin1);
 		daojardin.save(jardin2);
 		
@@ -70,10 +75,21 @@ class ProjetJardinApplicationTests {
 		daoutilisateur.save(client1);
 		daoutilisateur.save(client2);
 		
+
+		daoplante.save(carotte);
+		daoplante.save(fraise);
+		daoplante.save(tomate);
+		daoplante.save(tulipe);
+		daoplante.save(oignon);
+		daoplante.save(tournesol);		
+		daoplante.save(raisin);
+		
 		daoculture.save(cult1);
 		daoculture.save(cult2);
 		daoculture.save(cult3);
-		daoculture.save(cult4);
+		daoculture.save(cult4);		
+		
+
 	}
 
 }

@@ -58,11 +58,9 @@ export class CulturesComponent implements OnInit {
     });
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
-  }
 
-  addCulture() {
+
+  ajouterCulture() {
     if (!this.idJardin) {
       return;
     }
@@ -98,6 +96,21 @@ export class CulturesComponent implements OnInit {
     );
   }
 
+fermerFormAjout() {
+  this.showForm = !this.showForm;
+}
+
+AfficherIconeCulture(culture: Culture): string {
+  const plante = this.plantes.find(p => p.id === culture.idPlante);
+  return plante ? `/${plante.icone}.png` : '/plante_icone.png';
+}
+
+AfficherNomCulture(culture: Culture): string {
+  return this.plantes.find(p => p.id === culture.idPlante)!.nom;
+}
+
+
+
 cultureSelectionnee?: Culture;
 nomPlanteSelectionnee?: string;
 
@@ -108,9 +121,9 @@ afficherFiche(culture: Culture): void {
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
     this.cultureSelectionnee!.planteType = plante.planteType;
-
   });
 }
+
 
 supprimerCulture(): void {
   if (!this.cultureSelectionnee) return;

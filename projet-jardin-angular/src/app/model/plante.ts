@@ -12,6 +12,7 @@ export class Plante {
         private _dureeVie : number,
         private _nom : string,
         private _comestible : boolean,
+        private _icone ?: String
     ){}
 
     public get planteType() : TypePlante {
@@ -85,5 +86,15 @@ export class Plante {
       public set comestible(value: boolean) {
         this.comestible = value;
       }
+
+      public get icone(): string {
+        return this.icone;
+      }
+    
+      public set icone(value: string) {
+        this.icone = value;
+      }
+
+
 }
 
