@@ -159,6 +159,10 @@ recolterCulture(): void {
   });
 }
 
+getNom(plante: Plante): string {
+  return plante.nom;
+}
+
 
 
 }
