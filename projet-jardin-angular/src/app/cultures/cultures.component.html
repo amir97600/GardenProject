@@ -49,7 +49,7 @@
       <label for="nomPlante">Nom de la plante :
         <input list="plantes" id="nomPlante" formControlName="nomPlante">
         <datalist id="plantes">
-          <option *ngFor="let plante of plantes" [value]="plante.nom">{{ plante.nom }}</option>
+          <option *ngFor="let plante of plantes" [value]="plante.nom">{{ getNom(plante) }}</option>
         </datalist>
       </label><br><br>
     

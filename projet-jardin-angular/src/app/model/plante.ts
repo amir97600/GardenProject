@@ -23,6 +23,8 @@ export class Plante {
     this._planteType = value;
   }
 
+
+
   public get id(): number {
     return this._id;
   }
@@ -32,24 +34,69 @@ export class Plante {
   }
 
   public get delaiArrosage(): number {
-    return this._delaiArrosage;
+  return this._delaiArrosage;
+}
+
+public set delaiArrosage(value: number) {
+  this._delaiArrosage = value;
+}
+
+public get delaiRecolte(): number {
+  return this._delaiRecolte;
+}
+
+public set delaiRecolte(value: number) {
+  this._delaiRecolte = value;
+}
+
+public get description(): string {
+  return this._description;
+}
+
+public set description(value: string) {
+  this._description = value;
+}
+
+public get conseil(): string {
+  return this._conseil;
+}
+
+public set conseil(value: string) {
+  this._conseil = value;
+}
+
+public get dureeVie(): number {
+  return this._dureeVie;
+}
+
+public set dureeVie(value: number) {
+  this._dureeVie = value;
+}
+
+public get nom(): string {
+  return this._nom;
+}
+
+public set nom(value: string) {
+  this._nom = value;
+}
+
+
+  public get comestible(): boolean {
+    return this.comestible;
+  }
+    
+  public set comestible(value: boolean) {
+    this.comestible = value;
   }
 
-      public get comestible(): boolean {
-        return this.comestible;
-      }
+  public get icone(): string {
+    return this.icone;
+  }
     
-      public set comestible(value: boolean) {
-        this.comestible = value;
-      }
-
-      public get icone(): string {
-        return this.icone;
-      }
-    
-      public set icone(value: string) {
-        this.icone = value;
-      }
+  public set icone(value: string) {
+    this.icone = value;
+  }
 
 
 }
