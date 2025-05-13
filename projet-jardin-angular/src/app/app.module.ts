@@ -31,6 +31,7 @@ import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
 import { AdminCultureComponent } from './admin-culture/admin-culture.component'; 
 import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 
 
@@ -63,6 +64,7 @@ import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-
     AdminCultureComponent,
     ModificationModalComponent,
     ConfirmationModalComponent,
+    ModificationLieuModalComponent,
     AlertBadgeModalComponent
   ],
   imports: [
