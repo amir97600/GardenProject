@@ -29,22 +29,4 @@ export class AdminJardinService {
         }
     
              
-    
-  
-    public getVille(codePostal: string,jardinForm: FormGroup,messageVilleError: string): void {
-      this.villeService.getVilleByCodePostal(codePostal).subscribe({
-        next: (ville) => {
-          if (ville && ville.trim().length > 0) {
-            jardinForm.get('lieu')?.setValue(ville);
-          } else {
-            jardinForm.get('lieu')?.setValue('');
-            messageVilleError = 'Ville introuvable pour ce code postal.';
-          }
-        },
-        error: (err) => {
-          jardinForm.get('lieu')?.setValue('');
-          messageVilleError = 'Une erreur est survenue';
-        }
-      });
-    }
 }

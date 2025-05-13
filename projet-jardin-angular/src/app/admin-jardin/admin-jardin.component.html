@@ -67,47 +67,15 @@
 
 
 <!-- Modal -->
-<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+<modal-form
+  [title]="'Créer ou éditer un Jardin'"
+  [form]="jardinForm"
+  [fields]="jardinFields"
+  [show]="showModal"
+  (close)="closeModal()"
+  (submit)="onSignupSubmit()"
+></modal-form>
 
-    <div class="modal-content" (click)="$event.stopPropagation()">
-        <button class="close-btn" (click)="closeModal()">&times;</button>
-      
-        <h2>Créer ou éditer un Jardin</h2>
-
-        <form [formGroup]="jardinForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
-
-            <div>
-                <label for="libelle">Libelle</label>
-                <input class="modal-input" id="libelle" formControlName="libelle" type="text" required />
-                <div class="error-message" *ngIf="jardinForm.get('libelle')?.hasError('required')">
-                    Le libelle est obligatoire
-                </div>
-            </div>
-            
-            <div>
-                <label for="lieu">Ville</label>
-                <input class="modal-input" id="lieu" formControlName="lieu" type="text" required />
-                <div class="error-message" *ngIf="jardinForm.get('lieu')?.hasError('required')">
-                    La Ville est obligatoire
-                </div>
-            </div>
-            
-            <div>
-                <label for="superficie">superficie</label>
-                <input class="modal-input" id="superficie" formControlName="superficie" type="text" required />
-                <div class="error-message" *ngIf="jardinForm.get('superficie')?.hasError('required')">
-                    La superficie est obligatoire
-                </div>
-            </div>
-            
-            <button type="submit" class="btn">Enregistrer</button>
-
-        </form>
-
-    </div>
-  
-
-</div>
 
 
 

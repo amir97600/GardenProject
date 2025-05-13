@@ -102,112 +102,26 @@
       <label for="Admin">Compte Admin</label>
       <input name="Admin" type="radio" value="Compte Admin" (click)="setBoolAdmin()">
     </div>
-  </div>
-
-  
-
-  <div *ngIf="boolClient" class="modal-content" (click)="$event.stopPropagation()">
-    <button class="close-btn" (click)="closeModal()">&times;</button>
-      
-      <h2>Créer ou éditer un Client</h2>
-
-      <form [formGroup]="clientForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
-
-        <div>
-          <label for="nom">Nom</label>
-          <input class="modal-input" id="nom" formControlName="nom" type="text" required />
-          <div class="error-message" *ngIf="clientForm.get('nom')?.hasError('required')">
-              Le nom est obligatoire
-          </div>
-        </div>
-        
-        <div>
-          <label for="prenom">Prénom</label>
-          <input class="modal-input" id="prenom" formControlName="prenom" type="text" required />
-          <div class="error-message" *ngIf="clientForm.get('prenom')?.hasError('required')">
-              Le prénom est obligatoire
-          </div>
-        </div>
-        
-        <div>
-          <label for="login">Login</label>
-          <input class="modal-input" id="login" formControlName="login" type="text" required />
-          <div class="error-message" *ngIf="clientForm.get('login')?.hasError('required')">
-              Le login est obligatoire
-          </div>
-        </div>
-        
-        <div>
-          <label for="jardin">Nom du jardin</label>
-          <input class="modal-input" id="jardin" formControlName="jardin" type="text" required />
-          <div class="error-message" *ngIf="clientForm.get('jardin')?.hasError('required')">
-              Le nom du jardin est obligatoire
-          </div>
-        </div>
-        
-        <div>
-          <label for="lieu">Ville du jardin</label>
-          <input class="modal-input" id="lieu" formControlName="lieu" type="text"  required/>
-        </div>
-        
-        <div>
-          <label for="password">Mot de passe</label>
-          <input class="modal-input" id="password" formControlName="password" type="password" required />
-          <div class="error-message" *ngIf="clientForm.get('password')?.hasError('required')">
-              Le mot de passe est obligatoire
-          </div>
-          <div class="error-message" *ngIf="clientForm.get('password')?.hasError('minlength')">
-              Le mot de passe doit faire au moins six caractères
-          </div>
-        </div>
-        
-
-        <button type="submit" class="btn">Enregistrer</button>
-
-      </form>
-
-  </div>
-
-  <div *ngIf="boolAdmin" class="modal-content" (click)="$event.stopPropagation()">
-
-    <button class="close-btn" (click)="closeModal()">&times;</button>
-    
-    <h2 >Créer ou éditer un Admin</h2>
-
-    <form [formGroup]="adminForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
-
-
-        <div>
-          <label for="login">Login</label>
-          <input class="modal-input" id="login" formControlName="login" type="text" required />
-        </div>
-        <div class="error-message" *ngIf="adminForm.get('login')?.hasError('required')">
-            Le login est obligatoire
-        </div>
-      
-      
-        <div>
-          <label for="password">Mot de passe</label>
-          <input class="modal-input" id="password" formControlName="password" type="password" required />
-          <div class="error-message" *ngIf="adminForm.get('password')?.hasError('required')">
-              Le mot de passe est obligatoire
-          </div>
-        </div>
-        
-        <div class="error-message" *ngIf="adminForm.get('password')?.hasError('minlength')">
-            Le mot de passe doit faire au moins six caractères
-        </div>
-    
-
-      <button type="submit" class="btn">Enregistrer</button>
-
-    </form>
-
-  </div>
-
-  
+  </div>  
 
 </div>
 
 
 
+<modal-form
+  [title]="'Créer ou éditer un Client'"
+  [form]="clientForm"
+  [fields]="clientFields"
+  [show]="showModal && boolClient"
+  (close)="closeModal()"
+  (submit)="onSignupSubmit()"
+></modal-form>
+
+<modal-form
+  [title]="'Créer ou éditer un Admin'"
+  [form]="adminForm"
+  [fields]="adminFields"
+  [show]="showModal && boolAdmin"
+  (close)="closeModal()"
+  (submit)="onSignupSubmit()"
+></modal-form>

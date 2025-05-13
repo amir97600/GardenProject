@@ -3,13 +3,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 6vh;
+    padding-top: 2vh;
 }
 
 span{
-    font-size: 8vh;
     display: flex;
 }
+
+.logo{
+    width: 15vh;
+}
+
 h1{
     font-size: 5vh;
     margin-bottom: 15px;
@@ -69,108 +73,4 @@ input{
   
   
 
-/* Style de la pop-up */
 
-.modal-overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: rgba(0, 0, 0, 0.6);
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 9999;
-backdrop-filter: blur(6px);
-}
-
-.modal-content {
-background-color: rgba(246, 253, 247, 0.9);
-border-radius: 16px;
-padding: 20px;
-width: 90%;
-max-width: 550px;
-max-height: 700px;
-overflow-y: auto;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 20px;
-position: relative;
-}
-
-/* Bouton de fermeture (croix) */
-.close-btn {
-position: absolute;
-top: 10px;
-right: 10px;
-font-size: 30px;
-color: #294e25;
-background: none;
-border: none;
-cursor: pointer;
-transition: transform 0.2s, color 0.2s;
-}
-
-.close-btn:hover {
-transform: scale(1.1);
-color: #f00;
-}
-
-/* Formulaire */
-.signup-form label {
-font-size: 1rem;
-color: #294e25;
-margin-bottom: 5px;
-}
-
-.signup-form input {
-padding: 12px;
-margin-bottom: 15px;
-border: 1px solid #ccc;
-border-radius: 8px;
-font-size: 1rem;
-width: 300px;
-height: 20px;
-background-color: #f5f9f5;
-}
-
-.signup-form input:focus {
-border-color: #76b947;
-outline: none;
-}
-
-.signup-form .btn {
-background-color: #294e25;
-color: rgb(255, 255, 255);
-padding: 10px 20px;
-border: none;
-border-radius: 8px;
-font-size: 1rem;
-font-weight: 500;
-cursor: pointer;
-transition: all 0.25s ease;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-align-self: center;
-}
-
-.signup-form .btn:hover {
-background-color: #1c351e;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-transform: translateY(-2px);
-}
-
-.signup-form .btn:active {
-transform: translateY(0);
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.modal-content input:disabled{
-    background-color: #dbdfdbea!important;
-}
-
-h2{
-    align-self: flex-start;
-}

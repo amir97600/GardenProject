@@ -33,6 +33,10 @@ import { ModificationModalComponent } from './modal/modification-modal/modificat
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
+import { InscriptionModalComponent } from './modal/inscription-modal/inscription-modal.component';
+import { ModalFormComponent } from './modal/modal-form/modal-form.component';
+import { AdminFilterBarComponent } from './admin-filter-bar/admin-filter-bar.component';
+import { AdminTableComponent } from './admin-table/admin-table.component';
 
 
 @NgModule({
@@ -65,7 +69,11 @@ import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-
     ModificationModalComponent,
     ConfirmationModalComponent,
     ModificationLieuModalComponent,
-    AlertBadgeModalComponent
+    AlertBadgeModalComponent,
+    InscriptionModalComponent,
+    ModalFormComponent,
+    AdminFilterBarComponent,
+    AdminTableComponent
   ],
   imports: [
     BrowserModule,

@@ -74,20 +74,5 @@ export class AdminUtilisateurService {
             
   
 
-  public getVille(codePostal: string,clientForm: FormGroup,messageVilleError: string): void {
-    this.villeService.getVilleByCodePostal(codePostal).subscribe({
-      next: (ville) => {
-        if (ville && ville.trim().length > 0) {
-          clientForm.get('lieu')?.setValue(ville);
-        } else {
-          clientForm.get('lieu')?.setValue('');
-          messageVilleError = 'Ville introuvable pour ce code postal.';
-        }
-      },
-      error: (err) => {
-        clientForm.get('lieu')?.setValue('');
-        messageVilleError = 'Une erreur est survenue';
-      }
-    });
-  }
+  
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, startWith } from 'rxjs';
 import { Culture } from '../cultures/culture';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CultureService } from '../cultures/culture.service';
 import { JardinService } from '../service/jardin.service';
 import { PlanteService } from '../service/plante.service';
+import { AdminCultureService } from '../service/admin-culture.service';
 
 @Component({
   selector: 'admin-culture',
@@ -101,13 +102,13 @@ export class AdminCultureComponent {
           this.showModal = true;
         }
     
-      public editCulture(jardin:any){
-        this.jardin = jardin;
+      public editCulture(culture:any){
+        this.culture = culture;
   
-        this.jardinForm.patchValue({
-          libelle: this.jardin.nom,
-          lieu: this.jardin.lieu,
-          superficie: this.jardin.superficie,
+        this.cultureForm.patchValue({
+          idJardin: this.culture.idJardin,
+          idPlante: this.culture.idPlante,
+          datePlantation: this.culture.datePlantation,
           })
   
         this.openModal();
@@ -116,15 +117,15 @@ export class AdminCultureComponent {
      
         
       public closeModal(): void {
-        this.jardinForm.reset();
-        this.jardin = new Culture('', 0, '');
+        this.cultureForm.reset();
+        this.culture = new Culture('','', 0,0,0,'',false);
         this.showModal = false;
         this.messageError = '';
       }
         
       public onSignupSubmit(): void {
-        if (this.jardinForm.valid) {
-          this.adminCultureService.saveCulture(this.jardinForm, this.jardin);
+        if (this.cultureForm.valid) {
+          //this.adminCultureService.saveCulture(this.jardinForm, this.jardin);
           this.closeModal();
         }
       }

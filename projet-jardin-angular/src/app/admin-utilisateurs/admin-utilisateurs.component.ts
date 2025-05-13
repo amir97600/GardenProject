@@ -38,6 +38,20 @@ export class AdminUtilisateursComponent implements OnInit{
   public boolClient:boolean = false;
   public boolAdmin:boolean = false;
 
+  clientFields = [
+    { label: 'Nom', name: 'nom', required: true },
+    { label: 'Prénom', name: 'prenom', required: true },
+    { label: 'Login', name: 'login', required: true },
+    { label: 'Nom du jardin', name: 'jardin', required: true },
+    { label: 'Lieu', name: 'lieu', required: true },
+    { label: 'Mot de passe', name: 'password', type: 'password', required: true }
+  ];
+  
+  adminFields = [
+    { label: 'Login', name: 'login', required: true },
+    { label: 'Mot de passe', name: 'password', type: 'password', required: true }
+  ];
+
   constructor(private adminUtilisateurService : AdminUtilisateurService,private adminService: AdminService,private clientService: ClientService, private formBuilder: FormBuilder, private villeService: VilleService, private serviceJardin: JardinService){}
   ngOnInit(): void {
 
@@ -96,12 +110,12 @@ export class AdminUtilisateursComponent implements OnInit{
       login: ['', Validators.required],
       jardin: ['', Validators.required],
       lieu: ['',Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required]]
     });
 
     this.adminForm = this.formBuilder.group({
       login: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required]]
     });
     
 

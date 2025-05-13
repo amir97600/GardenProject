@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../authentification/auth.service';
 import { AuthRequest } from '../authentification/auth-request';
 import { catchError, Observable, of, Subscription, switchMap } from 'rxjs';
-import { Client } from '../model/client';
-import { Jardin } from '../model/jardin';
 import { ClientService } from '../service/client.service';
 import { JardinService } from '../service/jardin.service';
 import { VilleService } from '../service/ville.service';
@@ -18,20 +16,13 @@ import { AdminUtilisateurService } from '../service/admin-utilisateur.service';
   styleUrls: ['./connexion.component.css']
 })
 
-export class ConnexionComponent implements OnInit,OnDestroy {
+export class ConnexionComponent {
+
   public authForm!: FormGroup;
   public showModal: boolean = false;
-  public signupForm!: FormGroup;
   public loginCtrl!: FormControl;
   public passwordCtrl!: FormControl;
   public messageError:string = '';
-  public messageVilleError:string = '';
-  public client:Client = new Client('','','','',0);
-  public jardin:Jardin = new Jardin('',5,'Paris');
-  public savedJardin!:Observable<Jardin>;
-  public savedJardinId: number = 0;
-  public codePostalValue = '';
-  private codePostalSubscription!: Subscription;
 
 
   
@@ -46,32 +37,10 @@ export class ConnexionComponent implements OnInit,OnDestroy {
       login: this.loginCtrl,
       password: this.passwordCtrl
     });
-
-    this.signupForm = this.formBuilder.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      login: ['', Validators.required],
-      jardin: ['', Validators.required],
-      codePostal: ['',Validators.required],
-      lieu: ['Entrez le code postal de la ville',Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-
-    this.signupForm.get('lieu')?.disable();
-
-    this.codePostalSubscription = this.signupForm.get('codePostal')?.valueChanges.subscribe(value => {
-      if (value.length >= 5) {
-        this.getVille(value);
-      }
-    })!;
     
   }
 
-  ngOnDestroy(): void {
-    if (this.codePostalSubscription) {
-      this.codePostalSubscription.unsubscribe();
-    }
-  }
+  
 
   public authenticate() {
     this.service.authenticate(new AuthRequest(this.authForm.value.login, this.authForm.value.password))
@@ -108,16 +77,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
     this.showModal = false;
   }
   
-  public onSignupSubmit(): void {
-    if (this.signupForm.valid) {
-      this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId)
-    }
-    this.closeModal();
-  }
-
-  public getVille(codePostal: string): void {
-    this.adminUtilisateurService.getVille(codePostal,this.signupForm,this.messageVilleError)
-  }
+  
 
 
 }

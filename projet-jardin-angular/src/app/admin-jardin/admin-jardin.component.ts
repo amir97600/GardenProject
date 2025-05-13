@@ -126,7 +126,12 @@ export class AdminJardinComponent {
         this.closeModal();
       }
     }
-  
+
+    public jardinFields = [
+      { label: 'Libellé', name: 'libelle', type: 'text', required: true },
+      { label: 'Ville', name: 'lieu', type: 'text', required: true },
+      { label: 'Superficie', name: 'superficie', type: 'text', required: true }
+    ];  
   
   }
   

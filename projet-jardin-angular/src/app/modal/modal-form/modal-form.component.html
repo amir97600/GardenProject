@@ -1,0 +1,26 @@
+<div class="modal-overlay" *ngIf="show" (click)="close.emit()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="close.emit()">&times;</button>
+  
+      <h2>{{ title }}</h2>
+  
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="signup-form">
+        <div *ngFor="let field of fields">
+          <label [for]="field.name">{{ field.label }}</label>
+          <input
+            class="modal-input"
+            [id]="field.name"
+            [type]="field.type || 'text'"
+            [formControlName]="field.name"
+            [required]="field.required"
+          />
+          <div class="error-message" *ngIf="form.get(field.name)?.invalid">
+            Ce champ est obligatoire
+          </div>
+        </div>
+  
+        <button type="submit" class="btn">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+  

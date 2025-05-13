@@ -1,8 +1,8 @@
 <div class="container">
 
-    <span>🌿</span>
+    <span><img src="logo.jpg" alt="Logo" class="logo"></span>
 
-    <h1>Bienvenue dans le Jardin Connecté </h1>
+    <h1>Bienvenue dans Plante & Moi </h1>
 
     <form (ngSubmit)="authenticate()" [formGroup]="authForm">
         <input type="text" formControlName="login" placeholder="Identifiant" />
@@ -35,65 +35,5 @@
 
 </div>
 
+<inscription-modal #inscriptionModal [titre]="'Creer un nouveau compte'" [(isOpen)]="showModal" ></inscription-modal>
 
-<!-- Modal -->
-<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
-
-    <div class="modal-content" (click)="$event.stopPropagation()">
-
-        <button class="close-btn" (click)="closeModal()">&times;</button>
-        
-        <h2>Créer un nouveau compte</h2>
-
-        <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
-        <label for="nom">Nom</label>
-        <input class="modal-input" id="nom" formControlName="nom" type="text" required />
-        <div class="error-message" *ngIf="signupForm.get('nom')?.hasError('required')">
-            Le nom est obligatoire
-        </div>
-
-        <label for="prenom">Prénom</label>
-        <input class="modal-input" id="prenom" formControlName="prenom" type="text" required />
-        <div class="error-message" *ngIf="signupForm.get('prenom')?.hasError('required')">
-            Le prénom est obligatoire
-        </div>
-
-        <label for="login">Login</label>
-        <input class="modal-input" id="login" formControlName="login" type="text" required />
-        <div class="error-message" *ngIf="signupForm.get('login')?.hasError('required')">
-            Le login est obligatoire
-        </div>
-
-        <label for="jardin">Nom du jardin</label>
-        <input class="modal-input" id="jardin" formControlName="jardin" type="text" required />
-        <div class="error-message" *ngIf="signupForm.get('jardin')?.hasError('required')">
-            Le nom du jardin est obligatoire
-        </div>
-
-        <label for="codePostal">Code postal de la ville du jardin</label>
-        <input class="modal-input" id="codePostal" formControlName="codePostal" type="text" required/>
-        <div class="error-message" *ngIf="signupForm.get('codePostal')?.hasError('required')">
-            Le code postal est requis
-        </div>
-
-        <label for="lieu">Ville du jardin</label>
-        <input class="modal-input" id="lieu" formControlName="lieu" type="text"  required/>
-        <div *ngIf="messageVilleError" class="error">{{ messageVilleError }}</div>
-        
-
-        <label for="password">Mot de passe</label>
-        <input class="modal-input" id="password" formControlName="password" type="password" required />
-        <div class="error-message" *ngIf="signupForm.get('password')?.hasError('required')">
-            Le mot de passe est obligatoire
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('password')?.hasError('minlength')">
-            Le mot de passe doit faire au moins six caractères
-        </div>
-
-        <button type="submit" class="btn">S'inscrire</button>
-
-        </form>
-
-    </div>
-
-</div>
