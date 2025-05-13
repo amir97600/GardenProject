@@ -67,41 +67,55 @@
   margin: 10px 0;
 }
 
+.icone-titre {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+
 .boutons-fiche {
-  margin-top: 1rem;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
-.btn-recolter {
-  background-color: #5cb85c; /* vert Bootstrap */
-  color: white;
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+
+.emoji-btn {
+  background: none;
   border: none;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border-radius: 5px;
+  font-size: 2.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s;
 }
 
-.btn-recolter:hover {
-  background-color: #449d44;
+.emoji-btn:hover {
+  transform: scale(1.3);
 }
 
 .btn-supprimer {
-  background-color: #d9534f;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #d11a2a;
+  color: #d11a2a;
+  padding: 4px 8px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
 .btn-supprimer:hover {
-  background-color: #c9302c;
+  background-color: #d11a2a;
+  color: white;
 }
+
+
 
 
 .garden-map {

@@ -15,16 +15,22 @@
     <div class="fiche-plante" *ngIf="cultureSelectionnee">
       <button class="close-btn" (click)="cultureSelectionnee = undefined">×</button>
 
-      <h3 *ngIf="nomPlanteSelectionnee">Nom de la plante : {{ nomPlanteSelectionnee }}</h3>
-      <p><strong>Quantité :</strong> {{ cultureSelectionnee.quantite }}</p>
-      <p><strong>Date plantation :</strong> {{ cultureSelectionnee.datePlantation }}</p>
+      <h3 *ngIf="nomPlanteSelectionnee && iconePlanteSelectionnee">
+        <img [src]="'/' + iconePlanteSelectionnee + '.png'" alt="Icône" class="icone-titre">
+        {{ nomPlanteSelectionnee }}
+      </h3>
+      <p><strong>Quantité plantée :</strong> {{ cultureSelectionnee.quantite }}</p>
+      <p><strong>Planté le :</strong> {{ cultureSelectionnee.datePlantation }}</p>
       <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
-      <p><strong>Récolté :</strong> {{ cultureSelectionnee.recolte ? 'Oui' : 'Non' }}</p>
       
       <br>
       <div class="boutons-fiche">
-          <button class="btn-recolter" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture()">🧺 Récolter</button>
-          <button class="btn-supprimer" (click)="supprimerCulture()">✖ Supprimer</button>
+        <div>
+          <button class="emoji-btn" (click)="arroserCulture()" title="Arroser">💧</button>
+          <button class="emoji-btn" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture()" title="Récolter">🧺</button>
+        </div>
+        <br>
+        <button class="btn-supprimer" (click)="supprimerCulture()">✖ Supprimer</button>
       </div>
 
 

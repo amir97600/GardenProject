@@ -113,16 +113,40 @@ AfficherNomCulture(culture: Culture): string {
 
 cultureSelectionnee?: Culture;
 nomPlanteSelectionnee?: string;
+iconePlanteSelectionnee?: string;
+
 
 afficherFiche(culture: Culture): void {
   this.cultureSelectionnee = culture;
   this.nomPlanteSelectionnee = undefined;
+  this.iconePlanteSelectionnee = undefined;
+
 
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
+    this.iconePlanteSelectionnee = plante.icone;
     this.cultureSelectionnee!.planteType = plante.planteType;
   });
 }
+
+arroserCulture(): void {
+  if (!this.cultureSelectionnee) return;
+
+  const cultureArrosee = {
+    ...this.cultureSelectionnee,
+    dateDernierArrosage: new Date().toISOString().split('T')[0],
+  };
+
+  this.cultureService.save(cultureArrosee).subscribe(() => {
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+      this.cultureSelectionnee = undefined;
+      this.nomPlanteSelectionnee = undefined;
+      this.iconePlanteSelectionnee = undefined;
+    });
+  });
+}
+
 
 
 supprimerCulture(): void {
