@@ -51,6 +51,8 @@ public abstract class Plante {
 	@JsonView(Views.ViewBasic.class)
 	@Column(name="delai_arrosage")
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
+	@Column(name="icone", length = 100) 
+	protected String icone;
 	
 	@OneToMany(mappedBy = "plante")
 	protected List<Culture> cultures = new ArrayList<Culture>();
@@ -59,16 +61,18 @@ public abstract class Plante {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Plante(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage) {
+	public Plante(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, String icone) {
 		this.nom = nom;
 		this.description = description;
 		this.conseil = conseil;
 		this.delaiRecolte = delaiRecolte;
 		this.dureeVie = dureeVie;
 		this.delaiArrosage = delaiArrosage;
+		this.icone = icone;
+
 	}
 	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -132,12 +136,23 @@ public abstract class Plante {
 	public void setCultures(List<Culture> cultures) {
 		this.cultures = cultures;
 	}
+	
+	public String getIcone() {
+		return icone;
+	}
+
+	public void setIcone(String icone) {
+		this.icone = icone;
+	}
 
 	@Override
 	public String toString() {
-		return "Plante [id=" + id + ", nom=" + nom + ", description=" + description + ", conseil=" + conseil + ", delaiRecolte=" + delaiRecolte
-				+ ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage + ", cultures=" + cultures + "]";
+		return "Plante [id=" + id + ", nom=" + nom + ", description=" + description + ", conseil=" + conseil
+				+ ", delaiRecolte=" + delaiRecolte + ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage
+				+ ", icone=" + icone + ", cultures=" + cultures + "]";
 	}
+
+
 
 	
 

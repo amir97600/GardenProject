@@ -126,6 +126,8 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   aspect-ratio: 1 / 0.8;
   width: 100%;
+    flex-direction: column;
+
 }
 
 .plot:hover {
@@ -147,19 +149,33 @@
   .garden-map {
     grid-template-columns: repeat(4, 70px);
     grid-template-rows: repeat(5, 70px);
+    gap: 8px;
   }
 
   .plot {
-    font-size: 2rem;
+    width: 70px;
+    height: 70px;
+    font-size: 0.7rem;
   }
+
+
 }
+
+  .icone-plot {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nom-plot {
+    font-size: 0.65rem;
+    margin-top: 3px;
+  }
+
 .ajout-culture-fixed {
    margin: 20px 0 10px 40px; 
 }
 
-.emoji-plus {
-  margin-right: 8px;
-}
+
 
 .form-ajout {
   background-color: #ffffffcc;

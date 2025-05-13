@@ -3,9 +3,11 @@
       <div class="garden-map">
         <ng-container *ngFor="let culture of cultures">
           <div class="plot" *ngIf="!culture.recolte" (click)="afficherFiche(culture)">
-            {{ culture.nomPlante }}
+            <img [src]="AfficherIconeCulture(culture)" class="icone-plot" alt="Icône">
+            <div class="nom-plot">{{ AfficherNomCulture(culture) }}</div>
           </div>
         </ng-container>
+        
 
       </div>
     </div>
@@ -33,13 +35,13 @@
   </div>
   
   <div class="ajout-culture-fixed">
-    <button class="btn" (click)="toggleForm()">
+    <button class="btn" (click)="fermerFormAjout()">
       <span class="emoji-plus">✚</span> Ajouter une culture
     </button>
   </div>
   
-  <form *ngIf="showForm" class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="addCulture()">
-    <button class="close-btn" (click)="toggleForm()" aria-label="Fermer">&times;</button>
+  <form *ngIf="showForm" class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="ajouterCulture()">
+    <button class="close-btn" (click)="fermerFormAjout()" aria-label="Fermer">&times;</button>
     
     <h3>Nouvelle culture</h3>
 
