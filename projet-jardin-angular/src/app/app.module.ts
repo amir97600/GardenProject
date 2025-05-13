@@ -29,6 +29,7 @@ import { Error403Component } from './error403/error403.component';
 import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
+import { MeteoComponent } from './meteo/meteo.component';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-
     Error403Component,
     ModificationModalComponent,
     ConfirmationModalComponent,
-    AlertBadgeModalComponent
+    AlertBadgeModalComponent,
   ],
   imports: [
     BrowserModule,

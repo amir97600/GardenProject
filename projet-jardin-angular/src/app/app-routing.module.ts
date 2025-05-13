@@ -13,6 +13,7 @@ import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.compon
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminGuard } from './admin/admin.guard';
 import { Error403Component } from './error403/error403.component';
+import { MeteoComponent } from './meteo/meteo.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: '404',
     component: Error404Component
+  },
+  {
+    path: 'meteo',
+    component: MeteoComponent
   },
   {
     path: '**',
