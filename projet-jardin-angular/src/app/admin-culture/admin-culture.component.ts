@@ -31,8 +31,8 @@ export class AdminCultureComponent {
       constructor(private adminCultureService: AdminCultureService ,private cultureService: CultureService,private jardinService: JardinService,private planteService: PlanteService,private formBuilder: FormBuilder){}
       ngOnInit(): void {
     
-        this.filteredCultures$ = combineLatest([
-          this.jardinService.findAll(),
+          this.filteredCultures$ = combineLatest([
+          this.cultureService.findAll(),
           this.searchTermSubject.pipe(startWith('')),
           this.selectedFilterSubject.pipe(startWith(null))
         ]).pipe(

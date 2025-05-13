@@ -5,6 +5,9 @@ import { ClientService } from '../service/client.service';
 import { AuthService } from '../authentification/auth.service';
 import { PlanteService } from '../service/plante.service';
 import { Plante } from '../model/plante';
+import { JardinService } from '../service/jardin.service';
+import { Jardin } from '../model/jardin';
+import { Culture } from './culture';
 
 @Component({
   selector: 'app-cultures',
@@ -18,13 +21,17 @@ export class CulturesComponent implements OnInit {
   plantes: Plante[] = [];
   showForm = false;
   idJardin!: number;
+  cultures: any[] = [];
+
 
   constructor(
     private cultureService: CultureService,
     private formBuilder: FormBuilder,
     private clientService: ClientService,
     private planteService: PlanteService,
-    private authService: AuthService
+    private authService: AuthService,
+    private jardinService: JardinService
+
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +40,10 @@ export class CulturesComponent implements OnInit {
       quantite: [1],
       datePlantation: [''],
       dateDernierArrosage: [''],
-      recolte: [false]
+      recolte: [false],
+
     });
+
 
     this.planteService.findAll().subscribe((data: Plante[]) => {
       this.plantes = data;
@@ -43,6 +52,9 @@ export class CulturesComponent implements OnInit {
     const login = this.authService.getLoginFromToken();
     this.clientService.findByLogin(login).subscribe((client) => {
       this.idJardin = client.idJardin;
+      this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
+        this.cultures = jardin.cultures;
+      });
     });
   }
 
@@ -78,7 +90,62 @@ export class CulturesComponent implements OnInit {
       () => {
         this.showForm = false;
         this.cultureForm.reset();
+
+        this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
+          this.cultures = jardin.cultures;
+        });
       }
     );
   }
+
+cultureSelectionnee?: Culture;
+nomPlanteSelectionnee?: string;
+
+afficherFiche(culture: Culture): void {
+  this.cultureSelectionnee = culture;
+  this.nomPlanteSelectionnee = undefined;
+
+  this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
+    this.nomPlanteSelectionnee = plante.nom;
+    this.cultureSelectionnee!.planteType = plante.planteType;
+
+  });
+}
+
+supprimerCulture(): void {
+  if (!this.cultureSelectionnee) return;
+
+  this.cultureService.delete(this.cultureSelectionnee.id).subscribe(() => {
+    this.cultureSelectionnee = undefined;
+    this.nomPlanteSelectionnee = undefined;
+
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+    });
+  });
+}
+
+
+recolterCulture(): void {
+  if (!this.cultureSelectionnee) return;
+
+  const cultureRecoltee = {
+    ...this.cultureSelectionnee,
+    recolte: true,
+
+  };
+  console.log('Objet envoyé :', cultureRecoltee);
+
+  this.cultureService.save(cultureRecoltee).subscribe(() => {
+    this.cultureSelectionnee = undefined;
+    this.nomPlanteSelectionnee = undefined;
+
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+    });
+  });
+}
+
+
+
 }

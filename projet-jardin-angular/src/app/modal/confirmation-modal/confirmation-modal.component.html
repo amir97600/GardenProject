@@ -1,0 +1,12 @@
+<div *ngIf="isOpen" class="modal-overlay">
+    <div class="modal-content">
+        <h2>{{ titre }}</h2>
+
+        <p *ngIf="statutChangement" class="statut">{{ statutChangement }}</p>
+
+        <div class="button-container">
+            <button (click)="confirmer()">Confirmer</button>
+            <button class="secondary" (click)="fermer()">Annuler</button>
+        </div>
+    </div>
+</div>

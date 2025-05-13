@@ -29,6 +29,9 @@ import { Error403Component } from './error403/error403.component';
 import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
 import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
 import { AdminCultureComponent } from './admin-culture/admin-culture.component'; 
+import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
+import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { AdminCultureComponent } from './admin-culture/admin-culture.component';
     Error403Component,
     AdminUtilisateursComponent,
     AdminJardinComponent,
-    AdminCultureComponent
+    AdminCultureComponent,
+    ModificationModalComponent,
+    ConfirmationModalComponent,
+    AlertBadgeModalComponent
   ],
   imports: [
     BrowserModule,

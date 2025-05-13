@@ -1,0 +1,17 @@
+<div *ngIf="isOpen" class="modal-overlay">
+    <div class="modal-content">
+        <h2>{{ titre }}</h2>
+
+        <p *ngIf="statutChangement" class="statut">{{ statutChangement }}</p>
+
+        <input [type]="type" [(ngModel)]="valeur" [placeholder]="placeholder" class="input" />
+
+        <input *ngIf="requireConfirmation" [type]="type" [(ngModel)]="confirmationValeur"
+            placeholder="Confirmez {{ placeholder.toLowerCase() }}" class="input" />
+
+        <div class="button-container">
+            <button (click)="confirmer()">Confirmer</button>
+            <button class="secondary" (click)="fermer()">Retour</button>
+        </div>
+    </div>
+</div>
