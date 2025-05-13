@@ -1,60 +1,61 @@
 <div class="container">
 
-        <div class="card">
-            <h2>À faire aujourd'hui</h2>
-            <ul>
-                <li class="todo-item"><input type="checkbox"> 🌱 Arroser les tomates</li>
-                <li class="todo-item"><input type="checkbox"> 🥕 Récolter les carottes</li>
-                <li class="todo-item"><input type="checkbox"> 🍓 Arroser les fraises</li>
-            </ul>
+    <div class="card">
+        <h2>Aperçu du jardin</h2>
+        <div class="garden-preview">
+            <a [routerLink]="[ '/cultures' ]" class="preview-map-link">
+                <div class="preview-map">
+                    <img src="jardin-miniature.png" alt="Aperçu du jardin" />
+                    <div class="overlay"> Accéder à la carte du jardin</div>
+                </div>
+            </a>
         </div>
-
-        <div class="card">
-            <h2>Aperçu du jardin</h2>
-            <div class="plant">
-                <p>Tomates 🍅</p>
-                <div class="progress">
-                    <div class="progress-bar progress-70"></div>
-                </div>
-            </div>
-            <div class="plant">
-                <p>Carottes 🥕</p>
-                <div class="progress">
-                    <div class="progress-bar progress-90"></div>
-                </div>
-            </div>
-            <div class="plant">
-                <p>Fraises 🍓</p>
-                <div class="progress">
-                    <div class="progress-bar progress-40"></div>
-                </div>
-            </div>
-            <a class="btn-more" [routerLink]="[ '/cultures' ]">Voir plus</a>
-
-            <div class="garden-sim">
-                <a class="garden-link" href="#"><h3>Voir la carte du jardin🌿</h3></a>
-                <div class="plant-icon">🍅</div>
-                <div class="plant-icon">🥕</div>
-                <div class="plant-icon">🍓</div>
-            </div>
-        </div>
-
-        <div class="cards-wrapper">
-            <div class="card">
-                <h2>Météo</h2>
-                <div class="weather">
-                    <p><strong>Température :</strong> 🌤️ 21°C</p>
-                    <p><strong>Conditions :</strong> Ensoleillé avec quelques nuages</p>
-                    <p><strong>Humidité :</strong> 55%</p>
-                    <p><strong>Vent :</strong> 10 km/h NE</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Explorer les plantes</h2>
-                <p>Apprenez-en plus sur une grande variété de plantes, fruits et légumes!</p>
-                <a class="btn-more" [routerLink]="[ '/explorer' ]">Explorer</a>
-            </div>
-        </div>
-
     </div>
+
+
+    <div class="cards-wrapper">
+        <div class="card">
+            <h2>Météo</h2>
+            <div class="weather">
+                <p><strong>Température :</strong> 🌤️ 21°C</p>
+                <p><strong>Conditions :</strong> Ensoleillé avec quelques nuages</p>
+                <p><strong>Humidité :</strong> 55%</p>
+                <p><strong>Vent :</strong> 10 km/h NE</p>
+                <p><strong>Lune :</strong> 🌙 Croissante</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Explorer les plantes</h2>
+            <p>Apprenez-en plus sur une grande variété de plantes, fruits et légumes !</p>
+            <div class="btn" [routerLink]="[ '/explorer' ]">Explorer</div>
+        </div>
+    </div>
+
+    <div class="cards-wrapper">
+        <div class="card">
+            <h2>Accéder à mon profil</h2>
+            <p>Accéder à mon tableau de bord du jardin </p>
+            <div class="btn" [routerLink]="[ '/profil' ]">Mon profil</div>
+        </div>
+
+        <div class="card">
+            <h2>À propos de l'application</h2>
+            <p><strong>Bienvenue dans votre assistant personnel de jardinage !</strong> Cette application a été conçue
+                pour
+                vous aider à
+                suivre facilement vos cultures, consulter la météo locale et visualiser votre jardin
+                en un clin d’œil. <br><br>
+
+                Grâce à l'accès rapide à la carte de votre potager, vous pouvez observer l’évolution de vos plantes. En
+                explorant notre encyclopédie végétale,
+                découvrez une grande variété de fruits, légumes, herbes et fleurs, avec des conseils pratiques pour bien
+                les
+                entretenir. <br><br>
+
+                Que vous soyez un jardinier débutant ou passionné, cette application vous accompagne pour
+                cultiver un potager sain, productif et respectueux de la nature.</p>
+        </div>
+    </div>
+
+</div>
