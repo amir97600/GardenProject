@@ -188,5 +188,15 @@ getNom(plante: Plante): string {
 }
 
 
+popupMessage: string | null = null;
+
+afficherPopup(message: string): void {
+  this.popupMessage = message;
+  setTimeout(() => {
+    this.popupMessage = null;
+  }, 3000); 
+}
+
+
 
 }
