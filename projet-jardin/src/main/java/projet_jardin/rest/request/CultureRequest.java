@@ -98,15 +98,20 @@ public class CultureRequest {
 		jardin.setNumero(cultureRequest.getIdJardin());
 		culture.setJardin(jardin);
 		
-		Plante plante = null;
-		if(cultureRequest.getPlanteType() == PlanteType.FLEUR) {
-			plante = new Fleur();
-		} else if(cultureRequest.getPlanteType() == PlanteType.FRUITLEGUME) {
-			plante = new FruitLegume();
-		} 
-		plante.setId(cultureRequest.getIdPlante());
-		
-		culture.setPlante(plante);
+		Plante plante;
+    	PlanteType type = cultureRequest.getPlanteType();
+    	if (type == null) {
+        	throw new IllegalArgumentException("Le type de plante est requis");
+    	}
+
+    	switch (type) {
+        	case FLEUR -> plante = new Fleur();
+        	case FRUITLEGUME -> plante = new FruitLegume();
+        	default -> throw new IllegalArgumentException("Type de plante inconnu : " + type);
+    	}
+
+    	plante.setId(cultureRequest.getIdPlante());
+    	culture.setPlante(plante);
 		
 		return culture;
 	}
