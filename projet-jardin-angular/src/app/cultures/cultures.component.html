@@ -31,6 +31,10 @@
         <div class="recolte-chiffre">{{ joursRestantsAvantRecolte }}</div>
         <div class="recolte-label">jours avant récolte</div>
       </div>
+            <div class="progress-box" *ngIf="progressionRecolte !== undefined">
+        <div class="progress-bar-outer">
+        <div class="progress-bar-inner" [style.width.%]="progressionRecolte"></div>
+      </div>
 
 
       
