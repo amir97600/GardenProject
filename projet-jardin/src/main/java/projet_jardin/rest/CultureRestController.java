@@ -33,7 +33,7 @@ public class CultureRestController {
 	}
 	
 	@GetMapping("")
-	@JsonView(Views.ViewCulture.class)
+	// @JsonView(Views.ViewCulture.class)
 	public List<CultureResponse> getAll() {
 		List<Culture> cultures = this.daoCulture.findAll();
 
@@ -41,22 +41,23 @@ public class CultureRestController {
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewCulture.class)
+	// @JsonView(Views.ViewCulture.class)
 	public CultureResponse getById(@PathVariable Integer id) {
 		return this.daoCulture.findById(id).map(CultureResponse::convert)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 	
 	@PostMapping("")
-	@JsonView(Views.ViewCulture.class)
-	public Culture create(@RequestBody CultureRequest cultureRequest) {
+	// @JsonView(Views.ViewCulture.class)
+	public Culture create(@RequestBody CultureRequest cultureRequest, @RequestBody ClientRequest client) {
 		Culture culture = CultureRequest.convert(cultureRequest);
+		cultureService.ajouterCulture(culture, client.getId());
 
 		return daoCulture.save(culture);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewCulture.class)
+	// @JsonView(Views.ViewCulture.class)
 	public Culture update(@RequestBody CultureRequest cultureRequest, @PathVariable Integer id) {
 		if (id != cultureRequest.getId() || !this.daoCulture.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,19 +20,15 @@ public class Jardin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="numero",nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private int numero;
 	
 	@Column(name="nom", nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private String nom;
 	
 	@Column(name="lieu", nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private String lieu;
 	
 	@Column(name="superficie", nullable=false, columnDefinition = "DECIMAL(8,2)")
-	@JsonView(Views.ViewBasic.class)
 	private double superficie;
 	
 	@OneToMany(mappedBy = "jardin")
