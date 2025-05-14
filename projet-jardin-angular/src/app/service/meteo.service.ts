@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, switchMap, tap, throwError } from 'rxjs';
 import { environment } from '../environment/environment';
+import { secret } from '../environment/secret';
 
 interface Station {
   Id_station: string;
@@ -11,44 +12,9 @@ interface Station {
 @Injectable({
   providedIn: 'root'
 })
-// export class MeteoService {
-//   idStation = "01014002"; 
-
-//   private stationsUrl = 'station.json';
-
-//   getStations(): Observable<Station[]> {
-//     return this.http.get<Station[]>(this.stationsUrl);
-//   }
-
-//   findByVille(ville: string): Observable<string | null> {
-//     return this.getStations().pipe(
-//       map(stations => {
-//         const station = stations.find(s => s.Ville.toLowerCase() === ville.toLowerCase());
-//         return station ? station.Id_station : null;
-//       })
-//     );
-//   }
-  
-//   private url = `${environment.meteoBaseUrl}?id_station=${this.idStation}&format=json`;
-//   private apiKey = 'eyJ4NXQiOiJZV0kxTTJZNE1qWTNOemsyTkRZeU5XTTRPV014TXpjek1UVmhNbU14T1RSa09ETXlOVEE0Tnc9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbnRvaW5lZjAzQGNhcmJvbi5zdXBlciIsImFwcGxpY2F0aW9uIjp7Im93bmVyIjoiYW50b2luZWYwMyIsInRpZXJRdW90YVR5cGUiOm51bGwsInRpZXIiOiJVbmxpbWl0ZWQiLCJuYW1lIjoiRGVmYXVsdEFwcGxpY2F0aW9uIiwiaWQiOjI3ODM0LCJ1dWlkIjoiZjk0MWRhYmYtMGI3Zi00OTcwLTk1OWItOGQ2NjkwMTg1ZThlIn0sImlzcyI6Imh0dHBzOlwvXC9wb3J0YWlsLWFwaS5tZXRlb2ZyYW5jZS5mcjo0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyI1MFBlck1pbiI6eyJ0aWVyUXVvdGFUeXBlIjoicmVxdWVzdENvdW50IiwiZ3JhcGhRTE1heENvbXBsZXhpdHkiOjAsImdyYXBoUUxNYXhEZXB0aCI6MCwic3RvcE9uUXVvdGFSZWFjaCI6dHJ1ZSwic3Bpa2VBcnJlc3RMaW1pdCI6MCwic3Bpa2VBcnJlc3RVbml0Ijoic2VjIn19LCJrZXl0eXBlIjoiUFJPRFVDVElPTiIsInN1YnNjcmliZWRBUElzIjpbeyJzdWJzY3JpYmVyVGVuYW50RG9tYWluIjoiY2FyYm9uLnN1cGVyIiwibmFtZSI6IkRvbm5lZXNQdWJsaXF1ZXNPYnNlcnZhdGlvbiIsImNvbnRleHQiOiJcL3B1YmxpY1wvRFBPYnNcL3YxIiwicHVibGlzaGVyIjoiYmFzdGllbmciLCJ2ZXJzaW9uIjoidjEiLCJzdWJzY3JpcHRpb25UaWVyIjoiNTBQZXJNaW4ifV0sImV4cCI6MTc0NzE1MjEyOSwidG9rZW5fdHlwZSI6ImFwaUtleSIsImlhdCI6MTc0NzE0MjEyOSwianRpIjoiYmFiOGI3OTMtYzc5Yi00NTMyLTllOWMtMWYwZTQ2NmU3ZmRjIn0=.v-Y0c9q5M2R7XcZ55Lh9fkV6dwQe_s532_s-gzpL3jT91Qg6hDjEd-kE3ep4Qhv-kbSajmEWUDsZmQreooMHWkcp5igU-j0lqDH7JnnhnQe-54hiBnuHIgr8ioJskuot7PxSYNCfkrZL-S1uqLQlfFu0DwDXkHUQ_zmDSpNjeSgSOqX5oBSY8WLaXv1svm17tt8L80YNGa415vYripD_8lc2fxDVu0_bbsWPasT3puSHBnslyekpEIq0LgaNmFduB2J6IfDA5DpuZpo8pNYmuVOd8TIbKt0tE6BTZCHhTeCT2RbEQRPyvNnMo5LdkUny29-F2aCwptqbGl9UVJl2hg=='; // Remplace par ta clé API
-
-//   constructor(private http: HttpClient) {}
-
-// getTemperature(): Observable<any> {
-//   const headers = new HttpHeaders({
-//     'accept': '*/*',
-//     'apikey': this.apiKey
-//   });
-
-//   return this.http.get<any>(this.url, { headers }).pipe(
-//     tap(response => console.log('Réponse API complète:', response)) // Affichage dans la console
-//   );
-// }
-// 
-// }
 export class MeteoService {
   private stationsUrl = 'station.json';
-  private apiKey = 'eyJ4NXQiOiJZV0kxTTJZNE1qWTNOemsyTkRZeU5XTTRPV014TXpjek1UVmhNbU14T1RSa09ETXlOVEE0Tnc9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbnRvaW5lZjAzQGNhcmJvbi5zdXBlciIsImFwcGxpY2F0aW9uIjp7Im93bmVyIjoiYW50b2luZWYwMyIsInRpZXJRdW90YVR5cGUiOm51bGwsInRpZXIiOiJVbmxpbWl0ZWQiLCJuYW1lIjoiRGVmYXVsdEFwcGxpY2F0aW9uIiwiaWQiOjI3ODM0LCJ1dWlkIjoiZjk0MWRhYmYtMGI3Zi00OTcwLTk1OWItOGQ2NjkwMTg1ZThlIn0sImlzcyI6Imh0dHBzOlwvXC9wb3J0YWlsLWFwaS5tZXRlb2ZyYW5jZS5mcjo0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyI1MFBlck1pbiI6eyJ0aWVyUXVvdGFUeXBlIjoicmVxdWVzdENvdW50IiwiZ3JhcGhRTE1heENvbXBsZXhpdHkiOjAsImdyYXBoUUxNYXhEZXB0aCI6MCwic3RvcE9uUXVvdGFSZWFjaCI6dHJ1ZSwic3Bpa2VBcnJlc3RMaW1pdCI6MCwic3Bpa2VBcnJlc3RVbml0Ijoic2VjIn19LCJrZXl0eXBlIjoiUFJPRFVDVElPTiIsInN1YnNjcmliZWRBUElzIjpbeyJzdWJzY3JpYmVyVGVuYW50RG9tYWluIjoiY2FyYm9uLnN1cGVyIiwibmFtZSI6IkRvbm5lZXNQdWJsaXF1ZXNPYnNlcnZhdGlvbiIsImNvbnRleHQiOiJcL3B1YmxpY1wvRFBPYnNcL3YxIiwicHVibGlzaGVyIjoiYmFzdGllbmciLCJ2ZXJzaW9uIjoidjEiLCJzdWJzY3JpcHRpb25UaWVyIjoiNTBQZXJNaW4ifV0sImV4cCI6MTc0NzIxOTg2OSwidG9rZW5fdHlwZSI6ImFwaUtleSIsImlhdCI6MTc0NzIwOTg2OSwianRpIjoiZTFjMTZhNzUtZWUyYS00OWU1LWFjMWQtZDg1ZDdmMjc2YTMwIn0=.Zd8QR5BH_-yqdl_wHB3pdbrr9kA9t48fViYfEzQP_sJuwAit1C16uXoQO115bp3qxv2jIKIaLfH9EYmReuv_VSYyNg89qbpzWw5ob9sdOqPfjdS8GxHlwI5JOMzuOcUywzL9gy7RJV7Ne_eeEq1coKSRP91pMDi2SFf-SL5LJje-za0h4ngLO01cEG3plqaXOIf7nLuPjBI_gYOZMzM2Aui_ObS_27Rbged9iM8s_YZfS1wc1CZUG__dWrbRl2P-Et4x34LiBJBrP50RDREl-C9GbNr6NutoHxUkT4EhmlzMPs9N3tCKtmElA0UkXdY3u2ugurcwhC8fjUp09peX-Q=='; // Remplace par ta clé API
+  private apiKey = secret.apiKey;
 
   constructor(private http: HttpClient) {}
 
@@ -83,4 +49,80 @@ export class MeteoService {
       })
     );
   }
+
+  getDirectionVent(dd: number): string {
+    dd = dd % 360;
+    if (dd < 0) dd += 360;
+
+    if (dd >= 337.5 || dd < 22.5) return "Nord";
+    else if (dd >= 22.5 && dd < 67.5) return "Nord-Est";
+    else if (dd >= 67.5 && dd < 112.5) return "Est";
+    else if (dd >= 112.5 && dd < 157.5) return "Sud-Est";
+    else if (dd >= 157.5 && dd < 202.5) return "Sud";
+    else if (dd >= 202.5 && dd < 247.5) return "Sud-Ouest";
+    else if (dd >= 247.5 && dd < 292.5) return "Ouest";
+    else return "Nord-Ouest";
+}
+
+getConditionMeteo(t: number, u: number, ff: number): string {
+  let condition = '';
+
+  if (t < 0) {
+    condition += 'Il fait très froid ❄️, ';
+  } else if (t >= 0 && t <= 10) {
+    condition += 'Il fait froid 🧣, ';
+  } else if (t > 10 && t <= 25) {
+    condition += 'Il fait bon 🌤️, ';
+  } else {
+    condition += 'Il fait chaud ☀️, ';
+  }
+
+  // Humidité
+  if (u < 30) {
+    condition += 'l’humidité est faible 💧, ';
+  } else if (u >= 30 && u <= 70) {
+    condition += 'l’humidité est moyenne 💧, ';
+  } else {
+    condition += 'l’humidité est élevée 🌫️, ';
+  }
+
+  // Vitesse du vent
+  if (ff < 10) {
+    condition += 'et le vent est calme 🌬️.';
+  } else if (ff >= 10 && ff <= 30) {
+    condition += 'et le vent est modéré 🌬️.';
+  } else {
+    condition += 'et le vent est fort 💨.';
+  }
+
+  return condition;
+}
+
+lunePhase(): string {
+    // Date de la dernière nouvelle lune (6 janvier 2000)
+    const dateReference = new Date(2000, 0, 6);
+    
+    const dateActuelle = new Date();
+    
+    const joursEcoules = (dateActuelle.getTime() - dateReference.getTime()) / (1000 * 3600 * 24);
+    
+    const cycleLunaire = 29.53;
+    
+    const phase = (joursEcoules % cycleLunaire) / cycleLunaire;
+    
+    if (phase < 0.03) {
+        return "🌑 Nouvelle lune";
+    } else if (phase < 0.25) {
+        return "🌒 Premier quartier croissant";
+    } else if (phase < 0.50) {
+        return "🌓 Pleine lune";
+    } else if (phase < 0.75) {
+        return "🌔 Dernier quartier décroissant";
+    } else {
+        return "🌑 Nouvelle lune";
+    }
+}
+
+
+
 }

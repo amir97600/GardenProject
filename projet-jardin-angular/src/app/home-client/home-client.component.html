@@ -17,11 +17,11 @@
         <div class="card">
             <h2>Météo</h2>
             <div class="weather">
-                <p><strong>Conditions :</strong> 🌤️ Ensoleillé avec quelques nuages</p>
-                <p><strong>Température :</strong> 21°C</p>
-                <p><strong>Humidité :</strong> 55%</p>
-                <p><strong>Vent :</strong> 10 km/h NE</p>
-                <p><strong>Lune :</strong> 🌙 Croissante</p>
+                <p><strong>Conditions :</strong> {{condition}}</p>
+                <p><strong>Température :</strong> {{ temperature }} °C</p>
+                <p><strong>Humidité :</strong> {{ humidite }} %</p>
+                <p><strong>Vent :</strong> {{ vent }} km/h  {{ directionVent }}</p>
+                <p><strong>Lune :</strong> {{lune}}</p>
             </div>
         </div>
 
