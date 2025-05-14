@@ -20,22 +20,6 @@ export class MeteoComponent {
   humidite: number | null = null;
   lieuJardin: string | null = null;
 
-
-// ngOnInit(): void { 
-//   this.meteoService.getTemperature('BELLEY').subscribe({
-//     next: (data) => {
-//       console.log('Réponse complète:', data);
-//       console.log('Température:', data[0].t);
-//       console.log('Humidité:', data[0].u);
-//       this.temperature = Math.round(data[0].t - 273.15);
-//       this.humidite = data[0].u;
-//     },
-//     error: (err) => {
-//       console.error('Erreur:', err);
-//     }
-//   });
-// }
-
 ngOnInit(): void {
   const login = this.authService.getLoginFromToken();
 
