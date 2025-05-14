@@ -49,13 +49,36 @@ export class HomeClientComponent {
               this.humidite = data[0].u;
               this.vent = Math.round(data[0].ff * 3.6);
               this.dd = data[0].dd;
-              this.directionVent = this.meteoService.getDirectionVent(this.dd ??0);
-              this.condition = this.meteoService.getConditionMeteo(this.temperature ?? 0, this.humidite ?? 0, this.vent ?? 0);
+              this.directionVent = this.meteoService.getDirectionVent(this.dd ?? 0);
+              this.condition = this.meteoService.getConditionMeteo(
+                this.temperature ?? 0,
+                this.humidite ?? 0,
+                this.vent ?? 0
+              );
               this.lune = this.meteoService.lunePhase();
-
             },
             error: (err) => {
               console.error('Erreur météo:', err);
+              // Fallback sur Paris
+              this.meteoService.getTemperature("Paris").subscribe({
+                next: (data) => {
+                  console.log('Réponse complète (Paris):', data);
+                  this.temperature = Math.round(data[0].t - 273.15);
+                  this.humidite = data[0].u;
+                  this.vent = Math.round(data[0].ff * 3.6);
+                  this.dd = data[0].dd;
+                  this.directionVent = this.meteoService.getDirectionVent(this.dd ?? 0);
+                  this.condition = this.meteoService.getConditionMeteo(
+                    this.temperature ?? 0,
+                    this.humidite ?? 0,
+                    this.vent ?? 0
+                  );
+                  this.lune = this.meteoService.lunePhase();
+                },
+                error: (errParis) => {
+                  console.error('Erreur météo pour Paris également :', errParis);
+                }
+              });
             }
           });
         },
@@ -69,5 +92,6 @@ export class HomeClientComponent {
     }
   });
 }
+
   
 }

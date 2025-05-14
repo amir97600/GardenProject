@@ -31,7 +31,6 @@ import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmat
 import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
-import { MeteoComponent } from './meteo/meteo.component';
 
 
 @NgModule({
