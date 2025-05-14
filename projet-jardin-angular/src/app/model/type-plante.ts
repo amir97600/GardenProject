@@ -1,4 +1,5 @@
 export enum TypePlante {
-    Fleurs = "fleurs",
-    FruitsLegumes = "fruits_legumes",
-}
+    Fleur = "FLEUR",
+    FruitLegume = "FRUITLEGUME"
+  }
+  

@@ -15,6 +15,8 @@ import { AdminGuard } from './admin/admin.guard';
 import { Error403Component } from './error403/error403.component';
 import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
 import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
+import { AdminCultureComponent } from './admin-culture/admin-culture.component';
+import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,9 @@ const routes: Routes = [
       { path: 'admin', component: AdminComponent },
       { path: 'utilisateur', component: AdminUtilisateursComponent },
       { path: 'jardin', component: AdminJardinComponent },
+      { path: 'culture', component: AdminCultureComponent },
+      { path: 'plante', component: AdminPlanteComponent },
+
     ]
   },
   // Catch-all route (must be LAST)

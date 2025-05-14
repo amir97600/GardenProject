@@ -11,7 +11,6 @@ export class Plante {
     private _conseil: string,
     private _dureeVie: number,
     private _nom: string,
-    private _comestible: boolean,
   ) { }
 
   public get planteType(): TypePlante {
@@ -78,12 +77,5 @@ export class Plante {
     this._nom = value;
   }
 
-  public get comestible(): boolean {
-    return this._comestible;
-  }
-
-  public set comestible(value: boolean) {
-    this._comestible = value;
-  }
 }
 

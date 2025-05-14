@@ -23,7 +23,6 @@ export class AdminJardinService {
             },
             error: (err) => {
               console.error('Erreur lors de la sauvegarde du jardin', err);
-              // Tu peux aussi afficher un message d'erreur à l'utilisateur si nécessaire
             }
           });
         }

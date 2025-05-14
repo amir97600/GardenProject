@@ -14,11 +14,11 @@ import { AdminJardinService } from '../service/admin-jardin.service';
 export class AdminJardinComponent {
     filteredJardins$!: Observable<Jardin[]>;
     searchTerm: string = '';
-    selectedFilter: string | null = null;
+    selectedFilter: string = '';
     private searchTermSubject = new BehaviorSubject<string>('');
     private selectedFilterSubject = new BehaviorSubject<string | null>(null);
     UserProperties = [
-      "Id","Libelle","Lieu","Superficie"
+      "Id","Libelle","Lieu","Superficie","Cultures"
     ]
     public jardinForm!: FormGroup;
     public jardin:Jardin = new Jardin('',0,'');
@@ -70,7 +70,7 @@ export class AdminJardinComponent {
     selectFilter(property: string): void {
       // Si le filtre est déjà sélectionné, on le désélectionne
       if (this.selectedFilter === property) {
-        this.selectedFilter = null;
+        this.selectedFilter = '';
       } else {
         // Sinon, on sélectionne ce filtre
         this.selectedFilter = property;
@@ -128,9 +128,9 @@ export class AdminJardinComponent {
     }
 
     public jardinFields = [
-      { label: 'Libellé', name: 'libelle', type: 'text', required: true },
-      { label: 'Ville', name: 'lieu', type: 'text', required: true },
-      { label: 'Superficie', name: 'superficie', type: 'text', required: true }
+      { label: 'Libellé', name: 'libelle', type: 'text' as const, required: true },
+      { label: 'Ville', name: 'lieu', type: 'text' as const, required: true },
+      { label: 'Superficie', name: 'superficie', type: 'text' as const, required: true }
     ];  
   
   }

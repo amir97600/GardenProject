@@ -33,7 +33,6 @@ public class CultureRestController {
 	}
 	
 	@GetMapping("")
-	@JsonView(Views.ViewCulture.class)
 	public List<CultureResponse> getAll() {
 		List<Culture> cultures = this.daoCulture.findAll();
 

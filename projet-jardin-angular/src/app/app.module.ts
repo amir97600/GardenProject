@@ -35,8 +35,11 @@ import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 import { InscriptionModalComponent } from './modal/inscription-modal/inscription-modal.component';
 import { ModalFormComponent } from './modal/modal-form/modal-form.component';
-import { AdminFilterBarComponent } from './admin-filter-bar/admin-filter-bar.component';
-import { AdminTableComponent } from './admin-table/admin-table.component';
+import { AdminFilterComponent } from './admin-filter/admin-filter.component';
+import { UserTableComponent } from './user-table/user-table.component';
+import { GeneralTableComponent } from './general-table/general-table.component';
+import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
+
 
 
 @NgModule({
@@ -72,8 +75,10 @@ import { AdminTableComponent } from './admin-table/admin-table.component';
     AlertBadgeModalComponent,
     InscriptionModalComponent,
     ModalFormComponent,
-    AdminFilterBarComponent,
-    AdminTableComponent
+    AdminFilterComponent,
+    UserTableComponent,
+    GeneralTableComponent,
+    AdminPlanteComponent,
   ],
   imports: [
     BrowserModule,

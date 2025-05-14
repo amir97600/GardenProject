@@ -34,10 +34,14 @@ export class HomeAdminComponent implements OnInit{
 
   ngOnInit(): void {
     this.tables = this.databaseService.getTables().pipe(
-      map((tableNames: String[]) =>
-        tableNames.map(name => name.charAt(0).toUpperCase() + name.slice(1))
-      ));
+      map((tableNames: String[]) => 
+        tableNames
+          .filter(name => name !== 'badges_obtenus')  // Exclure "badges_obtenus"
+          .map(name => name.charAt(0).toUpperCase() + name.slice(1))  // Capitaliser les autres noms
+      )
+    );
   }
+  
 
 
 

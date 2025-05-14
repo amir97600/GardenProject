@@ -1,91 +1,56 @@
 <div class="admin-container">
 
-    <div class="search-container">
-        <div class="search-and-button">
-
-          <form role="search" class="search-form" (ngSubmit)="onSearch(searchTerm)">
-                    <input type="search" [(ngModel)]="searchTerm" name="searchTerm" id="search-input" class="search-input" placeholder="" aria-label="Search" />
-                    <button type="submit"  class="search-button" aria-label="Submit search">
-                      <lucide-icon name="searchIcon"></lucide-icon>
-                    </button>
-          </form>
-
-          <button class="add" (click)="openModal()">Ajouter 
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 2.5C8.09625 2.5 2.5 8.09625 2.5 15C2.5 21.9037 8.09625 27.5 15 27.5C21.9037 27.5 27.5 21.9037 27.5 15C27.5 8.09625 21.9037 2.5 15 2.5ZM21.25 16.25H16.25V21.25H13.75V16.25H8.75V13.75H13.75V8.75H16.25V13.75H21.25V16.25Z" fill="#2D4739"/>
-            </svg>
-          </button>
-        </div>
-        
-
-        <div class="filter">
-            <span>Filtrer par :</span>
-            <ng-container *ngFor="let property of UserProperties">
-                <span class="fields"
-                [class.active]="selectedFilter === property"
-                (click)="selectFilter(property)"
-                >{{ property }}</span>
-            </ng-container>
-        </div>
+  <div class="search-container">
+    <div class="search-and-button">
+      <form role="search" class="search-form" (ngSubmit)="onSearch(searchTerm)">
+        <input
+          type="search"
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+          id="search-input"
+          class="search-input"
+          placeholder=""
+          aria-label="Search"
+        />
+        <button type="submit" class="search-button" aria-label="Submit search">
+          <lucide-icon name="searchIcon"></lucide-icon>
+        </button>
+      </form>
+  
+      <button class="add" (click)="openModal()">
+        Ajouter
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 2.5C8.09625 2.5 2.5 8.09625 2.5 15C2.5 21.9037 8.09625 27.5 15 27.5C21.9037 27.5 27.5 21.9037 27.5 15C27.5 8.09625 21.9037 2.5 15 2.5ZM21.25 16.25H16.25V21.25H13.75V16.25H8.75V13.75H13.75V8.75H16.25V13.75H21.25V16.25Z"
+            fill="#2D4739"
+          />
+        </svg>
+      </button>
     </div>
+  
+    <admin-filter
+      [properties]="UserProperties"
+      [selectedFilter]="selectedFilter"
+      (filterSelected)="selectFilter($event)"
+    ></admin-filter>
+  </div>
 
-    <table class="Admin-table">
-        <thead>
-          <tr>
-            <ng-container *ngFor="let property of UserProperties">
-                <th>{{ property }}</th>
-            </ng-container>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of filteredAdmins$ |async">
-            <td>{{user.id}}</td>
-            <td>{{user.login}}</td>
-            <td>{{user.password}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Admin</td>
-            <td> 
-                <div class="icons">
-                    <a class="link" (click)="editAdmin(user)">
-                        <lucide-icon class="pencil" name="pencil"></lucide-icon>
-                    </a>
-                    <a class="link" (click)="delete(user)">
-                        <lucide-icon class="trash" name="trash2"></lucide-icon>
-                    </a>
-                </div>
-            </td>
-          </tr>		
-          <tr *ngFor="let user of filteredClients$ |async">
-            <td>{{user.id}}</td>
-            <td>{{user.login}}</td>
-            <td>{{user.password}}</td>
-            <td>{{user.nom}}</td>
-            <td>{{user.prenom}}</td>
-            <td>{{user.score}}</td>
-            <td>{{user.idJardin}}</td>
-            <td>Client</td>
-            <td> 
-                <div class="icons">
-                    <a class="link" (click)="editClient(user)">
-                        <lucide-icon class="pencil" name="pencil"></lucide-icon>
-                    </a>
-                    <a class="link" (click)="delete(user)">
-                        <lucide-icon class="trash" name="trash2"></lucide-icon>
-                    </a>
-                </div>
-            </td>
-          </tr>		
-          
-          <!-- Message si aucun résultat -->
-          <tr *ngIf="(filteredAdmins$ | async)?.length === 0 && (filteredClients$ | async)?.length === 0">
-            <td colspan="9" class="no-results">Désolé, aucun résultat trouvé</td>
-          </tr>
-        </tbody>	
-    </table>		
+  <user-table
+  [userProperties]="UserProperties"
+  [filteredAdmins]="filteredAdmins$"
+  [filteredClients]="filteredClients$"
+  [searchTerm]="searchTerm"
+  (editAdmin)="editAdmin($event)"
+  (editClient)="editClient($event)"
+  (deleteUser)="delete($event)"
+></user-table>
+
 
 </div>
 
@@ -115,7 +80,7 @@
   [show]="showModal && boolClient"
   (close)="closeModal()"
   (submit)="onSignupSubmit()"
-></modal-form>
+/>
 
 <modal-form
   [title]="'Créer ou éditer un Admin'"

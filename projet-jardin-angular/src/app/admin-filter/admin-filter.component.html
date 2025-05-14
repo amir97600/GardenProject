@@ -1,0 +1,13 @@
+<div class="filter">
+    <span>Filtre :</span>
+    <ng-container *ngFor="let property of properties">
+      <span
+        class="fields"
+        [class.active]="selectedFilter === property"
+        (click)="selectFilter(property)"
+      >
+        {{ property }}
+      </span>
+    </ng-container>
+</div>
+  

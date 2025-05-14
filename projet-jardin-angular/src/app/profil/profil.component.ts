@@ -33,7 +33,7 @@ export class ProfilComponent {
   //Plantes récoltées 
   plantesRecoltees: number = 0;
   //Plante la plus souvent cultivée
-  planteFavorite: Plante = new Plante(TypePlante.Fleurs, 0, 0, 0, "", "", 0, "-", false);
+  planteFavorite: Plante = new Plante(TypePlante.Fleur, 0, 0, 0, "", "", 0, "-");
 
   isModalPasswordOpen: boolean = false;
   isModalNomJardinOpen: boolean = false;

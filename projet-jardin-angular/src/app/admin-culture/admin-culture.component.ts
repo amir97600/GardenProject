@@ -17,12 +17,20 @@ export class AdminCultureComponent {
 
       filteredCultures$!: Observable<Culture[]>;
       searchTerm: string = '';
-      selectedFilter: string | null = null;
+      selectedFilter: string = '';
       private searchTermSubject = new BehaviorSubject<string>('');
       private selectedFilterSubject = new BehaviorSubject<string | null>(null);
       UserProperties = [
-        "Id","Date de Plantation","Date du dernier arrosage","quantite","recolte","Id du jardin","Id de la plante","Type de la plante","Récolté ou non"
+        "Id","Plantation","Arrosage","Quantite","Id_Jardin","Id_Plante","Type_Plante","Récolté?"
       ]
+      public cultureFields = [
+        { label: 'Date de Plantation', name: 'datePlantation', type: 'date' as const, required: true },
+        { label: 'Date du dernier arrosage', name: 'dateDernierArrosage', type: 'date' as const, required: true },
+        { label: 'quantite', name: 'quantite', type: 'number' as const, required: true },
+        { label: 'Id du jardin', name: 'idJardin', type: 'select' as const, required: true },
+        { label: 'Id de la plante', name: 'idPlante', type: 'select' as const, required: true },
+        { label: 'Récolté ou non', name: 'recolte', type: 'radio' as const, required: true },
+      ];  
       public cultureForm!: FormGroup;
       public culture:Culture = new Culture('','',0,0,0,'',false);
       public showModal: boolean = false;
@@ -57,9 +65,12 @@ export class AdminCultureComponent {
     
     
         this.cultureForm = this.formBuilder.group({
-          libelle: ['', Validators.required],
-          superficie: [0, Validators.required],
-          lieu: ['',Validators.required],
+          datePlantation: ['', Validators.required],
+          dateDernierArrosage: ['', Validators.required],
+          quantite: ['',Validators.required],
+          idJardin: [0,Validators.required],
+          idPlante: [0,Validators.required],
+          recolte: ['',Validators.required],
         });
     
       }
@@ -73,7 +84,7 @@ export class AdminCultureComponent {
       selectFilter(property: string): void {
         // Si le filtre est déjà sélectionné, on le désélectionne
         if (this.selectedFilter === property) {
-          this.selectedFilter = null;
+          this.selectedFilter = '';
         } else {
           // Sinon, on sélectionne ce filtre
           this.selectedFilter = property;
@@ -82,18 +93,21 @@ export class AdminCultureComponent {
     
       getKeyFromProperty(label: string): string {
         const map: { [key: string]: string } = {
-          'Id': 'numero',
-          'Libelle': 'nom',
-          'Superficie': 'superficie',
-          'Lieu': 'lieu',
+          'Id': 'id',
+          'Date de Plantation': 'datePlantation',
+          'Date du dernier arrosage': 'dateDernierArrosage',
+          'quantite': 'quantite',
+          'Id du jardin': 'idJardin',
+          'Id de la plante': 'idPlante',
+          'Récolté ou non' : 'recolte'
         };
         return map[label] || '';
       }
     
-      delete(jardin:any){
+      delete(culture:any){
         if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
-          this.jardinService.delete(jardin).subscribe(() => {
-            this.jardinService.refresh(); 
+          this.cultureService.delete(culture.id).subscribe(() => {
+            this.cultureService.refresh(); 
           });
         }
       }
@@ -109,7 +123,11 @@ export class AdminCultureComponent {
           idJardin: this.culture.idJardin,
           idPlante: this.culture.idPlante,
           datePlantation: this.culture.datePlantation,
-          })
+          dateDernierArrosage: this.culture.dateDernierArrosage,
+          quantite: this.culture.quantite,
+          recolte: this.culture.recolte,
+        });
+        
   
         this.openModal();
       }
@@ -125,7 +143,7 @@ export class AdminCultureComponent {
         
       public onSignupSubmit(): void {
         if (this.cultureForm.valid) {
-          //this.adminCultureService.saveCulture(this.jardinForm, this.jardin);
+          this.adminCultureService.saveCulture(this.cultureForm, this.culture);
           this.closeModal();
         }
       }

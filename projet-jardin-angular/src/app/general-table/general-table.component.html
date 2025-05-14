@@ -1,0 +1,28 @@
+<table class="Admin-table">
+    <thead>
+      <tr>
+        <th *ngFor="let col of displayedColumns">{{ columnLabels[col] }}</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of displayedData">
+        <td *ngFor="let col of displayedColumns">{{ formatCell(item[col]) }}</td>
+        <td> 
+            <div class="icons">
+                <a class="link" (click)="onEdit(item)">
+                    <lucide-icon class="pencil" name="pencil"></lucide-icon>
+                </a>
+                <a class="link" (click)="onDelete(item)">
+                    <lucide-icon class="trash" name="trash2"></lucide-icon>
+                </a>
+            </div>
+        </td>
+      </tr>
+      <tr *ngIf="displayedData.length  === 0">
+        <td colspan="9" class="no-results">Désolé, aucun résultat trouvé</td>
+      </tr>
+    </tbody>
+  </table>
+  
+ 

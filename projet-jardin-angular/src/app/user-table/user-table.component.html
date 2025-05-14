@@ -1,0 +1,62 @@
+<table class="Admin-table">
+    <thead>
+      <tr>
+        <ng-container *ngFor="let property of userProperties">
+          <th>{{ property }}</th>
+        </ng-container>
+        <th>Actions</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <!-- Admins -->
+      <tr *ngFor="let user of displayedDataAdmin">
+        <td>{{ user.id }}</td>
+        <td>{{ user.login }}</td>
+        <td>{{ user.password }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Admin</td>
+        <td>
+          <div class="icons">
+            <a class="link" (click)="emitEditAdmin(user)">
+              <lucide-icon class="pencil" name="pencil"></lucide-icon>
+            </a>
+            <a class="link" (click)="emitDelete(user)">
+              <lucide-icon class="trash" name="trash2"></lucide-icon>
+            </a>
+          </div>
+        </td>
+      </tr>
+  
+      <!-- Clients -->
+      <tr *ngFor="let user of displayedDataClient">
+        <td>{{ user.id }}</td>
+        <td>{{ user.login }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.score }}</td>
+        <td>{{ user.idJardin }}</td>
+        <td>Client</td>
+        <td>
+          <div class="icons">
+            <a class="link" (click)="emitEditClient(user)">
+              <lucide-icon class="pencil" name="pencil"></lucide-icon>
+            </a>
+            <a class="link" (click)="emitDelete(user)">
+              <lucide-icon class="trash" name="trash2"></lucide-icon>
+            </a>
+          </div>
+        </td>
+      </tr>
+  
+      <!-- Aucun résultat -->
+      <tr *ngIf="displayedDataAdmin?.length === 0 && displayedDataClient?.length === 0">
+        <td colspan="9" class="no-results">Désolé, aucun résultat trouvé</td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,65 @@
+table {
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 1300px;
+    height: 60px;
+  }
+  
+  th,
+  td {
+    padding: 16px 24px;
+    text-align: left;
+  }
+
+  
+  thead {
+    background-color: #2e7d32;
+    color: #f6fdf7;
+  }
+
+  tbody{
+    color: black;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e8f5e9;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #c8e6c9;
+  }
+  
+  .link{
+    color: black;
+    display: flex;
+    align-items: center;
+  }
+
+  .link:hover{
+    cursor: pointer;
+  }
+  
+  lucide-icon {
+    width: 24px;
+    height: 24px;
+    color: #2D4739;
+  }
+  
+  .icons{
+    display: flex;
+    gap: 15px;
+  }
+
+  .pencil{
+    color: #AC6926;
+  }
+
+  .trash{
+    color: red;
+  }
+
+  .no-results{
+    display: table-cell;
+    text-align: center;
+  }

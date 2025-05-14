@@ -29,6 +29,35 @@ export class PlanteService {
 
   }
 
+   public save(plante: any) {
+      if (plante.id) {
+        return this.http.put<Plante>(`${ this.API_URL }/${ plante.id }`, {
+          id: plante.id,
+          delaiArrosage: plante.delaiArrosage,
+          delaiRecolte: plante.delaiRecolte,
+          description: plante.description,
+          conseil: plante.conseil,
+          dureeVie: plante.dureeVie,
+          nom: plante.nom,
+          planteType: plante.planteType,
+        });
+      }
+        
+      return this.http.post<Plante>(this.API_URL, {
+        delaiArrosage: plante.delaiArrosage,
+        delaiRecolte: plante.delaiRecolte,
+        description: plante.description,
+        conseil: plante.conseil,
+        dureeVie: plante.dureeVie,
+        nom: plante.nom,
+        planteType: plante.planteType,
+      });
+    }
+      
+    public delete(plante: Plante) {
+      return this.http.delete<void>(`${ this.API_URL }/${ plante.id }`);
+    }
+
   public findById(id: number): Observable<Plante> {
       return this.http.get<Plante>(`${this.API_URL}/${id}`);
     }

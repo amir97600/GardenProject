@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, pipe, startWith, switchMap } from 'rxjs';
 import { Admin } from '../model/admin';
 import { Client } from '../model/client';
@@ -9,6 +9,7 @@ import { Jardin } from '../model/jardin';
 import { VilleService } from '../service/ville.service';
 import { JardinService } from '../service/jardin.service';
 import { AdminUtilisateurService } from '../service/admin-utilisateur.service';
+import { ModalFormComponent } from '../modal/modal-form/modal-form.component';
 
 @Component({
   selector: 'admin-utilisateurs',
@@ -20,7 +21,7 @@ export class AdminUtilisateursComponent implements OnInit{
   filteredAdmins$!: Observable<Admin[]>;
   filteredClients$!: Observable<Client[]>;
   searchTerm: string = '';
-  selectedFilter: string | null = null;
+  selectedFilter: string  = '';
   private searchTermSubject = new BehaviorSubject<string>('');
   private selectedFilterSubject = new BehaviorSubject<string | null>(null);
   UserProperties = [
@@ -37,19 +38,23 @@ export class AdminUtilisateursComponent implements OnInit{
   public messageError:string = '';
   public boolClient:boolean = false;
   public boolAdmin:boolean = false;
+  @ViewChild(ModalFormComponent) modalFormComponent?: ModalFormComponent;
+
+  
 
   clientFields = [
-    { label: 'Nom', name: 'nom', required: true },
-    { label: 'Prénom', name: 'prenom', required: true },
-    { label: 'Login', name: 'login', required: true },
-    { label: 'Nom du jardin', name: 'jardin', required: true },
-    { label: 'Lieu', name: 'lieu', required: true },
-    { label: 'Mot de passe', name: 'password', type: 'password', required: true }
+    { label: 'Nom', name: 'nom', type: 'text' as const, required: true },
+    { label: 'Prénom', name: 'prenom', type: 'text' as const, required: true },
+    { label: 'Login', name: 'login', type: 'text' as const, required: true },
+    { label: 'Nom du jardin', name: 'jardin', type: 'text' as const, required: true },
+    { label: 'Code Postal', name: 'codePostal', type: 'codePostal' as const, required: true },
+    { label: 'Ville du jardin', name: 'lieu', type: 'select' as const, required: true },
+    { label: 'Mot de passe', name: 'password', type: 'password' as const, required: true },
   ];
   
   adminFields = [
-    { label: 'Login', name: 'login', required: true },
-    { label: 'Mot de passe', name: 'password', type: 'password', required: true }
+    { label: 'Login', name: 'login',type: 'text' as const, required: true },
+    { label: 'Mot de passe', name: 'password', type: 'password' as const, required: true }
   ];
 
   constructor(private adminUtilisateurService : AdminUtilisateurService,private adminService: AdminService,private clientService: ClientService, private formBuilder: FormBuilder, private villeService: VilleService, private serviceJardin: JardinService){}
@@ -109,6 +114,7 @@ export class AdminUtilisateursComponent implements OnInit{
       prenom: ['', Validators.required],
       login: ['', Validators.required],
       jardin: ['', Validators.required],
+      codePostal: ['', Validators.required],
       lieu: ['',Validators.required],
       password: ['', [Validators.required]]
     });
@@ -130,7 +136,7 @@ export class AdminUtilisateursComponent implements OnInit{
   selectFilter(property: string): void {
     // Si le filtre est déjà sélectionné, on le désélectionne
     if (this.selectedFilter === property) {
-      this.selectedFilter = null;
+      this.selectedFilter = '';
     } else {
       // Sinon, on sélectionne ce filtre
       this.selectedFilter = property;
@@ -187,7 +193,7 @@ export class AdminUtilisateursComponent implements OnInit{
       this.showModal = true;
     }
 
-    public editClient(user:any){
+    public editClient(user:Client){
       this.client = user;
       this.setBoolClient();
       this.serviceJardin.findById(this.client.idJardin).subscribe(
@@ -202,12 +208,20 @@ export class AdminUtilisateursComponent implements OnInit{
             lieu: jardin.lieu
           });
 
+          this.jardin = jardin;
+          
           this.openModal();
+
+          this.villeService.getCodePostalByVille(jardin.lieu).subscribe(codePostal => {
+            this.clientForm.get('codePostal')?.setValue(codePostal);
+            this.modalFormComponent?.onCodePostalChange();
+          });
+          
         }
       )
     }
 
-    public editAdmin(user:any){
+    public editAdmin(user:Admin){
       this.admin = user;
       this.setBoolAdmin();
 

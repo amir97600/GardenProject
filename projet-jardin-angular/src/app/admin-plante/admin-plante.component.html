@@ -43,9 +43,9 @@
     </div>
   
     <general-table
-    [data$]="filteredCultures$"
+    [data$]="filteredPlantes$"
     [searchTerm]="searchTerm"
-    (edit)="editCulture($event)"
+    (edit)="editPlante($event)"
     (delete)="delete($event)"
   ></general-table>	
   
@@ -54,9 +54,9 @@
   
   <!-- Modal -->
   <modal-form
-    [title]="'Créer ou éditer une Culture'"
-    [form]="cultureForm"
-    [fields]="cultureFields"
+    [title]="'Créer ou éditer une Plante'"
+    [form]="planteForm"
+    [fields]="planteFields"
     [show]="showModal"
     (close)="closeModal()"
     (submit)="onSignupSubmit()"
