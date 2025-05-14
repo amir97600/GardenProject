@@ -5581,7 +5581,11 @@
   },
   {
     "Id_station": 69029001,
-    "Ville": "LYON-BRON"
+    "Ville": "BRON"
+  },
+  {
+    "Id_station": 69029001,
+    "Ville": "LYON"
   },
   {
     "Id_station": 69066003,
