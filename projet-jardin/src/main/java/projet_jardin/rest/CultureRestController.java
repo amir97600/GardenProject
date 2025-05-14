@@ -52,12 +52,13 @@ public class CultureRestController {
 	}
 	
 	@PostMapping("")
-	public Culture create(@RequestBody CultureRequest cultureRequest) {
+	public CultureResponse create(@RequestBody CultureRequest cultureRequest) {
 		Culture culture = CultureRequest.convert(cultureRequest);
 		Client client = daoUtilisateur.findClientByIdJardin(cultureRequest.getIdJardin());
 		cultureService.ajouterCulture(culture,client.getId());
 
-		return daoCulture.save(culture);
+		daoCulture.save(culture);
+    	return CultureResponse.convert(culture);
 	}
 
 	@PutMapping("/{id}")
@@ -73,9 +74,17 @@ public class CultureRestController {
 	}
 
 	@PutMapping("/{id}/arroser")
-	public Culture arroser(@PathVariable Integer id) {
+	public CultureResponse arroser(@PathVariable Integer id) {
     	Culture culture = cultureService.arroserCulture(id);
-    	return daoCulture.save(culture);
+    	daoCulture.save(culture);
+    	return CultureResponse.convert(culture);
+	}
+
+	@PutMapping("/{id}/recolter")
+	public CultureResponse recolter(@PathVariable Integer id) {
+    	Culture culture = cultureService.recolterCulture(id);
+		daoCulture.save(culture);
+    	return CultureResponse.convert(culture);
 	}
 
 	@DeleteMapping("/{id}")

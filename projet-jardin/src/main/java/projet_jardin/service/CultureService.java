@@ -38,4 +38,19 @@ public class CultureService {
     public void ajouterCulture(Culture culture, Integer clientId) {
         scoreService.ajouterPoints(clientId, 4);
     }
+
+    public Culture recolterCulture(Integer cultureId) {
+        Culture culture = daoCulture.findById(cultureId)
+                .orElseThrow(() -> new RuntimeException("Culture non trouvée"));
+
+        Client client = daoUtilisateur.findClientByIdJardin(culture.getJardin().getNumero());
+
+        culture.setRecolte(true);
+    
+        scoreService.ajouterPoints(client.getId(), 20);
+
+        return culture;
+    }
 }
+
+   
