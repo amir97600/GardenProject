@@ -39,6 +39,7 @@ export class ProfilComponent {
   isModalNomJardinOpen: boolean = false;
   isModalLieuJardinOpen: boolean = false;
   isModalSupprimerCompteOpen: boolean = false;
+  isModalPointsOpen : boolean = false;
 
   @ViewChild('passwordModal')
   mdpModificationModal !: ModificationModalComponent
