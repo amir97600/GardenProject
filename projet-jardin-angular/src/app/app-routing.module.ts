@@ -13,6 +13,7 @@ import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.compon
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminGuard } from './admin/admin.guard';
 import { Error403Component } from './error403/error403.component';
+import { HomeClientComponent } from './home-client/home-client.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     component: FullLayoutComponent,
     canActivate: [authGuard],
     children: [
+      { path: 'home', component: HomeClientComponent },
       { path: 'profil', component: ProfilComponent },
       { path: 'explorer', component: ExplorerComponent },
       { path: 'cultures', component: CulturesComponent }

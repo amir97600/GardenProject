@@ -29,6 +29,7 @@ import { Error403Component } from './error403/error403.component';
 import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
+import { HomeClientComponent } from './home-client/home-client.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 
 
@@ -59,6 +60,7 @@ import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-
     ModificationModalComponent,
     ConfirmationModalComponent,
     ModificationLieuModalComponent,
+    HomeClientComponent,
     AlertBadgeModalComponent
   ],
   imports: [
