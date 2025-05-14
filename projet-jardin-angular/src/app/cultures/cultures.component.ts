@@ -115,26 +115,32 @@ cultureSelectionnee?: Culture;
 nomPlanteSelectionnee?: string;
 iconePlanteSelectionnee?: string;
 joursRestantsAvantRecolte?: number;
-
+progressionRecolte?: number;
 
 
 afficherFiche(culture: Culture): void {
   this.cultureSelectionnee = culture;
   this.nomPlanteSelectionnee = undefined;
   this.iconePlanteSelectionnee = undefined;
+  
 
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
     this.iconePlanteSelectionnee = plante.icone;
 
       const plantation = new Date(culture.datePlantation);
+      const maintenant = new Date();
+
       const dateRecolte = new Date(plantation);
       dateRecolte.setDate(plantation.getDate() + plante.delaiRecolte);
 
-      const aujourdhui = new Date();
-      const diff = Math.ceil((dateRecolte.getTime() - aujourdhui.getTime()) / (1000 * 3600 * 24));
+      const joursRestants = Math.ceil((dateRecolte.getTime() - maintenant.getTime()) / (1000 * 3600 * 24));
+      this.joursRestantsAvantRecolte = joursRestants > 0 ? joursRestants : 0;
 
-      this.joursRestantsAvantRecolte = diff > 0 ? diff : 0;
+      const joursEcoules = plante.delaiRecolte - this.joursRestantsAvantRecolte;
+      const progression = (joursEcoules / plante.delaiRecolte) * 100;
+      this.progressionRecolte = Math.min(100, Math.max(0, Math.round(progression)));
+
  
 
 
