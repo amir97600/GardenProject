@@ -56,6 +56,10 @@ h3 {
     font-size: 1.2rem;
 }
 
+p {
+    align-self: flex-start;
+}
+
 .garden-preview {
     display: flex;
     gap: 15px;
