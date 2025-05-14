@@ -82,8 +82,6 @@ export class CulturesComponent implements OnInit {
       planteType: planteChoisie.planteType
     };
 
-    console.log('Objet envoyé au serveur :', cultureToSave);
-
     this.cultureService.save(cultureToSave).subscribe(
       () => {
         this.showForm = false;
@@ -91,6 +89,8 @@ export class CulturesComponent implements OnInit {
 
         this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
           this.cultures = jardin.cultures;
+          this.afficherPopup("🌱 Culture plantée avec succès !");
+
         });
       }
     );
@@ -114,6 +114,8 @@ AfficherNomCulture(culture: Culture): string {
 cultureSelectionnee?: Culture;
 nomPlanteSelectionnee?: string;
 iconePlanteSelectionnee?: string;
+joursRestantsAvantRecolte?: number;
+
 
 
 afficherFiche(culture: Culture): void {
@@ -121,13 +123,26 @@ afficherFiche(culture: Culture): void {
   this.nomPlanteSelectionnee = undefined;
   this.iconePlanteSelectionnee = undefined;
 
-
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
     this.iconePlanteSelectionnee = plante.icone;
-    this.cultureSelectionnee!.planteType = plante.planteType;
+
+      const plantation = new Date(culture.datePlantation);
+      const dateRecolte = new Date(plantation);
+      dateRecolte.setDate(plantation.getDate() + plante.delaiRecolte);
+
+      const aujourdhui = new Date();
+      const diff = Math.ceil((dateRecolte.getTime() - aujourdhui.getTime()) / (1000 * 3600 * 24));
+
+      this.joursRestantsAvantRecolte = diff > 0 ? diff : 0;
+ 
+
+
   });
+
 }
+
+
 
 arroserCulture(): void {
   if (!this.cultureSelectionnee) return;
@@ -143,6 +158,8 @@ arroserCulture(): void {
       this.cultureSelectionnee = undefined;
       this.nomPlanteSelectionnee = undefined;
       this.iconePlanteSelectionnee = undefined;
+      this.afficherPopup("💧 Culture arrosée !");
+
     });
   });
 }
@@ -158,6 +175,8 @@ supprimerCulture(): void {
 
     this.jardinService.findById(this.idJardin).subscribe(jardin => {
       this.cultures = jardin.cultures;
+      this.afficherPopup("❌ Culture supprimée !");
+
     });
   });
 }
@@ -179,12 +198,24 @@ recolterCulture(): void {
 
     this.jardinService.findById(this.idJardin).subscribe(jardin => {
       this.cultures = jardin.cultures;
+      this.afficherPopup("🧺 Récolte effectuée !");
+
     });
   });
 }
 
 getNom(plante: Plante): string {
   return plante.nom;
+}
+
+
+popupMessage: string | null = null;
+
+afficherPopup(message: string): void {
+  this.popupMessage = message;
+  setTimeout(() => {
+    this.popupMessage = null;
+  }, 3000); 
 }
 
 
