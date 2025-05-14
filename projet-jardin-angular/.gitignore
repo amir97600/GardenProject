@@ -6,7 +6,6 @@
 /out-tsc
 /bazel-out
 
-/src/app/environment/secret.ts
 
 # Node
 /node_modules
