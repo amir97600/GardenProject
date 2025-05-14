@@ -114,6 +114,8 @@ AfficherNomCulture(culture: Culture): string {
 cultureSelectionnee?: Culture;
 nomPlanteSelectionnee?: string;
 iconePlanteSelectionnee?: string;
+joursRestantsAvantRecolte?: number;
+
 
 
 afficherFiche(culture: Culture): void {
@@ -121,13 +123,26 @@ afficherFiche(culture: Culture): void {
   this.nomPlanteSelectionnee = undefined;
   this.iconePlanteSelectionnee = undefined;
 
-
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
     this.iconePlanteSelectionnee = plante.icone;
-    this.cultureSelectionnee!.planteType = plante.planteType;
+
+      const plantation = new Date(culture.datePlantation);
+      const dateRecolte = new Date(plantation);
+      dateRecolte.setDate(plantation.getDate() + plante.delaiRecolte);
+
+      const aujourdhui = new Date();
+      const diff = Math.ceil((dateRecolte.getTime() - aujourdhui.getTime()) / (1000 * 3600 * 24));
+
+      this.joursRestantsAvantRecolte = diff > 0 ? diff : 0;
+ 
+
+
   });
+
 }
+
+
 
 arroserCulture(): void {
   if (!this.cultureSelectionnee) return;

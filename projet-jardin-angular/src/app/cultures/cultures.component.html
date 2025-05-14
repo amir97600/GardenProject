@@ -27,6 +27,12 @@
       <p><strong>Quantité plantée :</strong> {{ cultureSelectionnee.quantite }}</p>
       <p><strong>Planté le :</strong> {{ cultureSelectionnee.datePlantation }}</p>
       <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
+      <div class="recolte-box" *ngIf="joursRestantsAvantRecolte !== undefined">
+        <div class="recolte-chiffre">{{ joursRestantsAvantRecolte }}</div>
+        <div class="recolte-label">jours avant récolte</div>
+      </div>
+
+
       
       <div class="boutons-fiche">
         <div>
@@ -87,4 +93,9 @@
   <div class="popup" *ngIf="popupMessage">
     {{ popupMessage }}
   </div>
+</div>
+
+
+<div>
+
 </div>
