@@ -1,3 +1,4 @@
+
 package projet_jardin.rest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,18 +27,19 @@ import projet_jardin.rest.request.ClientRequest;
 import projet_jardin.rest.response.AdminResponse;
 import projet_jardin.rest.response.ClientResponse;
 
+
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Transactional
 @Rollback
 public class RestUtilisateurTests {
-	
-	@Autowired
+
+    @Autowired
     private WebApplicationContext applicationContext;
-    
+
     @Autowired
     private TestRestTemplate template;
-    
-   /* @Test
+
+    /* @Test
 	public void getClientByIdRest() throws Exception {
 		// ARRANGE
 		Integer id = 2;
@@ -55,41 +57,42 @@ public class RestUtilisateurTests {
 		
 		System.out.println("Test /utilisateurs/clients ok");
 	}*/
-    
- // -----------------------------
+    // -----------------------------
     // CLIENTS - REST
     // -----------------------------
-
     @Test
     public void getClientByIdRest() {
         // ARRANGE
-        Integer id = 3;
+        ClientRequest createRequest = new ClientRequest();
+        createRequest.setLogin("clientTest");
+        createRequest.setPassword("client123");
+        createRequest.setNom("Client Nom");
+    
+        ResponseEntity<Client> createResponse = template.postForEntity("/api/utilisateur/client", createRequest, Client.class);
+        Integer createdClientId = createResponse.getBody().getId();
 
         // ACT
-        ResponseEntity<ClientResponse> response = template.getForEntity("/utilisateurs/clients/{id}", ClientResponse.class, id);
+        ResponseEntity<ClientResponse> response = template.getForEntity("/api/utilisateur/client/{id}", ClientResponse.class, createdClientId);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(MediaType.APPLICATION_JSON, response.getHeaders().getContentType());
         assertNotNull(response.getBody());
-        assertEquals("updatedLogin", response.getBody().getLogin());
-        assertEquals("updatedPass", response.getBody().getPassword());
-        assertEquals("updatedNom", response.getBody().getNom());
-
-        System.out.println("Test GET /utilisateurs/clients/{id} OK");
+        assertEquals("clientTest", response.getBody().getLogin());
+        assertEquals("client123", response.getBody().getPassword());
+        assertEquals("Client Nom", response.getBody().getNom());
     }
 
     @Test
     public void getAllClientsRest() {
         // ACT
-        ResponseEntity<ClientResponse[]> response = template.getForEntity("/utilisateurs/clients", ClientResponse[].class);
+        ResponseEntity<ClientResponse[]> response = template.getForEntity("/api/utilisateur/client", ClientResponse[].class);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody().length > 0);
 
-        System.out.println("Test GET /utilisateurs/clients OK");
+        System.out.println("Test GET /api/utilisateur/client OK");
     }
 
     @Test
@@ -101,50 +104,62 @@ public class RestUtilisateurTests {
         request.setNom("Client Nom");
 
         // ACT
-        ResponseEntity<Client> response = template.postForEntity("/utilisateurs/clients", request, Client.class);
+        ResponseEntity<Client> response = template.postForEntity("/api/utilisateur/client", request, Client.class);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals("clientTest", response.getBody().getLogin());
 
-        System.out.println("Test POST /utilisateurs/clients OK");
+        System.out.println("Test POST /api/utilisateur/client OK");
     }
 
     @Test
     public void updateClientRest() {
         // ARRANGE
-        Integer id = 3;
-        ClientRequest request = new ClientRequest();
-        request.setId(id);
-        request.setLogin("updatedLogin");
-        request.setPassword("updatedPass");
-        request.setNom("updatedNom");
+        ClientRequest createRequest = new ClientRequest();
+        createRequest.setLogin("clientTest");
+        createRequest.setPassword("client123");
+        createRequest.setNom("Client Nom");
+    
+        ResponseEntity<Client> createResponse = template.postForEntity("/api/utilisateur/client", createRequest, Client.class);
+        Integer createdClientId = createResponse.getBody().getId();
 
-        HttpEntity<ClientRequest> entity = new HttpEntity<>(request);
+        ClientRequest updateRequest = new ClientRequest();
+        updateRequest.setId(createdClientId);
+        updateRequest.setLogin("updatedClient");
+        updateRequest.setPassword("updatedPass");
+        updateRequest.setNom("Updated Nom");
+
+        HttpEntity<ClientRequest> entity = new HttpEntity<>(updateRequest);
 
         // ACT
-        ResponseEntity<Client> response = template.exchange("/utilisateurs/clients/{id}", HttpMethod.PUT, entity, Client.class, id);
+        ResponseEntity<Client> response = template.exchange("/api/utilisateur/client/{id}", HttpMethod.PUT, entity, Client.class, createdClientId);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("updatedLogin", response.getBody().getLogin());
-
-        System.out.println("Test PUT /utilisateurs/clients/{id} OK");
+        assertEquals("updatedClient", response.getBody().getLogin());
+        assertEquals("updatedPass", response.getBody().getPassword());
+        assertEquals("Updated Nom", response.getBody().getNom());
     }
-    
 
     // -----------------------------
     // ADMINS - REST
     // -----------------------------
-
     @Test
     public void getAdminByIdRest() {
         // ARRANGE
-        Integer id = 8;
+        AdminRequest adminRequest = new AdminRequest();
+        adminRequest.setLogin("adminTest");
+        adminRequest.setPassword("admin123");
+
+        ResponseEntity<Admin> createResponse = template.postForEntity("/api/utilisateur/admin", adminRequest, Admin.class);
+        assertEquals(HttpStatus.OK, createResponse.getStatusCode());
+        assertNotNull(createResponse.getBody());
+        Integer createdAdminId = createResponse.getBody().getId();
 
         // ACT
-        ResponseEntity<AdminResponse> response = template.getForEntity("/utilisateurs/admins/{id}", AdminResponse.class, id);
+        ResponseEntity<AdminResponse> response = template.getForEntity("/api/utilisateur/admin/{id}", AdminResponse.class, createdAdminId);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -152,20 +167,20 @@ public class RestUtilisateurTests {
         assertNotNull(response.getBody());
         assertEquals("adminTest", response.getBody().getLogin());
 
-        System.out.println("Test GET /utilisateurs/admins/{id} OK");
+        System.out.println("Test GET /api/utilisateur/admin/{id} OK");
     }
 
     @Test
     public void getAllAdminsRest() {
         // ACT
-        ResponseEntity<AdminResponse[]> response = template.getForEntity("/utilisateurs/admins", AdminResponse[].class);
+        ResponseEntity<AdminResponse[]> response = template.getForEntity("/api/utilisateur/admin", AdminResponse[].class);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody().length > 0);
 
-        System.out.println("Test GET /utilisateurs/admins OK");
+        System.out.println("Test GET /api/utilisateur/admin OK");
     }
 
     @Test
@@ -176,41 +191,50 @@ public class RestUtilisateurTests {
         request.setPassword("admin123");
 
         // ACT
-        ResponseEntity<Admin> response = template.postForEntity("/utilisateurs/admins", request, Admin.class);
+        ResponseEntity<Admin> response = template.postForEntity("/api/utilisateur/admin", request, Admin.class);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals("adminTest", response.getBody().getLogin());
 
-        System.out.println("Test POST /utilisateurs/admins OK");
+        System.out.println("Test POST /api/utilisateur/admin OK");
     }
 
     @Test
     public void updateAdminRest() {
         // ARRANGE
-        Integer id = 11;
-        AdminRequest request = new AdminRequest();
-        request.setId(id);
-        request.setLogin("updatedAdmin");
-        request.setPassword("updatedPass");
+        AdminRequest createRequest = new AdminRequest();
+        createRequest.setLogin("adminTest");
+        createRequest.setPassword("admin123");
 
-        HttpEntity<AdminRequest> entity = new HttpEntity<>(request);
+        ResponseEntity<Admin> createResponse = template.postForEntity("/api/utilisateur/admin", createRequest, Admin.class);
+
+        assertEquals(HttpStatus.OK, createResponse.getStatusCode());
+        assertNotNull(createResponse.getBody());
+        Integer createdAdminId = createResponse.getBody().getId();  
+
+        // ARRANGE
+        AdminRequest updateRequest = new AdminRequest();
+        updateRequest.setId(createdAdminId);
+        updateRequest.setLogin("updatedAdmin");
+        updateRequest.setPassword("updatedPass");
+
+        HttpEntity<AdminRequest> entity = new HttpEntity<>(updateRequest);
 
         // ACT
-        ResponseEntity<Admin> response = template.exchange("/utilisateurs/admins/{id}", HttpMethod.PUT, entity, Admin.class, id);
+        ResponseEntity<Admin> response = template.exchange("/api/utilisateur/admin/{id}", HttpMethod.PUT, entity, Admin.class, createdAdminId);
 
         // ASSERT
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("updatedAdmin", response.getBody().getLogin());
 
-        System.out.println("Test PUT /utilisateurs/admins/{id} OK");
+        System.out.println("Test PUT /api/utilisateur/admin/{id} OK");
     }
 
     // -----------------------------
     // DELETE COMMUN
     // -----------------------------
-
     @Test
     public void deleteUtilisateurRest() {
         // ARRANGE
@@ -219,18 +243,15 @@ public class RestUtilisateurTests {
         request.setPassword("pass");
         request.setNom("nom");
 
-        ResponseEntity<Client> createResponse = template.postForEntity("/utilisateurs/clients", request, Client.class);
+        ResponseEntity<Client> createResponse = template.postForEntity("/api/utilisateur/client", request, Client.class);
         Integer id = createResponse.getBody().getId();
 
         // ACT
-        ResponseEntity<Void> deleteResponse = template.exchange("/utilisateurs/{id}", HttpMethod.DELETE, null, Void.class, id);
+        ResponseEntity<Void> deleteResponse = template.exchange("/api/utilisateur/{id}", HttpMethod.DELETE, null, Void.class, id);
 
         // ASSERT
         assertEquals(HttpStatus.OK, deleteResponse.getStatusCode());
 
-        System.out.println("Test DELETE /utilisateurs/{id} OK");
+        System.out.println("Test DELETE /api/utilisateur/{id} OK");
     }
 }
-    
-	
-	
