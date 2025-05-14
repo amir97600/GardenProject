@@ -1,40 +1,31 @@
 .main-content {
   display: flex;
-  flex-direction: row; 
-  justify-content: center; 
-  align-items: flex-start; 
-  gap: 40px; 
-  flex-wrap: wrap; 
-  padding: 5px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: nowrap; 
+  padding: 20px;
   margin-bottom: 200px;
-  width: 100%; 
+  width: 100%;
+  box-sizing: border-box;
 }
-
-
 
 
 .carte {
   background-color: #e5f7e1;
-  margin-top: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 15px;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   max-width: 650px;
-  flex-grow: 1;
+  flex: 1 1 auto;
+  transform: scale(1); /* ✅ éviter le zoom déformant */
   transition: transform 0.5s ease;
-  transform: scale(1.2);
 }
 
-.carte.active {
-  transform: scale(1);
-}
 
 .fiche-plante {
   position: relative;
-  margin-top: 20px;
   background-color: rgba(255, 255, 255, 0.75);
   padding: 30px;
   border-radius: 16px;
@@ -43,7 +34,11 @@
   max-width: 350px;
   font-size: 1.1rem;
   animation: fadeIn 0.3s ease-in-out;
+  flex-shrink: 0; 
+
 }
+
+
 
 .close-btn {
   position: absolute;
@@ -120,10 +115,10 @@
 
 .garden-map {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 6px;
   justify-content: center;
-  padding: 15px;
+  padding: 10px;
 
 
 }
@@ -132,15 +127,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 4rem;
   background: #f6fdf7;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s;
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  aspect-ratio: 1 / 0.8;
-  width: 100%;
-    flex-direction: column;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
 
 }
 
@@ -160,45 +155,153 @@
     align-items: center;
   }
 
-  .garden-map {
-    grid-template-columns: repeat(4, 70px);
-    grid-template-rows: repeat(5, 70px);
-    gap: 8px;
-  }
-
-  .plot {
-    width: 70px;
-    height: 70px;
-    font-size: 0.7rem;
-  }
-
-
 }
 
   .icone-plot {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
   }
 
   .nom-plot {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     margin-top: 3px;
   }
 
-.ajout-culture-fixed {
-   margin: 20px 0 10px 40px; 
+  .plot-ajout {
+  color: #226309;
+
+}
+
+
+.plus-icon {
+  font-size: 3.5rem;
+  line-height: 1;
 }
 
 
 
-.form-ajout {
-  background-color: #ffffffcc;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-form {
+  background-color: #ffffffee;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  animation: popupIn 0.3s ease;
   position: relative;
+
 }
+
+@keyframes popupIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-form label {
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 14px;
+  font-weight: bold;
+  color: #2f5530;
+  text-align: left;
+
+}
+
+.modal-form input,
+.modal-form select {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.modal-form .btn {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background-color: #29521a;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+
+
+.popup {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 14px 22px;
+  background: rgba(34, 85, 0, 0.85);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px); 
+  animation: slideFade 3s ease forwards;
+  z-index: 9999;
+}
+
+@keyframes slideFade {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+
 
 
 

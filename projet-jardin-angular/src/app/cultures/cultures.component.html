@@ -7,6 +7,11 @@
             <div class="nom-plot">{{ AfficherNomCulture(culture) }}</div>
           </div>
         </ng-container>
+
+        <div class="plot plot-ajout" (click)="fermerFormAjout()">
+          <span class="plus-icon">+</span>
+        </div>
+
         
 
       </div>
@@ -23,7 +28,6 @@
       <p><strong>Planté le :</strong> {{ cultureSelectionnee.datePlantation }}</p>
       <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
       
-      <br>
       <div class="boutons-fiche">
         <div>
           <button class="emoji-btn" (click)="arroserCulture()" title="Arroser">💧</button>
@@ -36,23 +40,18 @@
 
     </div>
 
-<div class="popup" *ngIf="popupMessage">
-  {{ popupMessage }}
-</div>
 
 
 </div>
 
 
 <div>
+
+  <div class="modal-overlay" *ngIf="showForm">
+  <div class="modal-form">
+
   
-  <div class="ajout-culture-fixed">
-    <button class="btn" (click)="fermerFormAjout()">
-      <span class="emoji-plus">✚</span> Ajouter une culture
-    </button>
-  </div>
-  
-  <form *ngIf="showForm" class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="ajouterCulture()">
+  <form class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="ajouterCulture()">
     <button class="close-btn" (click)="fermerFormAjout()" aria-label="Fermer">&times;</button>
     
     <h3>Nouvelle culture</h3>
@@ -81,4 +80,11 @@
     <button type="submit" class="btn">Ajouter</button>
   </form>
 
+  </div>
+  </div>
+
+
+  <div class="popup" *ngIf="popupMessage">
+    {{ popupMessage }}
+  </div>
 </div>

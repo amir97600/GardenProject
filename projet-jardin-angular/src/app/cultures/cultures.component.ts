@@ -82,8 +82,6 @@ export class CulturesComponent implements OnInit {
       planteType: planteChoisie.planteType
     };
 
-    console.log('Objet envoyé au serveur :', cultureToSave);
-
     this.cultureService.save(cultureToSave).subscribe(
       () => {
         this.showForm = false;
@@ -91,6 +89,8 @@ export class CulturesComponent implements OnInit {
 
         this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
           this.cultures = jardin.cultures;
+          this.afficherPopup("🌱 Culture plantée avec succès !");
+
         });
       }
     );
@@ -143,6 +143,8 @@ arroserCulture(): void {
       this.cultureSelectionnee = undefined;
       this.nomPlanteSelectionnee = undefined;
       this.iconePlanteSelectionnee = undefined;
+      this.afficherPopup("💧 Culture arrosée !");
+
     });
   });
 }
@@ -158,6 +160,8 @@ supprimerCulture(): void {
 
     this.jardinService.findById(this.idJardin).subscribe(jardin => {
       this.cultures = jardin.cultures;
+      this.afficherPopup("❌ Culture supprimée !");
+
     });
   });
 }
@@ -179,6 +183,8 @@ recolterCulture(): void {
 
     this.jardinService.findById(this.idJardin).subscribe(jardin => {
       this.cultures = jardin.cultures;
+      this.afficherPopup("🧺 Récolte effectuée !");
+
     });
   });
 }
