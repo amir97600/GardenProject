@@ -42,8 +42,7 @@ export class JardinService {
         numero : jardin.numero,
         lieu: jardin.lieu,
         nom: jardin.nom,
-        superficie: jardin.superficie,
-        cultures : jardin.cultures
+        superficie: jardin.superficie
       });
     }
       

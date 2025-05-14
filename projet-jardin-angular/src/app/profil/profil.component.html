@@ -27,11 +27,11 @@
       <h2>Mes statistiques </h2>
       <div class="stats">
         <div class="stat_item">
-          <div class="stat-title">Plantes cultivées </div>
+          <div class="stat-title">Total des cultures</div>
           <div class="stat-value">{{plantesCultivees}}</div>
         </div>
         <div class="stat_item">
-          <div class="stat-title">Plantes récoltées</div>
+          <div class="stat-title">Cultures récoltées</div>
           <div class="stat-value">{{plantesRecoltees}}</div>
         </div>
         <div class="stat_item">
@@ -50,7 +50,7 @@
       <ul class="settings">
         <li (click)="isModalPasswordOpen = true" class="link">🌻 Changer le mot de passe</li>
         <li (click)="isModalNomJardinOpen = true" class="link">🌻 Changer le nom du jardin </li>
-        <li style="color : red" class="link">🌻 Changer la localisation du jardin </li>
+        <li (click)="isModalLieuJardinOpen = true" class="link">🌻 Changer la localisation du jardin </li>
         <li (click)="isModalSupprimerCompteOpen = true" class="link">🌻 Supprimer le compte</li>
       </ul>
     </section>
@@ -63,6 +63,10 @@
   <app-modification-modal #nomJardinModal [titre]="'Changer le nom du jardin'" [placeholder]="'Nouveau nom du jardin'"
     type="text" [(isOpen)]="isModalNomJardinOpen" (onConfirm)="changerNomJardin($event)">
   </app-modification-modal>
+
+  <app-modification-lieu-modal #lieuJardinModal [titre]="'Changer la localisation du jardin'"
+    [(isOpen)]="isModalLieuJardinOpen" (onConfirm)="changerLieuJardin($event)">
+  </app-modification-lieu-modal>
 
   <app-confirmation-modal #supprimerCompteModal [titre]="'Supprimer mon compte'" [(isOpen)]="isModalSupprimerCompteOpen"
     (onConfirm)="supprimerCompte()">

@@ -62,14 +62,15 @@ public class UtilisateurRestController {
 	}
 	
 	@PutMapping("client/{id}")
-	public Client updateClient(@RequestBody ClientRequest clientRequest, @PathVariable Integer id) {
+	public ClientResponse updateClient(@RequestBody ClientRequest clientRequest, @PathVariable Integer id) {
 		if (id != clientRequest.getId() || !this.daoUtilisateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
 
 		Client Client = ClientRequest.convert(clientRequest);
+		daoUtilisateur.save(Client);
 
-		return daoUtilisateur.save(Client);
+		return ClientResponse.convert(Client);
 	}
 	
 	
