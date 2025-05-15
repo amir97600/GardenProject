@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from '../service/client.service';
 import { Client } from '../model/client';
@@ -12,6 +12,8 @@ import { Plante } from '../model/plante';
 import { TypePlante } from '../model/type-plante';
 import { ModificationModalComponent } from '../modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirmation-modal.component';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 
 
 
@@ -21,7 +23,7 @@ import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirma
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css',
 })
-export class ProfilComponent {
+export class ProfilComponent implements OnInit,  AfterViewInit {
   client: Client = new Client("", "", "", "", 0);
   jardin: Jardin = new Jardin("", 0, "Paris");
   // Liste de tous les badges 
@@ -39,7 +41,7 @@ export class ProfilComponent {
   isModalNomJardinOpen: boolean = false;
   isModalLieuJardinOpen: boolean = false;
   isModalSupprimerCompteOpen: boolean = false;
-  isModalPointsOpen : boolean = false;
+  isModalPointsOpen: boolean = false;
 
   @ViewChild('passwordModal')
   mdpModificationModal !: ModificationModalComponent
@@ -90,6 +92,10 @@ export class ProfilComponent {
         }
       });
     });
+  }
+
+  ngAfterViewInit() {
+    tippy('[data-tippy-content]');
   }
 
   //Pour trouver la plante favorite
@@ -174,5 +180,4 @@ export class ProfilComponent {
     });
   }
 
-  
 }
