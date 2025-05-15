@@ -18,10 +18,10 @@ export class AdminJardinComponent {
     private searchTermSubject = new BehaviorSubject<string>('');
     private selectedFilterSubject = new BehaviorSubject<string | null>(null);
     UserProperties = [
-      "Id","Libelle","Lieu","Superficie","Cultures"
+      "Id","Libelle","Lieu","Cultures"
     ]
     public jardinForm!: FormGroup;
-    public jardin:Jardin = new Jardin('',0,'');
+    public jardin:Jardin = new Jardin('','');
     public showModal: boolean = false;
     public messageError:string = '';
    
@@ -55,7 +55,6 @@ export class AdminJardinComponent {
   
       this.jardinForm = this.formBuilder.group({
         libelle: ['', Validators.required],
-        superficie: [0, Validators.required],
         lieu: ['',Validators.required],
       });
   
@@ -81,7 +80,6 @@ export class AdminJardinComponent {
       const map: { [key: string]: string } = {
         'Id': 'numero',
         'Libelle': 'nom',
-        'Superficie': 'superficie',
         'Lieu': 'lieu',
       };
       return map[label] || '';
@@ -103,7 +101,6 @@ export class AdminJardinComponent {
       this.jardinForm.patchValue({
         libelle: this.jardin.nom,
         lieu: this.jardin.lieu,
-        superficie: this.jardin.superficie,
         })
 
       this.openModal();
@@ -113,7 +110,7 @@ export class AdminJardinComponent {
       
     public closeModal(): void {
       this.jardinForm.reset();
-      this.jardin = new Jardin('', 0, '');
+      this.jardin = new Jardin('', '');
       this.showModal = false;
       this.messageError = '';
     }
@@ -127,8 +124,7 @@ export class AdminJardinComponent {
 
     public jardinFields = [
       { label: 'Libellé', name: 'libelle', type: 'text' as const, required: true },
-      { label: 'Ville', name: 'lieu', type: 'text' as const, required: true },
-      { label: 'Superficie', name: 'superficie', type: 'text' as const, required: true }
+      { label: 'Ville', name: 'lieu', type: 'text' as const, required: true }
     ];  
   
   }

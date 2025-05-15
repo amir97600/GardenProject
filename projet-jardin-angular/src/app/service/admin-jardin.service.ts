@@ -14,7 +14,6 @@ export class AdminJardinService {
     public saveJardin(jardinForm: FormGroup, jardin: Jardin) {
       jardin.nom = jardinForm.value.libelle;
       jardin.lieu = jardinForm.getRawValue().lieu;
-      jardin.superficie = jardinForm.value.superficie;
   
       // Sauvegarder le jardin
       this.serviceJardin.save(jardin).subscribe({
