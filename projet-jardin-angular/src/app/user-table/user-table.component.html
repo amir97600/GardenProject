@@ -24,7 +24,7 @@
             <a class="link" (click)="emitEditAdmin(user)">
               <lucide-icon class="pencil" name="pencil"></lucide-icon>
             </a>
-            <a class="link" (click)="emitDelete(user)">
+            <a class="link" (click)="ouvrirConfirmationModal(user)">
               <lucide-icon class="trash" name="trash2"></lucide-icon>
             </a>
           </div>
@@ -46,7 +46,7 @@
             <a class="link" (click)="emitEditClient(user)">
               <lucide-icon class="pencil" name="pencil"></lucide-icon>
             </a>
-            <a class="link" (click)="emitDelete(user)">
+            <a class="link" (click)="ouvrirConfirmationModal(user)">
               <lucide-icon class="trash" name="trash2"></lucide-icon>
             </a>
           </div>
@@ -60,3 +60,11 @@
     </tbody>
   </table>
   
+  <app-confirmation-modal
+  [titre]="'Confirmer la suppression de l’utilisateur ?'"
+  [titreStyle]="{ color: '#2D4739'}"
+  [(isOpen)]="showConfirmationModal"
+  (onConfirm)="confirmerSuppression()"
+  >
+  <p>Êtes-vous sûr de vouloir supprimer le compte : <strong>{{ utilisateurASupprimer?.login }}</strong> ?</p>
+  </app-confirmation-modal>

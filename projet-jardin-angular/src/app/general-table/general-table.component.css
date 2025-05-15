@@ -63,3 +63,10 @@ table {
     display: table-cell;
     text-align: center;
   }
+
+  button{
+    color: #2D4739;
+  }
+  p{
+    color: #2D4739;
+  }

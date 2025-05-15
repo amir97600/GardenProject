@@ -256,12 +256,3 @@
 .modal-content input:disabled {
   background-color: #dbdfdbea !important;
 }
-
-/* Titre de la modal */
-h2 {
-  align-self: flex-start;
-  margin-right: 40px;
-  font-size: 1.5rem;
-  color: #2e7d32;
-  margin-bottom: 20px;
-}
