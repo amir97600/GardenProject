@@ -12,6 +12,7 @@ export class Plante {
     private _dureeVie: number,
     private _nom: string,
     private _icone ?: String,
+    private _image ?: String,
   ) { }
 
   public get planteType(): TypePlante {
@@ -88,6 +89,13 @@ export class Plante {
     this.icone = value;
   }
 
+  public get image(): string {
+    return this.image;
+  }
+    
+  public set image(value: string) {
+    this.image = value;
+  }
 
 }
 
