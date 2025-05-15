@@ -46,6 +46,10 @@ class ProjetJardinApplicationTests {
 		client2.setJardin(jardin2);
 		
 
+		FruitLegume jordapimente = new FruitLegume("Jordapimente", "Attention les amateurs de cuisine ", "A besoin d'un temps de repos", 4, 30, 2, "piment_icone","Jordan.png");
+		FruitLegume framirdine = new FruitLegume("Framirdine", "Dessert masqué de Gotham", "Se developpe sous un ciel gris", 4, 30, 2, "framboise_icone","Framirdine.png");
+		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "","Marindarine.png");
+		Fleur souhailys = new Fleur("Souhailys", "Fleur de télétravail", "N'apprécie pas le bruit des travaux", 4, 30, 2, false,"lys_icone","souhailys.png");
 		
 		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone","carotte.jpg");
 		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 5, 25, 3, "fraise_icone","fraise.jpeg");
@@ -75,7 +79,11 @@ class ProjetJardinApplicationTests {
 		daoutilisateur.save(client1);
 		daoutilisateur.save(client2);
 		
-
+		daoplante.save(jordapimente);
+		daoplante.save(framirdine);
+		daoplante.save(marindarine);
+		daoplante.save(souhailys);
+		
 		daoplante.save(carotte);
 		daoplante.save(fraise);
 		daoplante.save(tomate);
