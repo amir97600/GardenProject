@@ -30,7 +30,7 @@ public class JardinTest {
 //	@Test
 //	public void findByIdJardin() {
 //		//Arrange
-//		Jardin jardin = new Jardin("Lieu","Nom",10);
+//		Jardin jardin = new Jardin("Lieu","Nom");
 //		jardin = daoJardin.save(jardin);
 //		
 //		//Act
@@ -53,7 +53,7 @@ public class JardinTest {
 	@Test
 	public void findByIDOk() throws Exception {
 		//Arrange
-		Jardin jardin = new Jardin("Nom", "Lieu", 10);
+		Jardin jardin = new Jardin("Nom", "Lieu");
 		jardin = daoJardin.save(jardin);
 		
 		//Act
@@ -61,8 +61,7 @@ public class JardinTest {
 	            .andExpect(MockMvcResultMatchers.status().isOk())
 	            .andExpect(MockMvcResultMatchers.jsonPath("$.numero").value(jardin.getNumero()))
 	            .andExpect(MockMvcResultMatchers.jsonPath("$.lieu").value("Lieu"))
-	            .andExpect(MockMvcResultMatchers.jsonPath("$.nom").value("Nom"))
-	            .andExpect(MockMvcResultMatchers.jsonPath("$.superficie").value(10));
+	            .andExpect(MockMvcResultMatchers.jsonPath("$.nom").value("Nom"));
 		
 		
 	}

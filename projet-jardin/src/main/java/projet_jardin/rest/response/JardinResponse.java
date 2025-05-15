@@ -12,7 +12,6 @@ public class JardinResponse {
 	private int numero;
 	private String nom;
 	private String lieu;
-	private double superficie;
 	private List<CultureResponse> cultures;
 	
 	public JardinResponse() {
@@ -41,14 +40,6 @@ public class JardinResponse {
 
 	public void setLieu(String lieu) {
 		this.lieu = lieu;
-	}
-
-	public double getSuperficie() {
-		return superficie;
-	}
-
-	public void setSuperficie(double superficie) {
-		this.superficie = superficie;
 	}
 
 	public List<CultureResponse> getCultures() {

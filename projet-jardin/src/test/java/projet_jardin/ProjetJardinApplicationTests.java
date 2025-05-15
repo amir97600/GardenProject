@@ -40,9 +40,9 @@ class ProjetJardinApplicationTests {
 		Client client1 = new Client("log1", "pass1", "alpha", "beta");
 		Client client2 = new Client("log2", "pass2", "toto", "titi");
 	
-		Jardin jardin1 = new Jardin("Jardin d'alpha", "Paris", 14);
+		Jardin jardin1 = new Jardin("Jardin d'alpha", "Paris");
 		client1.setJardin(jardin1);
-		Jardin jardin2 = new Jardin("Jardin de toto", "Marseille", 28);
+		Jardin jardin2 = new Jardin("Jardin de toto", "Marseille");
 		client2.setJardin(jardin2);
 		
 

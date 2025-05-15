@@ -28,26 +28,22 @@ public class Jardin {
 	
 	@Column(name="lieu", nullable=false)
 	private String lieu;
-	
-	@Column(name="superficie", nullable=false, columnDefinition = "DECIMAL(8,2)")
-	private double superficie;
+
 	
 	@OneToMany(mappedBy = "jardin", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Culture> cultures = new ArrayList<Culture>();
 
 	public Jardin() {}
 	
-	public Jardin(String nom, String lieu, double superficie) {
+	public Jardin(String nom, String lieu) {
 		this.nom = nom;
 		this.lieu = lieu;
-		this.superficie = superficie;
 	}
 	
-	public Jardin(int numero, String nom, String lieu, double superficie) {
+	public Jardin(int numero, String nom, String lieu) {
 		this.numero = numero;
 		this.nom = nom;
 		this.lieu = lieu;
-		this.superficie = superficie;
 	}
 
 	
@@ -91,22 +87,6 @@ public class Jardin {
 		this.lieu = lieu;
 	}
 
-
-
-	@JsonProperty("superficie")
-	public double getSuperficie() {
-		return superficie;
-	}
-
-
-
-
-	public void setSuperficie(double superficie) {
-		this.superficie = superficie;
-	}
-
-
-
 	public List<Culture> getCultures() {
 		return cultures;
 	}
@@ -121,8 +101,7 @@ public class Jardin {
 
 	@Override
 	public String toString() {
-		return "Jardin [numero=" + numero + ", nom=" + nom + ", lieu=" + lieu + ", superficie=" + superficie
-				+ "]";
+		return "Jardin [numero=" + numero + ", nom=" + nom + ", lieu=" + lieu + "]";
 	}
 
 	
