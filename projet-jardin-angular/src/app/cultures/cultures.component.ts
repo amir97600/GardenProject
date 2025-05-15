@@ -22,6 +22,8 @@ export class CulturesComponent implements OnInit {
   showForm = false;
   idJardin!: number;
   cultures: any[] = [];
+  popupMessage: string | null = null;
+
 
 
   constructor(
@@ -148,28 +150,30 @@ afficherFiche(culture: Culture): void {
 
 }
 
-
-
-arroserCulture(): void {
-  if (!this.cultureSelectionnee) return;
-
-  const cultureArrosee = {
-    ...this.cultureSelectionnee,
-    dateDernierArrosage: new Date().toISOString().split('T')[0],
-  };
-
-  this.cultureService.save(cultureArrosee).subscribe(() => {
-    this.jardinService.findById(this.idJardin).subscribe(jardin => {
-      this.cultures = jardin.cultures;
-      this.cultureSelectionnee = undefined;
-      this.nomPlanteSelectionnee = undefined;
-      this.iconePlanteSelectionnee = undefined;
+arroserCulture(culture: Culture): void {
+  this.cultureService.arroser(culture.id).subscribe({
+    next: () => {
+      culture.dateDernierArrosage = new Date().toISOString().split('T')[0];
       this.afficherPopup("💧 Culture arrosée !");
-
-    });
+    },
+    error: err => {
+      console.error("Erreur lors de l’arrosage :", err);
+    }
   });
 }
 
+recolterCulture(culture: Culture): void {
+  this.cultureService.recolter(culture.id).subscribe({
+    next: () => {
+      culture.recolte = true;
+      this.afficherPopup("🧺 Récolte effectuée !");
+
+    },
+    error: err => {
+      console.error("Erreur lors de la récolte :", err);
+    }
+  });
+}
 
 
 supprimerCulture(): void {
@@ -188,34 +192,11 @@ supprimerCulture(): void {
 }
 
 
-recolterCulture(): void {
-  if (!this.cultureSelectionnee) return;
-
-  const cultureRecoltee = {
-    ...this.cultureSelectionnee,
-    recolte: true,
-
-  };
-  console.log('Objet envoyé :', cultureRecoltee);
-
-  this.cultureService.save(cultureRecoltee).subscribe(() => {
-    this.cultureSelectionnee = undefined;
-    this.nomPlanteSelectionnee = undefined;
-
-    this.jardinService.findById(this.idJardin).subscribe(jardin => {
-      this.cultures = jardin.cultures;
-      this.afficherPopup("🧺 Récolte effectuée !");
-
-    });
-  });
-}
 
 getNom(plante: Plante): string {
   return plante.nom;
 }
 
-
-popupMessage: string | null = null;
 
 afficherPopup(message: string): void {
   this.popupMessage = message;
