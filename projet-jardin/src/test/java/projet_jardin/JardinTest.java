@@ -57,7 +57,7 @@ public class JardinTest {
 		jardin = daoJardin.save(jardin);
 		
 		//Act
-	    mockMvc.perform(MockMvcRequestBuilders.get("/jardin/{numero}", jardin.getNumero()))
+	    mockMvc.perform(MockMvcRequestBuilders.get("/api/jardin/{numero}", jardin.getNumero()))
 	            .andExpect(MockMvcResultMatchers.status().isOk())
 	            .andExpect(MockMvcResultMatchers.jsonPath("$.numero").value(jardin.getNumero()))
 	            .andExpect(MockMvcResultMatchers.jsonPath("$.lieu").value("Lieu"))

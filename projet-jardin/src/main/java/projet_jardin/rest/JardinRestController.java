@@ -53,16 +53,15 @@ public class JardinRestController {
 	}
 	
 	@PutMapping("/{numero}")
-	public Jardin update(@RequestBody JardinRequest jardinRequest, @PathVariable int numero) {
+	public JardinResponse update(@RequestBody JardinRequest jardinRequest, @PathVariable int numero) {
 		if (numero != jardinRequest.getNumero() || !this.daoJardin.existsById(numero)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
 
 		Jardin jardin = JardinRequest.convert(jardinRequest);
+		daoJardin.save(jardin);
 
-		
-
-		return daoJardin.save(jardin);
+		return JardinResponse.convert(jardin);
 	}
 	
 	@DeleteMapping("/{numero}")

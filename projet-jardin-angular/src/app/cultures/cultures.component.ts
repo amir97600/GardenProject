@@ -58,11 +58,9 @@ export class CulturesComponent implements OnInit {
     });
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
-  }
 
-  addCulture() {
+
+  ajouterCulture() {
     if (!this.idJardin) {
       return;
     }
@@ -84,8 +82,6 @@ export class CulturesComponent implements OnInit {
       planteType: planteChoisie.planteType
     };
 
-    console.log('Objet envoyé au serveur :', cultureToSave);
-
     this.cultureService.save(cultureToSave).subscribe(
       () => {
         this.showForm = false;
@@ -93,24 +89,88 @@ export class CulturesComponent implements OnInit {
 
         this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
           this.cultures = jardin.cultures;
+          this.afficherPopup("🌱 Culture plantée avec succès !");
+
         });
       }
     );
   }
 
+fermerFormAjout() {
+  this.showForm = !this.showForm;
+}
+
+AfficherIconeCulture(culture: Culture): string {
+  const plante = this.plantes.find(p => p.id === culture.idPlante);
+  return plante ? `/${plante.icone}.png` : '/plante_icone.png';
+}
+
+AfficherNomCulture(culture: Culture): string {
+  return this.plantes.find(p => p.id === culture.idPlante)!.nom;
+}
+
+
+
 cultureSelectionnee?: Culture;
 nomPlanteSelectionnee?: string;
+iconePlanteSelectionnee?: string;
+joursRestantsAvantRecolte?: number;
+progressionRecolte?: number;
+
 
 afficherFiche(culture: Culture): void {
   this.cultureSelectionnee = culture;
   this.nomPlanteSelectionnee = undefined;
+  this.iconePlanteSelectionnee = undefined;
+  
 
   this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
     this.nomPlanteSelectionnee = plante.nom;
-    this.cultureSelectionnee!.planteType = plante.planteType;
+    this.iconePlanteSelectionnee = plante.icone;
+
+      const plantation = new Date(culture.datePlantation);
+      const maintenant = new Date();
+
+      const dateRecolte = new Date(plantation);
+      dateRecolte.setDate(plantation.getDate() + plante.delaiRecolte);
+
+      const joursRestants = Math.ceil((dateRecolte.getTime() - maintenant.getTime()) / (1000 * 3600 * 24));
+      this.joursRestantsAvantRecolte = joursRestants > 0 ? joursRestants : 0;
+
+      const joursEcoules = plante.delaiRecolte - this.joursRestantsAvantRecolte;
+      const progression = (joursEcoules / plante.delaiRecolte) * 100;
+      this.progressionRecolte = Math.min(100, Math.max(0, Math.round(progression)));
+
+ 
+
 
   });
+
 }
+
+
+
+arroserCulture(): void {
+  if (!this.cultureSelectionnee) return;
+
+  const cultureArrosee = {
+    ...this.cultureSelectionnee,
+    dateDernierArrosage: new Date().toISOString().split('T')[0],
+  };
+
+  this.cultureService.save(cultureArrosee).subscribe(() => {
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+      this.cultureSelectionnee = undefined;
+      this.nomPlanteSelectionnee = undefined;
+      this.iconePlanteSelectionnee = undefined;
+      this.afficherPopup("💧 Culture arrosée !");
+
+    });
+  });
+}
+
+
 
 supprimerCulture(): void {
   if (!this.cultureSelectionnee) return;
@@ -121,6 +181,8 @@ supprimerCulture(): void {
 
     this.jardinService.findById(this.idJardin).subscribe(jardin => {
       this.cultures = jardin.cultures;
+      this.afficherPopup("❌ Culture supprimée !");
+
     });
   });
 }
@@ -142,8 +204,24 @@ recolterCulture(): void {
 
     this.jardinService.findById(this.idJardin).subscribe(jardin => {
       this.cultures = jardin.cultures;
+      this.afficherPopup("🧺 Récolte effectuée !");
+
     });
   });
+}
+
+getNom(plante: Plante): string {
+  return plante.nom;
+}
+
+
+popupMessage: string | null = null;
+
+afficherPopup(message: string): void {
+  this.popupMessage = message;
+  setTimeout(() => {
+    this.popupMessage = null;
+  }, 3000); 
 }
 
 

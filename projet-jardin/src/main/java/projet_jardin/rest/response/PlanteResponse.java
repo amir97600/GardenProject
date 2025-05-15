@@ -16,6 +16,8 @@ public class PlanteResponse {
 		private Integer delaiRecolte;
 		private Integer dureeVie;
 		private Integer delaiArrosage;
+		private String icone;
+
 
 		public PlanteResponse() {
 			super();
@@ -84,6 +86,16 @@ public class PlanteResponse {
 		public void setDelaiArrosage(Integer delaiArrosage) {
 			this.delaiArrosage = delaiArrosage;
 		}
+		
+		
+
+		public String getIcone() {
+			return icone;
+		}
+
+		public void setIcone(String icone) {
+			this.icone = icone;
+		}
 
 		public static PlanteResponse convert(Plante plante) {
 			PlanteResponse planteResponse = new PlanteResponse();
@@ -96,6 +108,8 @@ public class PlanteResponse {
 			planteResponse.setDelaiRecolte(plante.getDelaiRecolte());
 			planteResponse.setDureeVie(plante.getDureeVie());
 			planteResponse.setDelaiArrosage(plante.getDelaiArrosage());
+			planteResponse.setIcone(plante.getIcone());
+
 			
 			if(plante instanceof FruitLegume) {
 				planteResponse.setPlanteType(PlanteType.FRUITLEGUME);

@@ -16,6 +16,7 @@ import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisate
 import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
 import { AdminCultureComponent } from './admin-culture/admin-culture.component';
 import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
+import { HomeClientComponent } from './home-client/home-client.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     component: FullLayoutComponent,
     canActivate: [authGuard],
     children: [
+      { path: 'home', component: HomeClientComponent },
       { path: 'profil', component: ProfilComponent },
       { path: 'explorer', component: ExplorerComponent },
       { path: 'cultures', component: CulturesComponent }

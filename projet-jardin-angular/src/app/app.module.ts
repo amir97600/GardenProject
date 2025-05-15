@@ -31,6 +31,7 @@ import { AdminCultureComponent } from './admin-culture/admin-culture.component';
 import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
+import { HomeClientComponent } from './home-client/home-client.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
 import { InscriptionModalComponent } from './modal/inscription-modal/inscription-modal.component';
 import { ModalFormComponent } from './modal/modal-form/modal-form.component';
@@ -77,6 +78,7 @@ import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
     UserTableComponent,
     GeneralTableComponent,
     AdminPlanteComponent,
+    HomeClientComponent,
   ],
   imports: [
     BrowserModule,

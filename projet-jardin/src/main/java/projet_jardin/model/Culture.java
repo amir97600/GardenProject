@@ -2,8 +2,6 @@ package projet_jardin.model;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,32 +18,25 @@ public class Culture {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id",nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private Integer id;
 	
 	
 	@Column(nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private Integer quantite;
 	@Column(name="date_plantation",nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private LocalDate datePlantation;
 	@Column(name="date_dernier_arrosage",nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private LocalDate dateDernierArrosage;
 	@Column(nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	private Boolean recolte;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="jardin", nullable=false)
-	@JsonView(Views.ViewCulture.class)
 	private Jardin jardin;
 	
 	@ManyToOne
 	@JoinColumn(name="plante", nullable=false)
-	@JsonView(Views.ViewCulture.class)
 	private Plante plante;
 	
 	public Culture() {}
