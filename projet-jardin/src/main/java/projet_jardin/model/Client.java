@@ -4,6 +4,7 @@ package projet_jardin.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.ElementCollection;
@@ -32,7 +33,7 @@ public class Client extends Utilisateur {
 	private List<Badge> badges = new ArrayList<Badge>();
 	
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name="id_jardin")
 	private Jardin jardin;
 	
