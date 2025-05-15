@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { AdminComponent } from './admin/admin.component';
 import { jwtHeaderInterceptor } from './authentification/jwt-header.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { LucideAngularModule, Home, Leaf, User, Search, LogOut, PlusCircle,Settings, Pencil, Trash2, SearchIcon } from 'lucide-angular';
@@ -47,7 +46,6 @@ import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
     AppComponent,
     ProfilComponent,
     ConnexionComponent,
-    AdminComponent,
     GardenNavigationComponent,
     InputTextComponent,
     HomeAdminComponent,

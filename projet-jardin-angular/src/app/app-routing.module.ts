@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { AdminComponent } from './admin/admin.component';
 import { ProfilComponent } from './profil/profil.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { authGuard } from './authentification/auth.guard';
@@ -11,7 +10,7 @@ import { ExplorerComponent } from './explorer/explorer.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AdminGuard } from './admin/admin.guard';
+import { AdminGuard } from './admin-guard/admin.guard';
 import { Error403Component } from './error403/error403.component';
 import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
 import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
@@ -43,7 +42,6 @@ const routes: Routes = [
     canActivate: [authGuard,AdminGuard],
     children: [
       { path: '', component: HomeAdminComponent },
-      { path: 'admin', component: AdminComponent },
       { path: 'utilisateur', component: AdminUtilisateursComponent },
       { path: 'jardin', component: AdminJardinComponent },
       { path: 'culture', component: AdminCultureComponent },

@@ -19,6 +19,7 @@ export class UserTableComponent {
 
   displayedDataAdmin: any[] = [];
   displayedDataClient: any[] = [];
+  
 
   ngOnChanges(): void {
     if (this.filteredAdmins) {
