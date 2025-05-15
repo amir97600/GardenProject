@@ -48,7 +48,7 @@ class ProjetJardinApplicationTests {
 
 		FruitLegume jordapimente = new FruitLegume("Jordapimente", "Attention les amateurs de cuisine ", "A besoin d'un temps de repos", 4, 30, 2, "piment_icone","Jordan.png");
 		FruitLegume framirdine = new FruitLegume("Framirdine", "Dessert masqué de Gotham", "Se developpe sous un ciel gris", 4, 30, 2, "framboise_icone","Framirdine.png");
-		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "","Marindarine.png");
+		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "mandarine_icone","Marindarine.png");
 		Fleur souhailys = new Fleur("Souhailys", "Fleur de télétravail", "N'apprécie pas le bruit des travaux", 4, 30, 2, false,"lys_icone","souhailys.png");
 		
 		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone","carotte.jpg");
