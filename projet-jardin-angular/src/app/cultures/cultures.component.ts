@@ -186,6 +186,7 @@ arroserCulture(culture: Culture): void {
     next: () => {
       culture.dateDernierArrosage = new Date().toISOString().split('T')[0];
       this.afficherPopup("💧 Culture arrosée !");
+      this.cultureSelectionnee = undefined;
     },
     error: err => {
       console.error("Erreur lors de l’arrosage :", err);
@@ -198,6 +199,7 @@ recolterCulture(culture: Culture): void {
     next: () => {
       culture.recolte = true;
       this.afficherPopup("🧺 Récolte effectuée !");
+      this.cultureSelectionnee = undefined;
 
     },
     error: err => {
