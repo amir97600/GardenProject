@@ -33,7 +33,7 @@ public class Client extends Utilisateur {
 	private List<Badge> badges = new ArrayList<Badge>();
 	
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name="id_jardin")
 	private Jardin jardin;
 	

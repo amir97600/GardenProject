@@ -32,7 +32,7 @@ public class Jardin {
 	@Column(name="superficie", nullable=false, columnDefinition = "DECIMAL(8,2)")
 	private double superficie;
 	
-	@OneToMany(mappedBy = "jardin", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "jardin", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Culture> cultures = new ArrayList<Culture>();
 
 	public Jardin() {}
