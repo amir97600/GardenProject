@@ -16,6 +16,7 @@ public class PlanteRequest {
 	private int dureeVie;
 	private int delaiArrosage;
 	private String image;
+	private String icone;
 	private PlanteType planteType;
 
 	
@@ -112,12 +113,23 @@ public class PlanteRequest {
 		this.image = image;
 	}
 
+	public String getIcone() {
+		return icone;
+	}
+
+
+	public void setIcone(String icone) {
+		this.icone = icone;
+	}
+
+	
+
 
 	public static Plante convert(PlanteRequest planteRequest) {
 		Plante plante = null;
 		if(planteRequest.getPlanteType() == PlanteType.FRUITLEGUME) {
 			plante = new FruitLegume();
-		} else if (planteRequest.getPlanteType() == PlanteType.FLEUR)
+		} else
 			plante = new Fleur();
 		
 		BeanUtils.copyProperties(planteRequest, plante);
@@ -137,6 +149,7 @@ public class PlanteRequest {
 	public enum PlanteType {
 		FRUITLEGUME, FLEUR;
 	}
+
 
 }
 

@@ -30,10 +30,13 @@ export class AdminPlanteComponent {
         { label: 'Conseil', name: 'conseil', type: 'textarea' as const, required: true },
         { label: 'DureeVie', name: 'dureeVie', type: 'number' as const, required: true },
         { label: 'Type de Plante', name: 'planteType', type: 'select' as const, required: true },
+        { label: 'Image', name: 'image', type: 'file' as const, required: true },
+        { label: 'Icone', name: 'icone', type: 'file' as const, required: true }
+
       ];  
        
       public planteForm!: FormGroup;
-      public plante:Plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'');
+      public plante:Plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'','','');
       public showModal: boolean = false;
       public messageError:string = '';
      
@@ -78,6 +81,8 @@ export class AdminPlanteComponent {
           conseil: ['',Validators.required],
           dureeVie: [0,Validators.required],
           planteType: [TypePlante.Fleur,Validators.required],
+          image: ['',Validators.required],
+          icone: ['',Validators.required],
         });
       }
     
@@ -112,11 +117,9 @@ export class AdminPlanteComponent {
 
     
       delete(plante:Plante){
-        if (confirm('Êtes-vous sûr de vouloir supprimer cette plante ?')) {
           this.planteService.delete(plante).subscribe(() => {
             this.planteService.refresh(); 
           });
-        }
       }
     
        public openModal(): void {
@@ -132,7 +135,9 @@ export class AdminPlanteComponent {
           conseil: plante.conseil,
           dureeVie: plante.dureeVie,
           nom: plante.nom,
-          planteType: plante.planteType  
+          planteType: plante.planteType,
+          image: plante.image,
+          icone: plante.icone
         });
 
         this.plante=plante;
@@ -144,7 +149,7 @@ export class AdminPlanteComponent {
       public closeModal(): void {
         this.planteForm.reset();
         this.doForm();
-        this.plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'');
+        this.plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'','','');
         this.showModal = false;
         this.messageError = '';
       }

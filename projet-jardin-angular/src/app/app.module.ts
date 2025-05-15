@@ -39,6 +39,7 @@ import { AdminFilterComponent } from './admin-filter/admin-filter.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { GeneralTableComponent } from './general-table/general-table.component';
 import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AProposComponent } from './a-propos/a-propos.component';
 import { AvatarSelectionModalComponent } from './modal/avatar-selection-modal/avatar-selection-modal.component';
 
@@ -81,6 +82,7 @@ import { AvatarSelectionModalComponent } from './modal/avatar-selection-modal/av
     GeneralTableComponent,
     AdminPlanteComponent,
     HomeClientComponent,
+    FileUploadComponent,
     AProposComponent,
     AvatarSelectionModalComponent,
   ],

@@ -23,6 +23,14 @@
           class="custom-textarea"
           [formControlName]="field.name"
           [required]="field.required" ></textarea>
+
+          <!-- Upload file -->
+          <div *ngIf="field.type === 'file'">
+            <input type="file"
+              class="modal-input"
+              [id]="field.name"
+              (change)="onAutoUpload($event, field.name)" />
+          </div>
           
 
           <!-- Select (ville, idPlante, idJardin, etc.) -->

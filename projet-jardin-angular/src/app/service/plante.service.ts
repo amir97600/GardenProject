@@ -29,7 +29,9 @@ export class PlanteService {
 
   }
 
-   public save(plante: any) {
+   public save(plante: Plante) {
+
+    console.log(plante);
       if (plante.id) {
         return this.http.put<Plante>(`${ this.API_URL }/${ plante.id }`, {
           id: plante.id,
@@ -40,6 +42,8 @@ export class PlanteService {
           dureeVie: plante.dureeVie,
           nom: plante.nom,
           planteType: plante.planteType,
+          image: plante.image,
+          icone: plante.icone,
         });
       }
         
@@ -51,6 +55,8 @@ export class PlanteService {
         dureeVie: plante.dureeVie,
         nom: plante.nom,
         planteType: plante.planteType,
+        image: plante.image,
+        icone: plante.icone,
       });
     }
       
