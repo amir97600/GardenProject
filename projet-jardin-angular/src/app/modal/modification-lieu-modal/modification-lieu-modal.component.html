@@ -1,0 +1,28 @@
+<div *ngIf="isOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>{{ titre }}</h2>
+
+    <p *ngIf="statutChangement" class="statut">{{ statutChangement }}</p>
+
+    <input 
+      type="text" 
+      [(ngModel)]="codePostal" 
+      (input)="chargerVilles()" 
+      placeholder="Code postal" 
+      class="input" 
+    />
+
+    <select 
+      [(ngModel)]="villeSelectionnee" 
+      *ngIf="villes.length > 0" 
+      class="input"
+    >
+      <option *ngFor="let ville of villes" [value]="ville">{{ ville }}</option>
+    </select>
+
+    <div class="button-container">
+      <button (click)="confirmer()">Confirmer</button>
+      <button class="secondary" (click)="fermer()">Retour</button>
+    </div>
+  </div>
+</div>

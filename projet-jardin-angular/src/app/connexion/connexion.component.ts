@@ -85,7 +85,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
         }
         //Sinon c'est un Client et il ira vers la page client
         else{
-          return this.router.navigate(['/profil']); 
+          return this.router.navigate(['/home']); 
         }
         
       }),
@@ -134,7 +134,7 @@ export class ConnexionComponent implements OnInit,OnDestroy {
   public getVille(codePostal: string): void {
     this.villeService.getVilleByCodePostal(codePostal).subscribe({
       next: (ville) => {
-        if (ville && ville.trim().length > 0) {
+        if (ville.length > 0) {
           this.signupForm.get('lieu')?.setValue(ville);
         } else {
           this.signupForm.get('lieu')?.disable();

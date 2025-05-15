@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -31,24 +30,17 @@ public abstract class Plante {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@JsonView(Views.ViewBasic.class)
 	protected Integer id;
 	@Column(name="nom",nullable=false)
-	@JsonView(Views.ViewBasic.class)
 	protected String nom;
 	@Column(name="description")
-	@JsonView(Views.ViewBasic.class)
 	protected String description;
 	@Column(name="conseil")
-	@JsonView(Views.ViewBasic.class)
 	protected String conseil;
 	@Column(name="delai_recolte")
-	@JsonView(Views.ViewBasic.class)
 	protected int delaiRecolte; //Un intervalle de recolte en semaines
-	@JsonView(Views.ViewBasic.class)
 	@Column(name="duree_vie")
 	protected int dureeVie; //Duree de la vie de la plante en semaine
-	@JsonView(Views.ViewBasic.class)
 	@Column(name="delai_arrosage")
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
 	@Column(name="icone", length = 100) 

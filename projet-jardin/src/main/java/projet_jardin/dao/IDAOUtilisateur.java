@@ -23,6 +23,9 @@ public interface IDAOUtilisateur extends JpaRepository<Utilisateur, Integer> {
 	public Client findClientByLogin(@Param("login") String login);
 
 	public Optional<Utilisateur> findByLogin(String login);
+
+	@Query("SELECT c from Client c where c.jardin.id = :idJardin")
+	public Client findClientByIdJardin(@Param("idJardin") Integer idJardin);
 	
 	@Query("from Admin")
 	public List<Admin> findAllAdmin();
