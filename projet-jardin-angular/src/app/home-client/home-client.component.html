@@ -2,27 +2,40 @@
 
 
 
-        <div class="card">
-            <h2>À faire dans le jardin</h2>
+        <div class="todo-card">
+  <div class="todo-header">
+    <h2> À faire aujourd'hui !</h2>
+    <p class="todo-sub">Ce qui mérite ton attention aujourd’hui</p>
+  </div>
 
-                <div *ngIf="culturesAAroser.length === 0 && culturesARecolter.length === 0">
-                    <p>Aucune tâche pour aujourd’hui ! ✅</p>
-                </div>
+  <div *ngIf="culturesAAroser.length === 0 && culturesARecolter.length === 0" class="todo-empty">
+    <p>✅ Tout est bien entretenu, rien à signaler.</p>
+  </div>
 
-                <div *ngIf="culturesAAroser.length > 0">
-                    <h3>À arroser 💧</h3>
-                <ul>
-                    <li *ngFor="let nom of culturesAAroser">{{ nom }}</li>
-                    </ul>
-                </div>
+  <div *ngIf="culturesAAroser.length > 0" class="todo-section arroser">
+    <h3>💧 À arroser</h3>
+    <ul>
+      <li *ngFor="let nom of culturesAAroser">
+        <a [routerLink]="['/cultures']" class="todo-link">
+            <img [src]="AfficherIcone(nom)" alt="icone" class="todo-icone" />
+            <span class="todo-nom">{{ nom }}s</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-                <div *ngIf="culturesARecolter.length > 0">
-                    <h3>À récolter 🧺</h3>
-                    <ul>
-                    <li *ngFor="let nom of culturesARecolter">{{ nom }}</li>
-                    </ul>
-                </div>
-        </div>
+  <div *ngIf="culturesARecolter.length > 0" class="todo-section recolter">
+    <h3>🧺 À récolter</h3>
+    <ul>
+      <li *ngFor="let nom of culturesARecolter">
+          <a [routerLink]="['/cultures']" class="todo-link">
+            <img [src]="AfficherIcone(nom)" alt="icone" class="todo-icone" />
+            <span class="todo-nom">{{ nom }}s</span>
+          </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
 
 
