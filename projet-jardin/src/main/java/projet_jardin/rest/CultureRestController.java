@@ -20,7 +20,6 @@ import projet_jardin.model.Client;
 import projet_jardin.model.Culture;
 import projet_jardin.rest.request.CultureRequest;
 import projet_jardin.rest.response.CultureResponse;
-import projet_jardin.rest.request.ClientRequest;
 import projet_jardin.service.CultureService;
 
 @RestController
