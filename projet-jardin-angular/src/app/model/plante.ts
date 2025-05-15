@@ -11,6 +11,7 @@ export class Plante {
     private _conseil: string,
     private _dureeVie: number,
     private _nom: string,
+    private _icone ?: String,
   ) { }
 
   public get planteType(): TypePlante {
@@ -32,7 +33,6 @@ export class Plante {
   }
 
   public get delaiArrosage(): number {
-<<<<<<< HEAD
     return this._delaiArrosage;
   }
 
@@ -79,62 +79,6 @@ export class Plante {
   public set nom(value: string) {
     this._nom = value;
   }
-=======
-  return this._delaiArrosage;
-}
-
-public set delaiArrosage(value: number) {
-  this._delaiArrosage = value;
-}
-
-public get delaiRecolte(): number {
-  return this._delaiRecolte;
-}
-
-public set delaiRecolte(value: number) {
-  this._delaiRecolte = value;
-}
-
-public get description(): string {
-  return this._description;
-}
-
-public set description(value: string) {
-  this._description = value;
-}
-
-public get conseil(): string {
-  return this._conseil;
-}
-
-public set conseil(value: string) {
-  this._conseil = value;
-}
-
-public get dureeVie(): number {
-  return this._dureeVie;
-}
-
-public set dureeVie(value: number) {
-  this._dureeVie = value;
-}
-
-public get nom(): string {
-  return this._nom;
-}
-
-public set nom(value: string) {
-  this._nom = value;
-}
-
-
-  public get comestible(): boolean {
-    return this.comestible;
-  }
-    
-  public set comestible(value: boolean) {
-    this.comestible = value;
-  }
 
   public get icone(): string {
     return this.icone;
@@ -144,7 +88,6 @@ public set nom(value: string) {
     this.icone = value;
   }
 
->>>>>>> main
 
 }
 
