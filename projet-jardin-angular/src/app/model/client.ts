@@ -3,6 +3,7 @@ export class Client {
 
     private _id : number = 0;
     private _score : number =0;
+    private _avatar? : string;
 
     constructor(
         private _nom : string,
@@ -66,6 +67,14 @@ export class Client {
 
     public set idJardin(value: number) {
         this._idJardin = value;
+    }
+
+    public get avatar() : any {
+        return this._avatar;
+    }
+
+    public set avatar(value: string) {
+        this._avatar = value;
     }
 
 }

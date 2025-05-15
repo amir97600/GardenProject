@@ -14,6 +14,7 @@ import { ModificationModalComponent } from '../modal/modification-modal/modifica
 import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirmation-modal.component';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
+import { AvatarSelectionModalComponent } from '../modal/avatar-selection-modal/avatar-selection-modal.component';
 
 
 
@@ -23,7 +24,7 @@ import 'tippy.js/dist/tippy.css';
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css',
 })
-export class ProfilComponent implements OnInit,  AfterViewInit {
+export class ProfilComponent implements OnInit, AfterViewInit {
   client: Client = new Client("", "", "", "", 0);
   jardin: Jardin = new Jardin("", 0, "Paris");
   // Liste de tous les badges 
@@ -42,6 +43,7 @@ export class ProfilComponent implements OnInit,  AfterViewInit {
   isModalLieuJardinOpen: boolean = false;
   isModalSupprimerCompteOpen: boolean = false;
   isModalPointsOpen: boolean = false;
+  isModalAvatarOpen: boolean = false;
 
   @ViewChild('passwordModal')
   mdpModificationModal !: ModificationModalComponent
@@ -54,6 +56,9 @@ export class ProfilComponent implements OnInit,  AfterViewInit {
 
   @ViewChild('supprimerCompteModal')
   supprimerCompteConfiramtionModal !: ConfirmationModalComponent
+
+  @ViewChild('avatarModal')
+  avatarModal !: AvatarSelectionModalComponent
 
   constructor(private router: Router,
     private clientService: ClientService,
@@ -178,6 +183,21 @@ export class ProfilComponent implements OnInit,  AfterViewInit {
         console.log(err);
       }
     });
+  }
+
+  changerAvatar(avatarPath: string) {
+    // this.client.avatar = `avatars/${avatarPath}`;
+    let clientModif: Client = this.client;
+    clientModif.avatar = `avatars/${avatarPath}`;
+    console.log(clientModif);
+
+    this.clientService.save(clientModif)
+      .subscribe({
+        next: () => {},
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 
 }
