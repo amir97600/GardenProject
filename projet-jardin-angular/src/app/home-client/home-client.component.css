@@ -221,4 +221,19 @@ p {
   margin-right: 8px;
 }
 
+.todo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 0;
+  transition: transform 0.2s ease;
+}
+
+.todo-link:hover {
+  transform: translateX(4px);
+  color: #2e7331;
+}
+
 

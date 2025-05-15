@@ -16,9 +16,10 @@
     <h3>💧 À arroser</h3>
     <ul>
       <li *ngFor="let nom of culturesAAroser">
-        <img [src]="AfficherIcone(nom)" alt="icone" class="todo-icone" />
-        <span class="todo-nom">{{ nom }}s</span>
-        
+        <a [routerLink]="['/cultures']" class="todo-link">
+            <img [src]="AfficherIcone(nom)" alt="icone" class="todo-icone" />
+            <span class="todo-nom">{{ nom }}s</span>
+        </a>
       </li>
     </ul>
   </div>
@@ -27,8 +28,10 @@
     <h3>🧺 À récolter</h3>
     <ul>
       <li *ngFor="let nom of culturesARecolter">
-        <img [src]="AfficherIcone(nom)" alt="icone" class="todo-icone" />
-        <span class="todo-nom">{{ nom }}s</span>
+          <a [routerLink]="['/cultures']" class="todo-link">
+            <img [src]="AfficherIcone(nom)" alt="icone" class="todo-icone" />
+            <span class="todo-nom">{{ nom }}s</span>
+          </a>
       </li>
     </ul>
   </div>
