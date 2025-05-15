@@ -41,7 +41,6 @@ export class HomeClientComponent {
           this.lieuJardin = jardin.lieu;
           const ville = jardin.lieu;
 
-          // Appel à la météo avec la ville du jardin
           this.meteoService.getTemperature(ville).subscribe({
             next: (data) => {
               console.log('Réponse complète:', data);

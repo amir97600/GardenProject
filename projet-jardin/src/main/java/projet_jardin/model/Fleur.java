@@ -15,8 +15,8 @@ public class Fleur extends Plante {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Fleur(String nom, String description, String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, boolean comestibilite, String icone) {
-		super(nom, description, conseil, delaiRecolte, dureeVie, delaiArrosage, icone);
+	public Fleur(String nom, String description, String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, boolean comestibilite, String icone, String image) {
+		super(nom, description, conseil, delaiRecolte, dureeVie, delaiArrosage, icone, image);
 		this.comestibilite = comestibilite;
 	}
 	

@@ -47,13 +47,13 @@ class ProjetJardinApplicationTests {
 		
 
 		
-		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone");
-		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 5, 25, 3, "fraise_icone");
-		FruitLegume tomate = new FruitLegume("Tomate", "Une tomate rouge bien juteuse", "Offrez-lui un bon tuteur et du soleil", 6, 40, 3, "tomate_icone");
-		Fleur tulipe = new Fleur("Tulipe", "Des tulipes hors du commun", "Plantez les à 15h précises", 2, 14, 1, false, "tulipe_icone");
-		FruitLegume oignon = new FruitLegume("Oignon", "Un oignon plein de caractère", "Évitez l’excès d’humidité et espacez les rangs", 4, 28, 2, "oignon_icone");
-		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 3, 20, 2, false, "tournesol_icone");
-		FruitLegume raisin = new FruitLegume("Raisin", "De belles grappes sucrées", "Taillez régulièrement les rameaux pour aérer", 6, 45, 3, "raisins_icone");
+		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone","carotte.jpg");
+		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 5, 25, 3, "fraise_icone","fraise.jpeg");
+		FruitLegume tomate = new FruitLegume("Tomate", "Une tomate rouge bien juteuse", "Offrez-lui un bon tuteur et du soleil", 6, 40, 3, "tomate_icone","tomate.jpg");
+		Fleur tulipe = new Fleur("Tulipe", "Des tulipes hors du commun", "Plantez les à 15h précises", 2, 14, 1, false, "tulipe_icone","tulipe.jpg");
+		FruitLegume oignon = new FruitLegume("Oignon", "Un oignon plein de caractère", "Évitez l’excès d’humidité et espacez les rangs", 4, 28, 2, "oignon_icone","oignon.jpg");
+		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 3, 20, 2, false, "tournesol_icone","tournesol.jpeg");
+		FruitLegume raisin = new FruitLegume("Raisin", "De belles grappes sucrées", "Taillez régulièrement les rameaux pour aérer", 6, 45, 3, "raisins_icone","raisin.jpg");
 
 		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, carotte);
 		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, tulipe);
