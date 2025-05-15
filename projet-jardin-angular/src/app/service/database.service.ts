@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Observable, startWith, Subject, switchMap } from 'rxjs';
 export class DatabaseService {
 
   private refresh$: Subject<void> = new Subject<void>();
+  private apiUrl = environment.apiUrl;
 
   constructor(private http:HttpClient) { }
 
@@ -22,7 +24,7 @@ export class DatabaseService {
       
       // Transformer le "void" en Array<Todo> en allant chercher les infos
       switchMap(() => {
-        return this.http.get<String[]>('http://localhost:8091/api/database/tables');
+        return this.http.get<String[]>(`${this.apiUrl}/database/tables`);
       })
     );
   }

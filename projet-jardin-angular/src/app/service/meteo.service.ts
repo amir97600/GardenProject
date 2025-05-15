@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, switchMap, tap, throwError } from 'rxjs';
+import { forkJoin, map, Observable, switchMap, tap, throwError } from 'rxjs';
 import { environment } from '../environment/environment';
 import { secret } from '../environment/secret';
 
@@ -123,6 +123,41 @@ lunePhase(): string {
     }
 }
 
+getPluie(ville: string): Observable<number[]> {
+  return this.findByVille(ville).pipe(
+    switchMap(idStation => {
+      if (!idStation) {
+        return throwError(() => new Error('Station non trouvée'));
+      }
+
+      // Récupération de l'heure actuelle et génération des plages horaires
+      const heures = [0, 2, 4, 6, 8, 10]; // Décalages horaires
+      const now = new Date();
+      const dateFormats = heures.map(h => {
+      const date = new Date(now.getTime() - h * 60 * 60 * 1000);
+      date.setUTCMinutes(0, 0, 0); // Met à zéro les minutes, secondes, millisecondes
+      return date.toISOString().split('.')[0] + 'Z'; // Résultat : 2025-05-15T06:00:00Z
+      });
+
+
+
+      const headers = new HttpHeaders({
+        'accept': '*/*',
+        'apikey': this.apiKey
+      });
+
+      // Effectuer toutes les requêtes pour chaque plage horaire
+      return forkJoin(
+        dateFormats.map(date =>
+          this.http.get<any>(`${environment.arrossage}?id_station=${idStation}&date=${date}&format=json`, { headers })
+        )
+      ).pipe(
+        map(responses => responses.map(response => response?.[0]?.rr1 ?? null)), // Extraction des valeurs rr1
+        tap(rr1Values => console.log('Indices rr1:', rr1Values)) // Debugging
+      );
+    })
+  );
+}
 
 
 }

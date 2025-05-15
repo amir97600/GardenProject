@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { AdminComponent } from './admin/admin.component';
 import { ProfilComponent } from './profil/profil.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { authGuard } from './authentification/auth.guard';
@@ -11,9 +10,14 @@ import { ExplorerComponent } from './explorer/explorer.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AdminGuard } from './admin/admin.guard';
+import { AdminGuard } from './admin-guard/admin.guard';
 import { Error403Component } from './error403/error403.component';
+import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
+import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
+import { AdminCultureComponent } from './admin-culture/admin-culture.component';
+import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
 import { HomeClientComponent } from './home-client/home-client.component';
+import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
   {
@@ -32,7 +36,8 @@ const routes: Routes = [
       { path: 'home', component: HomeClientComponent },
       { path: 'profil', component: ProfilComponent },
       { path: 'explorer', component: ExplorerComponent },
-      { path: 'cultures', component: CulturesComponent }
+      { path: 'cultures', component: CulturesComponent },
+      { path: 'a-propos', component: AProposComponent }
     ]
   },
   {
@@ -41,8 +46,11 @@ const routes: Routes = [
     canActivate: [authGuard,AdminGuard],
     children: [
       { path: '', component: HomeAdminComponent },
-      { path: 'admin', component: AdminComponent },
-      { path: 'admin/1', component: AdminComponent },
+      { path: 'utilisateur', component: AdminUtilisateursComponent },
+      { path: 'jardin', component: AdminJardinComponent },
+      { path: 'culture', component: AdminCultureComponent },
+      { path: 'plante', component: AdminPlanteComponent },
+
     ]
   },
   // Catch-all route (must be LAST)

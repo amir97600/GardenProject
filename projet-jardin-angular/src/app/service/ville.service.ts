@@ -17,6 +17,14 @@ export class VilleService {
     .pipe(
       map(response => response.map(ville => ville.nom)) 
     );
-}
+  }
+
+  getCodePostalByVille(ville: string): Observable<string> {
+    const url = `https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(ville)}&fields=code,codesPostaux&format=json`;
+    return this.http.get<any[]>(url).pipe(
+      map(result => result[0]?.codesPostaux?.[0] || '') // renvoie le premier code postal
+    );
+  }
+  
 
 }

@@ -32,10 +32,22 @@ export class CultureService {
   }
 
   public save(culture: any): Observable<Culture> {
-    if (culture.id) {
-      return this.http.put<Culture>(`${this.API_URL}/${culture.id}`, culture);
-    }
-    return this.http.post<Culture>(this.API_URL, culture);
+    
+    const payload = {
+    id: culture.id,
+    datePlantation: culture.datePlantation,
+    dateDernierArrosage: culture.dateDernierArrosage,
+    quantite: culture.quantite,
+    recolte: culture.recolte,
+    idJardin: culture.idJardin,
+    idPlante: culture.idPlante,
+    planteType: culture.planteType
+  };
+
+  if (payload.id) {
+    return this.http.put<Culture>(`${this.API_URL}/${payload.id}`, payload);
+  }
+  return this.http.post<Culture>(this.API_URL, payload);
   }
 
   public delete(id: number): Observable<void> {

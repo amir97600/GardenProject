@@ -16,6 +16,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token') as string;
+    this.role = localStorage.getItem('role') as string;
   }
 
   public authenticate(authRequest: AuthRequest): Observable<AuthResponse> {
@@ -39,5 +40,10 @@ export class AuthService {
     }
 
     return null;  
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.token = '';
   }
 }

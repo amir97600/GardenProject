@@ -13,14 +13,17 @@ export class AdminGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    const role = this.service.role; // adapte au nom de ta méthode
+    const role = this.service.role;
 
     if (role === 'ROLE_ADMIN') {
       return true;
+      
     }
 
-    // Redirection si pas admin
-    this.router.navigate(['/403']);
-    return false;
+    else{
+      this.router.navigate(['/403']);
+      return false;
+    }
+    
   }
 }

@@ -1,0 +1,93 @@
+<div class="admin-container">
+
+  <div class="search-container">
+    <div class="search-and-button">
+      <form role="search" class="search-form" (ngSubmit)="onSearch(searchTerm)">
+        <input
+          type="search"
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+          id="search-input"
+          class="search-input"
+          placeholder=""
+          aria-label="Search"
+        />
+        <button type="submit" class="search-button" aria-label="Submit search">
+          <lucide-icon name="searchIcon"></lucide-icon>
+        </button>
+      </form>
+  
+      <button class="add" (click)="openModal()">
+        Ajouter
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 2.5C8.09625 2.5 2.5 8.09625 2.5 15C2.5 21.9037 8.09625 27.5 15 27.5C21.9037 27.5 27.5 21.9037 27.5 15C27.5 8.09625 21.9037 2.5 15 2.5ZM21.25 16.25H16.25V21.25H13.75V16.25H8.75V13.75H13.75V8.75H16.25V13.75H21.25V16.25Z"
+            fill="#2D4739"
+          />
+        </svg>
+      </button>
+    </div>
+  
+    <admin-filter
+      [properties]="UserProperties"
+      [selectedFilter]="selectedFilter"
+      (filterSelected)="selectFilter($event)"
+    ></admin-filter>
+  </div>
+
+  <user-table
+  [userProperties]="UserProperties"
+  [filteredAdmins]="filteredAdmins$"
+  [filteredClients]="filteredClients$"
+  [searchTerm]="searchTerm"
+  (editAdmin)="editAdmin($event)"
+  (editClient)="editClient($event)"
+></user-table>
+
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+
+  <div class="modal-content" *ngIf="!boolClient && !boolAdmin" (click)="$event.stopPropagation()">
+    <div class="choice">
+      <label for="Client">Compte Client</label>
+      <input name="Client" type="radio" value="Compte Client" (click)="setBoolClient()"/>
+    </div>
+    <div class="choice">
+      <label for="Admin">Compte Admin</label>
+      <input name="Admin" type="radio" value="Compte Admin" (click)="setBoolAdmin()">
+    </div>
+  </div>  
+
+</div>
+
+
+
+<modal-form
+  [title]="'Créer ou éditer un Client'"
+  [form]="clientForm"
+  [fields]="clientFields"
+  [show]="showModal && boolClient"
+  (close)="closeModal()"
+  (submit)="onSignupSubmit()"
+/>
+
+<modal-form
+  [title]="'Créer ou éditer un Admin'"
+  [form]="adminForm"
+  [fields]="adminFields"
+  [show]="showModal && boolAdmin"
+  (close)="closeModal()"
+  (submit)="onSignupSubmit()"
+></modal-form>
+
+

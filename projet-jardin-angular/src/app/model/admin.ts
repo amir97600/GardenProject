@@ -1,7 +1,8 @@
 export class Admin {
 
+    private _id : number = 0;
+    
     constructor(
-        private _id:number,
         private _login:string,
         private _password:string,
     ){}

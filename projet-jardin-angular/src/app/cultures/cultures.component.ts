@@ -8,6 +8,7 @@ import { Plante } from '../model/plante';
 import { JardinService } from '../service/jardin.service';
 import { Jardin } from '../model/jardin';
 import { Culture } from './culture';
+import { MeteoService } from '../service/meteo.service';
 
 @Component({
   selector: 'app-cultures',
@@ -22,6 +23,9 @@ export class CulturesComponent implements OnInit {
   showForm = false;
   idJardin!: number;
   cultures: any[] = [];
+  lieuJardin: string | null = null;
+  dataPluie: (number | null)[] = [];
+  sommePluie: number = 0;
   popupMessage: string | null = null;
 
 
@@ -29,6 +33,7 @@ export class CulturesComponent implements OnInit {
   constructor(
     private cultureService: CultureService,
     private formBuilder: FormBuilder,
+    private meteoService: MeteoService,
     private clientService: ClientService,
     private planteService: PlanteService,
     private authService: AuthService,
@@ -56,6 +61,32 @@ export class CulturesComponent implements OnInit {
       this.idJardin = client.idJardin;
       this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
         this.cultures = jardin.cultures;
+        this.lieuJardin = jardin.lieu;
+        const ville = jardin.lieu;
+        
+        this.meteoService.getPluie(ville).subscribe({
+            next: (dataPluie) => {
+            this.dataPluie = dataPluie;
+            this.sommePluie = dataPluie.reduce((acc, val) => acc + (val ?? 0), 0);
+            console.log("Données pluie :", dataPluie);
+
+            const today = new Date().toISOString().split('T')[0]; 
+
+            if (this.sommePluie > 0) {
+             this.cultures.forEach(culture => {
+              culture.dateDernierArrosage = today;
+            });
+              console.log("Il a plu, dateDernierArrosage mise à jour pour toutes les cultures.");
+            } else {
+              console.log("Il n'a pas plu, aucune mise à jour des dates d'arrosage.");
+            }
+
+            },
+            error: (errPluie) => {
+            console.error("Erreur récupération pluie :", errPluie);
+            }
+            });
+
       });
     });
   }

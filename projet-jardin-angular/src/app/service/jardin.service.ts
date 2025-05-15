@@ -42,7 +42,7 @@ export class JardinService {
         numero : jardin.numero,
         lieu: jardin.lieu,
         nom: jardin.nom,
-        superficie: jardin.superficie
+        superficie: jardin.superficie,
       });
     }
       
@@ -54,6 +54,6 @@ export class JardinService {
   }
     
   public delete(jardin: any) {
-    return this.http.delete<void>(`${ this.API_URL }/jardin/${ jardin.numero }`);
+    return this.http.delete<void>(`${ this.API_URL }/${ jardin.numero }`);
   }
 }

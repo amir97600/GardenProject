@@ -199,10 +199,6 @@ p {
   color: #3b573b;
 }
 
-.todo-icon {
-  font-size: 1.5rem;
-}
-
 .todo-nom {
   flex: 1;
 }
@@ -217,4 +213,27 @@ p {
   text-align: center;
   border: 1px solid #cdeac0;
 }
+
+.todo-icone {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+
+.todo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 0;
+  transition: transform 0.2s ease;
+}
+
+.todo-link:hover {
+  transform: translateX(4px);
+  color: #2e7331;
+}
+
 

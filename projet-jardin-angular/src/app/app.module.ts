@@ -7,10 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { AdminComponent } from './admin/admin.component';
 import { jwtHeaderInterceptor } from './authentification/jwt-header.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { LucideAngularModule, Home, Leaf, User, Search, LogOut } from 'lucide-angular';
+import { LucideAngularModule, Home, Leaf, User, Search, LogOut, PlusCircle,Settings, Pencil, Trash2, SearchIcon } from 'lucide-angular';
 import { GardenNavigationComponent } from './garden-navigation/garden-navigation.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
@@ -26,11 +25,22 @@ import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.compon
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { Error403Component } from './error403/error403.component';
+import { AdminUtilisateursComponent } from './admin-utilisateurs/admin-utilisateurs.component';
+import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
+import { AdminCultureComponent } from './admin-culture/admin-culture.component'; 
 import { ModificationModalComponent } from './modal/modification-modal/modification-modal.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ModificationLieuModalComponent } from './modal/modification-lieu-modal/modification-lieu-modal.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-modal.component';
+import { InscriptionModalComponent } from './modal/inscription-modal/inscription-modal.component';
+import { ModalFormComponent } from './modal/modal-form/modal-form.component';
+import { AdminFilterComponent } from './admin-filter/admin-filter.component';
+import { UserTableComponent } from './user-table/user-table.component';
+import { GeneralTableComponent } from './general-table/general-table.component';
+import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
+import { AProposComponent } from './a-propos/a-propos.component';
+
 
 
 @NgModule({
@@ -38,7 +48,6 @@ import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-
     AppComponent,
     ProfilComponent,
     ConnexionComponent,
-    AdminComponent,
     GardenNavigationComponent,
     InputTextComponent,
     HomeAdminComponent,
@@ -57,17 +66,27 @@ import { AlertBadgeModalComponent } from './modal/alert-badge-modal/alert-badge-
     FullLayoutComponent,
     AdminLayoutComponent,
     Error403Component,
+    AdminUtilisateursComponent,
+    AdminJardinComponent,
+    AdminCultureComponent,
     ModificationModalComponent,
     ConfirmationModalComponent,
     ModificationLieuModalComponent,
+    AlertBadgeModalComponent,
+    InscriptionModalComponent,
+    ModalFormComponent,
+    AdminFilterComponent,
+    UserTableComponent,
+    GeneralTableComponent,
+    AdminPlanteComponent,
     HomeClientComponent,
-    AlertBadgeModalComponent
+    AProposComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut}),
+    LucideAngularModule.pick({Home, Leaf, User, Search, LogOut, PlusCircle, Settings, Pencil, Trash2, SearchIcon}),
     FormsModule
     
   ],

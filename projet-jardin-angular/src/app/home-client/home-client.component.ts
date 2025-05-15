@@ -35,8 +35,13 @@ export class HomeClientComponent {
   directionVent: string | null = null;
   condition: string | null = null;
   lune: string | null = null;
-  culturesAAroser: any[] = [];
-  culturesARecolter: any[] = [];
+  culturesAAroser: string[] = [];
+  culturesARecolter: string[] = [];
+
+  plantes: Plante[] = [];
+
+
+
   
   ngOnInit(): void {
   const login = this.authService.getLoginFromToken();
@@ -50,7 +55,6 @@ export class HomeClientComponent {
           this.lieuJardin = jardin.lieu;
           const ville = jardin.lieu;
 
-          // Appel à la météo avec la ville du jardin
           this.meteoService.getTemperature(ville).subscribe({
             next: (data) => {
               console.log('Réponse complète:', data);
@@ -108,12 +112,15 @@ export class HomeClientComponent {
 toDoList(): void {
   const login = this.authService.getLoginFromToken();
 
+
   this.clientService.findByLogin(login).subscribe(client => {
     this.jardinService.findById(client.idJardin).subscribe(jardin => {
       const cultures = jardin.cultures;
       const today = new Date();
 
       this.planteService.findAll().subscribe(plantes => {
+        this.plantes = plantes;
+
         this.culturesAAroser = [];
         this.culturesARecolter = [];
 
@@ -148,6 +155,12 @@ toDoList(): void {
 
 
 }
+
+AfficherIcone(nom: string): string {
+  const plante = this.plantes.find(p => p.nom === nom);
+  return plante ? `/${plante.icone}.png` : '/plante_icone.png';
+}
+
 
 
 

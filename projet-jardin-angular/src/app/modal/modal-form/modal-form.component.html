@@ -1,0 +1,60 @@
+<div class="modal-overlay" *ngIf="show" (click)="close.emit()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="close.emit()">&times;</button>
+  
+      <h2>{{ title }}</h2>
+  
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="signup-form">
+        <div *ngFor="let field of fields">
+          <label [for]="field.name">{{ field.label }}</label>
+        
+         <!-- Champ texte / number / password / date -->
+          <input *ngIf="['text', 'number', 'password', 'date', 'codePostal'].includes(field.type || '')"
+          class="modal-input"
+          [id]="field.name"
+          [type]="field.type"
+          [formControlName]="field.name"
+          [required]="field.required"
+          (input)="field.type === 'codePostal' ? onCodePostalChange() : null"
+          />
+
+          <!-- TextArea -->
+          <textarea *ngIf="field.type === 'textarea'"
+          class="custom-textarea"
+          [formControlName]="field.name"
+          [required]="field.required" ></textarea>
+          
+
+          <!-- Select (ville, idPlante, idJardin, etc.) -->
+          <select *ngIf="field.type === 'select'"
+          class="modal-input"
+          [formControlName]="field.name"
+          [id]="field.name"
+          [required]="field.required"
+          >
+          <option *ngFor="let option of field.options || []" [value]="option">{{ option }}</option>
+          </select>
+
+          <!-- Radio -->
+          <div *ngIf="field.type === 'radio'" class="radio-group">
+            <label *ngFor="let option of radioOptions" class="custom-radio">
+              <input
+                type="radio"
+                [formControlName]="field.name"
+                [value]="option.value"
+                [required]="field.required" />
+              <span class="radio-mark"></span>
+              {{ option.label }}
+            </label>
+          </div>
+        
+          <div class="error-message" *ngIf="form.get(field.name)?.invalid && form.get(field.name)?.touched">
+            Ce champ est obligatoire
+          </div>
+        </div>
+  
+        <button type="submit" class="btn">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+  

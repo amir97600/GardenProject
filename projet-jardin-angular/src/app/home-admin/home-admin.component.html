@@ -1,1 +1,14 @@
-{{tables | async}}
+<table class="Admin-table">
+  <thead>
+    <tr>
+      <th>Plante & moi</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let table of tables |async">
+      <td><a class="nav-link" [routerLink]="[ `/home-admin/${table.toLocaleLowerCase()}` ]">&nbsp;{{table}}</a></td>
+      <td> <a class="nav-link" [routerLink]="[ `/home-admin/${table.toLocaleLowerCase()}` ]"><lucide-icon name="settings"></lucide-icon>&nbsp;Gérer</a></td>
+    </tr>			
+  </tbody>	
+</table>		
