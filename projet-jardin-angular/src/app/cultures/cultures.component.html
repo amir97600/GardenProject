@@ -40,8 +40,8 @@
       
       <div class="boutons-fiche">
         <div>
-          <button class="emoji-btn" (click)="arroserCulture()" title="Arroser">💧</button>
-          <button class="emoji-btn" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture()" title="Récolter">🧺</button>
+          <button class="emoji-btn" (click)="arroserCulture(cultureSelectionnee)" title="Arroser">💧</button>
+          <button class="emoji-btn" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture(cultureSelectionnee)" title="Récolter">🧺</button>
         </div>
         <br>
         <button class="btn-supprimer" (click)="supprimerCulture()">✖ Supprimer</button>
