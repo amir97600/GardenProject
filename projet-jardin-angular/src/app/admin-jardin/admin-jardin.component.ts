@@ -88,11 +88,9 @@ export class AdminJardinComponent {
     }
   
     delete(jardin:any){
-      if (confirm('Êtes-vous sûr de vouloir supprimer ce jardin ?')) {
         this.jardinService.delete(jardin).subscribe(() => {
           this.jardinService.refresh(); 
-        });
-      }
+      })
     }
   
      public openModal(): void {

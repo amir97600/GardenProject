@@ -105,11 +105,9 @@ export class AdminCultureComponent {
       }
     
       delete(culture:any){
-        if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
           this.cultureService.delete(culture.id).subscribe(() => {
             this.cultureService.refresh(); 
           });
-        }
       }
     
        public openModal(): void {

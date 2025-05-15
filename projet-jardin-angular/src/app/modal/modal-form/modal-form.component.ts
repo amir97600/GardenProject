@@ -5,6 +5,8 @@ import { JardinService } from '../../service/jardin.service';
 import { PlanteService } from '../../service/plante.service';
 import { Plante } from '../../model/plante';
 import { TypePlante } from '../../model/type-plante';
+import { FileUploadService } from '../../service/file-upload.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'modal-form',
@@ -21,7 +23,7 @@ export class ModalFormComponent implements OnInit, OnChanges {
   @Input() fields: Array<{
     label: string;
     name: string;
-    type?: 'text' | 'password' | 'select' | 'codePostal'| 'number' | 'radio' | 'date' |'textarea';
+    type?: 'text' | 'password' | 'select' | 'codePostal'| 'number' | 'radio' | 'date' |'textarea' | 'file';
     required: boolean;
     options?: string[] ;
   }> = [];
@@ -31,6 +33,9 @@ export class ModalFormComponent implements OnInit, OnChanges {
     { label: 'Non', value: false }
   ];
 
+  uploadedFiles: { [key: string]: string } = {}; 
+  selectedFiles: { [key: string]: File } = {};
+
   @Input() show: boolean = false;
 
   @Output() close = new EventEmitter<void>();
@@ -38,7 +43,7 @@ export class ModalFormComponent implements OnInit, OnChanges {
 
   private plantes!:Plante[];
 
-  constructor(private villeService: VilleService,private jardinService : JardinService,private planteService : PlanteService) {}
+  constructor(private villeService: VilleService,private jardinService : JardinService,private planteService : PlanteService, private uploadService: FileUploadService) {}
 
   ngOnInit(): void {
     this.getIdJardin(); 
@@ -145,6 +150,41 @@ export class ModalFormComponent implements OnInit, OnChanges {
       this.form.get('typePlante')?.setValue(selectedPlante.planteType); // <-- remplissage automatique
     }
   }
+
+  
+  getSelectedFile(fieldName: string): File | null {
+    return this.selectedFiles[fieldName] || null;
+  }
+
+  onAutoUpload(event: any, fieldName: string) {
+    const file = event.target.files?.[0];
+    if (file) {
+      this.selectedFiles[fieldName] = file;
+      this.uploadFile(fieldName);  // upload automatique juste après sélection
+    }
+  }
+  
+  
+  uploadFile(fieldName: string): void {
+    const file = this.getSelectedFile(fieldName);
+    if (file) {
+      this.uploadService.upload(file).subscribe({
+        next: (event: any) => {
+          if (event instanceof HttpResponse) {
+            const filename = event.body.fileName || event.body.fileName;
+            this.uploadedFiles[fieldName] = filename;
+            this.form.get(fieldName)?.setValue(filename);
+            this.selectedFiles[fieldName] = undefined as any;
+          }
+        },
+        error: () => {
+          console.error(`Échec de l'upload du fichier pour ${fieldName}`);
+        }
+      });
+    }
+  }
+
+  
 
   onSubmit() {
     if (this.form.valid) {
