@@ -15,6 +15,7 @@ public class PlanteRequest {
 	private int delairecolte;
 	private int dureeVie;
 	private int delaiArrosage;
+	private String image;
 	private PlanteType planteType;
 
 	
@@ -100,6 +101,18 @@ public class PlanteRequest {
 		this.delaiArrosage = delaiArrosage;
 	}
 	
+	
+	
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
 	public static Plante convert(PlanteRequest planteRequest) {
 		Plante plante = null;
 		if(planteRequest.getPlanteType() == PlanteType.FRUITLEGUME) {
@@ -115,6 +128,7 @@ public class PlanteRequest {
 		plante.setDelaiRecolte(planteRequest.getDelairecolte());
 		plante.setDureeVie(planteRequest.getDureeVie());
 		plante.setDelaiArrosage(planteRequest.getDelaiArrosage());
+		plante.setImage(planteRequest.getImage());
 		
 		return plante;
 		

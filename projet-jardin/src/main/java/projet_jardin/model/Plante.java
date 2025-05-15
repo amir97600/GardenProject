@@ -45,6 +45,8 @@ public abstract class Plante {
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
 	@Column(name="icone", length = 100) 
 	protected String icone;
+	@Column(name="image", length = 100) 
+	protected String image;
 	
 	@OneToMany(mappedBy = "plante")
 	protected List<Culture> cultures = new ArrayList<Culture>();
@@ -53,7 +55,7 @@ public abstract class Plante {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Plante(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, String icone) {
+	public Plante(String nom, String description,String conseil, int delaiRecolte, int dureeVie, int delaiArrosage, String icone, String image) {
 		this.nom = nom;
 		this.description = description;
 		this.conseil = conseil;
@@ -61,8 +63,7 @@ public abstract class Plante {
 		this.dureeVie = dureeVie;
 		this.delaiArrosage = delaiArrosage;
 		this.icone = icone;
-
-	}
+		this.image =image;}
 	
 
 	public Integer getId() {
@@ -136,12 +137,20 @@ public abstract class Plante {
 	public void setIcone(String icone) {
 		this.icone = icone;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	@Override
 	public String toString() {
 		return "Plante [id=" + id + ", nom=" + nom + ", description=" + description + ", conseil=" + conseil
 				+ ", delaiRecolte=" + delaiRecolte + ", dureeVie=" + dureeVie + ", delaiArrosage=" + delaiArrosage
-				+ ", icone=" + icone + ", cultures=" + cultures + "]";
+				+ ", icone=" + icone + ", image=" + image + ", cultures=" + cultures + "]";
 	}
 
 
