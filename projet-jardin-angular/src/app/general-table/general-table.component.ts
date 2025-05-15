@@ -21,6 +21,9 @@ export class GeneralTableComponent {
   displayedColumns: string[] = [];
   columnLabels: { [key: string]: string } = {};
 
+  public showConfirmationModal: boolean = false;
+  public elementASupprimer: any = null;
+
 
   ngOnChanges(): void {
     if (this.data$) {
@@ -90,6 +93,13 @@ export class GeneralTableComponent {
   }
 
   onDelete(item: any): void {
-    this.delete.emit(item);
+    this.elementASupprimer = item;
+    this.showConfirmationModal = true;
+  }
+
+  confirmerSuppression() {
+    this.delete.emit(this.elementASupprimer);
+    this.showConfirmationModal = false;
+    this.elementASupprimer = null;
   }
 }

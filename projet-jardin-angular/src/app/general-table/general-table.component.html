@@ -25,4 +25,15 @@
     </tbody>
   </table>
   
- 
+  <app-confirmation-modal
+  [titre]="'Confirmer la suppression ?'"
+  [titreStyle]="{ color: '#2D4739' }"
+  [(isOpen)]="showConfirmationModal"
+  [dataToDelete]="elementASupprimer"
+  (onConfirm)="confirmerSuppression()"
+>
+  <p>
+    Êtes-vous sûr de vouloir supprimer cet élement :
+    <strong>{{ elementASupprimer?.nom || elementASupprimer?.login || 'cet élément' }}</strong> ?
+  </p>
+</app-confirmation-modal>

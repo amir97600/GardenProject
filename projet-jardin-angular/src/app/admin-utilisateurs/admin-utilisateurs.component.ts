@@ -157,28 +157,6 @@ export class AdminUtilisateursComponent implements OnInit{
     return map[label] || '';
   }
 
-  delete(user:any){
-    if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
-      this.adminService.delete(user).subscribe(() => {
-        
-        if('score' in user){
-          this.serviceJardin.findById(user.idJardin).subscribe((jardin)=>{
-            this.serviceJardin.delete(jardin).subscribe(()=> {
-              this.serviceJardin.refresh()
-              this.clientService.refresh()
-            });
-          })
-          
-          
-        }
-        else{
-          this.adminService.refresh();
-        }
-        
-      });
-    }
-  }
-
   public setBoolClient(){
     this.boolAdmin = false;
     this.boolClient = true;

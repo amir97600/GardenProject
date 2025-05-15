@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AdminService } from '../service/admin.service';
+import { JardinService } from '../service/jardin.service';
+import { ClientService } from '../service/client.service';
 
 @Component({
   selector: 'user-table',
@@ -19,6 +22,11 @@ export class UserTableComponent {
 
   displayedDataAdmin: any[] = [];
   displayedDataClient: any[] = [];
+
+  public showConfirmationModal: boolean = false;
+  public utilisateurASupprimer: any = null;
+
+  constructor(private adminService: AdminService,private serviceJardin: JardinService,private clientService: ClientService){}
   
 
   ngOnChanges(): void {
@@ -50,6 +58,32 @@ export class UserTableComponent {
     );
   }
 
+  ouvrirConfirmationModal(user: any) {
+    this.utilisateurASupprimer = user;
+    this.showConfirmationModal = true;
+  }
+
+  confirmerSuppression() {
+    const user = this.utilisateurASupprimer;
+    if (!user) return;
+  
+    this.adminService .delete(user).subscribe(() => {
+      if ('score' in user) {
+        this.serviceJardin.findById(user.idJardin).subscribe(jardin => {
+          this.serviceJardin.delete(jardin).subscribe(() => {
+            this.serviceJardin.refresh();
+            this.clientService.refresh();
+          });
+        });
+      } else {
+        this.adminService.refresh();
+      }
+    });
+  
+    this.showConfirmationModal = false;
+    this.utilisateurASupprimer = null;
+  }
+
   emitEditAdmin(user: any) {
     this.editAdmin.emit(user);
   }
@@ -58,7 +92,4 @@ export class UserTableComponent {
     this.editClient.emit(user);
   }
 
-  emitDelete(user: any) {
-    this.deleteUser.emit(user);
-  }
 }
