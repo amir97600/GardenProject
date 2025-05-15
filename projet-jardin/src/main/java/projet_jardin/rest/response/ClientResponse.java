@@ -9,15 +9,15 @@ public class ClientResponse {
 	private int id;
 	private String login;
 	private String password;
-	
-	public ClientResponse() {}
-	
 	private String nom;
+
 	private String prenom;
 	private int idJardin;
 	private int score;
+	private String avatar;
 	
-
+	public ClientResponse() {}
+	
 	public int getId() {
 		return id;
 	}
@@ -59,6 +59,12 @@ public class ClientResponse {
 	}
 	public void setScore(int score) {
 		this.score = score;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 	public static ClientResponse convert(Client client) {

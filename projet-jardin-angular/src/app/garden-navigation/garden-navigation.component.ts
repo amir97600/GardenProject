@@ -32,7 +32,7 @@ export class GardenNavigationComponent implements OnInit {
     const currentUrl = this.router.url;
     if (currentUrl.includes('/profil')) {
       this.pageTitle = 'Mon Profil';
-    } else if (currentUrl.includes('/mes-cultures')) {
+    } else if (currentUrl.includes('/cultures')) {
       this.pageTitle = 'Mes Cultures';
     } else if (currentUrl.includes('/explorer')) {  // Si tu as une page "Explorer"
       this.pageTitle = 'Explorer';

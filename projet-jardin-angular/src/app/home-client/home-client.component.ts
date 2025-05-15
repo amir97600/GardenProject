@@ -4,6 +4,11 @@ import { MeteoService } from '../service/meteo.service';
 import { ClientService } from '../service/client.service';
 import { AuthService } from '../authentification/auth.service';
 import { JardinService } from '../service/jardin.service';
+import { CultureService } from '../cultures/culture.service';
+import { PlanteService } from '../service/plante.service';
+import { Culture } from '../cultures/culture';
+import { Plante } from '../model/plante';
+
 
 @Component({
   selector: 'client',
@@ -17,7 +22,9 @@ export class HomeClientComponent {
     private meteoService: MeteoService,
     private clientService: ClientService,
     private authService: AuthService,
-    private jardinService: JardinService) {}
+    private jardinService: JardinService,
+    private cultureService: CultureService,
+    private planteService: PlanteService) {}
 
   
   temperature: number | null = null;
@@ -28,6 +35,13 @@ export class HomeClientComponent {
   directionVent: string | null = null;
   condition: string | null = null;
   lune: string | null = null;
+  culturesAAroser: string[] = [];
+  culturesARecolter: string[] = [];
+
+  plantes: Plante[] = [];
+
+
+
   
   ngOnInit(): void {
   const login = this.authService.getLoginFromToken();
@@ -90,7 +104,65 @@ export class HomeClientComponent {
       console.error("Erreur lors de la récupération du client :", err);
     }
   });
+  this.toDoList();
+
 }
 
-  
+
+toDoList(): void {
+  const login = this.authService.getLoginFromToken();
+
+
+  this.clientService.findByLogin(login).subscribe(client => {
+    this.jardinService.findById(client.idJardin).subscribe(jardin => {
+      const cultures = jardin.cultures;
+      const today = new Date();
+
+      this.planteService.findAll().subscribe(plantes => {
+        this.plantes = plantes;
+
+        this.culturesAAroser = [];
+        this.culturesARecolter = [];
+
+        for (const culture of cultures) {
+          const plante = plantes.find(p => p.id === culture.idPlante);
+          if (!plante || culture.recolte) continue;
+
+          const datePlantation = new Date(culture.datePlantation);
+          const dateDernierArrosage = new Date(culture.dateDernierArrosage);
+
+          const dateRecolte = new Date(datePlantation);
+          dateRecolte.setDate(dateRecolte.getDate() + plante.delaiRecolte);
+
+
+          const prochainArrosage = new Date(dateDernierArrosage);
+          prochainArrosage.setDate(prochainArrosage.getDate() + plante.delaiArrosage);
+
+          // À récolter
+          if (dateRecolte <= today) {
+            this.culturesARecolter.push(plante.nom);
+          }
+
+          // à arroser ( si pas encore prête à récolter)
+          else if (prochainArrosage <= today) {
+            this.culturesAAroser.push(plante.nom);
+          }
+        }
+      });
+    });
+
+  });
+
+
+}
+
+AfficherIcone(nom: string): string {
+  const plante = this.plantes.find(p => p.nom === nom);
+  return plante ? `/${plante.icone}.png` : '/plante_icone.png';
+}
+
+
+
+
+
 }

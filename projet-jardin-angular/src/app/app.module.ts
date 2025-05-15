@@ -40,6 +40,8 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { GeneralTableComponent } from './general-table/general-table.component';
 import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AProposComponent } from './a-propos/a-propos.component';
+import { AvatarSelectionModalComponent } from './modal/avatar-selection-modal/avatar-selection-modal.component';
 
 
 
@@ -81,6 +83,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AdminPlanteComponent,
     HomeClientComponent,
     FileUploadComponent,
+    AProposComponent,
+    AvatarSelectionModalComponent,
   ],
   imports: [
     BrowserModule,

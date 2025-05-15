@@ -54,4 +54,13 @@ export class CultureService {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 
+  public arroser(id: number) {
+  return this.http.put(`${this.API_URL}/${id}/arroser`, {});
+}
+
+  public recolter(id: number) {
+  return this.http.put(`${this.API_URL}/${id}/recolter`, {});
+  }
+
+
 }

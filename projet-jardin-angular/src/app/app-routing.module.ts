@@ -18,6 +18,7 @@ import { AdminCultureComponent } from './admin-culture/admin-culture.component';
 import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
       { path: 'home', component: HomeClientComponent },
       { path: 'profil', component: ProfilComponent },
       { path: 'explorer', component: ExplorerComponent },
-      { path: 'cultures', component: CulturesComponent }
+      { path: 'cultures', component: CulturesComponent },
+      { path: 'a-propos', component: AProposComponent }
     ]
   },
   {
