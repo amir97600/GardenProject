@@ -39,6 +39,7 @@ import { AdminFilterComponent } from './admin-filter/admin-filter.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { GeneralTableComponent } from './general-table/general-table.component';
 import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
+import { AProposComponent } from './a-propos/a-propos.component';
 
 
 
@@ -79,6 +80,7 @@ import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
     GeneralTableComponent,
     AdminPlanteComponent,
     HomeClientComponent,
+    AProposComponent,
   ],
   imports: [
     BrowserModule,
