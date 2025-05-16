@@ -1,5 +1,6 @@
 <div *ngIf="isOpen" class="modal-overlay">
     <div class="modal-content">
+        <span class="modal-close" (click)="fermer()">✕</span>
         <h2>{{ titre }}</h2>
 
         <p *ngIf="statutChangement" class="statut">{{ statutChangement }}</p>

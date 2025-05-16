@@ -10,14 +10,16 @@ public class ClientRequest {
 	private int id;
 	private String login;
 	private String password;
-	
-	public ClientRequest() {}
-	
+
 	private String nom;
 	private String prenom;
 	private int idJardin;
 	private int score;
 	private String avatar;
+	private String email;
+	
+	public ClientRequest() {}
+	
 
 	public int getId() {
 		return id;
@@ -69,6 +71,13 @@ public class ClientRequest {
 		this.avatar = avatar;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public static Client convert(ClientRequest cr) {
 		Client client = new Client();
@@ -81,4 +90,6 @@ public class ClientRequest {
 		client.setPoints(cr.getScore());
 		return client;
 	}
+
+
 }	

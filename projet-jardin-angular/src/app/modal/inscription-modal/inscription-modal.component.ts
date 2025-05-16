@@ -24,7 +24,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
 
   signupForm!:FormGroup;
   public messageVilleError:string = '';
-  public client:Client = new Client('','','','',0);
+  public client:Client = new Client('','','','',0,'');
   public jardin:Jardin = new Jardin('','Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
@@ -33,7 +33,6 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
 
   ville: string = '';
   villes: string[] = [];
-
 
   constructor(private adminUtilisateurService : AdminUtilisateurService, private serviceClient: ClientService, private serviceJardin: JardinService, private villeService:VilleService, private formBuilder: FormBuilder) { }
   

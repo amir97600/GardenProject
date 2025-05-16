@@ -25,6 +25,9 @@ public class Client extends Utilisateur {
 	@Column(columnDefinition = "VARCHAR(35)")
 	private String prenom;
 	private int points = 0;
+	private String avatar;
+	@Column(columnDefinition = "VARCHAR(100)")
+	private String email;
 	
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = Badge.class)
 	@JoinTable(name = "badges_obtenus", joinColumns = @JoinColumn(name = "Client"))
@@ -36,7 +39,7 @@ public class Client extends Utilisateur {
 	@JoinColumn(name="id_jardin")
 	private Jardin jardin;
 
-	private String avatar;
+	
 
 
 	public Client() {}
@@ -97,4 +100,12 @@ public class Client extends Utilisateur {
 		this.avatar = avatar;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }
