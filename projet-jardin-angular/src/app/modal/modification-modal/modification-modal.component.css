@@ -78,3 +78,16 @@ button.secondary {
 button.secondary:hover {
   background-color: #b3b3b3;
 }
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+}
+
+.modal-close:hover {
+    color: #000;
+}
