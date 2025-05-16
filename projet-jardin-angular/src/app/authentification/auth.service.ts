@@ -15,8 +15,8 @@ export class AuthService {
   private API_URL: string = `${ environment.apiUrl }/connexion`;
 
   constructor(private http: HttpClient) {
-    this.token = localStorage.getItem('token') as string;
-    this.role = localStorage.getItem('role') as string;
+    this.token = sessionStorage.getItem('token') as string;
+    this.role = sessionStorage.getItem('role') as string;
   }
 
   public authenticate(authRequest: AuthRequest): Observable<AuthResponse> {
@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   getLoginFromToken() {
-    const token = localStorage.getItem('token'); 
+    const token = sessionStorage.getItem('token'); 
 
     if (token) {
       try {
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.token = '';
   }
 }

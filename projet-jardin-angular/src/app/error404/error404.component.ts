@@ -12,7 +12,7 @@ export class Error404Component {
   public role: string = "";
   
     constructor(private router: Router, private authService: AuthService){
-       this.role = localStorage.getItem('role') || '';
+       this.role = sessionStorage.getItem('role') || '';
        console.log(this.role)
     }
   

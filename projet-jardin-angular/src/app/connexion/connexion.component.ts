@@ -48,8 +48,8 @@ export class ConnexionComponent {
       switchMap((resp) => {
         this.service.token = resp.token;
         this.service.role = resp.role;
-        localStorage.setItem('token', resp.token);
-        localStorage.setItem('role',resp.role);
+        sessionStorage.setItem('token', resp.token);
+        sessionStorage.setItem('role',resp.role);
         //Si l'utilisateur est un admin, on le renvoit vers la page des admins
         if(this.service.role === 'ROLE_ADMIN'){
           return this.router.navigate(['/home-admin']); 

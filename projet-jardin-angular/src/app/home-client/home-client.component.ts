@@ -58,6 +58,7 @@ export class HomeClientComponent {
         next: (jardin) => {
           this.lieuJardin = jardin.lieu;
           const ville = jardin.lieu;
+          
 
           this.meteoService.getTemperature(ville).subscribe({
             next: (data) => {

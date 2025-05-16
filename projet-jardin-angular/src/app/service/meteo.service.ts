@@ -22,6 +22,7 @@ export class MeteoService {
     return this.http.get<Station[]>(this.stationsUrl);
   }
 
+
   findByVille(ville: string): Observable<string | null> {
     return this.getStations().pipe(
       map(stations => {
@@ -37,15 +38,12 @@ export class MeteoService {
         if (!idStation) {
           return throwError(() => new Error('Station non trouvée'));
         }
-        const url = `api/public/DPObs/v1/station/infrahoraire-6m/?id_station=${idStation}&format=json`;
-        const headers = new HttpHeaders({
-          'accept': '*/*',
-          'apikey': this.apiKey,
-        });
-
-        console.log(headers) 
-         return this.http.get<any>(url, { headers }).pipe(
-          tap(response => console.log('Réponse API complète:', response))
+  
+        // Appel à ton backend, plus à l'API météo France
+        const url = `http://localhost:8080/api/meteo/temperature?idStation=${idStation}`;
+  
+        return this.http.get<any>(url).pipe(
+          tap(response => console.log('Données météo reçues du backend :', response))
         );
       })
     );
