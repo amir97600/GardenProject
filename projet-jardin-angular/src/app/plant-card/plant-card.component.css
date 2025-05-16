@@ -2,6 +2,14 @@
     margin-bottom: 2px;
     font-size: 1.1rem;
   }
+  .plant-card h3 img {
+  height: 1.5rem;               /* correspond à la taille du texte */
+  width: auto;                  /* garde le ratio de l’image */
+  display: inline-block;        /* pour qu’il soit sur la même ligne que le texte */
+  vertical-align: middle;       /* alignement avec le texte */
+  margin-right: 6px;            /* petit espace entre l’icône et le nom */
+  object-fit: contain;          /* évite le recadrage de l’image */
+}
 
 
 
@@ -18,6 +26,7 @@
       border-radius: 8px;
   }
 
+  
   .description-wrapper {
     height: 100px; 
     overflow: hidden;
