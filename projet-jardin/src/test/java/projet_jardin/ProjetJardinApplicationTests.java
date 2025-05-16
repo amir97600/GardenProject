@@ -46,18 +46,18 @@ class ProjetJardinApplicationTests {
 		client2.setJardin(jardin2);
 		
 
-		FruitLegume jordapimente = new FruitLegume("Jordapimente", "Attention les amateurs de cuisine ", "A besoin d'un temps de repos", 4, 30, 2, "piment_icone","Jordan.png");
-		FruitLegume framirdine = new FruitLegume("Framirdine", "Dessert masqué de Gotham", "Se developpe sous un ciel gris", 4, 30, 2, "framboise_icone","Framirdine.png");
-		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "mandarine_icone","Marindarine.png");
-		Fleur souhailys = new Fleur("Souhailys", "Fleur de télétravail", "N'apprécie pas le bruit des travaux", 4, 30, 2, false,"lys_icone","souhailys.png");
+		FruitLegume jordapimente = new FruitLegume("Jordapimente", "Attention les amateurs de cuisine ", "A besoin d'un temps de repos", 4, 30, 2, "piment_icone.png","Jordan.png");
+		FruitLegume framirdine = new FruitLegume("Framirdine", "Dessert masqué de Gotham", "Se developpe sous un ciel gris", 4, 30, 2, "framboise_icone.png","Framirdine.png");
+		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "mandarine_icone.png","Marindarine.png");
+		Fleur souhailys = new Fleur("Souhailys", "Fleur de télétravail", "N'apprécie pas le bruit des travaux", 4, 30, 2, false,"lys_icone.png","souhailys.png");
 		
-		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone","carotte.jpg");
-		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 5, 25, 3, "fraise_icone","fraise.jpeg");
-		FruitLegume tomate = new FruitLegume("Tomate", "Une tomate rouge bien juteuse", "Offrez-lui un bon tuteur et du soleil", 6, 40, 3, "tomate_icone","tomate.jpg");
-		Fleur tulipe = new Fleur("Tulipe", "Des tulipes hors du commun", "Plantez les à 15h précises", 2, 14, 1, false, "tulipe_icone","tulipe.jpg");
-		FruitLegume oignon = new FruitLegume("Oignon", "Un oignon plein de caractère", "Évitez l’excès d’humidité et espacez les rangs", 4, 28, 2, "oignon_icone","oignon.jpg");
-		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 3, 20, 2, false, "tournesol_icone","tournesol.jpeg");
-		FruitLegume raisin = new FruitLegume("Raisin", "De belles grappes sucrées", "Taillez régulièrement les rameaux pour aérer", 6, 45, 3, "raisins_icone","raisin.jpg");
+		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 4, 30, 2, "carotte_icone.png","carotte.jpg");
+		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 5, 25, 3, "fraise_icone.png","fraise.jpeg");
+		FruitLegume tomate = new FruitLegume("Tomate", "Une tomate rouge bien juteuse", "Offrez-lui un bon tuteur et du soleil", 6, 40, 3, "tomate_icone.png","tomate.jpg");
+		Fleur tulipe = new Fleur("Tulipe", "Des tulipes hors du commun", "Plantez les à 15h précises", 2, 14, 1, false, "tulipe_icone.png","tulipe.jpg");
+		FruitLegume oignon = new FruitLegume("Oignon", "Un oignon plein de caractère", "Évitez l’excès d’humidité et espacez les rangs", 4, 28, 2, "oignon_icone.png","oignon.jpg");
+		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 3, 20, 2, false, "tournesol_icone.png","tournesol.jpeg");
+		FruitLegume raisin = new FruitLegume("Raisin", "De belles grappes sucrées", "Taillez régulièrement les rameaux pour aérer", 6, 45, 3, "raisins_icone.png","raisin.jpg");
 
 		Culture cult1 = new Culture(4, LocalDate.now(), LocalDate.now(), false, jardin1, carotte);
 		Culture cult2 = new Culture(24, LocalDate.now(), LocalDate.now(), false, jardin1, tulipe);
