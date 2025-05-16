@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EmailService } from '../../service/email.service';
 import { EmailRequest } from '../../model/email-request';
+import { ClientService } from '../../service/client.service';
+import { Client } from '../../model/client';
 
 @Component({
   selector: 'app-forgot-password-modal',
@@ -11,7 +13,8 @@ import { EmailRequest } from '../../model/email-request';
 })
 export class ForgotPasswordModalComponent {
   step: number = 1;
-  email: string = '';
+  login: string = '';
+  client: Client = new Client('', '', '', '', 0, '');
   code: string = '';
   verificationCode: string = '';
   newPassword: string = '';
@@ -21,7 +24,7 @@ export class ForgotPasswordModalComponent {
   @Input() isOpen: boolean = false;
   @Output() isOpenChange = new EventEmitter<boolean>();
 
-  constructor(private httpClient: HttpClient, private emailService: EmailService) { }
+  constructor(private httpClient: HttpClient, private emailService: EmailService, private clientService: ClientService) { }
 
   generateCode(length: number = 6): string {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -36,21 +39,35 @@ export class ForgotPasswordModalComponent {
     this.loading = true;
     this.verificationCode = this.generateCode();
 
-    const emailPayload = new EmailRequest(this.email, "Code de réinitialisation de mot de passe", `Bonjour,\n\nVoici votre code de vérification : ${this.verificationCode}\n\nSi vous n'êtes pas à l'origine de cette demande, ignorez ce message.`);
+    this.clientService.findByLogin(this.login).subscribe({
+      next: (client) => {
+        this.client = client;
+        console.log(client);
 
-    this.emailService.sendEmail(emailPayload).subscribe({
-      next: (message) => {
-        this.step = 2;
-        this.error = '';
-        this.loading = false;
-        console.log('Réponse texte:', message);
+        const emailPayload = new EmailRequest(this.client.email, "Code de réinitialisation de mot de passe", `Bonjour,\n\nVoici votre code de vérification : ${this.verificationCode}\n\nSi vous n'êtes pas à l'origine de cette demande, ignorez ce message.`);
+
+        this.emailService.sendEmail(emailPayload).subscribe({
+          next: (message) => {
+            this.step = 2;
+            this.error = '';
+            this.loading = false;
+            console.log('Réponse texte:', message);
+          },
+          error: (err) => {
+            console.log(err);
+            this.error = "Échec de l'envoi de l'email.";
+            this.loading = false;
+
+          }
+        });
       },
       error: (err) => {
-        this.error = "Erreur d'envoi : " + err.error;
+        console.log(err);
+        this.error = "Client introuvable";
         this.loading = false;
-
       }
     });
+
   }
 
   verifyCode() {
@@ -66,9 +83,23 @@ export class ForgotPasswordModalComponent {
     if (this.newPassword !== this.confirmPassword) {
       this.error = "Les mots de passe ne correspondent pas.";
       return;
-
-      this.fermer()
     }
+
+    let clientModif: Client = this.client;
+    clientModif.password = this.newPassword;
+
+    this.loading = true;
+    this.clientService.save(clientModif).subscribe({
+      next: () => {
+        alert('Mot de passe réinitialisé avec succès.');
+        this.fermer();
+        this.loading = false;
+      },
+      error: () => {
+        this.error = "Erreur lors de la réinitialisation.";
+        this.loading = false;
+      }
+    });
 
   }
 
@@ -85,7 +116,7 @@ export class ForgotPasswordModalComponent {
 
   reset() {
     this.step = 1;
-    this.email = '';
+    this.client = new Client('', '', '', '', 0, '');
     this.code = '';
     this.newPassword = '';
     this.confirmPassword = '';
