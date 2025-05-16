@@ -63,7 +63,7 @@ export class ForgotPasswordModalComponent {
       },
       error: (err) => {
         console.log(err);
-        this.error = "Client introuvable";
+        this.error = "Compte introuvable";
         this.loading = false;
       }
     });
@@ -80,6 +80,11 @@ export class ForgotPasswordModalComponent {
   }
 
   resetPassword() {
+    if (!this.newPassword || this.newPassword.trim() === '') {
+      this.error = `Le mot de passe est vide !`;
+      return;
+    }
+
     if (this.newPassword !== this.confirmPassword) {
       this.error = "Les mots de passe ne correspondent pas.";
       return;
@@ -91,8 +96,8 @@ export class ForgotPasswordModalComponent {
     this.loading = true;
     this.clientService.save(clientModif).subscribe({
       next: () => {
-        alert('Mot de passe réinitialisé avec succès.');
-        this.fermer();
+        this.error = 'Mot de passe réinitialisé avec succès.';
+        setTimeout(() => this.fermer(), 1500);
         this.loading = false;
       },
       error: () => {
@@ -118,6 +123,7 @@ export class ForgotPasswordModalComponent {
     this.step = 1;
     this.client = new Client('', '', '', '', 0, '');
     this.code = '';
+    this.login = '';
     this.newPassword = '';
     this.confirmPassword = '';
     this.error = '';
