@@ -126,7 +126,7 @@ p {
 
 .todo-card {
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   margin: 0 auto;
   background: rgba(240, 255, 245, 0.7); 
   backdrop-filter: blur(8px);

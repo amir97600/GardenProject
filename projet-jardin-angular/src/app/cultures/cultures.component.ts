@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CultureService } from './culture.service';
 import { ClientService } from '../service/client.service';
 import { AuthService } from '../authentification/auth.service';
 import { PlanteService } from '../service/plante.service';
-import { Plante } from '../model/plante';
 import { JardinService } from '../service/jardin.service';
-import { Jardin } from '../model/jardin';
+import { Plante } from '../model/plante';
 import { Culture } from './culture';
 import { MeteoService } from '../service/meteo.service';
 import { FileUploadService } from '../service/file-upload.service';
-
 
 @Component({
   selector: 'app-cultures',
@@ -22,15 +20,14 @@ export class CulturesComponent implements OnInit {
 
   cultureForm!: FormGroup;
   plantes: Plante[] = [];
+  cultures: Culture[] = [];
+  cultureSelectionnee?: Culture;
   showForm = false;
   idJardin!: number;
-  cultures: any[] = [];
-  lieuJardin: string | null = null;
-  dataPluie: (number | null)[] = [];
-  sommePluie: number = 0;
+  today = new Date().toISOString().split('T')[0];
   popupMessage: string | null = null;
-
-
+  joursRestantsAvantRecolte?: number;
+  progressionRecolte?: number;
 
   constructor(
     private cultureService: CultureService,
@@ -41,201 +38,139 @@ export class CulturesComponent implements OnInit {
     private authService: AuthService,
     private jardinService: JardinService,
     private fileUploadService: FileUploadService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.cultureForm = this.formBuilder.group({
-      nomPlante: [''],
-      quantite: [1],
-      datePlantation: [''],
-      dateDernierArrosage: [''],
-      recolte: [false],
-
+      nomPlante: ['', Validators.required],
+      quantite: [1, [Validators.required, Validators.min(1)]],
+      datePlantation: ['', Validators.required],
+      dateDernierArrosage: ['', Validators.required],
+      recolte: [false]
     });
 
-
-    this.planteService.findAll().subscribe((data: Plante[]) => {
-      this.plantes = data;
+    this.planteService.findAll().subscribe(plantes => {
+      this.plantes = plantes;
+      this.cultureForm.setValidators(this.formulaireCultureValidator());
     });
 
     const login = this.authService.getLoginFromToken();
-    this.clientService.findByLogin(login).subscribe((client) => {
+    this.clientService.findByLogin(login).subscribe(client => {
       this.idJardin = client.idJardin;
-      this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
+      this.jardinService.findById(this.idJardin).subscribe(jardin => {
         this.cultures = jardin.cultures;
-        this.lieuJardin = jardin.lieu;
-        const ville = jardin.lieu;
-        
-        this.meteoService.getPluie(ville).subscribe({
-            next: (dataPluie) => {
-            this.dataPluie = dataPluie;
-            this.sommePluie = dataPluie.reduce((acc, val) => acc + (val ?? 0), 0);
-            console.log("Données pluie :", dataPluie);
 
-            const today = new Date().toISOString().split('T')[0]; 
-
-            if (this.sommePluie > 0) {
-             this.cultures.forEach(culture => {
-              culture.dateDernierArrosage = today;
-            });
-              console.log("Il a plu, dateDernierArrosage mise à jour pour toutes les cultures.");
-            } else {
-              console.log("Il n'a pas plu, aucune mise à jour des dates d'arrosage.");
-            }
-
-            },
-            error: (errPluie) => {
-            console.error("Erreur récupération pluie :", errPluie);
-            }
-            });
-
+        this.meteoService.getPluie(jardin.lieu).subscribe(data => {
+          if (data.reduce((sum, val) => sum + (val ?? 0), 0) > 0) {
+            const todayStr = new Date().toISOString().split('T')[0];
+            this.cultures.forEach(c => c.dateDernierArrosage = todayStr);
+          }
+        });
       });
     });
   }
 
+  formulaireCultureValidator(): ValidatorFn {
+    return (group: AbstractControl): ValidationErrors | null => {
+      const plantation = group.get('datePlantation')?.value;
+      const arrosage = group.get('dateDernierArrosage')?.value;
+      const nomPlante = group.get('nomPlante')?.value;
+      const today = this.today;
 
+      const errors: any = {};
+      if (plantation > today) errors.datePlantationFuture = true;
+      if (arrosage > today) errors.dateArrosageFuture = true;
+      if (arrosage < plantation) errors.arrosageAvantPlantation = true;
+      if (!this.plantes.map(p => p.nom).includes(nomPlante)) errors.planteInvalide = true;
 
-  ajouterCulture() {
-    if (!this.idJardin) {
+      return Object.keys(errors).length ? errors : null;
+    };
+  }
+
+  ajouterCulture(): void {
+    if (this.cultureForm.invalid) {
+      this.cultureForm.markAllAsTouched();
       return;
     }
 
     const formValue = this.cultureForm.value;
-    const planteChoisie = this.plantes.find((p) => p.nom === formValue.nomPlante);
+    const plante = this.plantes.find(p => p.nom === formValue.nomPlante);
+    if (!plante) return;
 
-    if (!planteChoisie) {
-      return;
-    }
-
-    const cultureToSave = {
-      datePlantation: formValue.datePlantation,
-      dateDernierArrosage: formValue.dateDernierArrosage,
-      quantite: formValue.quantite,
-      recolte: formValue.recolte ?? false,
+    const nouvelleCulture = {
+      ...formValue,
       idJardin: this.idJardin,
-      idPlante: planteChoisie.id,
-      planteType: planteChoisie.planteType
+      idPlante: plante.id,
+      planteType: plante.planteType
     };
 
-    this.cultureService.save(cultureToSave).subscribe(
-      () => {
-        this.showForm = false;
-        this.cultureForm.reset();
-
-        this.jardinService.findById(this.idJardin).subscribe((jardin: Jardin) => {
-          this.cultures = jardin.cultures;
-          this.afficherPopup("🌱 Culture plantée avec succès !");
-
-        });
-      }
-    );
+    this.cultureService.save(nouvelleCulture).subscribe(() => {
+      this.showForm = false;
+      this.cultureForm.reset();
+      this.jardinService.findById(this.idJardin).subscribe(jardin => {
+        this.cultures = jardin.cultures;
+        this.afficherPopup("🌱 Culture plantée avec succès !");
+      });
+    });
   }
 
-fermerFormAjout() {
-  this.showForm = !this.showForm;
-}
-
-AfficherIconeCulture(culture: Culture): string {
-  const plante = this.plantes.find(p => p.id === culture.idPlante);
-  const icone = plante?.icone || 'plante_default.png';
-  return this.fileUploadService.getFileUploaded(icone);
-}
-
-
-AfficherNomCulture(culture: Culture): string {
-  return this.plantes.find(p => p.id === culture.idPlante)!.nom;
-}
-
-
-
-cultureSelectionnee?: Culture;
-nomPlanteSelectionnee?: string;
-iconePlanteSelectionnee?: string;
-joursRestantsAvantRecolte?: number;
-progressionRecolte?: number;
-
-
-afficherFiche(culture: Culture): void {
-  this.cultureSelectionnee = culture;
-  this.nomPlanteSelectionnee = undefined;
-  this.iconePlanteSelectionnee = undefined;
-  
-
-  this.planteService.findById(culture.idPlante).subscribe((plante: Plante) => {
-    this.nomPlanteSelectionnee = plante.nom;
-    this.iconePlanteSelectionnee = plante.icone;
-
+  afficherFiche(culture: Culture): void {
+    this.cultureSelectionnee = culture;
+    this.planteService.findById(culture.idPlante).subscribe(plante => {
       const plantation = new Date(culture.datePlantation);
-      const maintenant = new Date();
-
       const dateRecolte = new Date(plantation);
-      dateRecolte.setDate(plantation.getDate() + plante.delaiRecolte);
+      dateRecolte.setDate(dateRecolte.getDate() + plante.delaiRecolte);
 
-      const joursRestants = Math.ceil((dateRecolte.getTime() - maintenant.getTime()) / (1000 * 3600 * 24));
-      this.joursRestantsAvantRecolte = joursRestants > 0 ? joursRestants : 0;
+      const joursRestants = Math.ceil((dateRecolte.getTime() - Date.now()) / (1000 * 3600 * 24));
+      this.joursRestantsAvantRecolte = Math.max(0, joursRestants);
 
-      const joursEcoules = plante.delaiRecolte - this.joursRestantsAvantRecolte;
-      const progression = (joursEcoules / plante.delaiRecolte) * 100;
+      const progression = (plante.delaiRecolte - this.joursRestantsAvantRecolte) / plante.delaiRecolte * 100;
       this.progressionRecolte = Math.min(100, Math.max(0, Math.round(progression)));
+    });
+  }
 
-  });
-
-}
-
-arroserCulture(culture: Culture): void {
-  this.cultureService.arroser(culture.id).subscribe({
-    next: () => {
-      culture.dateDernierArrosage = new Date().toISOString().split('T')[0];
+  arroserCulture(culture: Culture): void {
+    this.cultureService.arroser(culture.id).subscribe(() => {
+      culture.dateDernierArrosage = this.today;
       this.afficherPopup("💧 Culture arrosée !");
       this.cultureSelectionnee = undefined;
-    },
-    error: err => {
-      console.error("Erreur lors de l’arrosage :", err);
-    }
-  });
-}
+    });
+  }
 
-recolterCulture(culture: Culture): void {
-  this.cultureService.recolter(culture.id).subscribe({
-    next: () => {
+  recolterCulture(culture: Culture): void {
+    this.cultureService.recolter(culture.id).subscribe(() => {
       culture.recolte = true;
       this.afficherPopup("🧺 Récolte effectuée !");
       this.cultureSelectionnee = undefined;
-
-    },
-    error: err => {
-      console.error("Erreur lors de la récolte :", err);
-    }
-  });
-}
-
-
-supprimerCulture(): void {
-  if (!this.cultureSelectionnee) return;
-
-  this.cultureService.delete(this.cultureSelectionnee.id).subscribe(() => {
-    this.cultureSelectionnee = undefined;
-    this.nomPlanteSelectionnee = undefined;
-
-    this.jardinService.findById(this.idJardin).subscribe(jardin => {
-      this.cultures = jardin.cultures;
-      this.afficherPopup("❌ Culture supprimée !");
-
     });
-  });
-}
+  }
 
+  supprimerCulture(): void {
+    if (!this.cultureSelectionnee) return;
+    this.cultureService.delete(this.cultureSelectionnee.id).subscribe(() => {
+      this.cultureSelectionnee = undefined;
+      this.jardinService.findById(this.idJardin).subscribe(jardin => {
+        this.cultures = jardin.cultures;
+        this.afficherPopup("❌ Culture supprimée !");
+      });
+    });
+  }
 
-getNom(plante: Plante): string {
-  return plante.nom;
-}
+  AfficherIconeCulture(culture: Culture): string {
+    const plante = this.plantes.find(p => p.id === culture.idPlante);
+    return this.fileUploadService.getFileUploaded(plante?.icone || 'plante_default.png');
+  }
 
+  AfficherNomCulture(culture: Culture): string {
+    return this.plantes.find(p => p.id === culture.idPlante)?.nom || 'Plante inconnue';
+  }
 
-afficherPopup(message: string): void {
-  this.popupMessage = message;
-  setTimeout(() => {
-    this.popupMessage = null;
-  }, 3000); 
-}
+  fermerFormAjout(): void {
+    this.showForm = !this.showForm;
+  }
 
+  afficherPopup(message: string): void {
+    this.popupMessage = message;
+    setTimeout(() => this.popupMessage = null, 3000);
+  }
 }
