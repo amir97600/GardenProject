@@ -40,7 +40,7 @@ export class AdminUtilisateurService {
           next: () => {
             // Réinitialiser les valeurs après la sauvegarde
             client = new Client('', '', '', '', 0);
-            jardin = new Jardin('', 5, 'Paris');
+            jardin = new Jardin('','Paris');
             savedJardinId = 0;
 
             // Rafraîchir les clients

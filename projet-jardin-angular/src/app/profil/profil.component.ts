@@ -26,7 +26,7 @@ import { AvatarSelectionModalComponent } from '../modal/avatar-selection-modal/a
 })
 export class ProfilComponent implements OnInit, AfterViewInit {
   client: Client = new Client("", "", "", "", 0);
-  jardin: Jardin = new Jardin("", 0, "Paris");
+  jardin: Jardin = new Jardin("","Paris");
   // Liste de tous les badges 
   badges = Object.entries(Badge).filter(([key, value]) => typeof value === 'number');
   // Liste des badges débloqués par le client en fonction de son score 

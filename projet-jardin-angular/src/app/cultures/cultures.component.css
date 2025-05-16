@@ -76,12 +76,17 @@
   margin-top: 10px;
 }
 
+.emoji-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+}
+
 .actions {
   display: flex;
   gap: 12px;
   margin-bottom: 10px;
 }
-
 
 .emoji-btn {
   background: none;

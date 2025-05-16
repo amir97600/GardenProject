@@ -6,7 +6,7 @@ export class Jardin {
     private _cultures : Culture[] = [];
     
 
-    constructor(private _nom : string, private _superficie : number,private _lieu : string) {}
+    constructor(private _nom : string, private _lieu : string) {}
 
     public get numero() : number {
         return this._numero;
@@ -22,14 +22,6 @@ export class Jardin {
 
     public set nom(value: string) {
         this._nom = value;
-    }
-
-    public get superficie() : number {
-        return this._superficie;
-    }
-
-    public set superficie(value: number) {
-        this._superficie = value;
     }
 
     public get cultures() : Culture[] {
