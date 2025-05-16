@@ -41,15 +41,13 @@ export class JardinService {
       return this.http.put<Jardin>(`${ this.API_URL }/${ jardin.numero }`, {
         numero : jardin.numero,
         lieu: jardin.lieu,
-        nom: jardin.nom,
-        superficie: jardin.superficie,
+        nom: jardin.nom
       });
     }
       
     return this.http.post<Jardin>(this.API_URL, {
       lieu: jardin.lieu,
-      nom: jardin.nom,
-      superficie: jardin.superficie
+      nom: jardin.nom
     });
   }
     

@@ -18,16 +18,16 @@ export class AdminPlanteService {
       plante.conseil = planteForm.value.conseil,
       plante.dureeVie = planteForm.value.dureeVie,
       plante.nom = planteForm.value.nom,
-      plante.planteType = planteForm.value.planteType 
-
-      console.log(plante);
+      plante.planteType = planteForm.value.planteType,
+      plante.image = planteForm.value.image,
+      plante.icone = planteForm.value.icone
   
      this.servicePlante.save(plante).subscribe({
         next: () => {
               this.servicePlante.refresh();
             },
             error: (err) => {
-              console.error('Erreur lors de la sauvegarde du jardin', err);
+              console.error('Erreur lors de la sauvegarde de la plante', err);
             }
           })
         }

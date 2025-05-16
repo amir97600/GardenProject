@@ -1,10 +1,7 @@
 package projet_jardin.rest.request;
 
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 
-import projet_jardin.model.Culture;
 import projet_jardin.model.Jardin;
 
 public class JardinRequest {
@@ -12,7 +9,6 @@ public class JardinRequest {
 	private int numero;
 	private String nom;
 	private String lieu;
-	private double superficie;
 //	private List<Culture> cultures;
 	
 	public JardinRequest() {
@@ -41,14 +37,6 @@ public class JardinRequest {
 
 	public void setLieu(String lieu) {
 		this.lieu = lieu;
-	}
-
-	public double getSuperficie() {
-		return superficie;
-	}
-
-	public void setSuperficie(double superficie) {
-		this.superficie = superficie;
 	}
 
 //	public List<Culture> getCultures() {

@@ -9,6 +9,8 @@ import { JardinService } from '../service/jardin.service';
 import { Jardin } from '../model/jardin';
 import { Culture } from './culture';
 import { MeteoService } from '../service/meteo.service';
+import { FileUploadService } from '../service/file-upload.service';
+
 
 @Component({
   selector: 'app-cultures',
@@ -37,8 +39,8 @@ export class CulturesComponent implements OnInit {
     private clientService: ClientService,
     private planteService: PlanteService,
     private authService: AuthService,
-    private jardinService: JardinService
-
+    private jardinService: JardinService,
+    private fileUploadService: FileUploadService
   ) { }
 
   ngOnInit(): void {
@@ -135,8 +137,10 @@ fermerFormAjout() {
 
 AfficherIconeCulture(culture: Culture): string {
   const plante = this.plantes.find(p => p.id === culture.idPlante);
-  return plante ? `/${plante.icone}.png` : '/plante_icone.png';
+  const icone = plante?.icone || 'plante_default.png';
+  return this.fileUploadService.getFileUploaded(icone);
 }
+
 
 AfficherNomCulture(culture: Culture): string {
   return this.plantes.find(p => p.id === culture.idPlante)!.nom;
@@ -173,9 +177,6 @@ afficherFiche(culture: Culture): void {
       const joursEcoules = plante.delaiRecolte - this.joursRestantsAvantRecolte;
       const progression = (joursEcoules / plante.delaiRecolte) * 100;
       this.progressionRecolte = Math.min(100, Math.max(0, Math.round(progression)));
-
- 
-
 
   });
 
@@ -225,7 +226,6 @@ supprimerCulture(): void {
 }
 
 
-
 getNom(plante: Plante): string {
   return plante.nom;
 }
@@ -237,7 +237,5 @@ afficherPopup(message: string): void {
     this.popupMessage = null;
   }, 3000); 
 }
-
-
 
 }

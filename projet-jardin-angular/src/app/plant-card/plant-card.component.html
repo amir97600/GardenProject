@@ -1,6 +1,6 @@
 <div class="plant-card" [attr.data-type]="plante.planteType">
-  <img [src]="plante.image" [alt]="plante.nom">
-  <h3>{{ plante.nom }}</h3>
+  <img [src]="getImagePath(plante.image)" [alt]="plante.nom">
+  <h3><img [src]="getImagePath(plante.icone)" [alt]="plante.nom">{{ plante.nom }}</h3>
   <div class="description-wrapper">
     <p><strong>Description :</strong> {{ plante.description }}</p>
   </div>

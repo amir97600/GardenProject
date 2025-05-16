@@ -39,10 +39,10 @@ public class FilesController {
         storageService.save(file);
   
         message = "Le fichier a été uploadé avec succès: " + file.getOriginalFilename();
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message,file.getOriginalFilename()));
       } catch (Exception e) {
         message = "L'upload du fichier n'a pas pu être effectué: " + file.getOriginalFilename() + ". Erreur: " + e.getMessage();
-        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message,file.getOriginalFilename()));
       }
     }
   

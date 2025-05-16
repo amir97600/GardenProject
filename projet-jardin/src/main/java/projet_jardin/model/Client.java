@@ -32,11 +32,13 @@ public class Client extends Utilisateur {
 	@Enumerated(EnumType.STRING)
 	private List<Badge> badges = new ArrayList<Badge>();
 	
-	
 	@OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name="id_jardin")
 	private Jardin jardin;
-	
+
+	private String avatar;
+
+
 	public Client() {}
 	
 	
@@ -86,10 +88,13 @@ public class Client extends Utilisateur {
 	public void setJardin(Jardin jardin) {
 		this.jardin = jardin;
 	}
+		
+	public String getAvatar() {
+		return avatar;
+	}
 
-
-	
-	
-	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
 }

@@ -8,6 +8,8 @@ import { CultureService } from '../cultures/culture.service';
 import { PlanteService } from '../service/plante.service';
 import { Culture } from '../cultures/culture';
 import { Plante } from '../model/plante';
+import { FileUploadService } from '../service/file-upload.service';
+
 
 
 @Component({
@@ -24,7 +26,9 @@ export class HomeClientComponent {
     private authService: AuthService,
     private jardinService: JardinService,
     private cultureService: CultureService,
-    private planteService: PlanteService) {}
+    private planteService: PlanteService,
+    private fileUploadService: FileUploadService
+) {}
 
   
   temperature: number | null = null;
@@ -158,11 +162,15 @@ toDoList(): void {
 
 AfficherIcone(nom: string): string {
   const plante = this.plantes.find(p => p.nom === nom);
-  return plante ? `/${plante.icone}.png` : '/plante_icone.png';
+  const icone = plante?.icone || 'plante_icone.png';
+  return this.fileUploadService.getFileUploaded(icone);
 }
 
 
-
-
+AfficherIconeCulture(culture: Culture): string {
+  const plante = this.plantes.find(p => p.id === culture.idPlante);
+  const icone = plante?.icone || 'plante_default.png';
+  return this.fileUploadService.getFileUploaded(icone);
+}
 
 }

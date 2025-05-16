@@ -31,7 +31,7 @@ export class AdminUtilisateursComponent implements OnInit{
   public client:Client = new Client('','','','',0);
   public adminForm!: FormGroup;
   public admin:Admin = new Admin('','');
-  public jardin:Jardin = new Jardin('',5,'Paris');
+  public jardin:Jardin = new Jardin('','Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
   public showModal: boolean = false;
@@ -216,7 +216,7 @@ export class AdminUtilisateursComponent implements OnInit{
       this.adminForm.reset();
       this.client = new Client('', '', '', '', 0);
       this.admin = new Admin('', '');
-      this.jardin = new Jardin('', 5, 'Paris');
+      this.jardin = new Jardin('','Paris');
       this.boolAdmin = false;
       this.boolClient = false;
       this.showModal = false;

@@ -17,6 +17,7 @@ import { AdminJardinComponent } from './admin-jardin/admin-jardin.component';
 import { AdminCultureComponent } from './admin-culture/admin-culture.component';
 import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
 import { HomeClientComponent } from './home-client/home-client.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ConnexionComponent },
       { path: '403',component: Error403Component },
+      { path: 'upload',component: FileUploadComponent },
     ]
   },
   {

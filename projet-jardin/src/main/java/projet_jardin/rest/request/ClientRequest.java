@@ -17,6 +17,7 @@ public class ClientRequest {
 	private String prenom;
 	private int idJardin;
 	private int score;
+	private String avatar;
 
 	public int getId() {
 		return id;
@@ -61,6 +62,13 @@ public class ClientRequest {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	
 	public static Client convert(ClientRequest cr) {
 		Client client = new Client();
@@ -73,4 +81,4 @@ public class ClientRequest {
 		client.setPoints(cr.getScore());
 		return client;
 	}
-}
+}	
