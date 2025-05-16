@@ -42,6 +42,7 @@ import { AdminPlanteComponent } from './admin-plante/admin-plante.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AProposComponent } from './a-propos/a-propos.component';
 import { AvatarSelectionModalComponent } from './modal/avatar-selection-modal/avatar-selection-modal.component';
+import { ForgotPasswordModalComponent } from './modal/forgot-password-modal/forgot-password-modal.component';
 
 
 
@@ -85,6 +86,7 @@ import { AvatarSelectionModalComponent } from './modal/avatar-selection-modal/av
     FileUploadComponent,
     AProposComponent,
     AvatarSelectionModalComponent,
+    ForgotPasswordModalComponent,
   ],
   imports: [
     BrowserModule,
