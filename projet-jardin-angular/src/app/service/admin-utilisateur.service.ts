@@ -39,7 +39,7 @@ export class AdminUtilisateurService {
         this.clientService.save(client).subscribe({
           next: () => {
             // Réinitialiser les valeurs après la sauvegarde
-            client = new Client('', '', '', '', 0);
+            client = new Client('', '', '', '', 0,'');
             jardin = new Jardin('','Paris');
             savedJardinId = 0;
 
