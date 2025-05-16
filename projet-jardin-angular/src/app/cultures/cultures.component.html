@@ -21,7 +21,7 @@
       <button class="close-btn" (click)="cultureSelectionnee = undefined">×</button>
 
       <h3 *ngIf="nomPlanteSelectionnee && iconePlanteSelectionnee">
-        <img [src]="'/' + iconePlanteSelectionnee + '.png'" alt="Icône" class="icone-titre">
+        <img *ngIf="cultureSelectionnee" [src]="AfficherIconeCulture(cultureSelectionnee)" alt="Icône" class="icone-titre" />
         {{ nomPlanteSelectionnee }}s
       </h3>
       <p><strong>Quantité plantée :</strong> {{ cultureSelectionnee.quantite }}</p>
