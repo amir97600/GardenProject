@@ -54,11 +54,11 @@ class ProjetJardinApplicationTests {
 		
 		
 		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 60, 365, 4, "carotte_icone.png","carotte.jpg");
-		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 25, 730, 2, "fraise_icone.png","fraise.jpeg");
+		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 25, 730, 2, "fraise_icone.png","fraise.jpg");
 		FruitLegume tomate = new FruitLegume("Tomate", "Une tomate rouge bien juteuse", "Offrez-lui un bon tuteur et du soleil", 40, 150, 2, "tomate_icone.png","tomate.jpg");
 		Fleur tulipe = new Fleur("Tulipe", "Des tulipes hors du commun", "Plantez les à 15h précises", 14, 365, 4, false, "tulipe_icone.png","tulipe.jpg");
 		FruitLegume oignon = new FruitLegume("Oignon", "Un oignon plein de caractère", "Évitez l’excès d’humidité et espacez les rangs", 28, 180, 3, "oignon_icone.png","oignon.jpg");
-		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 80, 120, 3, false, "tournesol_icone.png","tournesol.jpeg");
+		Fleur tournesol = new Fleur("Tournesol", "Un grand soleil dans votre jardin", "Exposez-les plein sud et arrosez modérément", 80, 120, 3, false, "tournesol_icone.png","tournesol.jpg");
 		FruitLegume raisin = new FruitLegume("Raisin", "De belles grappes sucrées", "Taillez régulièrement les rameaux pour aérer", 45, 3500, 2, "raisins_icone.png","raisin.jpg");
 		FruitLegume poivron = new FruitLegume("Poivron", "Un poivron coloré et croquant", "Plantez-les en plein soleil et arrosez régulièrement", 35, 180, 2, "poivron_icone.png", "poivron.jpg");
 		FruitLegume courgette = new FruitLegume("Courgette", "Une courgette verte et généreuse", "Arrosez au pied et évitez de mouiller les feuilles", 40, 150, 2, "courgette_icone.png", "courgette.jpg");

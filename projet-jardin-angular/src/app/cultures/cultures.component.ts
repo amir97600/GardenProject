@@ -87,32 +87,44 @@ export class CulturesComponent implements OnInit {
     };
   }
 
-  ajouterCulture(): void {
-    if (this.cultureForm.invalid) {
-      this.cultureForm.markAllAsTouched();
-      return;
-    }
-
-    const formValue = this.cultureForm.value;
-    const plante = this.plantes.find(p => p.nom === formValue.nomPlante);
-    if (!plante) return;
-
-    const nouvelleCulture = {
-      ...formValue,
-      idJardin: this.idJardin,
-      idPlante: plante.id,
-      planteType: plante.planteType
-    };
-
-    this.cultureService.save(nouvelleCulture).subscribe(() => {
-      this.showForm = false;
-      this.cultureForm.reset();
-      this.jardinService.findById(this.idJardin).subscribe(jardin => {
-        this.cultures = jardin.cultures;
-        this.afficherPopup("🌱 Culture plantée avec succès !");
-      });
-    });
+ajouterCulture(): void {
+  if (this.cultureForm.invalid) {
+    this.cultureForm.markAllAsTouched();
+    return;
   }
+
+  const formValue = this.cultureForm.value;
+  const plante = this.plantes.find(p => p.nom === formValue.nomPlante);
+  if (!plante) return;
+
+  const nouvelleCulture = {
+    datePlantation: formValue.datePlantation,
+    dateDernierArrosage: formValue.dateDernierArrosage,
+    quantite: formValue.quantite,
+    recolte: formValue.recolte ?? false, // ici on force bien false
+    idJardin: this.idJardin,
+    idPlante: plante.id,
+    planteType: plante.planteType
+  };
+
+  this.cultureService.save(nouvelleCulture).subscribe(() => {
+    this.showForm = false;
+
+    this.cultureForm.reset({
+      nomPlante: '',
+      quantite: 1,
+      datePlantation: '',
+      dateDernierArrosage: '',
+      recolte: false // on remet la valeur explicitement
+    });
+
+    this.jardinService.findById(this.idJardin).subscribe(jardin => {
+      this.cultures = jardin.cultures;
+      this.afficherPopup("🌱 Culture plantée avec succès !");
+    });
+  });
+}
+
 
   afficherFiche(culture: Culture): void {
     this.cultureSelectionnee = culture;
@@ -167,6 +179,13 @@ export class CulturesComponent implements OnInit {
 
   fermerFormAjout(): void {
     this.showForm = !this.showForm;
+    this.cultureForm.reset({
+      nomPlante: '',
+      quantite: 1,
+      datePlantation: '',
+      dateDernierArrosage: '',
+      recolte: false
+    });
   }
 
   afficherPopup(message: string): void {

@@ -49,7 +49,6 @@
     </div>
   </div>
 
-  <!-- Modal de formulaire -->
   <div class="modal-overlay" *ngIf="showForm">
     <div class="modal-form">
       <form class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="ajouterCulture()">
@@ -57,7 +56,6 @@
 
         <h3>Nouvelle culture</h3>
 
-        <!-- nomPlante -->
         <label for="nomPlante">Nom de la plante :
           <input list="plantes" id="nomPlante" formControlName="nomPlante">
           <datalist id="plantes">
@@ -67,24 +65,21 @@
         <div *ngIf="cultureForm.errors?.['planteInvalide'] && cultureForm.touched" class="form-error">
           ❌ Cette plante n'existe pas dans la base.
         </div>
-        <br><br>
 
-        <!-- quantite -->
         <label for="quantite">Quantité :
           <input type="number" id="quantite" formControlName="quantite">
         </label>
-        <br><br>
+        <div *ngIf="cultureForm.get('quantite')?.hasError('min') && cultureForm.get('quantite')?.touched" class="form-error">
+          ❌ La quantité doit être supérieure ou égale à 1.
+        </div>
 
-        <!-- datePlantation -->
         <label for="plantation">Date de plantation :
           <input type="date" id="plantation" formControlName="datePlantation" [max]="today">
         </label>
         <div *ngIf="cultureForm.errors?.['datePlantationFuture'] && cultureForm.touched" class="form-error">
           ❌ La date de plantation ne peut pas être dans le futur.
         </div>
-        <br><br>
 
-        <!-- dateDernierArrosage -->
         <label for="arrosage">Date du dernier arrosage :
           <input type="date" id="arrosage" formControlName="dateDernierArrosage" [max]="today">
         </label>
@@ -94,7 +89,6 @@
         <div *ngIf="cultureForm.errors?.['arrosageAvantPlantation'] && cultureForm.touched" class="form-error">
           ❌ L’arrosage ne peut pas précéder la plantation.
         </div>
-        <br><br>
 
         <button type="submit" class="btn">Ajouter</button>
       </form>
