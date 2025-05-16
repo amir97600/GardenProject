@@ -19,7 +19,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.web.context.WebApplicationContext;
 
 import jakarta.transaction.Transactional;
-import projet_jardin.dao.IDAOUtilisateur;
 import projet_jardin.model.Admin;
 import projet_jardin.model.Client;
 import projet_jardin.rest.request.AdminRequest;
@@ -39,27 +38,6 @@ public class RestUtilisateurTests {
     @Autowired
     private TestRestTemplate template;
 
-    /* @Test
-	public void getClientByIdRest() throws Exception {
-		// ARRANGE
-		Integer id = 2;
-
-		// ACT
-		ResponseEntity<ClientResponse> clientResponse = template.getForEntity("/utilisateurs/clients/{id}", ClientResponse.class,id);
-		
-		// ASSERT
-		assertEquals(HttpStatus.OK, clientResponse.getStatusCode());
-		assertEquals(MediaType.APPLICATION_JSON, clientResponse.getHeaders().getContentType());
-		assertNotNull(clientResponse.getBody());
-		assertEquals(clientResponse.getBody().getLogin(),"log1");
-		assertEquals(clientResponse.getBody().getPassword(),"pass1");
-		assertEquals(clientResponse.getBody().getNom(),"alpha");
-		
-		System.out.println("Test /utilisateurs/clients ok");
-	}*/
-    // -----------------------------
-    // CLIENTS - REST
-    // -----------------------------
     @Test
     public void getClientByIdRest() {
         // ARRANGE

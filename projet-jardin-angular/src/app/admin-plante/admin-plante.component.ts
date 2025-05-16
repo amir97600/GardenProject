@@ -160,5 +160,6 @@ export class AdminPlanteComponent {
           this.closeModal();
         }
       }
+      
 
 }

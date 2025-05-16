@@ -73,7 +73,8 @@
               "buildTarget": "projet-jardin-angular:build:production"
             },
             "development": {
-              "buildTarget": "projet-jardin-angular:build:development"
+              "buildTarget": "projet-jardin-angular:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

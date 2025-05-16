@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://public-api.meteofrance.fr",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

@@ -14,11 +14,16 @@ export const jwtHeaderInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
+
+
+
   const authRequest = req.clone({
     setHeaders: {
       'Authorization': `Bearer ${ authService.token }`
     }
   });
+
+  
 
   return next(authRequest).pipe(
     catchError(err => {

@@ -37,13 +37,14 @@ export class MeteoService {
         if (!idStation) {
           return throwError(() => new Error('Station non trouvée'));
         }
-        const url = `${environment.meteoBaseUrl}?id_station=${idStation}&format=json`;
+        const url = `api/public/DPObs/v1/station/infrahoraire-6m/?id_station=${idStation}&format=json`;
         const headers = new HttpHeaders({
           'accept': '*/*',
-          'apikey': this.apiKey
+          'apikey': this.apiKey,
         });
 
-        return this.http.get<any>(url, { headers }).pipe(
+        console.log(headers) 
+         return this.http.get<any>(url, { headers }).pipe(
           tap(response => console.log('Réponse API complète:', response))
         );
       })
