@@ -1,144 +1,172 @@
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 30px;
+  gap: 20px;
 }
 
 .card {
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    flex: 1;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container > .todo-card,
+.container > .cards-wrapper {
+  flex: 1 1 400px;
+  min-width: 0;
 }
 
 .cards-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
+.cards-wrapper .card {
+  max-width: 400px;
+}
+
+@media (min-width: 750px) {
+  .cards-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 749px) {
+  .card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;         
+  }
+
+}
+
+
 .btn {
-    display: inline-block;
-    
+  display: inline-block;
 }
 
 .btn-more:hover {
-    background-color: #7da87b;
+  background-color: #7da87b;
 }
 
 .weather {
-    font-size: 1.1rem;
-    line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .plant-icon {
-    display: inline-block;
-    font-size: 2rem;
-    margin: 10px;
+  display: inline-block;
+  font-size: 2rem;
+  margin: 10px;
 }
 
 h2 {
-    color: #333;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    align-self: flex-start;
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  align-self: flex-start;
 }
 
 h3 {
-    margin: 10px 0;
-    color: #437951;
-    font-size: 1.2rem;
+  margin: 10px 0;
+  color: #437951;
+  font-size: 1.2rem;
 }
 
 p {
-    align-self: flex-start;
+  align-self: flex-start;
 }
 
 .garden-preview {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .preview-map-link {
-    width: 100%;
-    max-width: 350px;
+  width: 100%;
+  max-width: 350px;
 }
 
 .preview-map {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    justify-content: center;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  justify-content: center;
 }
 
 .preview-map img {
-    width: 100%;
-    display: block;
-    border-radius: 10px;
+  width: 100%;
+  display: block;
+  border-radius: 10px;
 }
 
 .preview-map .overlay {
-    position: absolute;
-    bottom: 0;
-    background: rgba(41, 78, 37, 0.85);
-    width: 100%;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: background 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  background: rgba(41, 78, 37, 0.85);
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s ease;
 }
 
 .preview-map:hover .overlay {
-    background: rgba(125, 168, 123, 0.95);
+  background: rgba(125, 168, 123, 0.95);
 }
 
 .preview-legends {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #333;
 }
 
 .legend-item {
-    background-color: #eaf3ea;
-    border-radius: 8px;
-    padding: 6px 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #eaf3ea;
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .acces-profil-explorer {
-    text-align: center;
+  text-align: center;
 }
 
 .todo-card {
-  width: 100%;
   max-width: 400px;
-  margin: 0 auto;
-  background: rgba(240, 255, 245, 0.7); 
+  background: rgba(240, 255, 245, 0.7);
   backdrop-filter: blur(8px);
   border-radius: 24px;
   padding: 28px 36px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
   font-family: 'Rubik', sans-serif;
   color: #314d31;
-  border: 2px solid #cce5cc;
-  position: relative;
-  padding-bottom: 56px; 
-  overflow: hidden;
 }
 
 .todo-card:hover {
@@ -174,7 +202,6 @@ p {
 .todo-section.recolter {
   border-left-color: #f7c46f;
 }
-
 
 .todo-section h3 {
   font-size: 1.4rem;
@@ -260,3 +287,9 @@ p {
   text-align: center;
   box-sizing: border-box;
 }
+
+
+
+
+
+
