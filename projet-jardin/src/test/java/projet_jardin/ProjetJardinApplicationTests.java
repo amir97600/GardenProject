@@ -1,7 +1,6 @@
 package projet_jardin;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import projet_jardin.dao.IDAOJardin;
 import projet_jardin.dao.IDAOPlante;
 import projet_jardin.dao.IDAOUtilisateur;
 import projet_jardin.model.Admin;
-import projet_jardin.model.Badge;
 import projet_jardin.model.Client;
 import projet_jardin.model.Culture;
 import projet_jardin.model.Fleur;
@@ -81,16 +79,6 @@ class ProjetJardinApplicationTests {
 		Culture cult11 = new Culture(3, LocalDate.parse("2025-04-17"), LocalDate.parse("2025-05-15"), false, jardin1, oignon);
 		Culture cult12 = new Culture(9, LocalDate.parse("2025-04-15"), LocalDate.parse("2025-05-11"), false, jardin2, tournesol);
 		Culture cult13 = new Culture(2, LocalDate.parse("2025-05-11"), LocalDate.parse("2025-05-14"), false, jardin1, hibiscus);
-
-		
-		
-		List<Badge> badges = client2.getBadges();
-		
-		Badge badge1 = Badge.CultivateurAppliqué;
-		Badge badge2 = Badge.GraineDeNovice;
-		badges.add(badge1);
-		badges.add(badge2);
-		
 
 		daojardin.save(jardin1);
 		daojardin.save(jardin2);
