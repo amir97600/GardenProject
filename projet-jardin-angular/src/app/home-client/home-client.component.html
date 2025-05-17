@@ -10,6 +10,16 @@
       <p>✅ Tout est bien entretenu, rien à signaler.</p>
     </div>
 
+  <div class="todo-card">
+    <div class="todo-header">
+      <h2> À faire aujourd'hui !</h2>
+      <p class="todo-sub">Ce qui mérite ton attention aujourd’hui</p>
+    </div>
+
+    <div *ngIf="culturesAAroser.length === 0 && culturesARecolter.length === 0" class="todo-empty">
+      <p>✅ Tout est bien entretenu, rien à signaler.</p>
+    </div>
+
     <div *ngIf="culturesAAroser.length > 0" class="todo-section arroser">
       <h3>💧 À arroser</h3>
       <ul>
@@ -33,7 +43,21 @@
         </li>
       </ul>
     </div>
+    <div class="todo-footer-note">En cas de pluie, l’arrosage est automatiquement reporté.</div>
   </div>
+
+  <div class="cards-wrapper">
+    <div class="card">
+      <h2>Météo {{lieuJardin}}</h2>
+      <div class="weather">
+        <p><strong>Conditions :</strong> {{condition}}</p>
+        <p><strong>Température :</strong> {{ temperature }} °C</p>
+        <p><strong>Humidité :</strong> {{ humidite }} %</p>
+        <p><strong>Vent :</strong> {{ vent }} km/h {{ directionVent }}</p>
+        <p><strong>Lune :</strong> {{lune}}</p>
+      </div>
+    </div>
+
 
   <div class="cards-wrapper">
     <div class="card">
@@ -56,27 +80,35 @@
     </div>
   </div>
 
+
+
   <div class="cards-wrapper">
+
     <div class="card">
-      <h2>Aperçu du jardin</h2>
-      <div class="garden-preview">
-        <a [routerLink]="[ '/cultures' ]" class="preview-map-link">
-          <div class="preview-map">
-            <img src="jardin-miniature.png" alt="Aperçu du jardin" />
-            <div class="overlay"> Accéder à la carte du jardin</div>
-          </div>
-        </a>
+      <div>
+        <h2>Aperçu du jardin</h2>
+        <div class="garden-preview">
+          <a [routerLink]="[ '/cultures' ]" class="preview-map-link">
+            <div class="preview-map">
+              <img src="jardin-miniature.png" alt="Aperçu du jardin" />
+              <div class="overlay"> Accéder à la carte du jardin</div>
+            </div>
+          </a>
+        </div>
       </div>
+
       <br>
     </div>
 
     <div class="card">
       <h2>Accéder à mon profil</h2>
       <div class="acces-profil-explorer">
-        <p>Accéder au tableau de bord de mon jardin</p>
+        <p>Accéder au tableau de bord de mon jardin </p>
         <div class="btn" [routerLink]="[ '/profil' ]">Mon profil</div>
       </div>
     </div>
+
+
   </div>
 
 </div>

@@ -23,6 +23,12 @@
           <input id="login" formControlName="login" type="text" required />
         </div>
         <div class="error-message" *ngIf="signupForm.get('login')?.hasError('required')">Le login est obligatoire</div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" type="email" required />
+        </div>
+        <div class="error-message" *ngIf="signupForm.get('email')?.hasError('required')">L'email est obligatoire</div>
   
         <div class="form-group">
           <label for="jardin">Nom du jardin</label>
