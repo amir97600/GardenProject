@@ -16,7 +16,6 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import { AvatarSelectionModalComponent } from '../modal/avatar-selection-modal/avatar-selection-modal.component';
 import { BadgeService } from '../service/badge.service';
-import { AlertBadgeModalComponent } from '../modal/alert-badge-modal/alert-badge-modal.component';
 
 
 
