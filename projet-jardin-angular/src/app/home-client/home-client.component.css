@@ -248,7 +248,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(8px);
   border-top: 1px solid #dcefdc;
   border-bottom-left-radius: 24px;
