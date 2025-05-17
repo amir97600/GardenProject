@@ -136,8 +136,10 @@ p {
   font-family: 'Rubik', sans-serif;
   color: #314d31;
   border: 2px solid #cce5cc;
+  position: relative;
+  padding-bottom: 56px; 
+  overflow: hidden;
 }
-
 
 .todo-card:hover {
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
@@ -236,4 +238,25 @@ p {
   color: #2e7331;
 }
 
-
+.todo-footer-note {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #dcefdc;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: #3a593a;
+  line-height: 1.4;
+  text-align: center;
+  box-sizing: border-box;
+}

@@ -42,6 +42,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
           nom: ['', Validators.required],
           prenom: ['', Validators.required],
           login: ['', Validators.required],
+          email: ['', Validators.required],
           jardin: ['', Validators.required],
           codePostal: ['',Validators.required],
           lieu: ['',Validators.required],
@@ -113,7 +114,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
   public onSignupSubmit(): void {
     
     if (this.signupForm.valid) {
-      this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId)
+      this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId);
     }
 
     this.reset();

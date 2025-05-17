@@ -28,6 +28,7 @@ export class AdminUtilisateurService {
     client.prenom = clientForm.value.prenom;
     client.login = clientForm.value.login;
     client.password = clientForm.value.password;
+    client.email = clientForm.value.email;
 
     // Sauvegarder le jardin
     this.serviceJardin.save(jardin).subscribe({
