@@ -117,5 +117,9 @@
       (onAvatarSelect)="changerAvatar($event)">
     </app-avatar-selection-modal>
 
+    <app-alert-badge-modal #badgeModal [badge]="badgeActuel" [isOpen]="isModalBadgeOpen" [titre]="'Nouveau badge débloqué !'"
+      (isOpenChange)="isModalBadgeOpen = $event" (onConfirm)="fermerModalBadge()">
+    </app-alert-badge-modal>
+
   </div>
 </main>

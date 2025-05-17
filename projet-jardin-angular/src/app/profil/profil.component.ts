@@ -15,6 +15,8 @@ import { ConfirmationModalComponent } from '../modal/confirmation-modal/confirma
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import { AvatarSelectionModalComponent } from '../modal/avatar-selection-modal/avatar-selection-modal.component';
+import { BadgeService } from '../service/badge.service';
+import { AlertBadgeModalComponent } from '../modal/alert-badge-modal/alert-badge-modal.component';
 
 
 
@@ -37,6 +39,8 @@ export class ProfilComponent implements OnInit, AfterViewInit {
   plantesRecoltees: number = 0;
   //Plante la plus souvent cultivée
   planteFavorite: Plante = new Plante(TypePlante.Fleur, 0, 0, 0, "", "", 0, "-");
+  nouveauxBadges: Badge[] = [];
+  badgeActuel!: Badge;
 
   isModalPasswordOpen: boolean = false;
   isModalNomJardinOpen: boolean = false;
@@ -44,6 +48,7 @@ export class ProfilComponent implements OnInit, AfterViewInit {
   isModalSupprimerCompteOpen: boolean = false;
   isModalPointsOpen: boolean = false;
   isModalAvatarOpen: boolean = false;
+  isModalBadgeOpen: boolean = false;
 
   @ViewChild('passwordModal')
   mdpModificationModal !: ModificationModalComponent
@@ -64,7 +69,8 @@ export class ProfilComponent implements OnInit, AfterViewInit {
     private clientService: ClientService,
     private jardinService: JardinService,
     private authService: AuthService,
-    private planteService: PlanteService) { }
+    private planteService: PlanteService,
+    private badgeService: BadgeService) { }
 
 
   ngOnInit() {
@@ -72,6 +78,22 @@ export class ProfilComponent implements OnInit, AfterViewInit {
 
     this.clientService.findByLogin(login).subscribe(client => {
       this.client = client;
+
+      const currentBadges = this.badgeService.getBadgesForScore(client.score); // nouveaux badges pour ce score
+      const storedBadges = this.badgeService.getStoredBadges(login); // badges déjà enregistrés
+
+      console.log('Score client:', client.score);
+      console.log('Badges pour ce score:', currentBadges);
+      console.log('Badges stockés:', storedBadges);
+      console.log('Nouveaux badges:', this.nouveauxBadges);
+
+      this.nouveauxBadges = this.badgeService.getNewlyUnlocked(currentBadges, storedBadges);
+
+      if (this.nouveauxBadges.length > 0) {
+        this.afficherBadgeSuivant();
+      }
+
+      this.badgeService.storeBadges(login, currentBadges);
 
       this.badgesDebloques = this.clientService.getBadgesDebloques(this.client, this.badgesDebloques);
 
@@ -186,18 +208,33 @@ export class ProfilComponent implements OnInit, AfterViewInit {
   }
 
   changerAvatar(avatarPath: string) {
-    // this.client.avatar = `avatars/${avatarPath}`;
     let clientModif: Client = this.client;
     clientModif.avatar = `avatars/${avatarPath}`;
     console.log(clientModif);
 
     this.clientService.save(clientModif)
       .subscribe({
-        next: () => {},
+        next: () => { },
         error: (err) => {
           console.log(err);
         }
       });
+  }
+
+  afficherBadgeSuivant(): void {
+    if (this.nouveauxBadges.length > 0) {
+      this.badgeActuel = this.nouveauxBadges.shift()!;
+      this.isModalBadgeOpen = true;
+    }
+  }
+
+  fermerModalBadge(): void {
+    this.isModalBadgeOpen = false;
+
+    // Petit délai pour laisser le temps à l’animation de fermeture (optionnel)
+    setTimeout(() => {
+      this.afficherBadgeSuivant();
+    }, 300);
   }
 
 }
