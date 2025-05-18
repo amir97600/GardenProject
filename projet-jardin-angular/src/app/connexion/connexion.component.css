@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 2vh;
 }
 
 span{
@@ -15,6 +14,7 @@ span{
 }
 
 h1{
+    margin-top: 0;
     font-size: 5vh;
     margin-bottom: 15px;
 }
@@ -67,10 +67,57 @@ input{
 
   .error-message {
     color: red;
-    font-size: 0.6rem; /* Très petit */
+    font-size: 1rem; 
     line-height: 1;
   }
   
   
+  @media (max-width: 600px) {
+    .container{
+       margin-top: 100px;
+    }
+    .form {
+      padding: 1rem;
+      width: 90%; 
+    }
+
+    h1{
+        font-size: 1.5rem;
+        margin-bottom: 2px;
+    }
+  
+    input, button {
+      font-size: 0.9rem;
+    }
+
+    input{
+        border-radius: 15px;
+        border: 2px solid #D2B8D2;
+        width: 15rem;
+        height: 2rem;
+        padding-left: 1px;
+    }
+    #submit{
+        width: 12rem;
+        height: 2rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: auto;
+        font-size: 0.9rem;
+        text-align: center;
+        transition: background-color 0.3s;
+        align-self: center;
+    }
+    .help-text > span {
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    .error-message {
+        color: red;
+        font-size: 0.65rem; 
+        line-height: 0.65;
+      }
+  }
 
 

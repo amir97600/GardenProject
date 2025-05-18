@@ -26,6 +26,7 @@ export class AdminUtilisateurService {
 
     client.nom = clientForm.value.nom;
     client.prenom = clientForm.value.prenom;
+    client.mail = clientForm.value.mail;
     client.login = clientForm.value.login;
     client.password = clientForm.value.password;
 
@@ -39,7 +40,7 @@ export class AdminUtilisateurService {
         this.clientService.save(client).subscribe({
           next: () => {
             // Réinitialiser les valeurs après la sauvegarde
-            client = new Client('', '', '', '', 0);
+            client = new Client('', '', '', '','', 0);
             jardin = new Jardin('','Paris');
             savedJardinId = 0;
 
@@ -59,14 +60,17 @@ export class AdminUtilisateurService {
     });
   }
 
-  public saveAdmin(admin: Admin, adminForm: FormGroup){
+  public saveAdmin(admin: Admin, adminForm: FormGroup) : boolean{
     admin.login = adminForm.value.login;
     admin.password = adminForm.value.password;
 
     this.adminService.save(admin).pipe().subscribe(()=>{
       admin = new Admin('', '');      
       this.adminService.refresh();
+      return true;
     })
+
+    return false;
   }
           
           

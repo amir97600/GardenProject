@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,9 @@ public class UtilisateurRestController {
 	
 	@Autowired
 	IDAOUtilisateur daoUtilisateur;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@GetMapping("client")
 	public List<ClientResponse> getAllClients(){
@@ -56,6 +60,8 @@ public class UtilisateurRestController {
 	
 	@PostMapping("client")
 	public Client createClient(@RequestBody ClientRequest clientRequest) {
+		 
+		clientRequest.setPassword(passwordEncoder.encode(clientRequest.getPassword()));
 		Client client = ClientRequest.convert(clientRequest);
 
 		return daoUtilisateur.save(client);
@@ -66,6 +72,8 @@ public class UtilisateurRestController {
 		if (id != clientRequest.getId() || !this.daoUtilisateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
+
+		clientRequest.setPassword(passwordEncoder.encode(clientRequest.getPassword()));
 
 		Client Client = ClientRequest.convert(clientRequest);
 		daoUtilisateur.save(Client);
@@ -89,6 +97,7 @@ public class UtilisateurRestController {
 	
 	@PostMapping("admin")
 	public Admin createAdmins(@RequestBody AdminRequest adminRequest) {
+		adminRequest.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
 		Admin Admin = AdminRequest.convert(adminRequest);
 
 		return daoUtilisateur.save(Admin);
@@ -100,6 +109,8 @@ public class UtilisateurRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
 
+		adminRequest.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
+		
 		Admin Admin = AdminRequest.convert(adminRequest);
 
 		return daoUtilisateur.save(Admin);

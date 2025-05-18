@@ -32,7 +32,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 		
 		// Si l'utilisateur n'a pas été trouvé, l'exception sera jetée, et on s'arrêtera là
 
-		User.UserBuilder userBuilder = User.withUsername(username).password(passwordEncoder.encode(utilisateur.getPassword()));
+		User.UserBuilder userBuilder = User.withUsername(username).password(utilisateur.getPassword());
 		
 		if(utilisateur instanceof Admin) {
 			userBuilder.roles("ADMIN");

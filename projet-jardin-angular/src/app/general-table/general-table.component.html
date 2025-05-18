@@ -20,7 +20,7 @@
         </td>
       </tr>
       <tr *ngIf="displayedData.length  === 0">
-        <td colspan="9" class="no-results">Désolé, aucun résultat trouvé</td>
+        <td [attr.colspan]="displayedColumns.length + 1" class="no-results">Désolé, aucun résultat trouvé</td>
       </tr>
     </tbody>
   </table>

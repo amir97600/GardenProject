@@ -148,7 +148,8 @@ getPluie(ville: string): Observable<number[]> {
       // Effectuer toutes les requêtes pour chaque plage horaire
       return forkJoin(
         dateFormats.map(date =>
-          this.http.get<any>(`${environment.arrossage}?id_station=${idStation}&date=${date}&format=json`, { headers })
+          
+          this.http.get<any>(`http://localhost:8080/api/meteo/temperature?idStation=${idStation}&date=${date}`)
         )
       ).pipe(
         map(responses => responses.map(response => response?.[0]?.rr1 ?? null)), // Extraction des valeurs rr1

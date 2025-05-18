@@ -28,13 +28,17 @@ public class SecurityConfig {
 
 		// Autorisations sur URLs
 		http.authorizeHttpRequests(auth -> {
-//			auth.requestMatchers("/api/connexion").permitAll();
-//			auth.requestMatchers("/api/ville/**").permitAll();
-//			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/client", "/api/jardin").permitAll();
-//			auth.requestMatchers("/api/jardin/nom/**").permitAll();
-//			auth.requestMatchers("/api/utilisateurs/**").hasRole("ADMIN");
-//			auth.requestMatchers("/api/**").authenticated();
-			//auth.requestMatchers("/**").permitAll();
+			auth.requestMatchers("/api/connexion").permitAll();
+			auth.requestMatchers(HttpMethod.GET, "/api/utilisateur/client/**").permitAll();
+			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/client/**").permitAll();
+			auth.requestMatchers(HttpMethod.PUT, "/api/utilisateur/client/**").permitAll();
+			auth.requestMatchers(HttpMethod.POST, "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
+			auth.requestMatchers(HttpMethod.GET, "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
+			auth.requestMatchers(HttpMethod.PUT, "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
+			auth.requestMatchers(HttpMethod.DELETE, "/api/utilisateur/client", "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
+			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/delete").permitAll();
+			auth.requestMatchers("/api/jardin/nom/**").permitAll();		
+			auth.requestMatchers("/api/utilisateur/admin/**").hasRole("ADMIN"); 
 			auth.anyRequest().permitAll(); 
 		});
 

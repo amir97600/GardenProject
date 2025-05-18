@@ -2,17 +2,18 @@
 
     <div class="search-container">
       <div class="search-and-button">
-        <form role="search" class="search-form" (ngSubmit)="onSearch(searchTerm)">
+        <form role="search" class="search-form" (submit)="$event.preventDefault()">
           <input
             type="search"
             [(ngModel)]="searchTerm"
+            (input)="onSearch(searchTerm)"
             name="searchTerm"
             id="search-input"
             class="search-input"
             placeholder=""
             aria-label="Search"
           />
-          <button type="submit" class="search-button" aria-label="Submit search">
+          <button type="button" class="search-button" aria-label="Submit search">
             <lucide-icon name="searchIcon"></lucide-icon>
           </button>
         </form>

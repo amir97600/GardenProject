@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { AdminService } from '../service/admin.service';
 import { AuthService } from '../authentification/auth.service';
+import { ModalService } from '../service/modal.service';
 
 @Component({
   selector: 'admin-navigation',
@@ -16,7 +17,10 @@ export class AdminNavigationComponent implements OnInit {
   baseTitle: string = "Administration ";
   pageTitle: string = "";
 
-  constructor(private router:Router,private service:AdminService, private authService:AuthService){}
+  constructor(private router:Router,private service:AdminService, private authService:AuthService,private modalService: ModalService){}
+
+
+  
 
   ngOnInit(): void {
 
@@ -31,6 +35,10 @@ export class AdminNavigationComponent implements OnInit {
       this.setPageTitle();
     });
 
+  }
+
+  ouvrirParametresAdmin() {
+    this.modalService.triggerModal();
   }
 
   capitalize(str:string):string{
@@ -60,7 +68,7 @@ export class AdminNavigationComponent implements OnInit {
     } else if (currentUrl.includes('/plante')) {  
       this.pageTitle = this.baseTitle +  'des Plantes';
     } else {
-      this.pageTitle = this.baseTitle + 'de Plante & Moi';  // Titre par défaut si aucune page spécifique
+      this.pageTitle = this.baseTitle + 'de Plante&Moi';  // Titre par défaut si aucune page spécifique
     }
   }
 

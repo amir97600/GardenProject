@@ -40,6 +40,8 @@ export class ModalFormComponent implements OnInit, OnChanges {
 
   @Output() close = new EventEmitter<void>();
   @Output() submit = new EventEmitter<void>();
+  fileMessageError = '';
+  fieldName = '';
 
   private plantes!:Plante[];
 
@@ -175,10 +177,19 @@ export class ModalFormComponent implements OnInit, OnChanges {
             this.uploadedFiles[fieldName] = filename;
             this.form.get(fieldName)?.setValue(filename);
             this.selectedFiles[fieldName] = undefined as any;
+            this.fileMessageError = '';
+            this.fieldName = '';
           }
         },
-        error: () => {
-          console.error(`Échec de l'upload du fichier pour ${fieldName}`);
+        error: (error) => {
+          this.fieldName = fieldName;
+          if(error.status === 417){
+            this.fileMessageError = `Échec de l'upload du fichier pour ${file.name}, ce fichier a déjà été uploadé, choisissez en un autre`;
+            
+          }else{
+            this.fileMessageError = `Échec de l'upload du fichier pour ${file.name}`;
+          }
+          
         }
       });
     }

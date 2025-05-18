@@ -17,8 +17,8 @@ export class AdminJardinComponent {
     selectedFilter: string = '';
     private searchTermSubject = new BehaviorSubject<string>('');
     private selectedFilterSubject = new BehaviorSubject<string | null>(null);
-    UserProperties = [
-      "Id","Libelle","Lieu","Cultures"
+    Properties = [
+      "Id","Libelle","Lieu"
     ]
     public jardinForm!: FormGroup;
     public jardin:Jardin = new Jardin('','');

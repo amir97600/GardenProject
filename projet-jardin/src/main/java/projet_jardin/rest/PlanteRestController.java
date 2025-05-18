@@ -42,6 +42,7 @@ public class PlanteRestController {
 	
 	@PostMapping("")
 	public Plante create(@RequestBody PlanteRequest planteRequest) {
+		System.out.println(planteRequest.getDelaiRecolte());
 		Plante plante = PlanteRequest.convert(planteRequest);
 
 		return daoPlante.save(plante);
@@ -49,10 +50,13 @@ public class PlanteRestController {
 
 	@PutMapping("/{id}")
 	public Plante update(@RequestBody PlanteRequest planteRequest, @PathVariable Integer id) {
+		System.out.println("here");
+		System.out.println(planteRequest.getDelaiRecolte());
 		if (id != planteRequest.getId() || !this.daoPlante.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
 
+		
 		Plante plante = PlanteRequest.convert(planteRequest);
 
 		return daoPlante.save(plante);

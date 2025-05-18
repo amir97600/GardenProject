@@ -37,7 +37,7 @@ export class ClientService {
     return this.http.get<Client>(`${ this.API_URL }/bylogin/${login}`);
   }
 
-  public save(client: any) {
+  public save(client: Client) {
     if (client.id) {
       return this.http.put<Client>(`${ this.API_URL }/${ client.id }`, client);
     }
@@ -47,6 +47,7 @@ export class ClientService {
       password: client.password,
       nom: client.nom,
       prenom: client.prenom,
+      mail: client.mail,
       idJardin: client.idJardin,
       score: client.score
     });

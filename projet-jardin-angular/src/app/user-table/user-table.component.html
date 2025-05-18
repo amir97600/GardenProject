@@ -18,6 +18,7 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
         <td>Admin</td>
         <td>
           <div class="icons">
@@ -38,6 +39,7 @@
         <td>{{ user.password }}</td>
         <td>{{ user.nom }}</td>
         <td>{{ user.prenom }}</td>
+        <td>{{ user.mail }}</td>
         <td>{{ user.score }}</td>
         <td>{{ user.idJardin }}</td>
         <td>Client</td>
@@ -55,7 +57,7 @@
   
       <!-- Aucun résultat -->
       <tr *ngIf="displayedDataAdmin?.length === 0 && displayedDataClient?.length === 0">
-        <td colspan="9" class="no-results">Désolé, aucun résultat trouvé</td>
+        <td colspan="10" class="no-results">Désolé, aucun résultat trouvé</td>
       </tr>
     </tbody>
   </table>

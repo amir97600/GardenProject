@@ -15,6 +15,7 @@ public class ClientRequest {
 	
 	private String nom;
 	private String prenom;
+	private String mail;
 	private int idJardin;
 	private int score;
 	private String avatar;
@@ -49,6 +50,14 @@ public class ClientRequest {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
 	public int getIdJardin() {
 		return idJardin;
 	}
@@ -73,6 +82,7 @@ public class ClientRequest {
 	public static Client convert(ClientRequest cr) {
 		Client client = new Client();
 		BeanUtils.copyProperties(cr,client);
+	
 		if(cr.getIdJardin()!=0) {
 			Jardin jardin = new Jardin();
 			jardin.setNumero(cr.getIdJardin());
@@ -81,4 +91,6 @@ public class ClientRequest {
 		client.setPoints(cr.getScore());
 		return client;
 	}
+	
+
 }	

@@ -24,7 +24,8 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
 
   signupForm!:FormGroup;
   public messageVilleError:string = '';
-  public client:Client = new Client('','','','',0);
+  public successMessage = '';
+  public client:Client = new Client('','','','','',0);
   public jardin:Jardin = new Jardin('','Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
@@ -42,6 +43,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
     this.signupForm = this.formBuilder.group({
           nom: ['', Validators.required],
           prenom: ['', Validators.required],
+          mail: ['', Validators.required],
           login: ['', Validators.required],
           jardin: ['', Validators.required],
           codePostal: ['',Validators.required],
@@ -117,10 +119,19 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
       this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId)
     }
 
-    this.reset();
+    this.successMessage = 'Compte créé avec succès ! 🎉';
 
-    this.fermer();
+    setTimeout(() => {
+      this.successMessage = '';
+      this.reset();
+      this.fermer();
+    }, 2000); // ferme après 2 secondes
     
+  }
+
+  showError(controlName: string, error: string): boolean | undefined {
+    const control = this.signupForm.get(controlName);
+    return control?.hasError(error) && (control?.touched || control?.dirty);
   }
 
   ngOnDestroy(): void {

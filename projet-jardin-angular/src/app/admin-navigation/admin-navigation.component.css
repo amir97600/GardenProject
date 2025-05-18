@@ -41,4 +41,8 @@ text-decoration: underline;
 span{
     color:#000000;
 }
+
+.settings:hover{
+    cursor: pointer;
+}
   

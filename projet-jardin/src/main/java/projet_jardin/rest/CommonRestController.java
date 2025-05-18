@@ -22,6 +22,7 @@ public class CommonRestController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
 
 	public CommonRestController() {
 		super();

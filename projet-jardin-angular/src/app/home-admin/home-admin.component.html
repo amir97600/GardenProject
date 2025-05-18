@@ -1,14 +1,28 @@
-<table class="Admin-table">
-  <thead>
-    <tr>
-      <th>Plante & moi</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let table of tables |async">
-      <td><a class="nav-link" [routerLink]="[ `/home-admin/${table.toLocaleLowerCase()}` ]">&nbsp;{{table}}</a></td>
-      <td> <a class="nav-link" [routerLink]="[ `/home-admin/${table.toLocaleLowerCase()}` ]"><lucide-icon name="settings"></lucide-icon>&nbsp;Gérer</a></td>
-    </tr>			
-  </tbody>	
-</table>		
+<div class="full">
+  <table class="Admin-table">
+    <thead>
+      <tr>
+        <th>Plante & moi</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let table of tables |async">
+        <td><a class="nav-link" [routerLink]="[ `/home-admin/${table.toLocaleLowerCase()}` ]">&nbsp;{{table}}</a></td>
+        <td> <a class="nav-link" [routerLink]="[ `/home-admin/${table.toLocaleLowerCase()}` ]"><lucide-icon name="settings"></lucide-icon>&nbsp;Gérer</a></td>
+      </tr>			
+    </tbody>	
+  </table>		
+
+  <!-- Modal -->
+  <modal-form
+  [title]="'Changer les paramètres du compte'"
+  [form]="adminForm"
+  [fields]="adminFields"
+  [show]="showModal"
+  (close)="closeModal()"
+  (submit)="onSignupSubmit()"
+  ></modal-form>
+
+  <div class="success-message" *ngIf="successMessage"><p [innerText]="successMessage"></p></div>
+</div>

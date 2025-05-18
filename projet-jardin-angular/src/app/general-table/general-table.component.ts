@@ -29,7 +29,7 @@ export class GeneralTableComponent {
     if (this.data$) {
       this.data$.subscribe(data => {
       
-        this.displayedData = this.filterData(data, this.searchTerm);
+        this.displayedData = data;
         if (data.length > 0) {
           this.displayedColumns = Object.keys(data[0]);
   
@@ -66,6 +66,10 @@ export class GeneralTableComponent {
 
 
   formatCell(value: any): string {
+
+    if (typeof value === 'boolean') {
+      return value ? 'Oui' : 'Non';
+    }
 
     if (Array.isArray(value)) {
       // Cas d'une liste d'objets : on retourne leurs id ou une propriété clé

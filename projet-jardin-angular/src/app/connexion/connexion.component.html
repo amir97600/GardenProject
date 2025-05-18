@@ -2,20 +2,20 @@
 
     <span><img src="logo.jpg" alt="Logo" class="logo"></span>
 
-    <h1>Bienvenue dans Plante & Moi </h1>
+    <h1>Bienvenue dans Plante&Moi </h1>
 
     <form (ngSubmit)="authenticate()" [formGroup]="authForm">
         <input type="text" formControlName="login" placeholder="Identifiant" />
 
 
-        <div class="error-message" *ngIf="loginCtrl?.hasError('required')">
+        <div class="error-message" *ngIf="showError('login', 'required')">
             Le nom d'utilisateur est obligatoire
         </div>
 
     
         <input type="password" formControlName="password" placeholder="Mot de passe" />
 
-        <div class="error-message" *ngIf="authForm.get('password')?.hasError('required')">
+        <div class="error-message" *ngIf="showError('password', 'required')">
             Le mot de passe est obligatoire
         </div>
 

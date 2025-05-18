@@ -33,7 +33,7 @@ export class UserTableComponent {
     if (this.filteredAdmins) {
       this.filteredAdmins.subscribe(data => {
       
-        this.displayedDataAdmin = this.filterData(data, this.searchTerm);
+        this.displayedDataAdmin = data;
        
         
       });
@@ -42,7 +42,7 @@ export class UserTableComponent {
     if (this.filteredClients) {
       this.filteredClients.subscribe(data => {
       
-        this.displayedDataClient = this.filterData(data, this.searchTerm);
+        this.displayedDataClient = data;
        
         
       });
@@ -67,18 +67,24 @@ export class UserTableComponent {
     const user = this.utilisateurASupprimer;
     if (!user) return;
   
-    this.adminService .delete(user).subscribe(() => {
-      if ('score' in user) {
-        this.serviceJardin.findById(user.idJardin).subscribe(jardin => {
-          this.serviceJardin.delete(jardin).subscribe(() => {
-            this.serviceJardin.refresh();
-            this.clientService.refresh();
+    
+      if ('nom' in user) {
+        this.clientService.delete(user).subscribe(()=>{
+          
+          this.serviceJardin.findById(user.idJardin).subscribe(jardin => {
+            this.serviceJardin.delete(jardin).subscribe(() => {
+              this.serviceJardin.refresh();
+            });
           });
-        });
+
+          this.clientService.refresh();
+        })
       } else {
-        this.adminService.refresh();
+        this.adminService .delete(user).subscribe(() => {
+          this.adminService.refresh();
+        });
       }
-    });
+    
   
     this.showConfirmationModal = false;
     this.utilisateurASupprimer = null;

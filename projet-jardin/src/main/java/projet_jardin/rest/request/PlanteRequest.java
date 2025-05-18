@@ -12,7 +12,7 @@ public class PlanteRequest {
 	private String nom;
 	private String Description;
 	private String conseil;
-	private int delairecolte;
+	private int delaiRecolte;
 	private int dureeVie;
 	private int delaiArrosage;
 	private String image;
@@ -73,13 +73,13 @@ public class PlanteRequest {
 		this.conseil = conseil;
 	}
 
-	public int getDelairecolte() {
-		return delairecolte;
+	public int getDelaiRecolte() {
+		return delaiRecolte;
 	}
 
 
-	public void setDelairecolte(int delairecolte) {
-		this.delairecolte = delairecolte;
+	public void setDelaiRecolte(int delairecolte) {
+		this.delaiRecolte = delairecolte;
 	}
 
 
@@ -137,7 +137,7 @@ public class PlanteRequest {
 		plante.setNom(planteRequest.getNom());
 		plante.setDescription(planteRequest.getDescription());
 		plante.setConseil(planteRequest.getConseil());
-		plante.setDelaiRecolte(planteRequest.getDelairecolte());
+		plante.setDelaiRecolte(planteRequest.getDelaiRecolte());
 		plante.setDureeVie(planteRequest.getDureeVie());
 		plante.setDelaiArrosage(planteRequest.getDelaiArrosage());
 		plante.setImage(planteRequest.getImage());

@@ -68,5 +68,37 @@ public class MeteoTokenController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur interne : " + ex.getMessage());
         }
     }
+
+    @GetMapping("/pluie")
+    public ResponseEntity<?> getPluie(@RequestParam String idStation, @RequestParam String date) {
+        
+        String url = "https://public-api.meteofrance.fr/public/DPObs/v1/station/horaire?id_station=" + idStation + "&date="+ date +"&format=json";
+
+        if(token == null){
+            getMeteoToken();
+        }
+        
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("accept", "*/*");
+        headers.set("Authorization", "Bearer "+token);
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                String.class
+            );
+            
+            return ResponseEntity.ok(response.getBody());
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            return ResponseEntity.status(ex.getStatusCode()).body(ex.getResponseBodyAsString());
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur interne : " + ex.getMessage());
+        }
+    }
 }
 

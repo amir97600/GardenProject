@@ -29,6 +29,10 @@ export class AdminService {
     );
   }
 
+  public findByLogin(login:string): Observable<Admin>{
+    return this.http.get<Admin>(`${this.API_URL}/admin/bylogin/${login}`)
+  }
+
   public save(admin: Admin) {
     if (admin.id) {
       return this.http.put<Admin>(`${ this.API_URL }/admin/${ admin.id }`, admin);

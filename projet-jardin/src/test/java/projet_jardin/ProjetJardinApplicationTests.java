@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import projet_jardin.dao.IDAOCulture;
 import projet_jardin.dao.IDAOJardin;
@@ -19,7 +20,6 @@ import projet_jardin.model.Fleur;
 import projet_jardin.model.FruitLegume;
 import projet_jardin.model.Jardin;
 
-
 @SpringBootTest
 class ProjetJardinApplicationTests {
 	
@@ -31,27 +31,31 @@ class ProjetJardinApplicationTests {
 	IDAOPlante daoplante;
 	@Autowired
 	IDAOCulture daoculture;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Test
 	void contextLoads() {
 		
+		// Encodage des mots de passe avant création des objets
+		String adminPasswordEncoded = passwordEncoder.encode("admin");
+		String client1PasswordEncoded = passwordEncoder.encode("pass1");
+		String client2PasswordEncoded = passwordEncoder.encode("pass2");
 		
-		Admin admin = new Admin("admin", "admin");
-		Client client1 = new Client("log1", "pass1", "alpha", "beta");
-		Client client2 = new Client("log2", "pass2", "toto", "titi");
+		Admin admin = new Admin("admin", adminPasswordEncoded);
+		Client client1 = new Client("log1", client1PasswordEncoded, "alpha", "beta");
+		Client client2 = new Client("log2", client2PasswordEncoded, "toto", "titi");
 		
 		Jardin jardin1 = new Jardin("Jardin d'alpha", "Paris");
 		client1.setJardin(jardin1);
 		Jardin jardin2 = new Jardin("Jardin de toto", "Marseille");
 		client2.setJardin(jardin2);
 		
-		
-
 		FruitLegume jordapimente = new FruitLegume("Jordapimente", "Attention les amateurs de cuisine ", "A besoin d'un temps de repos", 4, 30, 2, "piment_icone.png","Jordan.png");
 		FruitLegume framirdine = new FruitLegume("Framirdine", "Dessert masqué de Gotham", "Se developpe sous un ciel gris", 4, 30, 2, "framboise_icone.png","Framirdine.png");
 		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "mandarine_icone.png","Marindarine.png");
 		Fleur souhailys = new Fleur("Souhailys", "Fleur de télétravail", "N'apprécie pas le bruit des travaux", 4, 30, 2, false,"lys_icone.png","souhailys.png");
-		
 		
 		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 60, 365, 4, "carotte_icone.png","carotte.jpg");
 		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 25, 730, 2, "fraise_icone.png","fraise.jpeg");
@@ -67,7 +71,6 @@ class ProjetJardinApplicationTests {
 		Fleur marguerite = new Fleur("Marguerite", "Une touche champêtre et élégante", "Plantez en plein soleil et arrosez modérément", 30, 730, 3, false, "marguerite_icone.png", "marguerite.jpg");
 		Fleur hibiscus = new Fleur("Hibiscus", "Une fleur tropicale éclatante", "Arrosez souvent et protégez du vent", 50, 1000, 2, false, "hibiscus_icone.png", "hibiscus.jpg");
 
-
 		Culture cult1 = new Culture(4, LocalDate.parse("2024-12-20"), LocalDate.parse("2025-05-13"), false, jardin1, carotte);
 		Culture cult2 = new Culture(24, LocalDate.parse("2025-04-10"), LocalDate.parse("2025-05-12"), false, jardin1, tulipe);
 		Culture cult3 = new Culture(24, LocalDate.parse("2025-04-26"), LocalDate.parse("2025-05-15"), false, jardin2, tomate);
@@ -82,8 +85,6 @@ class ProjetJardinApplicationTests {
 		Culture cult12 = new Culture(9, LocalDate.parse("2025-04-15"), LocalDate.parse("2025-05-11"), false, jardin2, tournesol);
 		Culture cult13 = new Culture(2, LocalDate.parse("2025-05-11"), LocalDate.parse("2025-05-14"), false, jardin1, hibiscus);
 
-		
-		
 		List<Badge> badges = client2.getBadges();
 		
 		Badge badge1 = Badge.CultivateurAppliqué;
@@ -91,7 +92,6 @@ class ProjetJardinApplicationTests {
 		badges.add(badge1);
 		badges.add(badge2);
 		
-
 		daojardin.save(jardin1);
 		daojardin.save(jardin2);
 		
@@ -99,13 +99,10 @@ class ProjetJardinApplicationTests {
 		daoutilisateur.save(client1);
 		daoutilisateur.save(client2);
 		
-		
-		
 		daoplante.save(jordapimente);
 		daoplante.save(framirdine);
 		daoplante.save(marindarine);
 		daoplante.save(souhailys);
-		
 		
 		daoplante.save(carotte);
 		daoplante.save(fraise);
@@ -134,10 +131,6 @@ class ProjetJardinApplicationTests {
 		daoculture.save(cult11);
 		daoculture.save(cult12);
 		daoculture.save(cult13);
-
-
-		
-		
 
 	}
 

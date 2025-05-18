@@ -10,6 +10,8 @@ import { VilleService } from '../service/ville.service';
 import { JardinService } from '../service/jardin.service';
 import { AdminUtilisateurService } from '../service/admin-utilisateur.service';
 import { ModalFormComponent } from '../modal/modal-form/modal-form.component';
+import { AuthService } from '../authentification/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-utilisateurs',
@@ -25,10 +27,10 @@ export class AdminUtilisateursComponent implements OnInit{
   private searchTermSubject = new BehaviorSubject<string>('');
   private selectedFilterSubject = new BehaviorSubject<string | null>(null);
   UserProperties = [
-    "Id","Login","Mot de passe","Nom","Prenom","Score","Id_jardin","Type d'utilisateur"
+    "Id","Login","Mot de passe","Nom","Prenom","Mail","Score","Id_jardin","Type d'utilisateur"
   ]
   public clientForm!: FormGroup;
-  public client:Client = new Client('','','','',0);
+  public client:Client = new Client('','','','','',0);
   public adminForm!: FormGroup;
   public admin:Admin = new Admin('','');
   public jardin:Jardin = new Jardin('','Paris');
@@ -38,6 +40,7 @@ export class AdminUtilisateursComponent implements OnInit{
   public messageError:string = '';
   public boolClient:boolean = false;
   public boolAdmin:boolean = false;
+  public logOut:boolean = false;
   @ViewChild(ModalFormComponent) modalFormComponent?: ModalFormComponent;
 
   
@@ -45,6 +48,7 @@ export class AdminUtilisateursComponent implements OnInit{
   clientFields = [
     { label: 'Nom', name: 'nom', type: 'text' as const, required: true },
     { label: 'Prénom', name: 'prenom', type: 'text' as const, required: true },
+    { label: 'Mail', name: 'mail', type: 'text' as const, required: true },
     { label: 'Login', name: 'login', type: 'text' as const, required: true },
     { label: 'Nom du jardin', name: 'jardin', type: 'text' as const, required: true },
     { label: 'Code Postal', name: 'codePostal', type: 'codePostal' as const, required: true },
@@ -57,7 +61,7 @@ export class AdminUtilisateursComponent implements OnInit{
     { label: 'Mot de passe', name: 'password', type: 'password' as const, required: true }
   ];
 
-  constructor(private adminUtilisateurService : AdminUtilisateurService,private adminService: AdminService,private clientService: ClientService, private formBuilder: FormBuilder, private villeService: VilleService, private serviceJardin: JardinService){}
+  constructor(private authService: AuthService, private router: Router,private adminUtilisateurService : AdminUtilisateurService,private adminService: AdminService,private clientService: ClientService, private formBuilder: FormBuilder, private villeService: VilleService, private serviceJardin: JardinService){}
   ngOnInit(): void {
 
     this.filteredAdmins$ = combineLatest([
@@ -112,6 +116,7 @@ export class AdminUtilisateursComponent implements OnInit{
     this.clientForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
+      mail: ['', Validators.required],
       login: ['', Validators.required],
       jardin: ['', Validators.required],
       codePostal: ['', Validators.required],
@@ -150,6 +155,7 @@ export class AdminUtilisateursComponent implements OnInit{
       'Mot de passe': 'password',
       'Nom': 'nom',
       'Prenom': 'prenom',
+      'Mail': "mail",
       'Score': 'score',
       'Id_jardin': 'idJardin',
       "Type d'utilisateur": 'type_utilisateur'
@@ -173,6 +179,7 @@ export class AdminUtilisateursComponent implements OnInit{
 
     public editClient(user:Client){
       this.client = user;
+      console.log(this.client);
       this.setBoolClient();
       this.serviceJardin.findById(this.client.idJardin).subscribe(
         (jardin) => {
@@ -180,6 +187,7 @@ export class AdminUtilisateursComponent implements OnInit{
           this.clientForm.patchValue({
             nom: this.client.nom,
             prenom: this.client.prenom,
+            mail: this.client.mail,
             login: this.client.login,
             password: this.client.password,
             jardin: jardin.nom,
@@ -203,6 +211,10 @@ export class AdminUtilisateursComponent implements OnInit{
       this.admin = user;
       this.setBoolAdmin();
 
+      if(this.admin.login === this.authService.getLoginFromToken()){
+        this.logOut = true;
+      }
+
       this.adminForm.patchValue({
         login: this.admin.login,
         password: this.admin.password,
@@ -214,7 +226,7 @@ export class AdminUtilisateursComponent implements OnInit{
     public closeModal(): void {
       this.clientForm.reset();
       this.adminForm.reset();
-      this.client = new Client('', '', '', '', 0);
+      this.client = new Client('', '', '', '','', 0);
       this.admin = new Admin('', '');
       this.jardin = new Jardin('','Paris');
       this.boolAdmin = false;
@@ -230,8 +242,12 @@ export class AdminUtilisateursComponent implements OnInit{
       }
 
       if (this.adminForm.valid && this.boolAdmin) {
-          this.adminUtilisateurService.saveAdmin(this.admin, this.adminForm)
+          let IsSaved = this.adminUtilisateurService.saveAdmin(this.admin, this.adminForm)
           this.closeModal();
+          if(this.logOut && IsSaved){
+            sessionStorage.removeItem('token');
+            this.router.navigate(['']);
+          }
         }
     }
 

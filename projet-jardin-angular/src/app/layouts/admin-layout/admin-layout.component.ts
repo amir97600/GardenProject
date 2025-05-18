@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../service/modal.service';
 
 @Component({
   selector: 'admin-layout',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent {
-
+  
 }

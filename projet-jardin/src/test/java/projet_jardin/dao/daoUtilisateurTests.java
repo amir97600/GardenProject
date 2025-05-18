@@ -10,17 +10,21 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
+import jakarta.transaction.Transactional;
 import projet_jardin.model.Client;
 import projet_jardin.model.Utilisateur;
 
 @SpringBootTest
+@Transactional 
 public class daoUtilisateurTests {
 	
 	@Autowired
 	private IDAOUtilisateur daoUtilisateur;
 	
 	@Test
+	@Rollback
 	public void getAllUtilisateursDAO() {
 		List<Utilisateur> utilisateurs = daoUtilisateur.findAll();
 
@@ -32,6 +36,7 @@ public class daoUtilisateurTests {
 	}
 
 	@Test
+	@Rollback
 	public void getUtilisateurByIdDAO() {
 		Integer id = 2;
 
@@ -45,6 +50,7 @@ public class daoUtilisateurTests {
 	}
 
 	@Test
+	@Rollback
 	public void createUtilisateurDAO() {
 		Client utilisateur = new Client();
 		utilisateur.setLogin("daoUser");
@@ -62,6 +68,7 @@ public class daoUtilisateurTests {
 	}
 
 	@Test
+	@Rollback
 	public void updateUtilisateurDAO() {
 		Integer id = 2;
 		Client utilisateur = (Client) daoUtilisateur.findById(id).orElseThrow();
@@ -76,6 +83,7 @@ public class daoUtilisateurTests {
 	}
 
 	@Test
+	@Rollback
 	public void deleteUtilisateurDAO() {
 		Client utilisateur = new Client();
 		utilisateur.setLogin("todelete");

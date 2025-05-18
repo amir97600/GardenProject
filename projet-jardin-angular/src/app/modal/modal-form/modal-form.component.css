@@ -208,7 +208,7 @@
   
   /* Message d'erreur */
   .error-message, .error {
-    font-size: 0.65rem;
+    font-size: 1rem;
     color: #d32f2f;
     font-weight: 500;
   }

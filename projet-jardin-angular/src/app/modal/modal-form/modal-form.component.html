@@ -56,8 +56,11 @@
             </label>
           </div>
         
-          <div class="error-message" *ngIf="form.get(field.name)?.invalid && form.get(field.name)?.touched">
+          <div class="error-message" *ngIf="form.get(field.name)?.invalid && form.get(field.name)?.touched && !fileMessageError">
             Ce champ est obligatoire
+          </div>
+          <div class="error-message" *ngIf="fileMessageError && field.type === 'file' && field.name === fieldName">
+            {{fileMessageError}}
           </div>
         </div>
   

@@ -15,6 +15,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @DiscriminatorValue("Client")
@@ -24,6 +26,8 @@ public class Client extends Utilisateur {
 	private String nom;
 	@Column(columnDefinition = "VARCHAR(35)")
 	private String prenom;
+	@Column(columnDefinition = "VARCHAR(35)")
+	private String mail;
 	private int points = 0;
 	
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = Badge.class)
@@ -61,6 +65,14 @@ public class Client extends Utilisateur {
 		return prenom;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
@@ -96,5 +108,6 @@ public class Client extends Utilisateur {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
+
 
 }

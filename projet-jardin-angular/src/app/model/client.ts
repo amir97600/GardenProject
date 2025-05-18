@@ -8,6 +8,7 @@ export class Client {
     constructor(
         private _nom : string,
         private _prenom : string, 
+        private _mail : string, 
         private _login : string, 
         private _password : string, 
         private _idJardin : number,
@@ -33,8 +34,16 @@ export class Client {
         return this._nom;
     }
 
-    public set nom(value: string) {
+    public set nom(value: string){
         this._nom = value;
+    }
+
+    public set mail(value: string) {
+        this._mail = value;
+    }
+
+    public get mail() : string {
+        return this._mail;
     }
 
     public get login() : string {

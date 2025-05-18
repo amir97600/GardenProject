@@ -1,66 +1,77 @@
 <div class="modal-overlay" *ngIf="isOpen" (click)="fermer()">
     <div class="modal-content" (click)="$event.stopPropagation()">
-      <button class="close-btn" (click)="fermer()">&times;</button>
-  
-      <h2>Créer un nouveau compte</h2>
-  
-      <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
-  
-        <div class="form-group">
-          <label for="nom">Nom</label>
-          <input id="nom" formControlName="nom" type="text" required />
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('nom')?.hasError('required')">Le nom est obligatoire</div>
-  
-        <div class="form-group">
-          <label for="prenom">Prénom</label>
-          <input id="prenom" formControlName="prenom" type="text" required />
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('prenom')?.hasError('required')">Le prénom est obligatoire</div>
-  
-        <div class="form-group">
-          <label for="login">Login</label>
-          <input id="login" formControlName="login" type="text" required />
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('login')?.hasError('required')">Le login est obligatoire</div>
-  
-        <div class="form-group">
-          <label for="jardin">Nom du jardin</label>
-          <input id="jardin" formControlName="jardin" type="text" required />
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('jardin')?.hasError('required')">Le nom du jardin est obligatoire</div>
-  
-        <div class="form-group">
-          <label for="codePostal">Code postal</label>
-          <input
-            id="codePostal"
-            formControlName="codePostal"
-            (input)="chargerVilles()"
-            type="text"
-            required
-          />
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('codePostal')?.hasError('required')">Le code postal est requis</div>
-  
-        <div class="form-group" *ngIf="isCodePostal">
-          <label for="lieu">Ville du jardin</label>
-          <select formControlName="lieu">
-            <option *ngFor="let ville of villes" [value]="ville">{{ ville }}</option>
-          </select>
-        </div>
-        <div class="error-message" *ngIf="messageVilleError">{{ messageVilleError }}</div>
-  
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input id="password" formControlName="password" type="password" required />
-        </div>
-        <div class="error-message" *ngIf="signupForm.get('password')?.hasError('required')">Le mot de passe est obligatoire</div>
-        <div class="error-message" *ngIf="signupForm.get('password')?.hasError('minlength')">
-          Le mot de passe doit faire au moins six caractères
-        </div>
-  
-        <button type="submit" class="btn">S'inscrire</button>
-      </form>
+
+      <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+      <div *ngIf="!successMessage">
+        <button class="close-btn" (click)="fermer()">&times;</button>
+    
+        <h2>Créer un nouveau compte</h2>
+    
+        <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()" class="signup-form">
+    
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input id="nom" formControlName="nom" type="text" required />
+          </div>
+          <div class="error-message" *ngIf="showError('nom', 'required')">Le nom est obligatoire</div>
+    
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input id="prenom" formControlName="prenom" type="text" required />
+          </div>
+          <div class="error-message" *ngIf="showError('prenom', 'required')">Le prénom est obligatoire</div>
+
+          <div class="form-group">
+            <label for="mail">Mail</label>
+            <input id="mail" formControlName="mail" type="text" required />
+          </div>
+          <div class="error-message" *ngIf="showError('mail', 'required')">Le mail est obligatoire</div>
+    
+          <div class="form-group">
+            <label for="login">Login</label>
+            <input id="login" formControlName="login" type="text" required />
+          </div>
+          <div class="error-message" *ngIf="showError('login', 'required')">Le login est obligatoire</div>
+    
+          <div class="form-group">
+            <label for="jardin">Nom du jardin</label>
+            <input id="jardin" formControlName="jardin" type="text" required />
+          </div>
+          <div class="error-message" *ngIf="showError('jardin', 'required')">Le nom du jardin est obligatoire</div>
+    
+          <div class="form-group">
+            <label for="codePostal">Code postal</label>
+            <input
+              id="codePostal"
+              formControlName="codePostal"
+              (input)="chargerVilles()"
+              type="text"
+              required
+            />
+          </div>
+          <div class="error-message" *ngIf="showError('codePostal', 'required')">Le code postal est requis</div>
+    
+          <div class="form-group" *ngIf="isCodePostal">
+            <label for="lieu">Ville du jardin</label>
+            <select formControlName="lieu">
+              <option *ngFor="let ville of villes" [value]="ville">{{ ville }}</option>
+            </select>
+          </div>
+          <div class="error-message" *ngIf="messageVilleError">{{ messageVilleError }}</div>
+    
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input id="password" formControlName="password" type="password" required />
+          </div>
+          <div class="error-message" *ngIf="showError('password', 'required')">Le mot de passe est obligatoire</div>
+          <div class="error-message" *ngIf="showError('password', 'minlength')">
+            Le mot de passe doit faire au moins six caractères
+          </div>
+    
+          <button type="submit" class="btn">S'inscrire</button>
+        </form>
+      </div>
     </div>
   </div>
   

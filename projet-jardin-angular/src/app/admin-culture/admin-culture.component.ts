@@ -20,8 +20,8 @@ export class AdminCultureComponent {
       selectedFilter: string = '';
       private searchTermSubject = new BehaviorSubject<string>('');
       private selectedFilterSubject = new BehaviorSubject<string | null>(null);
-      UserProperties = [
-        "Id","Plantation","Arrosage","Quantite","Id_Jardin","Id_Plante","Type_Plante","Récolté?"
+      Properties = [
+        "Id","Plantation","Arrosage","Quantite","Id_Jardin","Id_Plante","Récolté?"
       ]
       public cultureFields = [
         { label: 'Date de Plantation', name: 'datePlantation', type: 'date' as const, required: true },
@@ -54,10 +54,22 @@ export class AdminCultureComponent {
                 )
               );
             }
+
             const key = this.getKeyFromProperty(filter);
-            return cultures.filter((culture: any) =>
-              String(culture[key] ?? '').toLowerCase().includes(search.toLowerCase())
-            );
+            
+            return cultures.filter((culture: any) => {
+              let value = culture[key];
+            
+              if (typeof value === 'boolean') {
+               
+                const boolStr = (value) ? 'oui' : 'non';
+                
+                return boolStr.includes(search.toLowerCase());
+              }
+            
+              return String(value ?? '').toLowerCase().includes(search.toLowerCase());
+            });
+            
           })
         );
     
@@ -94,12 +106,12 @@ export class AdminCultureComponent {
       getKeyFromProperty(label: string): string {
         const map: { [key: string]: string } = {
           'Id': 'id',
-          'Date de Plantation': 'datePlantation',
-          'Date du dernier arrosage': 'dateDernierArrosage',
-          'quantite': 'quantite',
-          'Id du jardin': 'idJardin',
-          'Id de la plante': 'idPlante',
-          'Récolté ou non' : 'recolte'
+          'Plantation': 'datePlantation',
+          'Arrosage': 'dateDernierArrosage',
+          'Quantite': 'quantite',
+          'Id_Jardin': 'idJardin',
+          'Id_Plante': 'idPlante',
+          'Récolté?' : 'recolte'
         };
         return map[label] || '';
       }

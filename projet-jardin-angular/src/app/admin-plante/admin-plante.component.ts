@@ -20,7 +20,7 @@ export class AdminPlanteComponent {
       private searchTermSubject = new BehaviorSubject<string>('');
       private selectedFilterSubject = new BehaviorSubject<string | null>(null);
       UserProperties = [
-        "Id","Nom","Délai d'arrosage","délai de récolte","Description","Conseil","Durée de vie","Type"
+        "Id","Nom","Délai d'arrosage","Délai de récolte","Description","Conseil","Durée de vie","Type"
       ]
       public planteFields = [
         { label: 'Nom', name: 'nom', type: 'text' as const, required: true },
@@ -105,12 +105,13 @@ export class AdminPlanteComponent {
       getKeyFromProperty(label: string): string {
         const map: { [key: string]: string } = {
           'Id': 'id',
+          'Nom': 'nom',
           "Délai d'arrosage": 'delaiArrosage',
           'Délai de récolte': 'delaiRecolte',
           'Description': 'description',
           'Conseil': 'conseil',
-          'DureeVie': 'dureeVie',
-          'Type de Plante' : 'planteType',
+          'Durée de vie': 'dureeVie',
+          'Type' : 'planteType',
         };
         return map[label] || '';
       }

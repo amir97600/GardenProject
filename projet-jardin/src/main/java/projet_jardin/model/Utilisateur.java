@@ -9,9 +9,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "utilisateur")
+@Table(name = "utilisateur",uniqueConstraints = @UniqueConstraint(columnNames = {"login", "mail"}))
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type_utilisateur",columnDefinition = "ENUM('Client','Admin')")
 public abstract class Utilisateur {

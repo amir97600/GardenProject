@@ -61,12 +61,26 @@ export class ConnexionComponent {
         
       }),
       catchError((error) => {
-        this.messageError = "Erreur de connexion !";
+        if (error.status === 403) {
+          this.messageError = "Accès refusé : identifiants incorrects."
+          
+          
+        } else {
+          this.messageError = "Erreur de connexion. Veuillez réessayer."
+         
+        }
         return of(null);
       })
+
+      
     )
     .subscribe();
     
+  }
+
+  showError(controlName: string, error: string): boolean | undefined {
+    const control = this.authForm.get(controlName);
+    return control?.hasError(error) && (control?.touched || control?.dirty);
   }
 
   public openModal(): void {

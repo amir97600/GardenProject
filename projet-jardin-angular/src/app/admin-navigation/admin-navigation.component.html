@@ -4,8 +4,8 @@
     </div>
     <nav class="amdmin-main-nav">
       <a>BIENVENUE, ADMIN</a>
-      <a [routerLink]="['/home-admin']">|</a>
-      <a [routerLink]="['/home-admin/settings']">PARAMETRES DU COMPTE </a>
+      <a>|</a>
+      <a class="settings" (click)="ouvrirParametresAdmin()">PARAMETRES DU COMPTE </a>
       <a>|</a>
       <a [routerLink]="['']" (click)="logOut()">DECONNEXION</a>
     </nav>
