@@ -30,10 +30,11 @@
         <!-- Bouton pour ouvrir la modale -->
         <span class="new-account" (click)="openModal()">Créer un compte</span>
         <span>|</span>
-        <span  class="new-password">Mot de passe oublié</span>
+        <span class="new-password" (click)="PasswordModalIsOpen = true ">Mot de passe oublié</span>
     </div>
 
 </div>
 
 <inscription-modal #inscriptionModal [titre]="'Creer un nouveau compte'" [(isOpen)]="showModal" ></inscription-modal>
 
+<app-forgot-password-modal [isOpen]="PasswordModalIsOpen" (isOpenChange)="PasswordModalIsOpen = $event"> </app-forgot-password-modal>

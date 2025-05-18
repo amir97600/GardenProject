@@ -30,7 +30,11 @@ export class AdminUtilisateursComponent implements OnInit{
     "Id","Login","Mot de passe","Nom","Prenom","Mail","Score","Id_jardin","Type d'utilisateur"
   ]
   public clientForm!: FormGroup;
+<<<<<<< HEAD
   public client:Client = new Client('','','','','',0);
+=======
+  public client:Client = new Client('','','','',0,'');
+>>>>>>> main
   public adminForm!: FormGroup;
   public admin:Admin = new Admin('','');
   public jardin:Jardin = new Jardin('','Paris');
@@ -226,7 +230,7 @@ export class AdminUtilisateursComponent implements OnInit{
     public closeModal(): void {
       this.clientForm.reset();
       this.adminForm.reset();
-      this.client = new Client('', '', '', '','', 0);
+      this.client = new Client('', '', '', '', 0,'');
       this.admin = new Admin('', '');
       this.jardin = new Jardin('','Paris');
       this.boolAdmin = false;

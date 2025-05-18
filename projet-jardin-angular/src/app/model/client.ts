@@ -12,6 +12,7 @@ export class Client {
         private _login : string, 
         private _password : string, 
         private _idJardin : number,
+        private _email : string
     ) {}
 
     public get id() : number {
@@ -84,6 +85,14 @@ export class Client {
 
     public set avatar(value: string) {
         this._avatar = value;
+    }
+
+    public get email() : any {
+        return this._email;
+    }
+
+    public set email(value: string) {
+        this._email = value;
     }
 
 }

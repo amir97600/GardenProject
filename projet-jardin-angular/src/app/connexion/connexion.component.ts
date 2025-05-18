@@ -24,9 +24,8 @@ export class ConnexionComponent {
   public passwordCtrl!: FormControl;
   public messageError:string = '';
 
-
+  PasswordModalIsOpen: boolean = false;
   
-
   constructor(private service: AuthService, private adminUtilisateurService : AdminUtilisateurService, private serviceClient: ClientService, private serviceJardin: JardinService, private villeService:VilleService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {

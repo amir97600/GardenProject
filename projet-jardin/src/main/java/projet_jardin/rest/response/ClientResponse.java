@@ -16,6 +16,7 @@ public class ClientResponse {
 	private int idJardin;
 	private int score;
 	private String avatar;
+	private String email;
 	
 	public ClientResponse() {}
 	
@@ -73,6 +74,12 @@ public class ClientResponse {
 	}
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+		public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public static ClientResponse convert(Client client) {

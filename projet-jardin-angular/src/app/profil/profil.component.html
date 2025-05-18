@@ -113,9 +113,13 @@
     </app-confirmation-modal>
 
     <app-avatar-selection-modal #avatarModal [(isOpen)]="isModalAvatarOpen"
-      [avatars]="['Marina.png', 'Amirdine.png', 'Souhaila.png', 'Antoine.png']"
+      [avatars]="['Marina.png', 'Amirdine.png', 'Souhaila.png', 'Antoine.png', 'Jordan.png', 'Eric.png', 'Jeremy.png']"
       (onAvatarSelect)="changerAvatar($event)">
     </app-avatar-selection-modal>
+
+    <app-alert-badge-modal #badgeModal [badge]="badgeActuel" [isOpen]="isModalBadgeOpen" [titre]="'Nouveau badge débloqué !'"
+      (isOpenChange)="isModalBadgeOpen = $event" (onConfirm)="fermerModalBadge()">
+    </app-alert-badge-modal>
 
   </div>
 </main>

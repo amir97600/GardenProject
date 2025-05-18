@@ -45,3 +45,52 @@
     width: 18px;
     height: 18px;
   }
+
+ @media (max-width: 768px) {
+  .main-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0;
+    flex-shrink: 0;
+  }
+
+  .logo-container img {
+    height: 45px;
+  }
+
+  .logo-container h1 {
+    display: none; 
+  }
+
+  .main-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+  }
+
+  .main-nav a {
+    font-size: 0; 
+    padding: 6px;
+    flex-shrink: 0;
+  }
+
+  .main-nav a lucide-icon {
+    width: 24px;
+    height: 24px;
+  }
+}

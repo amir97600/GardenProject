@@ -29,6 +29,7 @@ export class AdminUtilisateurService {
     client.mail = clientForm.value.mail;
     client.login = clientForm.value.login;
     client.password = clientForm.value.password;
+    client.email = clientForm.value.email;
 
     // Sauvegarder le jardin
     this.serviceJardin.save(jardin).subscribe({
@@ -40,7 +41,7 @@ export class AdminUtilisateurService {
         this.clientService.save(client).subscribe({
           next: () => {
             // Réinitialiser les valeurs après la sauvegarde
-            client = new Client('', '', '', '','', 0);
+            client = new Client('', '', '', '','', 0,'');
             jardin = new Jardin('','Paris');
             savedJardinId = 0;
 

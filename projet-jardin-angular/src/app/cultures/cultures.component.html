@@ -1,107 +1,101 @@
 <div class="main-content">
-    <div class="carte" id="carte">
-      <div class="garden-map">
-        <ng-container *ngFor="let culture of cultures">
-          <div class="plot" *ngIf="!culture.recolte" (click)="afficherFiche(culture)">
-            <img [src]="AfficherIconeCulture(culture)" class="icone-plot" alt="Icône">
-            <div class="nom-plot">{{ AfficherNomCulture(culture) }}</div>
-          </div>
-        </ng-container>
-
-        <div class="plot plot-ajout" (click)="fermerFormAjout()">
-          <span class="plus-icon">+</span>
+  <div class="carte" id="carte">
+    <div class="garden-map">
+      <ng-container *ngFor="let culture of cultures">
+        <div class="plot" *ngIf="!culture.recolte" (click)="afficherFiche(culture)">
+          <img [src]="AfficherIconeCulture(culture)" class="icone-plot" alt="Icône">
+          <div class="nom-plot">{{ AfficherNomCulture(culture) }}</div>
         </div>
+      </ng-container>
 
-        
-
+      <div class="plot plot-ajout" (click)="fermerFormAjout()">
+        <span class="plus-icon">+</span>
       </div>
     </div>
-  
-    <div class="fiche-plante" *ngIf="cultureSelectionnee">
-      <button class="close-btn" (click)="cultureSelectionnee = undefined">×</button>
+  </div>
 
-      <h3 *ngIf="nomPlanteSelectionnee && iconePlanteSelectionnee">
-        <img *ngIf="cultureSelectionnee" [src]="AfficherIconeCulture(cultureSelectionnee)" alt="Icône" class="icone-titre" />
-        {{ nomPlanteSelectionnee }}s
-      </h3>
-      <p><strong>Quantité plantée :</strong> {{ cultureSelectionnee.quantite }}</p>
-      <p><strong>Planté le :</strong> {{ cultureSelectionnee.datePlantation }}</p>
-      <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
-      <div class="recolte-box" *ngIf="joursRestantsAvantRecolte !== undefined">
-        <div class="recolte-chiffre">{{ joursRestantsAvantRecolte }}</div>
-        <div class="recolte-label">jours avant récolte</div>
-      </div>
-            <div class="progress-box" *ngIf="progressionRecolte !== undefined">
-        <div class="progress-bar-outer">
+  <div class="fiche-plante" *ngIf="cultureSelectionnee">
+    <button class="close-btn" (click)="cultureSelectionnee = undefined">×</button>
+
+    <h3>
+      <img [src]="AfficherIconeCulture(cultureSelectionnee)" alt="Icône" class="icone-titre" />
+      {{ AfficherNomCulture(cultureSelectionnee) }}s
+    </h3>
+
+    <p><strong>Quantité plantée :</strong> {{ cultureSelectionnee.quantite }}</p>
+    <p><strong>Planté le :</strong> {{ cultureSelectionnee.datePlantation }}</p>
+    <p><strong>Dernier arrosage :</strong> {{ cultureSelectionnee.dateDernierArrosage }}</p>
+
+    <div class="recolte-box" *ngIf="joursRestantsAvantRecolte !== undefined">
+      <div class="recolte-chiffre">{{ joursRestantsAvantRecolte }}</div>
+      <div class="recolte-label">jours avant récolte</div>
+    </div>
+
+    <div class="progress-box" *ngIf="progressionRecolte !== undefined">
+      <div class="progress-bar-outer">
         <div class="progress-bar-inner" [style.width.%]="progressionRecolte"></div>
       </div>
-
-
-      
-      <div class="boutons-fiche">
-        <div>
-          <div class="emoji-container">
-            <button class="emoji-btn" (click)="arroserCulture(cultureSelectionnee)" title="Arroser">💧</button>
-            <button class="emoji-btn" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture(cultureSelectionnee)" title="Récolter">🧺</button>
-          </div>  
-        </div>
-        <br>
-        <button class="btn-supprimer" (click)="supprimerCulture()">✖ Supprimer</button>
-      </div>
-
-
     </div>
 
-
-
-</div>
-
-
-<div>
+    <div class="boutons-fiche">
+      <div>
+        <div class="emoji-container">
+          <button class="emoji-btn" (click)="arroserCulture(cultureSelectionnee)" title="Arroser">💧</button>
+          <button class="emoji-btn" *ngIf="!cultureSelectionnee.recolte" (click)="recolterCulture(cultureSelectionnee)" title="Récolter">🧺</button>
+        </div>
+      </div>
+      <br>
+      <button class="btn-supprimer" (click)="supprimerCulture()">✖ Supprimer</button>
+    </div>
+  </div>
 
   <div class="modal-overlay" *ngIf="showForm">
-  <div class="modal-form">
+    <div class="modal-form">
+      <form class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="ajouterCulture()">
+        <button class="close-btn" (click)="fermerFormAjout()" aria-label="Fermer">&times;</button>
 
-  
-  <form class="form-ajout" [formGroup]="cultureForm" (ngSubmit)="ajouterCulture()">
-    <button class="close-btn" (click)="fermerFormAjout()" aria-label="Fermer">&times;</button>
-    
-    <h3>Nouvelle culture</h3>
+        <h3>Nouvelle culture</h3>
 
-    
-      <label for="nomPlante">Nom de la plante :
-        <input list="plantes" id="nomPlante" formControlName="nomPlante">
-        <datalist id="plantes">
-          <option *ngFor="let plante of plantes" [value]="plante.nom">{{ getNom(plante) }}</option>
-        </datalist>
-      </label><br><br>
-    
-    <label for="quantite">Quantité :
-      <input type="number" id="quantite" formControlName="quantite">
-    </label><br><br>
-  
-    <label for="plantation">Date de plantation :
-      <input type="date" id="plantation" formControlName="datePlantation">
-    </label><br><br>
-  
-    <label for="arrosage">Date du dernier arrosage :
-      <input type="date" id="arrosage" formControlName="dateDernierArrosage">
-    </label><br><br>
-  
-  
-    <button type="submit" class="btn">Ajouter</button>
-  </form>
+        <label for="nomPlante">Nom de la plante :
+          <input list="plantes" id="nomPlante" formControlName="nomPlante">
+          <datalist id="plantes">
+            <option *ngFor="let plante of plantes" [value]="plante.nom">{{ plante.nom }}</option>
+          </datalist>
+        </label>
+        <div *ngIf="cultureForm.errors?.['planteInvalide'] && cultureForm.touched" class="form-error">
+          ❌ Cette plante n'existe pas dans la base.
+        </div>
 
+        <label for="quantite">Quantité :
+          <input type="number" id="quantite" formControlName="quantite">
+        </label>
+        <div *ngIf="cultureForm.get('quantite')?.hasError('min') && cultureForm.get('quantite')?.touched" class="form-error">
+          ❌ La quantité doit être supérieure ou égale à 1.
+        </div>
+
+        <label for="plantation">Date de plantation :
+          <input type="date" id="plantation" formControlName="datePlantation" [max]="today">
+        </label>
+        <div *ngIf="cultureForm.errors?.['datePlantationFuture'] && cultureForm.touched" class="form-error">
+          ❌ La date de plantation ne peut pas être dans le futur.
+        </div>
+
+        <label for="arrosage">Date du dernier arrosage :
+          <input type="date" id="arrosage" formControlName="dateDernierArrosage" [max]="today">
+        </label>
+        <div *ngIf="cultureForm.errors?.['dateArrosageFuture'] && cultureForm.touched" class="form-error">
+          ❌ La date d’arrosage ne peut pas être dans le futur.
+        </div>
+        <div *ngIf="cultureForm.errors?.['arrosageAvantPlantation'] && cultureForm.touched" class="form-error">
+          ❌ L’arrosage ne peut pas précéder la plantation.
+        </div>
+
+        <button type="submit" class="btn">Ajouter</button>
+      </form>
+    </div>
   </div>
-  </div>
-
 
   <div class="popup" *ngIf="popupMessage">
     {{ popupMessage }}
   </div>
-</div>
-
-
-<div>
-
 </div>

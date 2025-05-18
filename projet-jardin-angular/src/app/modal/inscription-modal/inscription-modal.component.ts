@@ -25,7 +25,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
   signupForm!:FormGroup;
   public messageVilleError:string = '';
   public successMessage = '';
-  public client:Client = new Client('','','','','',0);
+  public client:Client = new Client('','','','','',0,'');
   public jardin:Jardin = new Jardin('','Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
@@ -34,7 +34,6 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
 
   ville: string = '';
   villes: string[] = [];
-
 
   constructor(private adminUtilisateurService : AdminUtilisateurService, private serviceClient: ClientService, private serviceJardin: JardinService, private villeService:VilleService, private formBuilder: FormBuilder) { }
   
@@ -45,6 +44,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
           prenom: ['', Validators.required],
           mail: ['', Validators.required],
           login: ['', Validators.required],
+          email: ['', Validators.required],
           jardin: ['', Validators.required],
           codePostal: ['',Validators.required],
           lieu: ['',Validators.required],
@@ -116,7 +116,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
   public onSignupSubmit(): void {
     
     if (this.signupForm.valid) {
-      this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId)
+      this.adminUtilisateurService.saveClient(this.signupForm,this.jardin,this.client,this.savedJardinId);
     }
 
     this.successMessage = 'Compte créé avec succès ! 🎉';

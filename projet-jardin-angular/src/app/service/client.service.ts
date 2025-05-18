@@ -49,7 +49,8 @@ export class ClientService {
       prenom: client.prenom,
       mail: client.mail,
       idJardin: client.idJardin,
-      score: client.score
+      score: client.score,
+      email : client.email
     });
   }
   

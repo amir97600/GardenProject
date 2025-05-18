@@ -1,19 +1,11 @@
 package projet_jardin.model;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -29,18 +21,15 @@ public class Client extends Utilisateur {
 	@Column(columnDefinition = "VARCHAR(35)")
 	private String mail;
 	private int points = 0;
-	
-	@ElementCollection(fetch = FetchType.EAGER, targetClass = Badge.class)
-	@JoinTable(name = "badges_obtenus", joinColumns = @JoinColumn(name = "Client"))
-	@Column(name="Badge",nullable = false)
-	@Enumerated(EnumType.STRING)
-	private List<Badge> badges = new ArrayList<Badge>();
+	private String avatar;
+	@Column(columnDefinition = "VARCHAR(100)")
+	private String email;
 	
 	@OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name="id_jardin")
 	private Jardin jardin;
 
-	private String avatar;
+	
 
 
 	public Client() {}
@@ -85,14 +74,6 @@ public class Client extends Utilisateur {
 		this.points = points;
 	}
 
-	public List<Badge> getBadges() {
-		return badges;
-	}
-
-	public void setBadges(List<Badge> badges) {
-		this.badges = badges;
-	}
-
 	public Jardin getJardin() {
 		return jardin;
 	}
@@ -108,6 +89,5 @@ public class Client extends Utilisateur {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-
 
 }
