@@ -27,7 +27,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http, JwtHeaderAuthorizationFilter jwtFilter) throws Exception {
 
 		// Autorisations sur URLs
-		/*http.authorizeHttpRequests(auth -> {
+		http.authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/api/connexion").permitAll();
 			auth.requestMatchers("/api/email/**").permitAll();
 			auth.requestMatchers(HttpMethod.GET, "/api/utilisateur/client/**","/api/jardin/**").permitAll();
@@ -42,7 +42,7 @@ public class SecurityConfig {
 			auth.requestMatchers("/api/jardin/nom/**").permitAll();		
 			auth.requestMatchers("/api/utilisateur/admin/**").hasRole("ADMIN"); 
 			auth.anyRequest().permitAll(); 
-		});*/
+		});
 
 		http.csrf(c -> c.ignoringRequestMatchers("/api/**"));
 

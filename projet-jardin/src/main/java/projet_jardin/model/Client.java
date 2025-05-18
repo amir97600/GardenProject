@@ -7,8 +7,6 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @DiscriminatorValue("Client")
@@ -18,8 +16,6 @@ public class Client extends Utilisateur {
 	private String nom;
 	@Column(columnDefinition = "VARCHAR(35)")
 	private String prenom;
-	@Column(columnDefinition = "VARCHAR(35)")
-	private String mail;
 	private int points = 0;
 	private String avatar;
 	@Column(columnDefinition = "VARCHAR(100)")
@@ -54,12 +50,12 @@ public class Client extends Utilisateur {
 		return prenom;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setPrenom(String prenom) {

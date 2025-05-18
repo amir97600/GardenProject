@@ -27,7 +27,7 @@ export class AdminUtilisateursComponent implements OnInit{
   private searchTermSubject = new BehaviorSubject<string>('');
   private selectedFilterSubject = new BehaviorSubject<string | null>(null);
   UserProperties = [
-    "Id","Login","Mot de passe","Nom","Prenom","Mail","Score","Id_jardin","Type d'utilisateur"
+    "Id","Login","Mot de passe","Nom","Prenom","Email","Score","Id_jardin","Type d'utilisateur"
   ]
   public clientForm!: FormGroup;
   public client:Client = new Client('','','','','',0);
@@ -48,7 +48,7 @@ export class AdminUtilisateursComponent implements OnInit{
   clientFields = [
     { label: 'Nom', name: 'nom', type: 'text' as const, required: true },
     { label: 'Prénom', name: 'prenom', type: 'text' as const, required: true },
-    { label: 'Mail', name: 'email', type: 'text' as const, required: true },
+    { label: 'Email', name: 'email', type: 'text' as const, required: true },
     { label: 'Login', name: 'login', type: 'text' as const, required: true },
     { label: 'Nom du jardin', name: 'jardin', type: 'text' as const, required: true },
     { label: 'Code Postal', name: 'codePostal', type: 'codePostal' as const, required: true },
@@ -155,7 +155,7 @@ export class AdminUtilisateursComponent implements OnInit{
       'Mot de passe': 'password',
       'Nom': 'nom',
       'Prenom': 'prenom',
-      'Mail': "email",
+      'Email': "email",
       'Score': 'score',
       'Id_jardin': 'idJardin',
       "Type d'utilisateur": 'type_utilisateur'

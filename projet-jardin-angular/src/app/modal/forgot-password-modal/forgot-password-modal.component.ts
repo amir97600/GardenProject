@@ -43,6 +43,8 @@ export class ForgotPasswordModalComponent {
       next: (client) => {
         this.client = client;
 
+        console.log(this.client)
+
         const emailPayload = new EmailRequest(this.client.email, "Code de réinitialisation de mot de passe", `Bonjour,\n\nVoici votre code de vérification : ${this.verificationCode}\n\nSi vous n'êtes pas à l'origine de cette demande, ignorez ce message.`);
 
         this.emailService.sendEmail(emailPayload).subscribe({
