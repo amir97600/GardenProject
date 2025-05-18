@@ -30,47 +30,40 @@ public class JwtHeaderAuthorizationFilter extends OncePerRequestFilter {
 	private IDAOUtilisateur daoUtilisateur;
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		String authHeader = request.getHeader("Authorization");
-		String token = null;
+protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+        throws ServletException, IOException {
 
-		if (authHeader != null && authHeader.startsWith("Bearer ") && authHeader.length() > 7) {
-			token = authHeader.substring(7); // On retire "Bearer " qui fait 7 caractères
-		}
+    String authHeader = request.getHeader("Authorization");
+    String token = null;
 
-		Optional<String> optUsername = JwtUtil.getUsername(token);
+    if (authHeader != null && authHeader.startsWith("Bearer ") && authHeader.length() > 7) {
+        token = authHeader.substring(7); // On retire "Bearer "
+    }
 
-		// Si on a le nom d'utilisateur, le jeton est valide
-		if (optUsername.isPresent()) {
-			String username = optUsername.get();
-			Optional<Utilisateur> optUtilisateur = this.daoUtilisateur.findByLogin(username);
+    if (token != null && !token.isBlank()) {
+        Optional<String> optUsername = JwtUtil.getUsername(token);
 
-			// Si on a l'utilisateur, on peut l'authentifier
-			if (optUtilisateur.isPresent()) {
-				Utilisateur utilisateur = optUtilisateur.get();
+        if (optUsername.isPresent()) {
+            String username = optUsername.get();
+            Optional<Utilisateur> optUtilisateur = this.daoUtilisateur.findByLogin(username);
 
-				// Simuler la connexion grâce au jeton
+            if (optUtilisateur.isPresent()) {
+                Utilisateur utilisateur = optUtilisateur.get();
 
-				// Créer la liste des rôles
-				List<GrantedAuthority> authorities = new ArrayList<>();
+                List<GrantedAuthority> authorities = new ArrayList<>();
+                if (utilisateur instanceof Admin) {
+                    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                } else {
+                    authorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
+                }
 
-				// Le préfix "ROLE_" permet d'indiquer à SPRING SECURITY qu'il s'agit d'un rôle
-				if(utilisateur instanceof Admin) {
-					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-				} else {
-					authorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
-				} 
-				
-				// Recréer un nouvel Authentication
-				Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
+                Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        }
+    }
 
-				// Injecter cet Authentication dans le contexte de sécurité
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-			}
-		}
+    filterChain.doFilter(request, response);
+}
 
-		// Important, pour passer à la suite
-		filterChain.doFilter(request, response);
-	}
 }

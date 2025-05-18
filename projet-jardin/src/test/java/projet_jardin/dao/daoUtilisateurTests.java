@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import jakarta.transaction.Transactional;
+import projet_jardin.model.Admin;
 import projet_jardin.model.Client;
 import projet_jardin.model.Utilisateur;
 
@@ -26,6 +27,8 @@ public class daoUtilisateurTests {
 	@Test
 	@Rollback
 	public void getAllUtilisateursDAO() {
+		Admin user = new Admin("a","b");
+		daoUtilisateur.save(user);
 		List<Utilisateur> utilisateurs = daoUtilisateur.findAll();
 
 		assertNotNull(utilisateurs);
@@ -38,12 +41,18 @@ public class daoUtilisateurTests {
 	@Test
 	@Rollback
 	public void getUtilisateurByIdDAO() {
-		Integer id = 2;
+		Client utilisateur = new Client();
+		utilisateur.setNom("loger");
+		utilisateur.setPrenom("loger");
+		utilisateur.setLogin("loger");
+		utilisateur.setPassword("loger");
+		utilisateur = daoUtilisateur.save(utilisateur);
+		Integer id = utilisateur.getId();
 
-		Utilisateur utilisateur = daoUtilisateur.findById(id).orElseThrow();
+		utilisateur = (Client)daoUtilisateur.findById(id).get();
 
 		assertNotNull(utilisateur);
-		assertEquals("log1", utilisateur.getLogin());
+		assertEquals("loger", utilisateur.getLogin());
 		assertEquals(utilisateur.getClass().getSimpleName(), "Client");
 
 		System.out.println("Test DAO getUtilisateurById ok");
@@ -70,8 +79,13 @@ public class daoUtilisateurTests {
 	@Test
 	@Rollback
 	public void updateUtilisateurDAO() {
-		Integer id = 2;
-		Client utilisateur = (Client) daoUtilisateur.findById(id).orElseThrow();
+		Client utilisateur = new Client();
+		utilisateur.setNom("a");
+		utilisateur.setPrenom("a");
+		utilisateur.setLogin("a");
+		utilisateur.setPassword("a");
+		daoUtilisateur.save(utilisateur);
+		utilisateur = (Client) daoUtilisateur.findByLogin("a").orElseThrow();
 
 		utilisateur.setNom("nomModifie");
 
