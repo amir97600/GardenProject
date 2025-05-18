@@ -12,7 +12,6 @@ public class ClientResponse {
 	private String nom;
 
 	private String prenom;
-	private String mail;
 	private int idJardin;
 	private int score;
 	private String avatar;
@@ -49,13 +48,6 @@ public class ClientResponse {
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
 	}
 	public int getIdJardin() {
 		return idJardin;

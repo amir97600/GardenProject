@@ -26,7 +26,7 @@ import { BadgeService } from '../service/badge.service';
   styleUrl: './profil.component.css',
 })
 export class ProfilComponent implements OnInit, AfterViewInit {
-  client: Client = new Client("", "", "", "","", 0,"");
+  client: Client = new Client("", "", "", "","", 0);
   jardin: Jardin = new Jardin("","Paris");
   // Liste de tous les badges 
   badges = Object.entries(Badge).filter(([key, value]) => typeof value === 'number');

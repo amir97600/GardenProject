@@ -32,11 +32,12 @@ public class SecurityConfig {
 			auth.requestMatchers(HttpMethod.GET, "/api/utilisateur/client/**").permitAll();
 			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/client/**").permitAll();
 			auth.requestMatchers(HttpMethod.PUT, "/api/utilisateur/client/**").permitAll();
-			auth.requestMatchers(HttpMethod.POST, "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
+			auth.requestMatchers(HttpMethod.POST, "/api/plante/**","/api/culture/**").authenticated();
 			auth.requestMatchers(HttpMethod.GET, "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
 			auth.requestMatchers(HttpMethod.PUT, "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
 			auth.requestMatchers(HttpMethod.DELETE, "/api/utilisateur/client", "/api/jardin/**","/api/plante/**","/api/culture/**").authenticated();
 			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/delete").permitAll();
+			auth.requestMatchers(HttpMethod.POST, "/api/jardin/**").permitAll();
 			auth.requestMatchers("/api/jardin/nom/**").permitAll();		
 			auth.requestMatchers("/api/utilisateur/admin/**").hasRole("ADMIN"); 
 			auth.anyRequest().permitAll(); 

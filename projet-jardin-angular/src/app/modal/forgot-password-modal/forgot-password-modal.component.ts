@@ -14,7 +14,7 @@ import { Client } from '../../model/client';
 export class ForgotPasswordModalComponent {
   step: number = 1;
   login: string = '';
-  client: Client = new Client('', '', '', '', 0, '');
+  client: Client = new Client('', '', '', '',"", 0);
   code: string = '';
   verificationCode: string = '';
   newPassword: string = '';
@@ -120,7 +120,7 @@ export class ForgotPasswordModalComponent {
 
   reset() {
     this.step = 1;
-    this.client = new Client('', '', '', '', 0, '');
+    this.client = new Client('', '', '', '', "",0);
     this.code = '';
     this.login = '';
     this.newPassword = '';

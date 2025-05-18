@@ -25,7 +25,7 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
   signupForm!:FormGroup;
   public messageVilleError:string = '';
   public successMessage = '';
-  public client:Client = new Client('','','','','',0,'');
+  public client:Client = new Client('','','','','',0,);
   public jardin:Jardin = new Jardin('','Paris');
   public savedJardin!:Observable<Jardin>;
   public savedJardinId: number = 0;
@@ -42,7 +42,6 @@ export class InscriptionModalComponent implements OnInit,OnDestroy {
     this.signupForm = this.formBuilder.group({
           nom: ['', Validators.required],
           prenom: ['', Validators.required],
-          mail: ['', Validators.required],
           login: ['', Validators.required],
           email: ['', Validators.required],
           jardin: ['', Validators.required],

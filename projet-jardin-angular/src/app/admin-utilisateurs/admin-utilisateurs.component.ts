@@ -30,11 +30,7 @@ export class AdminUtilisateursComponent implements OnInit{
     "Id","Login","Mot de passe","Nom","Prenom","Mail","Score","Id_jardin","Type d'utilisateur"
   ]
   public clientForm!: FormGroup;
-<<<<<<< HEAD
   public client:Client = new Client('','','','','',0);
-=======
-  public client:Client = new Client('','','','',0,'');
->>>>>>> main
   public adminForm!: FormGroup;
   public admin:Admin = new Admin('','');
   public jardin:Jardin = new Jardin('','Paris');
@@ -52,7 +48,7 @@ export class AdminUtilisateursComponent implements OnInit{
   clientFields = [
     { label: 'Nom', name: 'nom', type: 'text' as const, required: true },
     { label: 'Prénom', name: 'prenom', type: 'text' as const, required: true },
-    { label: 'Mail', name: 'mail', type: 'text' as const, required: true },
+    { label: 'Mail', name: 'email', type: 'text' as const, required: true },
     { label: 'Login', name: 'login', type: 'text' as const, required: true },
     { label: 'Nom du jardin', name: 'jardin', type: 'text' as const, required: true },
     { label: 'Code Postal', name: 'codePostal', type: 'codePostal' as const, required: true },
@@ -120,7 +116,7 @@ export class AdminUtilisateursComponent implements OnInit{
     this.clientForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      mail: ['', Validators.required],
+      email: ['', Validators.required],
       login: ['', Validators.required],
       jardin: ['', Validators.required],
       codePostal: ['', Validators.required],
@@ -159,7 +155,7 @@ export class AdminUtilisateursComponent implements OnInit{
       'Mot de passe': 'password',
       'Nom': 'nom',
       'Prenom': 'prenom',
-      'Mail': "mail",
+      'Mail': "email",
       'Score': 'score',
       'Id_jardin': 'idJardin',
       "Type d'utilisateur": 'type_utilisateur'
@@ -191,7 +187,7 @@ export class AdminUtilisateursComponent implements OnInit{
           this.clientForm.patchValue({
             nom: this.client.nom,
             prenom: this.client.prenom,
-            mail: this.client.mail,
+            email: this.client.email,
             login: this.client.login,
             password: this.client.password,
             jardin: jardin.nom,
@@ -230,7 +226,7 @@ export class AdminUtilisateursComponent implements OnInit{
     public closeModal(): void {
       this.clientForm.reset();
       this.adminForm.reset();
-      this.client = new Client('', '', '', '', 0,'');
+      this.client = new Client('', '', '', '','',0);
       this.admin = new Admin('', '');
       this.jardin = new Jardin('','Paris');
       this.boolAdmin = false;

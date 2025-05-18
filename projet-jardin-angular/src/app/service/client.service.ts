@@ -47,7 +47,6 @@ export class ClientService {
       password: client.password,
       nom: client.nom,
       prenom: client.prenom,
-      mail: client.mail,
       idJardin: client.idJardin,
       score: client.score,
       email : client.email
