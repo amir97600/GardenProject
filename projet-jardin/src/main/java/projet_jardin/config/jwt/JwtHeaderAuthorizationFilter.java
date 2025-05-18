@@ -36,8 +36,11 @@ protected void doFilterInternal(HttpServletRequest request, HttpServletResponse 
     String authHeader = request.getHeader("Authorization");
     String token = null;
 
-    if (authHeader != null && authHeader.startsWith("Bearer ") && authHeader.length() > 7) {
-        token = authHeader.substring(7); // On retire "Bearer "
+    if (authHeader != null && authHeader.startsWith("Bearer ") ) {
+		if(authHeader.length() > 7){
+			token = authHeader.substring(7); // On retire "Bearer "
+		}
+        
     }
 
     if (token != null && !token.isBlank()) {
