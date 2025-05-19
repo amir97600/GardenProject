@@ -29,7 +29,7 @@ export class AdminPlanteComponent {
         { label: 'Description', name: 'description', type: 'textarea' as const, required: true },
         { label: 'Conseil', name: 'conseil', type: 'textarea' as const, required: true },
         { label: 'DureeVie', name: 'dureeVie', type: 'number' as const, required: true },
-        { label: 'Comestibilité', name: 'comestibilite', type: 'radio' as const, required: true, showIf: (formValue: any) => formValue.planteType === 'FLEUR'},
+        { label: 'Comestibilité', name: 'comestibilite', type: 'radio' as const, required: true},
         { label: 'Type de Plante', name: 'planteType', type: 'select' as const, required: true },
         { label: 'Image', name: 'image', type: 'file' as const, required: true },
         { label: 'Icone', name: 'icone', type: 'file' as const, required: true }
@@ -140,7 +140,7 @@ export class AdminPlanteComponent {
           dureeVie: plante.dureeVie,
           nom: plante.nom,
           planteType: plante.planteType,
-          comestibilite: plante.comestibilite ? 'Oui' : 'Non',
+          comestibilite: plante.comestibilite ? true : false,
           image: plante.image,
           icone: plante.icone
         });
