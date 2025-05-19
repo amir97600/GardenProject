@@ -38,9 +38,9 @@ public abstract class Plante {
 	@Column(name="conseil")
 	protected String conseil;
 	@Column(name="delai_recolte")
-	protected int delaiRecolte; //Un intervalle de recolte en semaines
+	protected int delaiRecolte; //Un intervalle de recolte en jours
 	@Column(name="duree_vie")
-	protected int dureeVie; //Duree de la vie de la plante en semaine
+	protected int dureeVie; //Duree de la vie de la plante en jours
 	@Column(name="delai_arrosage")
 	protected int delaiArrosage; //Combien de temps avant le prochain arrosage
 	@Column(name="icone", length = 100) 
