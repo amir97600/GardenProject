@@ -86,11 +86,6 @@ class ProjetJardinApplicationTests {
 		daoutilisateur.save(client1);
 		daoutilisateur.save(client2);
 		
-		daoplante.save(jordapimente);
-		daoplante.save(framirdine);
-		daoplante.save(marindarine);
-		daoplante.save(souhailys);
-		
 		daoplante.save(carotte);
 		daoplante.save(fraise);
 		daoplante.save(tomate);
