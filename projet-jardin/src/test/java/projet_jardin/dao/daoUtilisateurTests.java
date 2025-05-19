@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 
 import jakarta.transaction.Transactional;
 import projet_jardin.model.Admin;
@@ -19,6 +20,7 @@ import projet_jardin.model.Utilisateur;
 
 @SpringBootTest
 @Transactional 
+@ActiveProfiles("test")
 public class daoUtilisateurTests {
 	
 	@Autowired

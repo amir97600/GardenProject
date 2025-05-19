@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import projet_jardin.rest.request.CultureRequest;
@@ -22,6 +23,7 @@ import projet_jardin.rest.response.CultureResponse;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Transactional 
 @Rollback
+@ActiveProfiles("test")
 public class TestCulture {
 
 	@Autowired

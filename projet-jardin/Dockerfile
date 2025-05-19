@@ -13,12 +13,13 @@ COPY ./src/ ./src/
 RUN mvn clean package 
 
 
-# ✅ Utiliser une image OpenJDK officielle et stable
+# Utiliser une image OpenJDK officielle et stable
 FROM eclipse-temurin:21-jdk
 
-ENV ENV_DB_URL=jdbc:mysql://jardin-mysql:3306/projet_jardin
+ENV ENV_DB_URL=jdbc:mysql://4.233.149.159:3314/projet_jardin
 ENV ENV_DB_USER=root
-ENV ENV_DB_PASSWORD=root
+ENV ENV_DB_PASSWORD=Not24Get!
+
 
 WORKDIR /app
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 
 import projet_jardin.dao.IDAOCulture;
 import projet_jardin.dao.IDAOJardin;
@@ -19,6 +20,7 @@ import projet_jardin.model.FruitLegume;
 import projet_jardin.model.Jardin;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class ProjetJardinApplicationTests {
 	
 	@Autowired
