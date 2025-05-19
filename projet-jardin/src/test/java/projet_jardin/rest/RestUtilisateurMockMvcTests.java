@@ -1,10 +1,5 @@
 package projet_jardin.rest;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,9 +8,16 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import projet_jardin.rest.request.ClientRequest;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import projet_jardin.rest.request.AdminRequest;
+import projet_jardin.rest.request.ClientRequest;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -35,15 +37,15 @@ public class RestUtilisateurMockMvcTests {
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     public void createClientWithAuthAndCleanup() throws Exception {
         ClientRequest client = new ClientRequest();
-        client.setLogin("log1");
-        client.setPassword("pass1");
+        client.setLogin("logTest");
+        client.setPassword("pass");
 
         // Création
         MvcResult result = mockMvc.perform(post("/api/utilisateur/client")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(client)))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.login").value("log1"))
+            .andExpect(jsonPath("$.login").value("logTest"))
             .andReturn();
 
         // Récupérer l'id du client créé à partir du JSON
@@ -56,7 +58,7 @@ public class RestUtilisateurMockMvcTests {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin1", roles = {"ADMIN"})
     public void updateClientWithAuthAndCleanup() throws Exception {
         ClientRequest client = new ClientRequest();
         client.setLogin("clientToUpdate");
@@ -93,7 +95,7 @@ public class RestUtilisateurMockMvcTests {
     // -----------------------
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin2", roles = {"ADMIN"})
     public void createAdminWithAuthAndCleanup() throws Exception {
         AdminRequest admin = new AdminRequest();
         admin.setLogin("adminTest");
@@ -114,7 +116,7 @@ public class RestUtilisateurMockMvcTests {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin3", roles = {"ADMIN"})
     public void updateAdminWithAuthAndCleanup() throws Exception {
         AdminRequest admin = new AdminRequest();
         admin.setLogin("adminToUpdate");
