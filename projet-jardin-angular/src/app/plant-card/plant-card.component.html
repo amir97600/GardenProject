@@ -14,6 +14,7 @@
     <p> <strong>Description :</strong> {{ plante.description }}</p>
     <p><strong>Conseils de culture :</strong> {{plante.conseil}}</p>
     <p><strong>Récolte :</strong> {{ plante.delaiRecolte }} jours</p>
+    <p *ngIf="plante.planteType === 'FLEUR'"><strong>Comestibilité :</strong> {{ plante.comestibilite ? 'Oui' : 'Non' }}</p>
     <button class="see-more" (click)="fermerModal()">Fermer</button>
   </div>
 </div>

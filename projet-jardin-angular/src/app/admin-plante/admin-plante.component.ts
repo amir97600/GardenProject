@@ -29,6 +29,7 @@ export class AdminPlanteComponent {
         { label: 'Description', name: 'description', type: 'textarea' as const, required: true },
         { label: 'Conseil', name: 'conseil', type: 'textarea' as const, required: true },
         { label: 'DureeVie', name: 'dureeVie', type: 'number' as const, required: true },
+        { label: 'Comestibilité', name: 'comestibilite', type: 'radio' as const, required: true, showIf: (formValue: any) => formValue.planteType === 'FLEUR'},
         { label: 'Type de Plante', name: 'planteType', type: 'select' as const, required: true },
         { label: 'Image', name: 'image', type: 'file' as const, required: true },
         { label: 'Icone', name: 'icone', type: 'file' as const, required: true }
@@ -36,7 +37,7 @@ export class AdminPlanteComponent {
       ];  
        
       public planteForm!: FormGroup;
-      public plante:Plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'','','');
+      public plante:Plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'',false,'','');
       public showModal: boolean = false;
       public messageError:string = '';
      
@@ -81,6 +82,7 @@ export class AdminPlanteComponent {
           conseil: ['',Validators.required],
           dureeVie: [0,Validators.required],
           planteType: [TypePlante.Fleur,Validators.required],
+          comestibilite: [false,Validators.required],
           image: ['',Validators.required],
           icone: ['',Validators.required],
         });
@@ -112,6 +114,7 @@ export class AdminPlanteComponent {
           'Conseil': 'conseil',
           'Durée de vie': 'dureeVie',
           'Type' : 'planteType',
+          'Comestibilité' : 'comestibilite'
         };
         return map[label] || '';
       }
@@ -137,6 +140,7 @@ export class AdminPlanteComponent {
           dureeVie: plante.dureeVie,
           nom: plante.nom,
           planteType: plante.planteType,
+          comestibilite: plante.comestibilite ? 'Oui' : 'Non',
           image: plante.image,
           icone: plante.icone
         });
@@ -150,7 +154,7 @@ export class AdminPlanteComponent {
       public closeModal(): void {
         this.planteForm.reset();
         this.doForm();
-        this.plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'','','');
+        this.plante = new Plante(TypePlante.Fleur,0,0,0,'','',0,'',false,'','');
         this.showModal = false;
         this.messageError = '';
       }

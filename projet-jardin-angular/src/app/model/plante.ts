@@ -11,6 +11,7 @@ export class Plante {
     private _conseil: string,
     private _dureeVie: number,
     private _nom: string,
+    private _comestibilite ?: boolean,
     private _icone ?: string,
     private _image ?: string,
   ) { }
@@ -95,6 +96,14 @@ export class Plante {
     
   public set image(value: string) {
     this._image = value;
+  }
+
+  public get comestibilite(): boolean | undefined {
+    return this._comestibilite;
+  }
+    
+  public set comestibilite(value: boolean) {
+    this._comestibilite = value;
   }
 
 }
