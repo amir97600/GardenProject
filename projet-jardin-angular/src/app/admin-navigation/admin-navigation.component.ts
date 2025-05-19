@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { AdminService } from '../service/admin.service';
 import { AuthService } from '../authentification/auth.service';
 import { ModalService } from '../service/modal.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Admin } from '../model/admin';
 
 @Component({
   selector: 'admin-navigation',
@@ -17,7 +19,17 @@ export class AdminNavigationComponent implements OnInit {
   baseTitle: string = "Administration ";
   pageTitle: string = "";
 
-  constructor(private router:Router,private service:AdminService, private authService:AuthService,private modalService: ModalService){}
+  
+  public adminForm!: FormGroup;
+  public admin:Admin = new Admin('','');
+  public adminFields = [
+    { label: 'Login', name: 'login', type: 'text' as const, required: true },
+    { label: 'Password', name: 'password', type: 'password' as const, required: true },
+  ];  
+  public showModal:boolean = false;
+  public successMessage = '';
+
+  constructor(private router:Router,private formBuilder: FormBuilder,private service:AdminService, private authService:AuthService,private modalService: ModalService){}
 
 
   
@@ -35,10 +47,89 @@ export class AdminNavigationComponent implements OnInit {
       this.setPageTitle();
     });
 
+    this.adminForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+
+    this.modalService.showModal$.subscribe(() => {
+      this.openModal();
+    });
+
   }
 
   ouvrirParametresAdmin() {
     this.modalService.triggerModal();
+  }
+
+  public findAdminAccount(){
+
+
+    if(!this.admin.id){
+      let login = this.authService.getLoginFromToken();
+
+
+      this.service.findByLogin(login).subscribe(
+        (admin)=>{
+          this.adminForm.get('login')?.setValue(admin.login);
+          this.adminForm.get('password')?.setValue(admin.password);
+          this.admin = admin;
+        }
+      )
+
+    }
+    else{
+      this.adminForm.get('login')?.setValue(this.admin.login);
+      this.adminForm.get('password')?.setValue(this.admin.password);
+    }
+
+    
+      
+  }
+
+  public openModal(): void {
+  
+    this.findAdminAccount();
+    this.showModal = true;
+  }
+
+  public closeModal(): void {
+      this.adminForm.reset();
+      this.showModal = false;
+  }
+          
+  public onSignupSubmit(): void {
+    if (this.adminForm.valid) {
+      
+      let oldLogin = this.admin.login;
+      let oldPassword = this.admin.password;
+      this.admin.login = this.adminForm.get('login')?.value;
+      this.admin.password = this.adminForm.get('password')?.value
+
+      this.service.save(this.admin).subscribe()
+
+      if (this.admin.login !== oldLogin || this.admin.password !== oldPassword) {
+        this.closeModal();
+        this.successMessage = 'Paramètres modifiés avec succès !\n\nVeuillez vous reconnecter 🎉';
+      
+        setTimeout(() => {
+          this.successMessage = '';
+          sessionStorage.removeItem('token');
+          this.router.navigate(['']);
+        }, 3000);
+      
+        // Garde le message jusqu’à la redirection
+      } else {
+        this.closeModal();
+        this.successMessage = "Paramètres modifiés avec succès !\n\nMême si vous n'avez rien modifié !";
+        setTimeout(() => {
+          this.successMessage = '';
+        },2000);
+      }
+
+     
+      
+    }
   }
 
   capitalize(str:string):string{

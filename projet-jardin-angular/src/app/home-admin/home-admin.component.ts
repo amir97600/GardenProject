@@ -36,16 +36,8 @@ export class HomeAdminComponent implements OnInit{
   };
 
   public tables!:Observable<String[]>;
-  public adminForm!: FormGroup;
-  public admin:Admin = new Admin('','');
-  public adminFields = [
-    { label: 'Login', name: 'login', type: 'text' as const, required: true },
-    { label: 'Password', name: 'password', type: 'password' as const, required: true },
-  ];  
-  public showModal:boolean = false;
-  public successMessage = '';
 
-  constructor(private databaseService:DatabaseService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private adminService: AdminService, private modalService: ModalService ){}
+  constructor(private databaseService:DatabaseService, private router: Router, private authService: AuthService, private adminService: AdminService, private modalService: ModalService ){}
 
   ngOnInit(): void {
     this.tables = this.databaseService.getTables().pipe(
@@ -56,86 +48,9 @@ export class HomeAdminComponent implements OnInit{
       )
       
     );
-
-    this.adminForm = this.formBuilder.group({
-      login: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-
-    this.modalService.showModal$.subscribe(() => {
-      this.openModal();
-    });
   }
 
-  public findAdminAccount(){
-
-
-    if(!this.admin.id){
-      let login = this.authService.getLoginFromToken();
-
-
-      this.adminService.findByLogin(login).subscribe(
-        (admin)=>{
-          this.adminForm.get('login')?.setValue(admin.login);
-          this.adminForm.get('password')?.setValue(admin.password);
-          this.admin = admin;
-        }
-      )
-
-    }
-    else{
-      this.adminForm.get('login')?.setValue(this.admin.login);
-      this.adminForm.get('password')?.setValue(this.admin.password);
-    }
-
-    
-      
-  }
-
-  public openModal(): void {
   
-    this.findAdminAccount();
-    this.showModal = true;
-  }
-
-  public closeModal(): void {
-      this.adminForm.reset();
-      this.showModal = false;
-  }
-          
-  public onSignupSubmit(): void {
-    if (this.adminForm.valid) {
-      
-      let oldLogin = this.admin.login;
-      let oldPassword = this.admin.password;
-      this.admin.login = this.adminForm.get('login')?.value;
-      this.admin.password = this.adminForm.get('password')?.value
-
-      this.adminService.save(this.admin).subscribe()
-
-      if (this.admin.login !== oldLogin || this.admin.password !== oldPassword) {
-        this.closeModal();
-        this.successMessage = 'Paramètres modifiés avec succès !\n\nVeuillez vous reconnecter 🎉';
-      
-        setTimeout(() => {
-          this.successMessage = '';
-          sessionStorage.removeItem('token');
-          this.router.navigate(['']);
-        }, 3000);
-      
-        // Garde le message jusqu’à la redirection
-      } else {
-        this.closeModal();
-        this.successMessage = "Paramètres modifiés avec succès !\n\nMême si vous n'avez rien modifié !";
-        setTimeout(() => {
-          this.successMessage = '';
-        },2000);
-      }
-
-     
-      
-    }
-  }
   
 
 

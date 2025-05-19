@@ -16,3 +16,16 @@
     <span *ngIf="!last">></span>
   </ng-container>
 </nav>
+
+
+ <!-- Modal -->
+ <modal-form
+ [title]="'Changer les paramètres du compte'"
+ [form]="adminForm"
+ [fields]="adminFields"
+ [show]="showModal"
+ (close)="closeModal()"
+ (submit)="onSignupSubmit()"
+ ></modal-form>
+
+ <div class="success-message" *ngIf="successMessage"><p [innerText]="successMessage"></p></div>

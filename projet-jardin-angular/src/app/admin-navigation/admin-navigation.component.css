@@ -45,4 +45,21 @@ span{
 .settings:hover{
     cursor: pointer;
 }
+
+.success-message{
+    position: absolute;
+    padding: 10px;
+    margin: 15px;
+    color: #2D4739;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-align: center;
+    background:#c8e6c9;
+    top: 50;
+    right: 0;
+    border-radius: 15px;
+    border: none;
+   
+  }
   
