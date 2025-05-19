@@ -20,7 +20,7 @@ public abstract class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
-	@Column(columnDefinition = "VARCHAR(35)",nullable = false, unique = true)
+	@Column(columnDefinition = "VARCHAR(35)",nullable = false)
 	protected String login;
 	@Column(columnDefinition = "VARCHAR(150)",nullable = false)
 	protected String password;
