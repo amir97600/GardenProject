@@ -50,10 +50,6 @@ class ProjetJardinApplicationTests {
 		Jardin jardin2 = new Jardin("Jardin de toto", "Marseille");
 		client2.setJardin(jardin2);
 		
-		FruitLegume jordapimente = new FruitLegume("Jordapimente", "Attention les amateurs de cuisine ", "A besoin d'un temps de repos", 4, 30, 2, "piment_icone.png","Jordan.png");
-		FruitLegume framirdine = new FruitLegume("Framirdine", "Dessert masqué de Gotham", "Se developpe sous un ciel gris", 4, 30, 2, "framboise_icone.png","Framirdine.png");
-		FruitLegume marindarine = new FruitLegume("Marindarine", "Fruit Impérial", "Son plant cherche à dominer son environnement", 4, 30, 2, "mandarine_icone.png","Marindarine.png");
-		Fleur souhailys = new Fleur("Souhailys", "Fleur de télétravail", "N'apprécie pas le bruit des travaux", 4, 30, 2, false,"lys_icone.png","souhailys.png");
 		
 		FruitLegume carotte = new FruitLegume("Carotte", "Une carotte bien croquante", "Enterrez-les profondément et arrosez généreusement", 60, 365, 4, "carotte_icone.png","carotte.jpg");
 		FruitLegume fraise = new FruitLegume("Fraise", "Une fraise sucrée et parfumée", "Plantez-les à l’ombre partielle et paillez bien", 25, 730, 2, "fraise_icone.png","fraise.jpg");
