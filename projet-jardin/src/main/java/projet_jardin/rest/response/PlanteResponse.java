@@ -18,6 +18,7 @@ public class PlanteResponse {
 		private Integer delaiArrosage;
 		private String icone;
 		private String image;
+		private boolean comestibilite;
 
 
 		public PlanteResponse() {
@@ -88,6 +89,13 @@ public class PlanteResponse {
 			this.delaiArrosage = delaiArrosage;
 		}
 		
+		public boolean isComestibilite() {
+			return comestibilite;
+		}
+
+		public void setComestibilite(boolean comestibilite) {
+			this.comestibilite = comestibilite;
+		}
 		
 
 		public String getIcone() {
@@ -130,6 +138,7 @@ public class PlanteResponse {
 				planteResponse.setPlanteType(PlanteType.FLEUR);
 				Fleur fleur = (Fleur) plante ;
 				BeanUtils.copyProperties(fleur, planteResponse);
+				planteResponse.setComestibilite(fleur.isComestibilite());
 			}
 			
 			return planteResponse;
@@ -138,9 +147,14 @@ public class PlanteResponse {
 		}
 
 		
+		
 		public enum PlanteType {
 			FRUITLEGUME, FLEUR;
 		}
+
+
+
+		
 		
 		
 }

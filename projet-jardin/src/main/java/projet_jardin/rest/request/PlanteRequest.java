@@ -18,6 +18,7 @@ public class PlanteRequest {
 	private String image;
 	private String icone;
 	private PlanteType planteType;
+	private boolean comestibilite;
 
 	
 	public PlanteRequest() {
@@ -123,7 +124,14 @@ public class PlanteRequest {
 	}
 
 	
+	public boolean isComestibilite() {
+		return comestibilite;
+	}
 
+
+	public void setComestibilite(boolean comestibilite) {
+		this.comestibilite = comestibilite;
+	}
 
 	public static Plante convert(PlanteRequest planteRequest) {
 		Plante plante = null;
@@ -141,6 +149,9 @@ public class PlanteRequest {
 		plante.setDureeVie(planteRequest.getDureeVie());
 		plante.setDelaiArrosage(planteRequest.getDelaiArrosage());
 		plante.setImage(planteRequest.getImage());
+		if(plante instanceof Fleur){
+			((Fleur)plante).setComestibilite(planteRequest.comestibilite);
+		}
 		
 		return plante;
 		
@@ -149,6 +160,8 @@ public class PlanteRequest {
 	public enum PlanteType {
 		FRUITLEGUME, FLEUR;
 	}
+
+	
 
 
 }
