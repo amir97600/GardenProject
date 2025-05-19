@@ -9,10 +9,10 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: projet_jardin
     networks:
-      - devops
+      - projet-jardin
     ports:
       - "3314:3306"
-      
+
   java:
     #image: projet-jardin-java:latest
     
