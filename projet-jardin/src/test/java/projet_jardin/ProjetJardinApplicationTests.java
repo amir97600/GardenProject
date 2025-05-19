@@ -18,6 +18,7 @@ import projet_jardin.model.Culture;
 import projet_jardin.model.Fleur;
 import projet_jardin.model.FruitLegume;
 import projet_jardin.model.Jardin;
+import projet_jardin.model.Utilisateur;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -38,6 +39,7 @@ class ProjetJardinApplicationTests {
 	@Test
 	void contextLoads() {
 		
+		daoutilisateur.deleteAll();
 		// Encodage des mots de passe avant création des objets
 		String adminPasswordEncoded = passwordEncoder.encode("admin");
 		String client1PasswordEncoded = passwordEncoder.encode("pass1");
