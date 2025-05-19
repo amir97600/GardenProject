@@ -10,7 +10,7 @@ RUN mvn dependency:go-offline -B
 
 COPY ./src/ ./src/
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package 
 
 
 # ✅ Utiliser une image OpenJDK officielle et stable
