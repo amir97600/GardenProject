@@ -30,6 +30,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/api/connexion").permitAll();
 			auth.requestMatchers("/api/email/**").permitAll();
+			auth.requestMatchers("/api/meteo/**").permitAll();
 			auth.requestMatchers(HttpMethod.GET, "/api/utilisateur/client/**","/api/jardin/**").permitAll();
 			auth.requestMatchers(HttpMethod.POST, "/api/utilisateur/client/**").permitAll();
 			auth.requestMatchers(HttpMethod.PUT, "/api/utilisateur/client/**").permitAll();
