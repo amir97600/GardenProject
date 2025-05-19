@@ -36,7 +36,7 @@ public class RestUtilisateurMockMvcTests {
     // -----------------------
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admint", roles = {"ADMIN"})
     public void createClientWithAuthAndCleanup() throws Exception {
         ClientRequest client = new ClientRequest();
         client.setLogin("logTest");
