@@ -81,11 +81,6 @@ export class ProfilComponent implements OnInit, AfterViewInit {
       const currentBadges = this.badgeService.getBadgesForScore(client.score); // nouveaux badges pour ce score
       const storedBadges = this.badgeService.getStoredBadges(login); // badges déjà enregistrés
 
-      console.log('Score client:', client.score);
-      console.log('Badges pour ce score:', currentBadges);
-      console.log('Badges stockés:', storedBadges);
-      console.log('Nouveaux badges:', this.nouveauxBadges);
-
       this.nouveauxBadges = this.badgeService.getNewlyUnlocked(currentBadges, storedBadges);
 
       if (this.nouveauxBadges.length > 0) {
