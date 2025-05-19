@@ -97,6 +97,7 @@ p {
 .garden-preview {
   display: flex;
   gap: 15px;
+  justify-content: center;
 }
 
 .preview-map-link {

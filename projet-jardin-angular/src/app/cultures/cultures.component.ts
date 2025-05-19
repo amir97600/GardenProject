@@ -21,6 +21,7 @@ export class CulturesComponent implements OnInit {
   cultureForm!: FormGroup;
   plantes: Plante[] = [];
   cultures: Culture[] = [];
+  culturesAAroser: Culture[] = [];
   cultureSelectionnee?: Culture;
   showForm = false;
   idJardin!: number;
@@ -192,4 +193,16 @@ ajouterCulture(): void {
     this.popupMessage = message;
     setTimeout(() => this.popupMessage = null, 3000);
   }
+
+  estAAroser(culture: Culture): boolean {
+  const plante = this.plantes.find(p => p.id === culture.idPlante);
+  if (!plante) return false;
+
+  const dateDernierArrosage = new Date(culture.dateDernierArrosage);
+  const prochaineDateArrosage = new Date(dateDernierArrosage);
+  prochaineDateArrosage.setDate(prochaineDateArrosage.getDate() + plante.delaiArrosage);
+
+  return new Date() >= prochaineDateArrosage && !culture.recolte;
+}
+
 }

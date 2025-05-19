@@ -156,7 +156,19 @@
   font-weight: 500;
 }
 
+.a-arroser-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
 
+.a-arroser {
+  color: #007BFF;
+  font-weight: bold;
+  background-color: #e7f1ff;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
 
 .garden-map {
   display: grid;
