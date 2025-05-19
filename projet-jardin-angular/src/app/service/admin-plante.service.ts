@@ -21,6 +21,7 @@ export class AdminPlanteService {
       plante.planteType = planteForm.value.planteType;
       plante.image = planteForm.value.image;
       plante.icone = planteForm.value.icone;
+      plante.comestibilite = planteForm.value.comestibilite;
 
   
      this.servicePlante.save(plante).subscribe({

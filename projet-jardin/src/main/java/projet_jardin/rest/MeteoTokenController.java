@@ -74,9 +74,9 @@ public class MeteoTokenController {
         
         String url = "https://public-api.meteofrance.fr/public/DPObs/v1/station/horaire?id_station=" + idStation + "&date="+ date +"&format=json";
 
-        if(token == null){
-            getMeteoToken();
-        }
+        
+        getMeteoToken();
+      
         
         
         HttpHeaders headers = new HttpHeaders();

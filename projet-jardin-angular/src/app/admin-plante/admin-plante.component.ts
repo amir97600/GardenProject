@@ -20,7 +20,7 @@ export class AdminPlanteComponent {
       private searchTermSubject = new BehaviorSubject<string>('');
       private selectedFilterSubject = new BehaviorSubject<string | null>(null);
       UserProperties = [
-        "Id","Nom","Délai d'arrosage","Délai de récolte","Description","Conseil","Durée de vie","Type"
+        "Id","Nom","Délai d'arrosage","Délai de récolte","Description","Conseil","Durée de vie","Type","Comestibilité"
       ]
       public planteFields = [
         { label: 'Nom', name: 'nom', type: 'text' as const, required: true },
