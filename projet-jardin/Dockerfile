@@ -13,10 +13,10 @@ COPY ./src/ ./src/
 RUN mvn clean package -DskipTests
 
 
-# ✅ Utiliser une image OpenJDK officielle et stable
+#  Utiliser une image OpenJDK officielle et stable
 FROM eclipse-temurin:21-jdk
 
-ENV ENV_DB_URL=jdbc:mysql://devops:3306/projet_jardin
+ENV ENV_DB_URL=jdbc:mysql://localhost:3306/projet_jardin
 ENV ENV_DB_USER=root
 ENV ENV_DB_PASSWORD=root
 
