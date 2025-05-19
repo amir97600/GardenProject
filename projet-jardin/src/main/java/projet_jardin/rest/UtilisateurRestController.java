@@ -32,6 +32,11 @@ public class UtilisateurRestController {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+
+	public boolean isHashed(String password) {
+		return password != null && password.startsWith("$2a$");
+	}
+	
 	
 	@GetMapping("client")
 	public List<ClientResponse> getAllClients(){
@@ -61,7 +66,9 @@ public class UtilisateurRestController {
 	@PostMapping("client")
 	public Client createClient(@RequestBody ClientRequest clientRequest) {
 		 
-		clientRequest.setPassword(passwordEncoder.encode(clientRequest.getPassword()));
+		if(!isHashed(clientRequest.getPassword())){
+			clientRequest.setPassword(passwordEncoder.encode(clientRequest.getPassword()));
+		}
 		Client client = ClientRequest.convert(clientRequest);
 
 		return daoUtilisateur.save(client);
@@ -73,7 +80,9 @@ public class UtilisateurRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
 
-		clientRequest.setPassword(passwordEncoder.encode(clientRequest.getPassword()));
+		if(!isHashed(clientRequest.getPassword())){
+			clientRequest.setPassword(passwordEncoder.encode(clientRequest.getPassword()));
+		}
 
 		Client Client = ClientRequest.convert(clientRequest);
 		daoUtilisateur.save(Client);
@@ -97,7 +106,11 @@ public class UtilisateurRestController {
 	
 	@PostMapping("admin")
 	public Admin createAdmins(@RequestBody AdminRequest adminRequest) {
-		adminRequest.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
+
+		if(!isHashed(adminRequest.getPassword())){
+			adminRequest.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
+		}
+		
 		Admin Admin = AdminRequest.convert(adminRequest);
 
 		return daoUtilisateur.save(Admin);
@@ -109,7 +122,9 @@ public class UtilisateurRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
 
-		adminRequest.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
+		if(!isHashed(adminRequest.getPassword())){
+			adminRequest.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
+		}
 		
 		Admin Admin = AdminRequest.convert(adminRequest);
 
@@ -125,4 +140,5 @@ public class UtilisateurRestController {
 
 		this.daoUtilisateur.deleteById(id);
 	}
+
 }
