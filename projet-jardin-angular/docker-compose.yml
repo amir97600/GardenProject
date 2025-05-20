@@ -13,7 +13,7 @@ services:
 
     container_name: projet-jardin-java
     ports:
-      - 8091:8080
+      - 8080:8080
     networks:
       - projet-jardin
 
